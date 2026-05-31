@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #050505;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Claymorphism Global Utilities */
+.clay-card {
+  border-radius: 2rem !important;
+  background: #fffcf5 !important;
+  box-shadow: 
+    10px 10px 20px rgba(74, 28, 13, 0.08), 
+    inset 3px 3px 6px rgba(255, 255, 255, 1), 
+    inset -4px -4px 8px rgba(74, 28, 13, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  transition: all 0.3s ease;
+}
+
+.clay-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 
+    14px 14px 28px rgba(230, 81, 0, 0.12),
+    inset 3px 3px 8px rgba(255, 255, 255, 1),
+    inset -5px -5px 10px rgba(74, 28, 13, 0.08) !important;
+}
+
+.clay-panel {
+  border-radius: 2rem !important;
+  background: #fffcf5 !important;
+  box-shadow: 
+    10px 10px 20px rgba(74, 28, 13, 0.08), 
+    inset 3px 3px 6px rgba(255, 255, 255, 1), 
+    inset -4px -4px 8px rgba(74, 28, 13, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+}
+
+.clay-nav {
+  border-radius: 2rem !important;
+  background: rgba(255, 252, 245, 0.7) !important;
+  backdrop-filter: blur(16px) !important;
+  box-shadow: 
+    0px 10px 20px rgba(74, 28, 13, 0.05), 
+    inset 2px 2px 4px rgba(255, 255, 255, 0.8), 
+    inset -2px -2px 6px rgba(74, 28, 13, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+.clay-input {
+  border-radius: 1.5rem !important;
+  background: #fffaf0 !important;
+  box-shadow: 
+    inset 4px 4px 8px rgba(74, 28, 13, 0.06), 
+    inset -4px -4px 8px rgba(255, 255, 255, 0.8),
+    2px 2px 4px rgba(74, 28, 13, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  transition: all 0.3s ease;
+}
+
+.clay-input:focus {
+  outline: none;
+  box-shadow: 
+    inset 5px 5px 10px rgba(230, 81, 0, 0.1), 
+    inset -5px -5px 10px rgba(255, 255, 255, 0.9),
+    0 0 0 2px rgba(230, 81, 0, 0.3) !important;
+}
+
+.clay-badge {
+  border-radius: 1rem !important;
+  background: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 
+    2px 2px 4px rgba(74, 28, 13, 0.05),
+    inset 1px 1px 3px rgba(255, 255, 255, 0.8),
+    inset -1px -1px 3px rgba(74, 28, 13, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.clay-btn {
+  border-radius: 2rem !important;
+  background: #e65100 !important;
+  color: white !important;
+  box-shadow: 
+    6px 6px 12px rgba(230, 81, 0, 0.3),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.5), 
+    inset -4px -4px 8px rgba(138, 58, 25, 0.6) !important;
+  border: none !important;
+  transition: all 0.3s ease;
+}
+
+.clay-btn:hover {
+  background: #ff8f00 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 
+    8px 8px 16px rgba(230, 81, 0, 0.4),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.6),
+    inset -4px -4px 8px rgba(138, 58, 25, 0.7) !important;
+}
+
+.clay-card-dark {
+  border-radius: 2rem !important;
+  background: #4a1c0d !important;
+  box-shadow: 
+    8px 8px 16px rgba(0, 0, 0, 0.25),
+    inset 2px 2px 6px rgba(230, 81, 0, 0.2), 
+    inset -4px -4px 8px rgba(0, 0, 0, 0.6) !important;
+  border: none !important;
+  transition: all 0.3s ease;
+}
+
+.clay-card-dark:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 
+    12px 12px 24px rgba(230, 81, 0, 0.3),
+    inset 2px 2px 8px rgba(230, 81, 0, 0.3),
+    inset -4px -4px 10px rgba(0, 0, 0, 0.7) !important;
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}

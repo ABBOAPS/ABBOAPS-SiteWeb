@@ -1,0 +1,10 @@
+Macro Categoria,Voce,Importo,Tipo,Note
+Entrate,Quote Associative,0.00,Entrata,Quote di iscrizione annuale dei soci
+Entrate,Donazioni e Liberalità,0.00,Entrata,Erogazioni liberali da privati o aziende
+Entrate,Contributi Pubblici e 5x1000,0.00,Entrata,Contributi da enti pubblici o quota del 5x1000
+Entrate,Entrate da Attività Istituzionali,0.00,Entrata,Corrispettivi specifici per corsi e attività
+Uscite,Server e Costi Web,0.00,Uscita,Hosting dominî licenze software e servizi cloud
+Uscite,Marketing e Promozione,0.00,Uscita,Pubblicità social e materiale informativo
+Uscite,Sviluppo e Progetti,0.00,Uscita,Materiali per progetti e attività dell'associazione
+Uscite,Assicurazione Obbligatoria,0.00,Uscita,Assicurazione per i volontari (obbligatoria nelle APS)
+Uscite,Spese Amministrative e Bancarie,0.00,Uscita,Tenuta conto corrente e commissioni POS/Stripe

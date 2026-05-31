@@ -1,0 +1,6 @@
+{
+  "background": {
+    "base": "#050505",
+    "gradient": "radial-gradient(circle at 50% 0%, #1a1a24 0%, #050505 100%)"
+  }
+}

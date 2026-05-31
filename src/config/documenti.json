@@ -1,0 +1,40 @@
+{
+  "title": "Risorse & Archivio",
+  "subtitle": "Esplora e consulta il nostro materiale pubblico, il brand book, documenti e le gallerie fotografiche dei nostri eventi sul territorio via Google Drive.",
+  "sections": {
+    "materials": {
+      "title": "Materiali Pubblici",
+      "items": [
+        {
+          "title": "Brand Book Ufficiale",
+          "type": "pdf",
+          "label": "Documento PDF",
+          "link": "#"
+        },
+        {
+          "title": "Kit Loghi & Asset",
+          "type": "folder",
+          "label": "Cartella Drive",
+          "link": "#"
+        },
+        {
+          "title": "Video Promozionale",
+          "type": "video",
+          "label": "Video MP4",
+          "link": "#"
+        }
+      ]
+    },
+    "galleries": {
+      "title": "Gallerie Fotografiche",
+      "items": [
+        {
+          "title": "Laboratori Digital Heroes",
+          "item_count_label": "Cartella Drive",
+          "coverImage": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80",
+          "link": "#"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "title": "Contattaci",
+  "description": "Siamo a disposizione per collaborazioni, partnership, o per qualsiasi domanda sui nostri progetti. Compila il modulo sottostante per metterti in contatto con il team di ABBO.",
+  "form": {
+    "name_placeholder": "Nome",
+    "email_placeholder": "Email",
+    "message_placeholder": "Messaggio...",
+    "submit_button": "Invia Messaggio"
+  },
+  "info": {
+    "email_label": "Email Istituzionale",
+    "email_value": "info@abboaps.it",
+    "phone_label": "Numero di Telefono",
+    "phone_value": "+39 333 123 4567"
+  }
+}

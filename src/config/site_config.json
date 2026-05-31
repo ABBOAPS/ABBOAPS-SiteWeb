@@ -1,0 +1,37 @@
+{
+  "theme": {
+    "background": {
+      "base": "#fffaf0",
+      "gradient": "radial-gradient(circle at 50% 0%, #fff0e0 0%, #fffaf0 100%)"
+    },
+    "text": {
+      "primary": "#4a1c0d",
+      "secondary": "#8a3a19",
+      "inverse": "#fffaf0"
+    },
+    "accent": {
+      "primary": "#e65100",
+      "secondary": "#ff8f00"
+    }
+  },
+  "seo": {
+    "title_base": "Abbo APS",
+    "description": "L'associazione digitale leader nell'innovazione open-source e design collaborativo.",
+    "og_image": "https://images.unsplash.com/photo-1542435503-956c469947f6?auto=format&fit=crop&q=80",
+    "url": "https://abboaps.it"
+  },
+  "logo": "/logo_abbo_nero.svg",
+  "logo_horizontal": "/abbo_orizzontale.svg",
+  "socials": {
+    "discord": "https://discord.gg/yourinvite",
+    "instagram": "https://instagram.com/abboaps",
+    "patreon": "https://patreon.com/abboaps"
+  },
+  "navigation": {
+    "chi_siamo": "Chi siamo",
+    "documenti": "Risorse",
+    "sostienici": "Sostienici",
+    "contatti": "Contatti",
+    "news": "News"
+  }
+}

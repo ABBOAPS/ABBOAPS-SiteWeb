@@ -1,0 +1,52 @@
+{
+  "hero": {
+    "title": "Non lasciamo morire le buone idee. Le piantiamo a terra.",
+    "description": "Abbo APS non è un ufficio. È un'officina. Troppi progetti per i ragazzi nascono e muoiono nel giro di una stagione, lasciando solo polvere. Noi prendiamo quelle intuizioni fragili. Ci mettiamo le mani dentro. Costruiamo scheletri di cemento e ferro perché resistano al tempo. Diamo sostanza a chi vuole cambiare la strada in cui cammina."
+  },
+  "founders_quotes": [
+    {
+      "quote": "\"Le buone intenzioni da sole non bastano. Crollano al primo soffio di vento. Chi vuole cambiare le cose per i ragazzi della propria città ha bisogno di fondamenta pesanti, di legno, di calcoli fatti bene. Noi siamo qui per dare questo peso. Per far durare quello che altrimenti svanirebbe domani mattina.\"",
+      "author": {
+        "name": "Alessio Bellan",
+        "role": "Co-Founder",
+        "photo": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=150&h=150"
+      }
+    },
+    {
+      "quote": "\"Se trovi una chiave che apre una porta bloccata, la devi copiare e dare a tutti. Abbiamo portato la logica dei codici aperti nel sociale. Niente segreti, niente recinti utili solo a prendersi il merito. Creiamo un'ossatura comune: chi lavora su queste strade deve poter usare gli stessi strumenti, senza dover ricominciare da zero ogni volta.\"",
+      "author": {
+        "name": "Alessio Buso",
+        "role": "Co-Founder",
+        "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150"
+      }
+    }
+  ],
+  "mission_box": {
+    "title": "La Terra Sopra cui Camminiamo",
+    "description": "Consumiamo le scarpe tra Monza, la Brianza, Lecco, Bergamo e Milano. Entriamo nelle scuole, nelle piazze, negli uffici comunali. Ci muoviamo dove ci sono ragazzi che rischiano di perdersi o idee che rischiano di rimanere chiuse in un cassetto. Non facciamo filosofia. Sbattiamo la testa sui bandi, sui bilanci, sulla burocrazia. Diamo muscoli e ossa a chi vuole proteggere e far crescere chi viene dopo di noi."
+  },
+  "values": [
+    {
+      "title": "Passarsi il testimone, senza farlo cadere",
+      "description": "Un progetto che muore quando finiscono i fondi pubblici è un fallimento. Costruiamo percorsi capaci di camminare sulle gambe di chi oggi ha dodici anni e domani guiderà la fila. Quello che piantiamo oggi deve diventare l'ombra sotto cui si siederanno i ragazzi di domani.",
+      "icon": "Shield"
+    },
+    {
+      "title": "Mani diverse, stesso muro",
+      "description": "Ognuno sa fare una cosa sola, e da solo si stanca presto. Mettiamo allo stesso tavolo chi conosce la legge, chi sa insegnare, chi sa fare i conti e chi vive la strada. Mescoliamo i saperi, sporchiamoci la bocca con linguaggi diversi. Se la conoscenza resta chiusa dentro una stanza, marcisce.",
+      "icon": "Users"
+    },
+    {
+      "title": "Nessuno si salva da solo su un'isola",
+      "description": "I successi solitari non ci interessano. Durano lo spazio di una fotografia. Se una scuola migliora, deve migliorare tutto il quartiere attorno. Se un comune si muove, deve trascinarsi dietro gli altri. Si cresce solo se la terra sotto i piedi di tutti diventa più solida.",
+      "icon": "Trophy"
+    }
+  ],
+  "cta_banner": {
+    "title": "Facciamo il lavoro sporco. Insieme.",
+    "subtitle": "Se gestisci una scuola, se hai un progetto, o se hai semplicemente un'idea che brucia ma ti mancano le gambe per farla correre: parliamone. Tira fuori il foglio dal cassetto. Mettiamoci al lavoro.",
+    "button_text": "Inizia da qui",
+    "button_link": "/contatti",
+    "illustration": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80"
+  }
+}

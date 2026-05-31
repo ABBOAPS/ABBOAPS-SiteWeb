@@ -1,0 +1,42 @@
+{
+  "title": "Sostienici",
+  "subtitle": "Il tuo supporto garantisce l'indipendenza e lo sviluppo tecnologico dell'associazione. Affrontiamo costi vivi per infrastrutture server, domini, sviluppo e manutenzione per mantenere i nostri servizi accessibili a tutta la community.",
+  "active_projects": [
+    {
+      "id": "lego-spike-prime",
+      "title": "LEGO® Education SPIKE™ Prime x (24 Studenti)",
+      "description": "Investimento sulla educazione dei ragazzi dei laboratori di Digital Heroes, ci permettrà di creare ufficialmente il corso di Robotica.",
+      "image": "src/content/media/lego-education-spike-prime-set-per-la-classe-24-studenti.jpg",
+      "goal_amount": 4460,
+      "current_amount": 0
+    },
+    {
+      "id": "impianto-audio-palestra",
+      "title": "Impianto Audio Professionale",
+      "description": "Sistema audio completo per gli eventi e i laboratori dell'associazione in spazi oltre 300m². Include P.A. a colonna RCF Evox 12, mixer digitale Behringer XR18 con router Wi-Fi, microfoni Shure SM58, monitor, stativi e cablaggio. I beni restano patrimonio associativo a supporto dei progetti per i giovani.",
+      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80",
+      "goal_amount": 5600,
+      "current_amount": 0
+    }
+  ],
+  "patreon": {
+    "title": "Patreon",
+    "description": "Per i sostenitori ricorrenti che credono nella nostra visione a lungo termine e vogliono garantire stabilità ai progetti e ai laboratori di ABBO APS. Il tuo contributo mensile si trasforma in continuità educativa e infrastrutture sicure per i ragazzi.",
+    "perks": [
+      "Iscrizione formale nell'Albo dei Mecenati e menzione d'onore sul sito web",
+      "Accesso in anteprima ai progetti",
+      "Supporto diretto alla manutenzione dei server e alla sostenibilità dei laboratori didattici"
+    ],
+    "link": "https://patreon.com/ABBOAPS?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"
+  },
+  "paypal": {
+    "title": "Donatori (PayPal)",
+    "description": "Per chi desidera sostenere ABBO APS con una donazione singola (una tantum). Ogni contributo, erogato in totale trasparenza, è interamente reinvestito nelle attività istituzionali, nella strumentazione tecnologica e nella copertura dei costi vivi dell'associazione.",
+    "perks": [
+      "Finanziamento diretto della strumentazione informatica e hardware per i laboratori",
+      "Supporto immediato per la copertura dei costi di hosting, VPS e infrastruttura di rete",
+      "Ringraziamento pubblico sui canali ufficiali e nei report di rendicontazione dell'associazione"
+    ],
+    "link": "#"
+  }
+}

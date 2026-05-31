@@ -1,0 +1,26 @@
+{
+  "legal_address": "Mezzago (MB)",
+  "fiscal_code": "#########",
+  "links": [
+    {
+      "label": "Statuto",
+      "url": "/archivio/statuto"
+    },
+    {
+      "label": "Codice Etico",
+      "url": "/archivio/codice-etico"
+    },
+    {
+      "label": "Bilanci",
+      "url": "/archivio/bilanci"
+    },
+    {
+      "label": "Contatti",
+      "url": "/contatti"
+    }
+  ],
+  "copyright": "© 2026 ABBO APS. Tutti i diritti riservati.",
+  "made_with": "Made with ❤️ and 🍕 by",
+  "developer_name": "Alessio Bellan",
+  "developer_url": "https://alessiobellan.it"
+}
