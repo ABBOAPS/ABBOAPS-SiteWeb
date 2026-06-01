@@ -97,15 +97,15 @@ export function Sostienici() {
              <AnimatePresence mode="wait">
                <motion.div
                  key={currentProjectIdx}
-                 initial={{ opacity: 0, x: 20 }}
-                 animate={{ opacity: 1, x: 0 }}
-                 exit={{ opacity: 0, x: -20 }}
-                 transition={{ duration: 0.3 }}
-                 className={`flex flex-col lg:flex-row min-h-[500px] ${isFuture ? 'grayscale opacity-80' : ''}`}
+                 initial={{ opacity: 0 }}
+                 animate={{ opacity: 1 }}
+                 exit={{ opacity: 0 }}
+                 transition={{ duration: 0.2 }}
+                 className={`flex flex-col lg:flex-row min-h-[500px] ${isFuture ? 'opacity-80' : ''}`}
                >
                  {/* Image side */}
-                 <div className="w-full lg:w-1/2 relative">
-                   <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover" />
+                 <div className="w-full lg:w-1/2 relative min-h-[250px] lg:min-h-full">
+                   <img src={project.image} alt={project.title} className={`absolute inset-0 w-full h-full object-cover ${isFuture ? 'grayscale' : ''}`} />
                    <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent lg:bg-gradient-to-t"></div>
                    {isFuture && (
                      <div className="absolute top-8 left-8 clay-card-dark text-white px-6 py-2 font-bold uppercase tracking-widest text-sm shadow-xl">
