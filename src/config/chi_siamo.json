@@ -8,16 +8,16 @@
       "quote": "\"Le buone intenzioni da sole non bastano. Crollano al primo soffio di vento. Chi vuole cambiare le cose per i ragazzi della propria città ha bisogno di fondamenta pesanti, di legno, di calcoli fatti bene. Noi siamo qui per dare questo peso. Per far durare quello che altrimenti svanirebbe domani mattina.\"",
       "author": {
         "name": "Alessio Bellan",
-        "role": "Co-Founder",
-        "photo": "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=150&h=150"
+        "role": "Co-Founder & Presidente",
+        "photo": "./home/tonnoconsorzio/Progetti/ABBOAPS-SiteWeb/src/content/media/profile_alessio.jpg"
       }
     },
     {
       "quote": "\"Se trovi una chiave che apre una porta bloccata, la devi copiare e dare a tutti. Abbiamo portato la logica dei codici aperti nel sociale. Niente segreti, niente recinti utili solo a prendersi il merito. Creiamo un'ossatura comune: chi lavora su queste strade deve poter usare gli stessi strumenti, senza dover ricominciare da zero ogni volta.\"",
       "author": {
         "name": "Alessio Buso",
-        "role": "Co-Founder",
-        "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150"
+        "role": "Co-Founder & Vice-Presidente",
+        "photo": "./home/tonnoconsorzio/Progetti/ABBOAPS-SiteWeb/src/content/media/profile_buso.jpg"
       }
     }
   ],

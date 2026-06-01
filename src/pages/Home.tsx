@@ -121,6 +121,9 @@ export function Home() {
             transition={{ delay: 0.4, duration: 1 }}
             className="mb-8"
           >
+            <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight text-[#4a1c0d] drop-shadow-md text-center max-w-2xl px-6">
+              ABBO APS
+            </h1>
             <p className="text-lg md:text-xl mt-4 text-[#4a1c0d]/80 text-center max-w-2xl px-6" aria-label="Sottotitolo manifesto">
               Creiamo i momenti a cui vorresti tornare
             </p>
