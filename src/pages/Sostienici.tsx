@@ -283,10 +283,10 @@ export function Sostienici() {
             Sostienici
           </h2>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-20">
+        <div className="grid md:grid-cols-2 gap-12 mb-16 max-w-5xl mx-auto w-full">
           {/* Patron Card (Ricorrente) */}
           <div className="clay-card flex flex-col p-10 md:p-14 relative overflow-hidden group">
-            <div className="w-16 h-16 bg-[#ff424d]/10 text-[#ff424d] rounded-full flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
+            <div className="w-16 h-16 bg-[#ff424d]/10 text-[#ff424d] rounded-full flex items-center justify-center mb-10 group-hover:scale-110 transition-transform self-start aspect-square shrink-0">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M15.3859 0.000183105C11.5362 0.000183105 8.41406 3.12242 8.41406 6.97204C8.41406 10.8217 11.5362 13.9439 15.3859 13.9439C19.2355 13.9439 22.3577 10.8217 22.3577 6.97204C22.3577 3.12242 19.2355 0.000183105 15.3859 0.000183105ZM1.6416 23.9998H6.12643V0.000183105H1.6416V23.9998Z"/>
               </svg>
@@ -321,7 +321,7 @@ export function Sostienici() {
 
           {/* PayPal Card (Singola) */}
           <div className="clay-card flex flex-col p-10 md:p-14 relative overflow-hidden group">
-            <div className="w-16 h-16 bg-[#0070ba]/10 text-[#0070ba] rounded-full flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
+            <div className="w-16 h-16 bg-[#0070ba]/10 text-[#0070ba] rounded-full flex items-center justify-center mb-10 group-hover:scale-110 transition-transform self-start aspect-square shrink-0">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7.07593 21.3368H2.47036C2.11586 21.3368 1.8385 21.0366 1.88414 20.6865L4.94507 0.90098C4.99613 0.589886 5.25052 0.351562 5.56942 0.351562H13.6111C18.2173 0.351562 20.9859 2.47953 20.1666 7.29415C19.6481 10.331 17.5492 12.6661 14.5772 13.5505C13.4704 13.8797 12.2614 14.0322 10.6575 14.0322H9.0275C8.68128 14.0322 8.3887 14.2858 8.33496 14.629L7.07593 21.3368Z" fill="#003087"/>
                 <path d="M6.09635 15.0635C6.14856 14.7262 6.43632 14.4828 6.77884 14.4828H8.40884C10.0128 14.4828 11.2217 14.3291 12.3286 13.9996C15.3006 13.1143 17.398 10.7797 17.9179 7.74238C18.1783 6.22295 18.0658 4.91263 17.6206 3.86043C17.3362 3.19236 16.913 2.63428 16.3621 2.20459C15.5492 1.5 14.5034 1 13.0645 1H5.73359C5.6416 1 5.55938 0.0654316 5.53763 0.154546L2.19794 19.7941C2.18306 19.8808 2.25014 19.9577 2.33855 19.9577H6.49129C6.61394 19.9577 6.71804 19.8696 6.73693 19.747L6.09635 15.0635Z" fill="#0070ba"/>
@@ -355,55 +355,55 @@ export function Sostienici() {
               Donazione Singola
             </a>
           </div>
+        </div>
 
-          {/* 5 per Mille Card */}
-          <div className="clay-card flex flex-col p-10 md:p-14 relative overflow-hidden group">
-            <div className="w-16 h-16 bg-[#e65100]/10 text-[#e65100] rounded-full flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-md">
+        {/* Sezione 5 per Mille */}
+        <div className="w-full flex flex-col items-center pt-8 pb-16 max-w-5xl mx-auto relative z-20">
+          <motion.div
+            whileHover={{ y: -4 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="clay-card w-full p-12 md:p-20 flex flex-col items-center text-center relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-48 h-48 bg-[#ff8f00]/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#e65100]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div className="w-16 h-16 bg-[#e65100]/10 text-[#e65100] rounded-full flex items-center justify-center mb-8 hover:scale-110 transition-transform duration-300 self-center aspect-square shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-md">
                 <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
               </svg>
             </div>
-            <h2 className="text-4xl font-extrabold tracking-tight mb-4 text-[#4a1c0d]">
-              5 per mille
-            </h2>
-            <p className="text-[#4a1c0d]/70 mb-8 leading-relaxed font-medium text-lg">
-              Un modo del tutto gratuito per sostenere ABBO APS. Ti basta inserire il nostro codice fiscale nella tua dichiarazione dei redditi.
+
+            <h3 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#4a1c0d] mb-6 leading-tight">
+              Destina il tuo 5x1000 ad ABBO APS
+            </h3>
+            
+            <p className="text-lg md:text-xl font-medium text-[#4a1c0d]/70 max-w-2xl leading-relaxed mb-10">
+              Un gesto a costo zero per supportare i giovani. Con il tuo 5x1000 finanzi direttamente laboratori didattici di robotica, informatica e le attività sociali dell'officina in Brianza.
             </p>
 
-            <ul className="mb-12 space-y-4">
-              <li className="flex items-start space-x-3 text-[#4a1c0d]/80 font-semibold">
-                <div className="w-6 h-6 rounded-full bg-[#e65100]/20 flex items-center justify-center text-[#e65100] shrink-0 mt-0.5">
-                  <Check className="w-3 h-3" />
-                </div>
-                <span>Nessun costo per te</span>
-              </li>
-              <li className="flex items-start space-x-3 text-[#4a1c0d]/80 font-semibold">
-                <div className="w-6 h-6 rounded-full bg-[#e65100]/20 flex items-center justify-center text-[#e65100] shrink-0 mt-0.5">
-                  <Check className="w-3 h-3" />
-                </div>
-                <span>Finanziamento dei laboratori didattici</span>
-              </li>
-              <li className="flex items-start space-x-3 text-[#4a1c0d]/80 font-semibold">
-                <div className="w-6 h-6 rounded-full bg-[#e65100]/20 flex items-center justify-center text-[#e65100] shrink-0 mt-0.5">
-                  <Check className="w-3 h-3" />
-                </div>
-                <span>Sostegno all'officina sociale in Brianza</span>
-              </li>
-            </ul>
-
-            <div className="mt-auto w-full clay-input p-5 flex flex-col sm:flex-row items-center justify-between gap-3 relative group select-none">
-              <div className="flex flex-col text-left">
-                <span className="text-[10px] font-bold text-[#8a3a19] uppercase tracking-wider">C.F. ABBO APS</span>
-                <span className="font-mono text-base font-black text-[#e65100]">#########</span>
+            <div className="w-full max-w-md clay-input p-6 flex flex-col sm:flex-row items-center justify-between gap-4 relative group select-none">
+              <div className="flex flex-col text-left w-full sm:w-auto">
+                <span className="text-[10px] md:text-xs font-bold text-[#8a3a19] uppercase tracking-wider mb-1">Codice Fiscale dell'Associazione</span>
+                <span className="font-mono text-xl md:text-2xl font-black text-[#e65100] tracking-wider select-all">#########</span>
               </div>
               <button
                 onClick={handleCopyCF}
-                className="clay-btn px-4 py-2 font-extrabold uppercase tracking-widest text-[10px] hover:scale-105 active:scale-95 transition-transform"
+                className="clay-btn w-full sm:w-auto px-6 py-3 font-extrabold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-transform"
               >
-                {copied ? "Copiato!" : "Copia"}
+                {copied ? (
+                  <>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    Copiato!
+                  </>
+                ) : (
+                  <>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                    Copia Codice
+                  </>
+                )}
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       <canvas

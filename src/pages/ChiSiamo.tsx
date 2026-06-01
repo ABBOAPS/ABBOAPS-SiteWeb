@@ -101,7 +101,7 @@ export function ChiSiamo() {
                 {/* Animated corner ambient blur */}
                 <div className="absolute top-0 right-0 w-48 h-48 bg-[#e65100] opacity-0 group-hover:opacity-5 blur-3xl transition-opacity duration-700 pointer-events-none"></div>
 
-                <div className="w-16 h-16 rounded-2xl bg-[#fffcf5] border border-[#e65100]/20 flex items-center justify-center mb-10 group-hover:bg-[#e65100] group-hover:border-transparent group-hover:shadow-[0_10px_20px_rgba(230,81,0,0.3)] transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3">
+                <div className="w-16 h-16 rounded-2xl bg-[#fffcf5] border border-[#e65100]/20 flex items-center justify-center mb-10 group-hover:bg-[#e65100] group-hover:border-transparent group-hover:shadow-[0_10px_20px_rgba(230,81,0,0.3)] transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3 self-start aspect-square shrink-0">
                   <Icon className="w-7 h-7 stroke-[2.5] text-[#e65100] group-hover:text-white transition-colors duration-500" />
                 </div>
                 

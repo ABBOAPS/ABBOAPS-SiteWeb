@@ -48,7 +48,7 @@ export function Documenti() {
             const { icon: Icon, color, bg } = getTypeStyles(mat.type);
             return (
               <a key={idx} href={mat.link} target="_blank" rel="noopener noreferrer" className="clay-card p-8 flex flex-col justify-between group cursor-pointer">
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-10 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3 ${bg}`}>
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-10 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3 self-start aspect-square shrink-0 ${bg}`}>
                   <Icon className={`w-6 h-6 stroke-[2] ${color}`} />
                 </div>
                 <div>
