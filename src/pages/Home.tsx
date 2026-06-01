@@ -125,7 +125,7 @@ export function Home() {
               ABBO APS | Diamo sostanza e fondamenta ai progetti per i giovani
             </h1>
             <p className="text-lg md:text-xl mt-4 text-[#4a1c0d]/80 text-center max-w-2xl px-6" aria-label="Sottotitolo manifesto">
-              Diamo scheletri di cemento e ferro perché resistano al tempo. Officina sociale per l'open source e le reti territoriali.
+              Creiamo i momenti a cui vorresti tornare
             </p>
           </motion.div>
 

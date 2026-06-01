@@ -18,7 +18,7 @@
 Il nostro obiettivo è supportare progetti per ragazzi, sviluppare open source nel sociale e rafforzare le reti territoriali. 
 Questo repository contiene il codice sorgente del sito web ufficiale dell'associazione, progettato per essere ultra-veloce, accessibile e maniacalmente ottimizzato per i motori di ricerca.
 
-> *"Diamo scheletri di cemento e ferro perché resistano al tempo."*
+> *"Creiamo i momenti a cui vorresti tornare"*
 
 ---
 

@@ -12,7 +12,7 @@ export const generateNgoSchema = () => {
     "alternateName": "ABBO Associazione di Promozione Sociale",
     "url": BASE_URL,
     "logo": LOGO_URL,
-    "description": "Officina sociale: diamo scheletri di cemento e ferro per sostenere progetti per ragazzi e l'open source nel sociale in Brianza e Lombardia.",
+    "description": "Officina sociale: diamo sostanza ai progetti per ragazzi e all'open source nel sociale in Brianza e Lombardia.",
     "areaServed": ["Monza", "Brianza", "Lecco", "Bergamo", "Milano"],
     "taxID": "#", // Placeholder
     "vatID": "#", // Placeholder
