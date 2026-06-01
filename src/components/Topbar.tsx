@@ -113,7 +113,7 @@ export function Topbar() {
               >
                 <Link to="/" onClick={handleLogoClick} className="flex">
                   <div className="clay-nav h-12 px-5 flex items-center justify-center hover:opacity-80 transition-opacity">
-                    <img src={(siteConfig as any).logo_horizontal || "https://img.icons8.com/ios-filled/50/e65100/home.png"} alt="Abbo Logo" className="h-5 w-auto object-contain" />
+                    <img src={(siteConfig as any).logo_horizontal || "https://img.icons8.com/ios-filled/50/e65100/home.png"} alt="Abbo Logo" width="100" height="20" className="h-5 w-auto object-contain" />
                   </div>
                 </Link>
               </motion.div>
@@ -207,6 +207,7 @@ export function Topbar() {
           {/* Mobile Hamburger Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Menu"
             className="md:hidden clay-nav h-12 w-12 flex items-center justify-center shadow-xl text-[#4a1c0d] hover:text-[#e65100] transition-colors"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

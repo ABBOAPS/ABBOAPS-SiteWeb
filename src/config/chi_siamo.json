@@ -9,15 +9,15 @@
       "author": {
         "name": "Alessio Bellan",
         "role": "Co-Founder & Presidente",
-        "photo": "./home/tonnoconsorzio/Progetti/ABBOAPS-SiteWeb/src/content/media/profile_alessio.jpg"
+        "photo": "./media/profile_alessio.jpg"
       }
     },
     {
-      "quote": "\"Se trovi una chiave che apre una porta bloccata, la devi copiare e dare a tutti. Abbiamo portato la logica dei codici aperti nel sociale. Niente segreti, niente recinti utili solo a prendersi il merito. Creiamo un'ossatura comune: chi lavora su queste strade deve poter usare gli stessi strumenti, senza dover ricominciare da zero ogni volta.\"",
+      "quote": "\"La tecnologia non è mai stata un fine, ma uno strumento. Quando insegniamo ai ragazzi a smontare un computer o a scrivere il loro primo programma, non stiamo solo trasferendo competenze tecniche. Stiamo dimostrando che non devono subire passivamente il mondo digitale, ma che hanno il potere di capirlo e ricostruirlo con le loro mani.\"",
       "author": {
         "name": "Alessio Buso",
         "role": "Co-Founder & Vice-Presidente",
-        "photo": "./home/tonnoconsorzio/Progetti/ABBOAPS-SiteWeb/src/content/media/profile_buso.jpg"
+        "photo": "./media/profile_buso.jpg"
       }
     }
   ],

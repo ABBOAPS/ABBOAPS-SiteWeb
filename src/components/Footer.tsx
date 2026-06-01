@@ -46,7 +46,7 @@ export function Footer() {
         <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between opacity-80 text-[10px] md:text-xs font-mono uppercase tracking-widest text-[#4a1c0d]">
           <div className="flex flex-col gap-2 mb-8 md:mb-0">
             <div className="flex items-center mb-4">
-              <img src={(siteConfig as any).logo_horizontal || "https://img.icons8.com/ios-filled/50/e65100/home.png"} alt="Abbo Logo" className="h-10 w-auto object-contain grayscale opacity-80" />
+              <img src={(siteConfig as any).logo_horizontal || "https://img.icons8.com/ios-filled/50/e65100/home.png"} alt="Abbo Logo" width="160" height="40" className="h-10 w-auto object-contain grayscale opacity-80" />
             </div>
             <span>Sede Legale: {footerConfig.legal_address}</span>
             <span>Codice Fiscale: {footerConfig.fiscal_code}</span>
@@ -118,10 +118,10 @@ export function Footer() {
         )}
 
         <div className="w-full max-w-7xl mt-8 pt-8 border-t border-[#4a1c0d]/10 flex flex-col items-center gap-4 text-center">
-          <span className="opacity-60 text-[10px] md:text-xs font-mono uppercase tracking-widest text-[#4a1c0d]">
+          <span className="opacity-80 text-[10px] md:text-xs font-mono uppercase tracking-widest text-[#4a1c0d]">
              {footerConfig.copyright}
           </span>
-          <span className="opacity-50 text-[10px] font-mono tracking-wider text-[#4a1c0d]">
+          <span className="opacity-80 text-[10px] font-mono tracking-wider text-[#4a1c0d]">
             {footerConfig.made_with} <a href={footerConfig.developer_url} target="_blank" rel="noopener noreferrer" className="hover:text-[#e65100] transition-colors underline decoration-[#e65100]/30 hover:decoration-[#e65100]">{footerConfig.developer_name}</a>
           </span>
         </div>

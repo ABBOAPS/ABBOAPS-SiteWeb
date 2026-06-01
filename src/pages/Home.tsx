@@ -26,7 +26,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
       className="clay-card cursor-pointer relative aspect-[4/3] md:aspect-auto min-h-[400px] md:min-h-[480px] flex flex-col items-center justify-center group overflow-hidden"
     >
       <div className="absolute inset-0 z-0 bg-[#fffcf5]">
-        <img src={project.bg_src} className="w-full h-full object-cover group-hover:scale-110 group-hover:saturate-150 transition-all duration-1000 ease-out" />
+        <img src={project.bg_src} alt="" className="w-full h-full object-cover group-hover:scale-110 group-hover:saturate-150 transition-all duration-1000 ease-out" />
         <div className="absolute inset-0 bg-[#fffcf5]/20 backdrop-blur-sm group-hover:backdrop-blur-none transition-all duration-500"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#fffcf5] via-transparent to-transparent opacity-80 group-hover:opacity-20 transition-opacity duration-500"></div>
 
@@ -101,7 +101,7 @@ export function Home() {
       {/* Hero Section */}
       <main className="relative z-20 w-full min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src={homeConfig.hero_background || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564"} className="w-full h-full object-cover" />
+          <img src={homeConfig.hero_background || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564"} alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-white/30 backdrop-blur-md"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-[#ff8f00]/10 via-[#fffcf5]/40 to-[#fffaf0]"></div>
         </div>
@@ -109,6 +109,8 @@ export function Home() {
           <motion.img
             src={homeConfig.association_logo}
             alt="ABBO APS Logo"
+            width={192}
+            height={192}
             className="w-48 h-48 mb-6 object-contain drop-shadow-xl"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -131,6 +133,7 @@ export function Home() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 1 }}
+            aria-label="Scorri verso i progetti"
             className="group mt-2 flex flex-col items-center space-y-4 cursor-pointer"
           >
             <div className="w-8 h-12 clay-input flex flex-col items-center pt-2 overflow-hidden">
@@ -264,6 +267,8 @@ export function Home() {
                       <img
                         src={partner.logo}
                         alt="Partner"
+                        width="160"
+                        height="64"
                         className="max-h-16 object-contain drop-shadow-md grayscale hover:grayscale-0 transition-all duration-300"
                       />
                     </div>
@@ -282,6 +287,8 @@ export function Home() {
                       <img
                         src={partner.logo}
                         alt="Partner"
+                        width="160"
+                        height="64"
                         className="max-h-16 object-contain drop-shadow-md grayscale hover:grayscale-0 transition-all duration-300"
                       />
                     </div>
