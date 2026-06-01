@@ -23,12 +23,11 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
       layoutId={`project-container-${project.id}`}
       onClick={onClick}
       onMouseMove={handleMouseMove}
-      className="clay-card cursor-pointer relative aspect-[4/3] md:aspect-auto min-h-[400px] md:min-h-[480px] flex flex-col items-center justify-center group overflow-hidden"
+      className="clay-card p-0 cursor-pointer relative w-full md:w-[45%] lg:w-[40%] aspect-[4/5] flex flex-col items-center justify-end group overflow-hidden rounded-[2.5rem] shadow-2xl hover:shadow-3xl transition-all duration-500 border-4 border-white/50"
     >
-      <div className="absolute inset-0 z-0 bg-[#fffcf5]">
-        <img src={project.bg_src} alt="" className="w-full h-full object-cover group-hover:scale-110 group-hover:saturate-150 transition-all duration-1000 ease-out" />
-        <div className="absolute inset-0 bg-[#fffcf5]/20 backdrop-blur-sm group-hover:backdrop-blur-none transition-all duration-500"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#fffcf5] via-transparent to-transparent opacity-80 group-hover:opacity-20 transition-opacity duration-500"></div>
+      <div className="absolute inset-0 z-0 bg-[#1a0a05]">
+        <img src={project.bg_src} alt="" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-[1.5s] ease-out" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#2a0e05]/95 via-[#2a0e05]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500"></div>
 
         {/* Spotlight Effect overlay */}
         <motion.div
@@ -37,7 +36,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
             background: useMotionTemplate`
               radial-gradient(
                 400px circle at ${mouseX}px ${mouseY}px,
-                rgba(255, 252, 245, 0.4),
+                rgba(255, 252, 245, 0.15),
                 transparent 60%
               )
             `,
@@ -45,18 +44,20 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
         />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center p-6 w-full h-full gap-2 pointer-events-none">
+      <div className="relative z-10 flex flex-col items-center justify-end p-8 w-full h-full gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 pointer-events-none">
         <motion.img
           layoutId={`project-icon-${project.id}`}
           src={project.icon}
           alt={project.title}
-          className={`object-contain drop-shadow-xl group-hover:scale-110 group-hover:-translate-y-2 transition-all duration-500 max-w-[90%] ${project.title === "Digital Heroes" ? "w-48 h-48 md:w-72 md:h-72 scale-125" : project.title === "MyVanilla" ? "w-40 h-40 md:w-64 md:h-64" : "w-28 h-28 md:w-40 md:h-40"}`}
+          className={`object-contain drop-shadow-2xl group-hover:scale-110 transition-all duration-500 max-w-[80%] ${project.title === "Digital Heroes" ? "h-32 md:h-48" : project.title === "MyVanilla" ? "h-28 md:h-40" : "h-24 md:h-32"}`}
         />
-        {project.title !== "Digital Heroes" && project.title !== "MyVanilla" && (
-          <motion.h3 layoutId={`project-title-${project.id}`} className="text-2xl md:text-3xl font-extrabold tracking-tighter text-[#e65100] drop-shadow-sm group-hover:scale-105 transition-all duration-500 text-center">
-            {project.title}
-          </motion.h3>
-        )}
+        
+        {/* Title and Description - Hidden by default, fade in on hover */}
+        <div className="flex flex-col items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+          <p className="text-white/90 font-medium text-sm md:text-base line-clamp-3 px-4 drop-shadow-md">
+            {project.description}
+          </p>
+        </div>
       </div>
     </motion.div>
   );
@@ -157,7 +158,7 @@ export function Home() {
               I Nostri Progetti
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full relative">
+            <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-8 md:gap-12 w-full relative max-w-6xl mx-auto">
               {actualProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} onClick={() => setExpandedProjectId(project.id)} />
               ))}
@@ -248,54 +249,70 @@ export function Home() {
             I Nostri Partner
           </h2>
 
-          {/* Continuous Marquee Carousel */}
-          <div className="w-full overflow-hidden flex items-center bg-transparent py-6 relative group">
-            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#fffcf5] to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#fffcf5] to-transparent z-10 pointer-events-none"></div>
+          {homeConfig.partners.length > 3 ? (
+            /* Continuous Marquee Carousel */
+            <div className="w-full overflow-hidden flex items-center bg-transparent py-6 relative group">
+              <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#fffcf5] to-transparent z-10 pointer-events-none"></div>
+              <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#fffcf5] to-transparent z-10 pointer-events-none"></div>
 
-            <div className="flex w-max animate-marquee-infinite">
-              {/* First Track */}
-              <div className="flex items-center whitespace-nowrap gap-24 px-12">
-                {Array(Math.ceil(40 / Math.max(1, homeConfig.partners.length)))
-                  .fill(homeConfig.partners)
-                  .flat()
-                  .map((partner, i) => (
-                    <div
-                      key={`partner-t1-${i}`}
-                      className="flex-shrink-0 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300 w-40"
-                    >
-                      <img
-                        src={partner.logo}
-                        alt="Partner"
-                        width="160"
-                        height="64"
-                        className="max-h-16 object-contain drop-shadow-md grayscale hover:grayscale-0 transition-all duration-300"
-                      />
-                    </div>
-                  ))}
-              </div>
-              {/* Second Track for seamless loop */}
-              <div className="flex items-center whitespace-nowrap gap-24 px-12">
-                {Array(Math.ceil(40 / Math.max(1, homeConfig.partners.length)))
-                  .fill(homeConfig.partners)
-                  .flat()
-                  .map((partner, i) => (
-                    <div
-                      key={`partner-t2-${i}`}
-                      className="flex-shrink-0 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300 w-40"
-                    >
-                      <img
-                        src={partner.logo}
-                        alt="Partner"
-                        width="160"
-                        height="64"
-                        className="max-h-16 object-contain drop-shadow-md grayscale hover:grayscale-0 transition-all duration-300"
-                      />
-                    </div>
-                  ))}
+              <div className="flex w-max animate-marquee-infinite">
+                {/* First Track */}
+                <div className="flex items-center whitespace-nowrap gap-24 px-12">
+                  {Array(Math.ceil(40 / Math.max(1, homeConfig.partners.length)))
+                    .fill(homeConfig.partners)
+                    .flat()
+                    .map((partner, i) => (
+                      <div
+                        key={`partner-t1-${i}`}
+                        className="flex-shrink-0 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300 w-40"
+                      >
+                        <img
+                          src={partner.logo}
+                          alt="Partner"
+                          width="160"
+                          height="64"
+                          className="max-h-16 object-contain drop-shadow-md grayscale hover:grayscale-0 transition-all duration-300"
+                        />
+                      </div>
+                    ))}
+                </div>
+                {/* Second Track for seamless loop */}
+                <div className="flex items-center whitespace-nowrap gap-24 px-12">
+                  {Array(Math.ceil(40 / Math.max(1, homeConfig.partners.length)))
+                    .fill(homeConfig.partners)
+                    .flat()
+                    .map((partner, i) => (
+                      <div
+                        key={`partner-t2-${i}`}
+                        className="flex-shrink-0 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity duration-300 w-40"
+                      >
+                        <img
+                          src={partner.logo}
+                          alt="Partner"
+                          width="160"
+                          height="64"
+                          className="max-h-16 object-contain drop-shadow-md grayscale hover:grayscale-0 transition-all duration-300"
+                        />
+                      </div>
+                    ))}
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 py-8 px-6 w-full max-w-4xl mx-auto">
+              {homeConfig.partners.map((partner, i) => (
+                <div key={`partner-${i}`} className="flex items-center justify-center opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-300 w-48 md:w-64">
+                  <img
+                    src={partner.logo}
+                    alt="Partner"
+                    width="256"
+                    height="128"
+                    className="max-h-24 md:max-h-32 w-auto object-contain drop-shadow-xl grayscale hover:grayscale-0 transition-all duration-300"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="w-full max-w-7xl flex flex-col items-center px-6">
@@ -305,19 +322,20 @@ export function Home() {
               Notizie
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mb-12">
+            <div className={`grid grid-cols-1 gap-8 w-full mb-12 max-w-7xl ${recentNews.length === 1 ? "max-w-3xl mx-auto" : recentNews.length === 2 ? "md:grid-cols-2 max-w-5xl mx-auto" : "md:grid-cols-2 lg:grid-cols-3"}`}>
               {recentNews.map((item, idx) => {
                 return (
-                  <Link to={`/news/${item.id}`} key={item.id} className={`clay-card group relative flex flex-col min-h-[400px] overflow-hidden ${idx === 0 ? "lg:col-span-2" : ""}`}>
-                    <div className="w-full h-48 md:h-56 relative shrink-0">
-                      <img src={item.immagine} alt={item.titolo} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" />
+                  <Link to={`/news/${item.id}`} key={item.id} className={`clay-card p-0 group relative flex flex-col min-h-[450px] overflow-hidden ${recentNews.length > 2 && idx === 0 ? "md:col-span-2 lg:col-span-2" : ""}`}>
+                    <div className="w-full h-56 md:h-64 relative shrink-0 overflow-hidden">
+                      <img src={item.immagine} alt={item.titolo} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
-                    <div className="relative z-10 flex-1 flex flex-col justify-end p-6 md:p-8">
-                      <span className="text-[#8a3a19] text-xs font-bold uppercase tracking-widest mb-3 clay-badge px-3 py-1.5 self-start">{item.data}</span>
-                      <h2 className={`${idx === 0 ? "text-4xl" : "text-3xl"} font-extrabold text-[#e65100] mb-4 line-clamp-2 leading-tight group-hover:text-[#ff8f00] transition-colors`}>
+                    <div className="relative z-10 flex-1 flex flex-col justify-start p-8 md:p-10 bg-white/40 backdrop-blur-md">
+                      <span className="text-[#8a3a19] text-xs font-bold uppercase tracking-widest mb-4 inline-block">{item.data}</span>
+                      <h2 className={`${recentNews.length > 2 && idx === 0 ? "text-4xl" : "text-3xl"} font-extrabold text-[#e65100] mb-4 line-clamp-2 leading-tight group-hover:text-[#ff8f00] transition-colors`}>
                         {item.titolo}
                       </h2>
-                      <div className="relative z-10 w-full overflow-hidden line-clamp-3 text-[#4a1c0d] font-medium leading-relaxed">
+                      <div className="relative z-10 w-full overflow-hidden line-clamp-3 text-[#4a1c0d]/80 font-medium leading-relaxed">
                         {item.estratto}
                       </div>
                     </div>
