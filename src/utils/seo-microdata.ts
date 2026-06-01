@@ -1,4 +1,4 @@
-const BASE_URL = "https://www.abboaps.it";
+const BASE_URL = "https://www.abboaps.org";
 const LOGO_URL = `${BASE_URL}/logo.png`;
 
 /**

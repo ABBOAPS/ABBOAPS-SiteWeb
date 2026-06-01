@@ -5,6 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    base: './', // Universal path resolve for Github Pages and Custom Domains
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
