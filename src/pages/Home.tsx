@@ -69,6 +69,79 @@ export function Home() {
   const projectsRef = useRef<HTMLDivElement>(null);
   const jsonLd = generateNgoSchema();
 
+  const [copied, setCopied] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  const handleCopyCF = (e: React.MouseEvent<HTMLButtonElement>) => {
+    navigator.clipboard.writeText("#########");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+    triggerConfetti(e.clientX, e.clientY);
+  };
+
+  const triggerConfetti = (startX: number, startY: number) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = ["#ff8f00", "#e65100", "#ffb300", "#4a1c0d", "#8a3a19", "#ff424d"];
+    const particles: any[] = [];
+
+    for (let i = 0; i < 150; i++) {
+      particles.push({
+        x: startX,
+        y: startY,
+        vx: (Math.random() - 0.5) * 16,
+        vy: (Math.random() - 0.8) * 18 - 8,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        size: Math.random() * 8 + 6,
+        rotation: Math.random() * Math.PI * 2,
+        rotationSpeed: (Math.random() - 0.5) * 0.2,
+        opacity: 1,
+      });
+    }
+
+    const update = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let active = false;
+
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.45;
+        p.vx *= 0.98;
+        p.rotation += p.rotationSpeed;
+
+        if (p.vy > 0) {
+          p.opacity -= 0.015;
+        }
+
+        if (p.opacity > 0 && p.y < canvas.height) {
+          active = true;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.opacity;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.restore();
+        }
+      });
+
+      if (active) {
+        requestAnimationFrame(update);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    };
+
+    update();
+  };
+
   const handleScrollDown = () => {
     if (projectsRef.current) {
       projectsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -238,8 +311,6 @@ export function Home() {
               )}
             </AnimatePresence>
           </div>
-
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-[#4a1c0d]/20 to-transparent my-16"></div>
         </div>
 
         {/* I Nostri Partner (moved outside max-w-7xl to prevent horizontal overflow constraint breaking) */}
@@ -316,10 +387,18 @@ export function Home() {
 
         <div className="w-full max-w-7xl flex flex-col items-center px-6">
           {/* Notizie Section - Asymmetric Grid */}
-          <div className="w-full flex flex-col items-center pb-20">
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-12 text-center text-[#4a1c0d]">
-              Notizie
-            </h2>
+          <div className="w-full flex flex-col items-center pb-12">
+            <div className="w-full flex flex-row items-center justify-between mb-12 max-w-7xl">
+              <h2 className="text-4xl md:text-6xl font-extrabold tracking-tighter text-[#4a1c0d]">
+                Notizie
+              </h2>
+              <Link
+                to="/notizie"
+                className="clay-btn px-6 py-3 text-sm md:px-8 md:py-4 font-bold tracking-widest uppercase inline-block hover:scale-105 active:scale-95"
+              >
+                Scopri di più
+              </Link>
+            </div>
 
             <div className={`grid grid-cols-1 gap-8 w-full mb-12 max-w-7xl ${recentNews.length === 1 ? "max-w-3xl mx-auto" : recentNews.length === 2 ? "md:grid-cols-2 max-w-5xl mx-auto" : "md:grid-cols-2 lg:grid-cols-3"}`}>
               {recentNews.map((item, idx) => {
@@ -342,18 +421,61 @@ export function Home() {
                 );
               })}
             </div>
-
-            <Link
-              to="/notizie"
-              className="clay-btn px-8 py-4 font-bold tracking-widest uppercase inline-block"
+          </div>          {/* Sezione 5 per Mille */}
+          <div className="w-full flex flex-col items-center pt-8 pb-16 max-w-5xl mx-auto relative z-20">
+            <motion.div
+              whileHover={{ y: -4 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="clay-card w-full p-12 md:p-20 flex flex-col items-center text-center relative overflow-hidden"
             >
-              Scopri di più
-            </Link>
-          </div>
+              <div className="absolute top-0 right-0 w-48 h-48 bg-[#ff8f00]/10 rounded-full blur-3xl pointer-events-none"></div>
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#e65100]/10 rounded-full blur-3xl pointer-events-none"></div>
 
-          {/* Call to Action Support - Removed */}
+              <div className="w-16 h-16 bg-[#e65100]/10 text-[#e65100] rounded-full flex items-center justify-center mb-8 hover:scale-110 transition-transform duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-md">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+              </div>
+
+              <h3 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#4a1c0d] mb-6 leading-tight">
+                Destina il tuo 5x1000 ad ABBO APS
+              </h3>
+              
+              <p className="text-lg md:text-xl font-medium text-[#4a1c0d]/70 max-w-2xl leading-relaxed mb-10">
+                Un gesto a costo zero per supportare i giovani. Con il tuo 5x1000 finanzi direttamente laboratori didattici di robotica, informatica e le attività sociali dell'officina in Brianza.
+              </p>
+
+              <div className="w-full max-w-md clay-input p-6 flex flex-col sm:flex-row items-center justify-between gap-4 relative group select-none">
+                <div className="flex flex-col text-left w-full sm:w-auto">
+                  <span className="text-[10px] md:text-xs font-bold text-[#8a3a19] uppercase tracking-wider mb-1">Codice Fiscale dell'Associazione</span>
+                  <span className="font-mono text-xl md:text-2xl font-black text-[#e65100] tracking-wider select-all">#########</span>
+                </div>
+                <button
+                  onClick={handleCopyCF}
+                  className="clay-btn w-full sm:w-auto px-6 py-3 font-extrabold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-transform"
+                >
+                  {copied ? (
+                    <>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      Copiato!
+                    </>
+                  ) : (
+                    <>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                      Copia Codice
+                    </>
+                  )}
+                </button>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 pointer-events-none z-[9999]"
+        style={{ width: "100vw", height: "100vh" }}
+      />
     </>
   );
 }

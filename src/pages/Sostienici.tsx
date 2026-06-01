@@ -17,6 +17,79 @@ export function Sostienici() {
   const [currentProjectIdx, setCurrentProjectIdx] = useState(0);
   const donationRef = useRef<HTMLDivElement>(null);
   
+  const [copied, setCopied] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+  const handleCopyCF = (e: React.MouseEvent<HTMLButtonElement>) => {
+    navigator.clipboard.writeText("#########");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+    triggerConfetti(e.clientX, e.clientY);
+  };
+
+  const triggerConfetti = (startX: number, startY: number) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = ["#ff8f00", "#e65100", "#ffb300", "#4a1c0d", "#8a3a19", "#ff424d"];
+    const particles: any[] = [];
+
+    for (let i = 0; i < 150; i++) {
+      particles.push({
+        x: startX,
+        y: startY,
+        vx: (Math.random() - 0.5) * 16,
+        vy: (Math.random() - 0.8) * 18 - 8,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        size: Math.random() * 8 + 6,
+        rotation: Math.random() * Math.PI * 2,
+        rotationSpeed: (Math.random() - 0.5) * 0.2,
+        opacity: 1,
+      });
+    }
+
+    const update = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let active = false;
+
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.45;
+        p.vx *= 0.98;
+        p.rotation += p.rotationSpeed;
+
+        if (p.vy > 0) {
+          p.opacity -= 0.015;
+        }
+
+        if (p.opacity > 0 && p.y < canvas.height) {
+          active = true;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.opacity;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.restore();
+        }
+      });
+
+      if (active) {
+        requestAnimationFrame(update);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    };
+
+    update();
+  };
+  
   // Patron State
   const [patrons, setPatrons] = useState<Patron[]>([]);
   const [patronsError, setPatronsError] = useState<string | null>(null);
@@ -210,7 +283,7 @@ export function Sostienici() {
             Sostienici
           </h2>
         </div>
-        <div className="grid lg:grid-cols-2 gap-12 mb-20">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12 mb-20">
           {/* Patron Card (Ricorrente) */}
           <div className="clay-card flex flex-col p-10 md:p-14 relative overflow-hidden group">
             <div className="w-16 h-16 bg-[#ff424d]/10 text-[#ff424d] rounded-full flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
@@ -240,7 +313,7 @@ export function Sostienici() {
               href={sostieniciConfig.patreon.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-auto clay-btn px-8 py-5 text-center text-white font-bold tracking-widest uppercase w-full"
+              className="mt-auto clay-btn px-8 py-5 text-center text-white font-bold tracking-widest uppercase w-full hover:scale-105 active:scale-95"
             >
               Donazione Ricorrente
             </a>
@@ -277,14 +350,67 @@ export function Sostienici() {
               href={sostieniciConfig.paypal.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-auto clay-btn px-8 py-5 text-center text-white font-bold tracking-widest uppercase w-full"
+              className="mt-auto clay-btn px-8 py-5 text-center text-white font-bold tracking-widest uppercase w-full hover:scale-105 active:scale-95"
             >
-              Donazione Singola (Una Tantum)
+              Donazione Singola
             </a>
           </div>
-        </div>
 
+          {/* 5 per Mille Card */}
+          <div className="clay-card flex flex-col p-10 md:p-14 relative overflow-hidden group">
+            <div className="w-16 h-16 bg-[#e65100]/10 text-[#e65100] rounded-full flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-md">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <h2 className="text-4xl font-extrabold tracking-tight mb-4 text-[#4a1c0d]">
+              5 per mille
+            </h2>
+            <p className="text-[#4a1c0d]/70 mb-8 leading-relaxed font-medium text-lg">
+              Un modo del tutto gratuito per sostenere ABBO APS. Ti basta inserire il nostro codice fiscale nella tua dichiarazione dei redditi.
+            </p>
+
+            <ul className="mb-12 space-y-4">
+              <li className="flex items-start space-x-3 text-[#4a1c0d]/80 font-semibold">
+                <div className="w-6 h-6 rounded-full bg-[#e65100]/20 flex items-center justify-center text-[#e65100] shrink-0 mt-0.5">
+                  <Check className="w-3 h-3" />
+                </div>
+                <span>Nessun costo per te</span>
+              </li>
+              <li className="flex items-start space-x-3 text-[#4a1c0d]/80 font-semibold">
+                <div className="w-6 h-6 rounded-full bg-[#e65100]/20 flex items-center justify-center text-[#e65100] shrink-0 mt-0.5">
+                  <Check className="w-3 h-3" />
+                </div>
+                <span>Finanziamento dei laboratori didattici</span>
+              </li>
+              <li className="flex items-start space-x-3 text-[#4a1c0d]/80 font-semibold">
+                <div className="w-6 h-6 rounded-full bg-[#e65100]/20 flex items-center justify-center text-[#e65100] shrink-0 mt-0.5">
+                  <Check className="w-3 h-3" />
+                </div>
+                <span>Sostegno all'officina sociale in Brianza</span>
+              </li>
+            </ul>
+
+            <div className="mt-auto w-full clay-input p-5 flex flex-col sm:flex-row items-center justify-between gap-3 relative group select-none">
+              <div className="flex flex-col text-left">
+                <span className="text-[10px] font-bold text-[#8a3a19] uppercase tracking-wider">C.F. ABBO APS</span>
+                <span className="font-mono text-base font-black text-[#e65100]">#########</span>
+              </div>
+              <button
+                onClick={handleCopyCF}
+                className="clay-btn px-4 py-2 font-extrabold uppercase tracking-widest text-[10px] hover:scale-105 active:scale-95 transition-transform"
+              >
+                {copied ? "Copiato!" : "Copia"}
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
+      <canvas
+        ref={canvasRef}
+        className="fixed inset-0 pointer-events-none z-[9999]"
+        style={{ width: "100vw", height: "100vh" }}
+      />
     </div>
   );
 }

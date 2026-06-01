@@ -14,6 +14,7 @@ export function Footer() {
   const navigate = useNavigate();
   const [patrons, setPatrons] = useState<Patron[]>([]);
   const [isHovered, setIsHovered] = useState(false);
+  const [copiedCF, setCopiedCF] = useState(false);
 
   useEffect(() => {
     fetch("/patrons.json")
@@ -43,8 +44,8 @@ export function Footer() {
     <footer className="w-full py-16 px-6 flex flex-col items-center justify-center bg-transparent border-t border-[#e65100]/20 relative z-[80]">
       <div className="clay-panel w-full max-w-7xl p-10 flex flex-col items-center justify-center">
         
-        <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between opacity-80 text-[10px] md:text-xs font-mono uppercase tracking-widest text-[#4a1c0d]">
-          <div className="flex flex-col gap-2 mb-8 md:mb-0">
+        <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-8 opacity-80 text-[10px] md:text-xs font-mono uppercase tracking-widest text-[#4a1c0d]">
+          <div className="flex flex-col gap-2 mb-4 md:mb-0">
             <div className="flex items-center mb-4">
               <img src={(siteConfig as any).logo_horizontal || "https://img.icons8.com/ios-filled/50/e65100/home.png"} alt="Abbo Logo" width="160" height="40" className="h-10 w-auto object-contain grayscale opacity-80" />
             </div>
@@ -117,13 +118,33 @@ export function Footer() {
           </div>
         )}
 
-        <div className="w-full max-w-7xl mt-8 pt-8 border-t border-[#4a1c0d]/10 flex flex-col items-center gap-4 text-center">
-          <span className="opacity-80 text-[10px] md:text-xs font-mono uppercase tracking-widest text-[#4a1c0d]">
-             {footerConfig.copyright}
-          </span>
-          <span className="opacity-80 text-[10px] font-mono tracking-wider text-[#4a1c0d]">
-            {footerConfig.made_with} <a href={footerConfig.developer_url} target="_blank" rel="noopener noreferrer" className="hover:text-[#e65100] transition-colors underline decoration-[#e65100]/30 hover:decoration-[#e65100]">{footerConfig.developer_name}</a>
-          </span>
+        <div className="w-full max-w-7xl mt-8 pt-8 border-t border-[#4a1c0d]/10 grid grid-cols-1 md:grid-cols-3 gap-6 items-center opacity-80 text-[10px] md:text-xs font-mono tracking-widest text-[#4a1c0d]">
+          {/* Left Column: 5 per mille on two lines */}
+          <div className="flex flex-col items-center md:items-start text-center md:text-left select-all gap-1.5 cursor-pointer hover:text-[#e65100] transition-colors"
+               onClick={() => {
+                 navigator.clipboard.writeText("#########");
+                 setCopiedCF(true);
+                 setTimeout(() => setCopiedCF(false), 2000);
+               }}
+          >
+            <span className="font-semibold uppercase text-[#e65100]/80">Destina il tuo 5 per mille ad ABBO APS</span>
+            <div className="flex items-center gap-2">
+              <span>C.F. <strong className="font-mono font-bold">#########</strong></span>
+              <span className="text-[8px] px-1.5 py-0.5 rounded bg-[#e65100]/10 text-[#e65100] font-sans font-bold uppercase tracking-normal">{copiedCF ? "Copiato!" : "Copia"}</span>
+            </div>
+          </div>
+
+          {/* Center Column: Copyright */}
+          <div className="text-center">
+            <span>{footerConfig.copyright}</span>
+          </div>
+
+          {/* Right Column: Credits */}
+          <div className="text-center md:text-right">
+            <span>
+              {footerConfig.made_with} <a href={footerConfig.developer_url} target="_blank" rel="noopener noreferrer" className="hover:text-[#e65100] transition-colors underline decoration-[#e65100]/30 hover:decoration-[#e65100]">{footerConfig.developer_name}</a>
+            </span>
+          </div>
         </div>
       </div>
     </footer>
