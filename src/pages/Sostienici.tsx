@@ -24,7 +24,7 @@ export function Sostienici() {
 
   useEffect(() => {
     // Fetch patrons directly from the static file generated at build time
-    fetch("/patrons.json")
+    fetch("./patrons.json")
       .then((res) => {
         if (!res.ok) throw new Error("API error");
         return res.json();
