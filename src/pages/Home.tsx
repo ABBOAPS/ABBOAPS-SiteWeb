@@ -177,20 +177,19 @@ export function Home() {
                   <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 pointer-events-none">
                     <motion.div
                       layoutId={`project-container-${activeProject.id}`}
-                      className="clay-card relative flex flex-col md:flex-row items-center w-full max-w-5xl pointer-events-auto overflow-hidden"
+                      className="clay-card relative flex flex-col md:flex-row items-center w-full max-w-5xl pointer-events-auto overflow-hidden rounded-[2.5rem] border-4 border-white/20 shadow-2xl p-0"
                     >
                       {/* Close button */}
                       <button
                         onClick={() => setExpandedProjectId(null)}
-                        className="absolute top-8 right-8 z-50 bg-white/50 hover:bg-white backdrop-blur-md rounded-full p-2 text-[#4a1c0d] shadow-sm transition-colors"
+                        className="absolute top-6 right-6 z-50 bg-white/10 hover:bg-white/30 backdrop-blur-md rounded-full p-3 text-white shadow-sm transition-all hover:scale-110 active:scale-95"
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                       </button>
 
-                      <div className="absolute inset-0 z-0 bg-[#fffcf5]">
-                        <img src={activeProject.bg_src} className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 bg-[#fffcf5]/20 backdrop-blur-sm"></div>
-                        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-[#fffcf5] via-[#fffcf5]/80 to-transparent opacity-95"></div>
+                      <div className="absolute inset-0 z-0 bg-[#1a0a05]">
+                        <img src={activeProject.bg_src} className="w-full h-full object-cover opacity-50" />
+                        <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-[#1a0a05] via-[#1a0a05]/90 to-transparent"></div>
                       </div>
 
                       <div className="relative z-10 w-full md:w-1/2 flex items-center justify-center p-8 md:p-12">
@@ -204,7 +203,7 @@ export function Home() {
 
                       <div className="relative z-10 w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center items-start text-left">
                         {activeProject.title !== "Digital Heroes" && activeProject.title !== "MyVanilla" && (
-                          <motion.h3 layoutId={`project-title-${activeProject.id}`} className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4 text-[#e65100]">
+                          <motion.h3 layoutId={`project-title-${activeProject.id}`} className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4 text-white">
                             {activeProject.title}
                           </motion.h3>
                         )}
@@ -214,7 +213,7 @@ export function Home() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
                           transition={{ delay: 0.1, duration: 0.2 }}
-                          className="text-lg font-medium tracking-tight text-[#4a1c0d]/80 mb-10 leading-relaxed max-w-md"
+                          className="text-lg font-medium tracking-tight text-white/80 mb-10 leading-relaxed max-w-md drop-shadow-md"
                         >
                           {activeProject.description || "Un progetto ufficiale curato da Abbo APS volto a innovare e supportare la community digitale."}
                         </motion.p>
@@ -228,7 +227,7 @@ export function Home() {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={(e) => e.stopPropagation()}
-                          className="clay-btn px-8 py-4 font-bold tracking-widest uppercase inline-block whitespace-nowrap"
+                          className="clay-btn px-8 py-4 font-bold tracking-widest uppercase inline-block whitespace-nowrap !bg-white !text-[#4a1c0d] hover:!bg-[#fffcf5] transition-all hover:scale-105 active:scale-95"
                         >
                           {activeProject.cta || "Scopri di più"}
                         </motion.a>
