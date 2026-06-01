@@ -29,7 +29,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
         <img src={project.bg_src} className="w-full h-full object-cover group-hover:scale-110 group-hover:saturate-150 transition-all duration-1000 ease-out" />
         <div className="absolute inset-0 bg-[#fffcf5]/20 backdrop-blur-sm group-hover:backdrop-blur-none transition-all duration-500"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#fffcf5] via-transparent to-transparent opacity-80 group-hover:opacity-20 transition-opacity duration-500"></div>
-        
+
         {/* Spotlight Effect overlay */}
         <motion.div
           className="pointer-events-none absolute inset-0 opacity-0 transition duration-300 group-hover:opacity-100"
@@ -44,7 +44,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
           }}
         />
       </div>
-      
+
       <div className="relative z-10 flex flex-col items-center justify-center p-6 w-full h-full gap-2 pointer-events-none">
         <motion.img
           layoutId={`project-icon-${project.id}`}
@@ -82,9 +82,9 @@ export function Home() {
 
   return (
     <>
-      <SEO 
-        title="Diamo sostanza ai progetti per i giovani" 
-        description="Siamo un'officina sociale in Brianza. Forniamo strutture solide per resistere al tempo, supportando giovani, open source e reti territoriali a Monza, Lecco, Bergamo e Milano." 
+      <SEO
+        title="Diamo sostanza ai progetti per i giovani"
+        description="Siamo un'officina sociale in Brianza. Forniamo strutture solide per resistere al tempo, supportando giovani, open source e reti territoriali a Monza, Lecco, Bergamo e Milano."
         url="/"
       >
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -121,9 +121,6 @@ export function Home() {
             transition={{ delay: 0.4, duration: 1 }}
             className="mb-8"
           >
-            <h1 className="text-2xl md:text-4xl font-extrabold tracking-tight text-[#4a1c0d] drop-shadow-md text-center max-w-2xl px-6">
-              ABBO APS | Diamo sostanza e fondamenta ai progetti per i giovani
-            </h1>
             <p className="text-lg md:text-xl mt-4 text-[#4a1c0d]/80 text-center max-w-2xl px-6" aria-label="Sottotitolo manifesto">
               Creiamo i momenti a cui vorresti tornare
             </p>
@@ -150,13 +147,13 @@ export function Home() {
       {/* Content Section Below Fold */}
       <div className="relative z-30 min-h-screen w-full flex flex-col items-center justify-start pb-48 text-[#4a1c0d] overflow-x-hidden">
         <div className="w-full max-w-7xl flex flex-col items-center px-6">
-          
+
           {/* I Nostri Progetti */}
           <div ref={projectsRef} className="w-full mb-32 pt-24 flex flex-col items-center">
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-16 text-center text-[#4a1c0d]">
               I Nostri Progetti
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full relative">
               {actualProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} onClick={() => setExpandedProjectId(project.id)} />
@@ -179,7 +176,7 @@ export function Home() {
                       className="clay-card relative flex flex-col md:flex-row items-center w-full max-w-5xl pointer-events-auto overflow-hidden"
                     >
                       {/* Close button */}
-                      <button 
+                      <button
                         onClick={() => setExpandedProjectId(null)}
                         className="absolute top-8 right-8 z-50 bg-white/50 hover:bg-white backdrop-blur-md rounded-full p-2 text-[#4a1c0d] shadow-sm transition-colors"
                       >
@@ -191,7 +188,7 @@ export function Home() {
                         <div className="absolute inset-0 bg-[#fffcf5]/20 backdrop-blur-sm"></div>
                         <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-[#fffcf5] via-[#fffcf5]/80 to-transparent opacity-95"></div>
                       </div>
-                      
+
                       <div className="relative z-10 w-full md:w-1/2 flex items-center justify-center p-8 md:p-12">
                         <motion.img
                           layoutId={`project-icon-${activeProject.id}`}
@@ -200,15 +197,15 @@ export function Home() {
                           className={`object-contain drop-shadow-2xl max-w-full ${activeProject.title === "Digital Heroes" ? "w-64 h-64 md:w-[400px] md:h-[400px] scale-125" : activeProject.title === "MyVanilla" ? "w-56 h-56 md:w-80 md:h-80" : "w-48 h-48 md:w-80 md:h-80"}`}
                         />
                       </div>
-                      
+
                       <div className="relative z-10 w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center items-start text-left">
                         {activeProject.title !== "Digital Heroes" && activeProject.title !== "MyVanilla" && (
                           <motion.h3 layoutId={`project-title-${activeProject.id}`} className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4 text-[#e65100]">
                             {activeProject.title}
                           </motion.h3>
                         )}
-                        
-                        <motion.p 
+
+                        <motion.p
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
@@ -217,7 +214,7 @@ export function Home() {
                         >
                           {activeProject.description || "Un progetto ufficiale curato da Abbo APS volto a innovare e supportare la community digitale."}
                         </motion.p>
-                        
+
                         <motion.a
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -252,7 +249,7 @@ export function Home() {
           <div className="w-full overflow-hidden flex items-center bg-transparent py-6 relative group">
             <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#fffcf5] to-transparent z-10 pointer-events-none"></div>
             <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#fffcf5] to-transparent z-10 pointer-events-none"></div>
-            
+
             <div className="flex w-max animate-marquee-infinite">
               {/* First Track */}
               <div className="flex items-center whitespace-nowrap gap-24 px-12">
@@ -321,12 +318,12 @@ export function Home() {
                 );
               })}
             </div>
-            
+
             <Link
-               to="/notizie"
-               className="clay-btn px-8 py-4 font-bold tracking-widest uppercase inline-block"
+              to="/notizie"
+              className="clay-btn px-8 py-4 font-bold tracking-widest uppercase inline-block"
             >
-               Scopri di più
+              Scopri di più
             </Link>
           </div>
 
