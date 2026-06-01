@@ -6,7 +6,7 @@
       "id": "lego-spike-prime",
       "title": "LEGO® Education SPIKE™ Prime x (24 Studenti)",
       "description": "Investimento sulla educazione dei ragazzi dei laboratori di Digital Heroes, ci permettrà di creare ufficialmente il corso di Robotica.",
-      "image": "src/content/media/lego-education-spike-prime-set-per-la-classe-24-studenti.jpg",
+      "image": "./media/lego-education-spike-prime-set-per-la-classe-24-studenti.jpg",
       "goal_amount": 4460,
       "current_amount": 0
     },
@@ -14,7 +14,7 @@
       "id": "impianto-audio-palestra",
       "title": "Impianto Audio Professionale",
       "description": "Sistema audio completo per gli eventi e i laboratori dell'associazione in spazi oltre 300m². Include P.A. a colonna RCF Evox 12, mixer digitale Behringer XR18 con router Wi-Fi, microfoni Shure SM58, monitor, stativi e cablaggio. I beni restano patrimonio associativo a supporto dei progetti per i giovani.",
-      "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80",
+      "image": "https://images.pexels.com/photos/8105748/pexels-photo-8105748.jpeg",
       "goal_amount": 5600,
       "current_amount": 0
     }

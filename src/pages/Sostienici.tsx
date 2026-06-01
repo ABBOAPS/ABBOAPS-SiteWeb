@@ -84,41 +84,43 @@ export function Sostienici() {
               I Nostri Progetti
             </h2>
             <div className="flex items-center gap-4">
-              <button onClick={prevProject} className="p-3 clay-nav text-[#e65100] transition-colors">
+              <button onClick={prevProject} className="p-3 clay-nav text-[#e65100] transition-all hover:bg-white/50 hover:scale-110 active:scale-95">
                 <ChevronLeft className="w-6 h-6" />
               </button>
-              <button onClick={nextProject} className="p-3 clay-nav text-[#e65100] transition-colors">
+              <button onClick={nextProject} className="p-3 clay-nav text-[#e65100] transition-all hover:bg-white/50 hover:scale-110 active:scale-95">
                 <ChevronRight className="w-6 h-6" />
               </button>
             </div>
           </div>
 
-          <div className="relative clay-card overflow-hidden">
-             <AnimatePresence mode="wait">
-               <motion.div
-                 key={currentProjectIdx}
-                 initial={{ opacity: 0 }}
-                 animate={{ opacity: 1 }}
-                 exit={{ opacity: 0 }}
-                 transition={{ duration: 0.2 }}
-                 className={`flex flex-col lg:flex-row min-h-[500px] ${isFuture ? 'opacity-80' : ''}`}
-               >
-                 {/* Image side */}
-                 <div className="w-full lg:w-1/2 relative min-h-[250px] lg:min-h-full">
-                   <img src={project.image} alt={project.title} className={`absolute inset-0 w-full h-full object-cover ${isFuture ? 'grayscale' : ''}`} />
-                   <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent lg:bg-gradient-to-t"></div>
-                   {isFuture && (
-                     <div className="absolute top-8 left-8 clay-card-dark text-white px-6 py-2 font-bold uppercase tracking-widest text-sm shadow-xl">
-                       Prossimamente
-                     </div>
-                   )}
-                 </div>
-                 
-                 {/* Content side */}
+          <div className="relative clay-card overflow-hidden grid">
+            {sostieniciConfig.active_projects.map((proj, idx) => {
+              const isActive = idx === currentProjectIdx;
+              const isFutureItem = idx > 0;
+              const opacityClass = isActive ? (isFutureItem ? 'opacity-80 z-10' : 'opacity-100 z-10') : 'opacity-0 z-0 pointer-events-none';
+              const currentProgress = isFutureItem ? 0 : Math.min((proj.current_amount / proj.goal_amount) * 100, 100);
+
+              return (
+                <div
+                  key={proj.id}
+                  className={`col-start-1 row-start-1 flex flex-col lg:flex-row min-h-[500px] transition-opacity duration-500 ease-in-out ${opacityClass}`}
+                >
+                  {/* Image side */}
+                  <div className="w-full lg:w-1/2 relative min-h-[250px] lg:min-h-full">
+                    <img src={proj.image} alt={proj.title} className={`absolute inset-0 w-full h-full object-cover ${isFutureItem ? 'grayscale' : ''}`} />
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent lg:bg-gradient-to-t"></div>
+                    {isFutureItem && (
+                      <div className="absolute top-8 left-8 clay-card-dark text-white px-6 py-2 font-bold uppercase tracking-widest text-sm shadow-xl">
+                        Prossimamente
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Content side */}
                   <div className="w-full lg:w-1/2 p-10 md:p-16 flex flex-col justify-center">
-                    <h3 className="text-4xl md:text-5xl font-extrabold text-[#4a1c0d] mb-6 leading-tight">{project.title}</h3>
+                    <h3 className="text-4xl md:text-5xl font-extrabold text-[#4a1c0d] mb-6 leading-tight">{proj.title}</h3>
                     <p className="text-[#4a1c0d]/70 text-lg leading-relaxed font-medium mb-12 flex-1">
-                      {project.description}
+                      {proj.description}
                     </p>
                     
                     {/* Progress Bar Container */}
@@ -129,18 +131,18 @@ export function Sostienici() {
                             Raccolti
                           </span>
                           <span className="text-4xl font-mono font-extrabold text-[#e65100]">
-                            €{project.current_amount}
+                            €{proj.current_amount}
                           </span>
                         </div>
                         <div className="flex flex-col items-end">
                           <span className="text-[#4a1c0d]/50 text-xs font-bold uppercase tracking-widest mb-1">Obiettivo</span>
-                          <span className="text-xl font-mono font-bold text-[#4a1c0d]/70">€{project.goal_amount}</span>
+                          <span className="text-xl font-mono font-bold text-[#4a1c0d]/70">€{proj.goal_amount}</span>
                         </div>
                       </div>
                       <div className="w-full h-5 bg-[#e65100]/10 rounded-full overflow-hidden shadow-inner">
                         <div 
                           className="h-full bg-gradient-to-r from-[#e65100] to-[#ffb300] rounded-full transition-all duration-1000 ease-out" 
-                          style={{ width: `${progress}%` }}
+                          style={{ width: isActive ? `${currentProgress}%` : '0%' }}
                         ></div>
                       </div>
                     </div>
@@ -152,8 +154,9 @@ export function Sostienici() {
                       Sostienici Ora
                     </button>
                  </div>
-               </motion.div>
-             </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
         </div>
 
