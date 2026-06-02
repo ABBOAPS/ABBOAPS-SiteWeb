@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, useMotionValue, useMotionTemplate, useScroll, useTransform } from "motion/react";
+import { motion, AnimatePresence, useMotionValue, useMotionTemplate } from "motion/react";
 import { Project } from "../types";
 import projectData from "../config/projects.json";
 import homeConfig from "../config/home.json";
@@ -64,14 +64,6 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
 }
 
 export function Home() {
-  const { scrollY } = useScroll();
-  const backgroundY = useTransform(scrollY, [0, 3000], [0, -200]);
-
-  // Opacities for three distinct focus blur spots mapped to scroll position
-  const blurOpacity1 = useTransform(scrollY, [0, 800, 1600], [0, 1, 0]);
-  const blurOpacity2 = useTransform(scrollY, [800, 1800, 2800], [0, 1, 0]);
-  const blurOpacity3 = useTransform(scrollY, [1800, 3000, 4000], [0, 1, 1]);
-
   const [expandedProjectId, setExpandedProjectId] = useState<string | null>(null);
   const partnerRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
@@ -200,63 +192,29 @@ export function Home() {
           animation: flowGlow 25s ease infinite;
         }
       `}</style>
-      {/* Page-wide Parallax Background Image (Spans the entire Home page and scrolls dynamically with GPU-accelerated zero-lag filters) */}
-      <motion.div 
-        style={{ y: backgroundY }}
-        className="fixed inset-x-0 top-0 h-[120vh] z-0 pointer-events-none overflow-hidden"
-      >
-        {/* Base Sharp Image */}
-        <img 
-          src={homeConfig.hero_background || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564"} 
-          alt="" 
-          className="w-full h-full object-cover animate-velvet" 
-        />
-        {/* Soft overlay across the entire page for readability */}
-        <div className="absolute inset-0 bg-white/10"></div>
-
-        {/* Dynamic Lens Blur spots shifting focal depth as you scroll - GPU Accelerated */}
-        <motion.img 
-          src={homeConfig.hero_background || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564"} 
-          alt="" 
-          className="absolute inset-0 w-full h-full object-cover animate-velvet will-change-[opacity]"
-          style={{ 
-            opacity: blurOpacity1,
-            filter: "blur(5px)",
-            WebkitMaskImage: "radial-gradient(circle at 20% 30%, black 15%, transparent 60%)",
-            maskImage: "radial-gradient(circle at 20% 30%, black 15%, transparent 60%)"
-          }}
-        />
-        <motion.img 
-          src={homeConfig.hero_background || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564"} 
-          alt="" 
-          className="absolute inset-0 w-full h-full object-cover animate-velvet will-change-[opacity]"
-          style={{ 
-            opacity: blurOpacity2,
-            filter: "blur(7px)",
-            WebkitMaskImage: "radial-gradient(circle at 80% 50%, black 15%, transparent 65%)",
-            maskImage: "radial-gradient(circle at 80% 50%, black 15%, transparent 65%)"
-          }}
-        />
-        <motion.img 
-          src={homeConfig.hero_background || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564"} 
-          alt="" 
-          className="absolute inset-0 w-full h-full object-cover animate-velvet will-change-[opacity]"
-          style={{ 
-            opacity: blurOpacity3,
-            filter: "blur(9px)",
-            WebkitMaskImage: "radial-gradient(circle at 50% 80%, black 20%, transparent 60%)",
-            maskImage: "radial-gradient(circle at 50% 80%, black 20%, transparent 60%)"
-          }}
-        />
-
-        {/* Living, animated velvet glow shifting gradient overlay */}
-        <div className="absolute inset-0 animate-velvet-glow"></div>
-        {/* Soft grounding gradient that extends infinitely */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#ff8f00]/5 via-transparent to-[#fffcf5]/8"></div>
-      </motion.div>
-
       {/* Hero Section */}
       <main className="relative z-20 w-full min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          {/* Background image with cheap GPU-accelerated breathing velvet animation */}
+          <img 
+            src={homeConfig.hero_background || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564"} 
+            alt="" 
+            className="w-full h-full object-cover animate-velvet" 
+          />
+          {/* Soft overlay across the entire page for readability */}
+          <div className="absolute inset-0 bg-white/10"></div>
+          {/* Living, animated velvet glow shifting gradient overlay */}
+          <div className="absolute inset-0 animate-velvet-glow"></div>
+          {/* Beautiful, mathematically-eased soft transition to the warm peach theme background (#fff0e0) at the very bottom */}
+          <div 
+            className="absolute inset-x-0 bottom-0 pointer-events-none"
+            style={{
+              height: "160px",
+              background: "linear-gradient(to top, #fff0e0 0%, rgba(255, 240, 224, 0.85) 15%, rgba(255, 240, 224, 0.45) 42%, rgba(255, 240, 224, 0.15) 70%, rgba(255, 240, 224, 0.04) 88%, rgba(255, 240, 224, 0) 100%)"
+            }}
+          />
+        </div>
+
         <div className="flex flex-col items-center pt-24 relative z-10">
           <motion.img
             src={homeConfig.association_logo}
@@ -305,7 +263,7 @@ export function Home() {
 
           {/* I Nostri Progetti */}
           <div ref={projectsRef} className="w-full mb-32 pt-24 flex flex-col items-center">
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-16 text-center text-white">
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-16 text-center text-[#4a1c0d]">
               I Nostri Progetti
             </h2>
 
@@ -393,7 +351,7 @@ export function Home() {
 
         {/* I Nostri Partner (moved outside max-w-7xl to prevent horizontal overflow constraint breaking) */}
         <div ref={partnerRef} className="w-full flex flex-col items-center mb-16 pt-12 overflow-hidden">
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter mb-10 text-center text-white">
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter mb-10 text-center text-[#4a1c0d]">
             I Nostri Partner
           </h2>
 
@@ -467,7 +425,7 @@ export function Home() {
           {/* Notizie Section - Asymmetric Grid */}
           <div className="w-full flex flex-col items-center pb-12">
             <div className="w-full flex flex-row items-center justify-between mb-12 max-w-7xl">
-              <h2 className="text-4xl md:text-6xl font-extrabold tracking-tighter text-white">
+              <h2 className="text-4xl md:text-6xl font-extrabold tracking-tighter text-[#4a1c0d]">
                 Notizie
               </h2>
               <Link
