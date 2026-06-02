@@ -10,7 +10,11 @@ interface SEOProps {
 }
 
 export function SEO({ title, description, image, url, children }: SEOProps) {
-  const finalTitle = title ? `${title} | ${siteConfig.seo.title_base}` : siteConfig.seo.title_base;
+  const finalTitle = title === "Creiamo i momenti a cui vorresti tornare"
+    ? `${siteConfig.seo.title_base} | ${title}`
+    : title
+      ? `${title} | ${siteConfig.seo.title_base}`
+      : siteConfig.seo.title_base;
   const finalDescription = description || siteConfig.seo.description;
   const finalImage = image || siteConfig.seo.og_image;
   const finalUrl = url ? `${siteConfig.seo.url}${url}` : siteConfig.seo.url;

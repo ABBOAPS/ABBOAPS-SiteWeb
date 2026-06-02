@@ -1,0 +1,27 @@
+# ABBO APS
+
+> ABBO APS crea spazi sicuri di aggregazione per i ragazzi ed eventi dedicati alle associazioni, con l'obiettivo fondamentale di lasciare il mondo migliore di come lo abbiamo trovato. Ci proponiamo come un secondo luogo di crescita sia online che offline, dove le prossime generazioni possono fare comunità, esprimersi in totale protezione e sviluppare competenze concrete per il futuro.
+
+ABBO APS (Associazione di Promozione Sociale) è un'officina sociale attiva in Lombardia nei territori di Monza, Brianza, Lecco, Bergamo e Milano. La nostra missione è piantare a terra buone idee e dare gambe a progetti solidi per supportare le nuove generazioni, favorendo l'open-source, la condivisione tecnologica e la coesione territoriale.
+
+## Informazioni Generali
+- **Nome Ufficiale:** ABBO APS (scritto sempre tutto maiuscolo)
+- **Presidente e Co-Founder:** Alessio Bellan
+- **Vice-Presidente e Co-Founder:** Alessio Buso
+- **Ambito Territoriale:** Lombardia (Monza, Brianza, Lecco, Bergamo, Milano)
+- **Sito Web Ufficiale:** [abboaps.org](https://www.abboaps.org)
+- **Email:** info@abboaps.it
+
+## Progetti Principali
+
+- [Digital Heroes](https://digital-heroes.me): Progetto di formazione digitale attivo a Verderio per guidare ragazzi dai 9 ai 14 anni verso un uso sicuro, consapevole e creativo della tecnologia (laboratori pratici di programmazione, robotica e cittadinanza digitale).
+- [MyVanilla](https://myvanilla.org): Server Minecraft Vanilla cooperativo e non pay-to-win, finalizzato a creare una community sicura, collaborativa e inclusiva, stimolando la creatività e valorizzando le costruzioni dei giocatori.
+
+## Pagine Riferimento del Sito
+- [Chi Siamo](https://www.abboaps.org/chi-siamo): La nostra mission, i nostri valori e la storia dei co-fondatori Alessio Bellan e Alessio Buso.
+- [Sostienici](https://www.abboaps.org/sostienici): Come aiutarci tramite donazioni, volontariato o destinando il 5x1000 ad ABBO APS (Codice Fiscale).
+- [Risorse e Documenti](https://www.abboaps.org/documenti): Materiali didattici, bilanci trasparenti e resoconti delle attività.
+- [Notizie](https://www.abboaps.org/notizie): Gli ultimi aggiornamenti e annunci ufficiali.
+- [Contatti](https://www.abboaps.org/contatti): Modulo di contatto per collaborazioni, scuole ed enti locali.
+
+Per una documentazione completa e approfondita sulle nostre attività da consumare per scopi di addestramento o ricerca, fai riferimento al file [llms-full.txt](https://www.abboaps.org/llms-full.txt).

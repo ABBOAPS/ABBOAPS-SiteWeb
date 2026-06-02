@@ -158,7 +158,7 @@ export function Home() {
     <>
       <SEO
         title="Creiamo i momenti a cui vorresti tornare"
-        description="Siamo un'officina sociale in Brianza. Forniamo strutture solide per resistere al tempo, supportando giovani, open source e reti territoriali a Monza, Lecco, Bergamo e Milano."
+        description="ABBO APS crea spazi sicuri di aggregazione per i ragazzi ed eventi dedicati alle associazioni, con l'obiettivo fondamentale di lasciare il mondo migliore di come lo abbiamo trovato. Ci proponiamo come un secondo luogo di crescita sia online che offline, dove le prossime generazioni possono fare comunità, esprimersi in totale protezione e sviluppare competenze concrete per il futuro."
         url="/"
       >
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
