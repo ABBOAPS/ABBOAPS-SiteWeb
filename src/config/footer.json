@@ -15,6 +15,10 @@
       "url": "/archivio/bilanci"
     },
     {
+      "label": "Team",
+      "url": "/team"
+    },
+    {
       "label": "Contatti",
       "url": "/contatti"
     }

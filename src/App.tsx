@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import { Topbar } from "./components/Topbar";
 import { Home } from "./pages/Home";
 import { ChiSiamo } from "./pages/ChiSiamo";
+import { Team } from "./pages/Team";
 import { Sostienici } from "./pages/Sostienici";
 import { Contatti } from "./pages/Contatti";
 import { Documenti } from "./pages/Documenti";
@@ -34,6 +35,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/chi-siamo" element={<ChiSiamo />} />
+          <Route path="/team" element={<Team />} />
           <Route path="/documenti" element={<Documenti />} />
           <Route path="/archivio/bilanci" element={<BalanceViewer />} />
           <Route path="/archivio/bilanci/:year" element={<BalanceViewer />} />

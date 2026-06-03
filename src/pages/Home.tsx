@@ -262,7 +262,7 @@ export function Home() {
         <div className="w-full max-w-7xl flex flex-col items-center px-6">
 
           {/* I Nostri Progetti */}
-          <div ref={projectsRef} className="w-full mb-32 pt-24 flex flex-col items-center">
+          <div ref={projectsRef} id="projects" className="w-full mb-32 pt-24 flex flex-col items-center">
             <h2 className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-16 text-center text-[#4a1c0d]">
               I Nostri Progetti
             </h2>

@@ -1,0 +1,31 @@
+{
+  "title": "Il Nostro Team",
+  "description": "Le persone che lavorano ogni giorno per dare forma e sostanza ai nostri progetti e all'innovazione sociale.",
+  "members": [
+    {
+      "name": "Alessio Bellan",
+      "role": "Co-Founder & Presidente",
+      "photo": "./media/profile_alessio.jpg",
+      "bio": "Mi occupo della gestione e dello sviluppo dell'associazionee seguo in prima persona i progetti in ambito digitale e di innovazione sociale.",
+      "email": "alessio.bellan@abboaps.org",
+      "phone": "",
+      "socials": {
+        "instagram": "https://instagram.com/alessio.bellan",
+        "github": "https://github.com/tonnoconsorzio",
+        "linkedin": "https://linkedin.com/in/alessiobellan"
+      }
+    },
+    {
+      "name": "Alessio Buso",
+      "role": "Co-Founder & Vice-Presidente",
+      "photo": "./media/profile_buso.jpg",
+      "bio": "Mi occupo della parte visiva e comunicativa dell'associazione, in particolare della grafica e dei social media.",
+      "email": "alessio.buso@abboaps.org",
+      "phone": "",
+      "socials": {
+        "instagram": "https://www.instagram.com/buso_design/",
+        "linkedin": "https://linkedin.com/in/alessiobuso"
+      }
+    }
+  ]
+}

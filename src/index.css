@@ -141,3 +141,26 @@ body {
 .animate-marquee {
   animation: marquee 30s linear infinite;
 }
+
+/* Custom Claymorphism Member Card - shifts border reflection and glow on hover without translating up */
+.clay-member-card {
+  border-radius: 2.5rem !important;
+  background: #fffcf5 !important;
+  box-shadow: 
+    10px 10px 20px rgba(74, 28, 13, 0.04), 
+    inset 3px 3px 6px rgba(255, 255, 255, 1), 
+    inset -4px -4px 8px rgba(74, 28, 13, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: none !important;
+}
+
+.clay-member-card:hover {
+  transform: none !important;
+  box-shadow: 
+    15px 15px 30px rgba(230, 81, 0, 0.05),
+    inset 5px 5px 10px rgba(255, 255, 255, 1),
+    inset -5px -5px 12px rgba(230, 81, 0, 0.15) !important; /* Caldo riflesso arancione nell'ombra interna inferiore destra */
+  border: 1px solid rgba(230, 81, 0, 0.25) !important; /* Cambio colore riflesso bordo */
+}
+
