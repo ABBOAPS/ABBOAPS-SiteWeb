@@ -116,7 +116,7 @@ export function Topbar() {
               >
                 <Link to="/" onClick={handleLogoClick} className="flex">
                   <div className="clay-nav h-12 px-5 flex items-center justify-center hover:opacity-80 transition-opacity">
-                    <img src={(siteConfig as any).logo_horizontal || "https://img.icons8.com/ios-filled/50/e65100/home.png"} alt="Abbo Logo" width="100" height="20" className="h-5 w-auto object-contain" />
+                    <img src={(siteConfig as any).logo_horizontal || "https://img.icons8.com/ios-filled/50/e65100/home.png"} alt="Abbo Logo" width="100" height="20" className="h-5 w-auto object-contain drop-shadow-[0_1.5px_3px_rgba(74,28,13,0.15)]" />
                   </div>
                 </Link>
               </motion.div>

@@ -49,6 +49,8 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
           layoutId={`project-icon-${project.id}`}
           src={project.icon}
           alt={project.title}
+          width={192}
+          height={192}
           className={`object-contain drop-shadow-2xl group-hover:scale-110 transition-all duration-500 max-w-[80%] ${project.title === "Digital Heroes" ? "h-32 md:h-48" : project.title === "MyVanilla" ? "h-28 md:h-40" : "h-24 md:h-32"}`}
         />
         
@@ -171,40 +173,18 @@ export function Home() {
         .animate-marquee-infinite {
           animation: marquee 130s linear infinite;
         }
-        @keyframes velvetMove {
-          0% { transform: scale(1.05) translate(0px, 0px); filter: brightness(1) contrast(1); }
-          25% { transform: scale(1.08) translate(5px, -3px); filter: brightness(0.98) contrast(1.01); }
-          50% { transform: scale(1.12) translate(-3px, 5px); filter: brightness(1.02) contrast(0.99); }
-          75% { transform: scale(1.08) translate(-5px, -3px); filter: brightness(0.98) contrast(1.01); }
-          100% { transform: scale(1.05) translate(0px, 0px); filter: brightness(1) contrast(1); }
-        }
-        .animate-velvet {
-          animation: velvetMove 35s ease-in-out infinite;
-        }
-        @keyframes flowGlow {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .animate-velvet-glow {
-          background: linear-gradient(-45deg, rgba(255, 143, 0, 0.08), rgba(230, 81, 0, 0.04), rgba(255, 252, 245, 0.12), rgba(255, 250, 240, 0.08));
-          background-size: 400% 400%;
-          animation: flowGlow 25s ease infinite;
-        }
       `}</style>
       {/* Hero Section */}
       <main className="relative z-20 w-full min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          {/* Background image with cheap GPU-accelerated breathing velvet animation */}
+          {/* Background image - static for smooth 60fps performance */}
           <img 
             src={homeConfig.hero_background || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564"} 
             alt="" 
-            className="w-full h-full object-cover animate-velvet" 
+            className="w-full h-full object-cover" 
           />
-          {/* Soft overlay across the entire page for readability */}
-          <div className="absolute inset-0 bg-white/10"></div>
-          {/* Living, animated velvet glow shifting gradient overlay */}
-          <div className="absolute inset-0 animate-velvet-glow"></div>
+          {/* Warm, static overlay for text readability and visual consistency */}
+          <div className="absolute inset-0 bg-[#fffaf0]/30 backdrop-blur-[2px]"></div>
           {/* Beautiful, mathematically-eased soft transition to the warm peach theme background (#fff0e0) at the very bottom */}
           <div 
             className="absolute inset-x-0 bottom-0 pointer-events-none"
@@ -221,7 +201,8 @@ export function Home() {
             alt="ABBO APS Logo"
             width={192}
             height={192}
-            className="w-48 h-48 mb-6 object-contain drop-shadow-xl"
+            fetchPriority="high"
+            className="w-48 h-48 mb-6 object-contain drop-shadow-[0_4px_12px_rgba(74,28,13,0.18)]"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.2 }}
@@ -306,6 +287,8 @@ export function Home() {
                           layoutId={`project-icon-${activeProject.id}`}
                           src={activeProject.icon}
                           alt={activeProject.title}
+                          width={320}
+                          height={320}
                           className={`object-contain drop-shadow-2xl max-w-full ${activeProject.title === "Digital Heroes" ? "w-64 h-64 md:w-[400px] md:h-[400px] scale-125" : activeProject.title === "MyVanilla" ? "w-56 h-56 md:w-80 md:h-80" : "w-48 h-48 md:w-80 md:h-80"}`}
                         />
                       </div>
