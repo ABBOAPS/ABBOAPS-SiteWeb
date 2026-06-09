@@ -2,7 +2,7 @@
 title: Presentazione di ABBO APS: Attività educative e sociali per i giovani
 date: 2026-05-31
 tags: Annuncio
-cover_image: ./media/banner1post.webp
+cover_image: /media/banner1post.webp
 ---
 Il contesto sociale e tecnologico in cui crescono le nuove generazioni richiede risposte concrete, aggiornate e tempestive. Spesso si discute di futuro, digitalizzazione e competenze giovanili senza che a queste riflessioni seguano progetti tangibili sul territorio. ABBO APS nasce per colmare questo spazio, trasformando le idee in azioni d'impatto dedicate ai ragazzi e alle loro famiglie.
 

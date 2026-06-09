@@ -181,10 +181,11 @@ export function Home() {
           <img 
             src={homeConfig.hero_background || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564"} 
             alt="" 
+            fetchPriority="high"
             className="w-full h-full object-cover" 
           />
           {/* Warm, static overlay for text readability and visual consistency */}
-          <div className="absolute inset-0 bg-[#fffaf0]/30 backdrop-blur-[2px]"></div>
+          <div className="absolute inset-0 bg-[#fffaf0]/40"></div>
           {/* Beautiful, mathematically-eased soft transition to the warm peach theme background (#fff0e0) at the very bottom */}
           <div 
             className="absolute inset-x-0 bottom-0 pointer-events-none"

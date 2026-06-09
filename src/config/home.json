@@ -1,9 +1,9 @@
 {
-  "association_logo": "./logo_abbo_bianco.svg",
-  "hero_background": "./media/BG_Home.webp",
+  "association_logo": "/logo_abbo_bianco.svg",
+  "hero_background": "/media/BG_Home.webp",
   "support_text": "Sostienici tramite i nostri partner o con una donazione",
   "main_partner_logo": "https://upload.wikimedia.org/wikipedia/commons/3/30/Googlelogo.png",
   "partners": [
-    { "logo": "./partners/logo-abc-sport.webp" }
+    { "logo": "/partners/logo-abc-sport.webp" }
   ]
 }
