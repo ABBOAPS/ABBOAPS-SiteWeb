@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Mail, MailCheck, ExternalLink } from "lucide-react";
 import contattiConfig from "../config/contatti.json";
 import { SEO } from "../components/SEO";
+import { NewsletterForm } from "../components/NewsletterForm";
 
 export function Contatti() {
   const [name, setName] = useState("");
@@ -93,6 +94,11 @@ export function Contatti() {
               Scrivici direttamente via email
               <ExternalLink className="w-4 h-4" />
             </a>
+        </div>
+
+        {/* Newsletter Form */}
+        <div className="w-full mt-12">
+          <NewsletterForm />
         </div>
 
         {/* Institutional info */}

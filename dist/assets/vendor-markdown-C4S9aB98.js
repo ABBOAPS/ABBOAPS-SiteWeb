@@ -1,4 +1,4 @@
-import{s as Lt}from"./vendor-icons-DkvbYnY6.js";var Ze={exports:{}},Re={};/**
+import{s as Lt}from"./vendor-icons-C-DwrMCK.js";var Ze={exports:{}},Re={};/**
  * @license React
  * react-jsx-runtime.production.js
  *

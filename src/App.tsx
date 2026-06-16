@@ -12,6 +12,7 @@ import { BalanceViewer } from "./pages/BalanceViewer";
 import { Notizie } from "./pages/Notizie";
 import { NewsDetail } from "./pages/NewsDetail";
 import { NotFound } from "./pages/NotFound";
+import { PrivacyPolicy } from "./pages/PrivacyPolicy";
 import siteConfig from "./config/site_config.json";
 
 import { Footer } from "./components/Footer";
@@ -44,6 +45,7 @@ export default function App() {
           <Route path="/contatti" element={<Contatti />} />
           <Route path="/notizie" element={<Notizie />} />
           <Route path="/news/:id" element={<NewsDetail />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

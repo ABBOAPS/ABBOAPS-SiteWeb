@@ -3,6 +3,7 @@ import footerConfig from "../config/footer.json";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { NewsletterForm } from "./NewsletterForm";
 
 interface Patron {
   id: string;
@@ -63,6 +64,10 @@ export function Footer() {
                 {link.label}
               </Link>
             ))}
+          </div>
+
+          <div className="flex flex-col items-start md:items-end w-full md:w-auto mt-4 md:mt-0">
+            <NewsletterForm variant="compact" className="w-full max-w-sm" />
           </div>
         </div>
 
