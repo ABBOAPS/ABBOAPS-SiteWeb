@@ -108,7 +108,7 @@ export function Sostienici() {
       })
       .catch((err) => {
         console.error("Error loading patrons:", err);
-        setPatronsError("Nessun patron da caricare. Aggiungi il token di Patreon ai secrets di Github per generarli in production.");
+        setPatronsError("Nessun mecenate da caricare.");
       })
       .finally(() => setIsLoadingPatrons(false));
   }, []);
@@ -233,7 +233,7 @@ export function Sostienici() {
           </div>
         </div>
 
-        {/* I Nostri Mecenati (Patreon Wall) */}
+        {/* I Nostri Mecenati (Wall) */}
         {!isLoadingPatrons && !patronsError && patrons.length > 0 && (
           <div className="w-full flex flex-col mb-32 pt-16 border-t border-[#4a1c0d]/10">
             <div className="flex flex-col items-center mb-16 text-center">
@@ -242,7 +242,7 @@ export function Sostienici() {
                 I Nostri Mecenati
               </h2>
               <p className="text-xl font-medium tracking-tight text-[#4a1c0d]/70 max-w-2xl text-center leading-relaxed mb-8">
-                Un ringraziamento speciale a chi sostiene la nostra missione ogni mese su Patreon.
+                Un ringraziamento speciale a chi sostiene costantemente la nostra missione.
               </p>
               <button 
                 onClick={scrollToDonation}
@@ -284,24 +284,28 @@ export function Sostienici() {
           </h2>
         </div>
         <div className="grid md:grid-cols-2 gap-12 mb-16 max-w-5xl mx-auto w-full">
-          {/* Patron Card (Ricorrente) */}
-          <div className="clay-card flex flex-col p-10 md:p-14 relative overflow-hidden group">
-            <div className="w-16 h-16 bg-[#ff424d]/10 text-[#ff424d] rounded-full flex items-center justify-center mb-10 group-hover:scale-110 transition-transform self-start aspect-square shrink-0">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.3859 0.000183105C11.5362 0.000183105 8.41406 3.12242 8.41406 6.97204C8.41406 10.8217 11.5362 13.9439 15.3859 13.9439C19.2355 13.9439 22.3577 10.8217 22.3577 6.97204C22.3577 3.12242 19.2355 0.000183105 15.3859 0.000183105ZM1.6416 23.9998H6.12643V0.000183105H1.6416V23.9998Z"/>
+          {/* Sostegno Ricorrente Card */}
+          <div className="clay-card flex flex-col p-10 md:p-14 relative overflow-hidden group grayscale opacity-80 cursor-not-allowed">
+            <div className="w-16 h-16 bg-gray-500/10 text-gray-600 rounded-full flex items-center justify-center mb-10 self-start aspect-square shrink-0">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
               </svg>
             </div>
             <h2 className="text-4xl font-extrabold tracking-tight mb-4 text-[#4a1c0d]">
               {sostieniciConfig.patreon.title}
             </h2>
+            <div className="inline-block bg-gray-200 text-gray-700 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-6 self-start">
+              Coming Soon
+            </div>
             <p className="text-[#4a1c0d]/70 mb-8 leading-relaxed font-medium text-lg">
               {sostieniciConfig.patreon.description}
             </p>
 
             <ul className="mb-12 space-y-4">
               {sostieniciConfig.patreon.perks.map((perk, i) => (
-                <li key={i} className="flex items-start space-x-3 text-[#4a1c0d]/80 font-semibold">
-                  <div className="w-6 h-6 rounded-full bg-[#ff424d]/20 flex items-center justify-center text-[#ff424d] shrink-0 mt-0.5">
+                <li key={i} className="flex items-start space-x-3 text-[#4a1c0d]/80 font-semibold opacity-50">
+                  <div className="w-6 h-6 rounded-full bg-gray-500/20 flex items-center justify-center text-gray-600 shrink-0 mt-0.5">
                     <Check className="w-3 h-3" />
                   </div>
                   <span>{perk}</span>
@@ -309,14 +313,12 @@ export function Sostienici() {
              ))}
             </ul>
 
-            <a
-              href={sostieniciConfig.patreon.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-auto clay-btn px-8 py-5 text-center text-white font-bold tracking-widest uppercase w-full hover:scale-105 active:scale-95"
+            <button
+              disabled
+              className="mt-auto clay-btn px-8 py-5 text-center text-white font-bold tracking-widest uppercase w-full opacity-50 cursor-not-allowed"
             >
-              Donazione Ricorrente
-            </a>
+              Coming Soon...
+            </button>
           </div>
 
           {/* PayPal Card (Singola) */}
