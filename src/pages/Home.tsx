@@ -184,8 +184,8 @@ export function Home() {
             fetchPriority="high"
             className="w-full h-full object-cover" 
           />
-          {/* Neutral, static overlay for text readability without altering the image's original hue */}
-          <div className="absolute inset-0 bg-black/15"></div>
+          {/* Neutral, static overlay removed to preserve original image colors */}
+          {/* <div className="absolute inset-0 bg-black/15"></div> */}
           {/* Beautiful, mathematically-eased soft transition to the warm peach theme background (#fff0e0) at the very bottom */}
           <div 
             className="absolute inset-x-0 bottom-0 pointer-events-none"
