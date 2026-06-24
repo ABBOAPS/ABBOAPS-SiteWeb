@@ -1,7 +1,7 @@
 {
   "hero": {
-    "title": "Non lasciamo morire le buone idee. Le piantiamo a terra.",
-    "description": "Abbo APS non è un ufficio. È un'officina. Troppi progetti per i ragazzi nascono e muoiono nel giro di una stagione, lasciando solo polvere. Noi prendiamo quelle intuizioni fragili. Ci mettiamo le mani dentro. Costruiamo scheletri di cemento e ferro perché resistano al tempo. Diamo sostanza a chi vuole cambiare la strada in cui cammina."
+    "title": "Creiamo spazi per i ragazzi. Spazi veri.",
+    "description": "ABBO APS è un'associazione del terzo settore che opera tra Monza, la Brianza, Lecco, Bergamo e Milano. Il nostro lavoro è concreto: costruiamo progetti educativi stabili, collaboriamo con scuole, comuni e associazioni, e creiamo ambienti in cui i ragazzi possono essere sé stessi, sbagliare, imparare e fare comunità. Non partiamo dalle idee astratte. Partiamo dalle persone."
   },
   "founders_quotes": [
     {
@@ -13,7 +13,7 @@
       }
     },
     {
-      "quote": "\"Quando dedichiamo tempo e impegno a imparare qualcosa di utile per il nostro futuro, quel tempo non è mai sprecato. Il nostro obiettivo è trasformare la conoscenza in un’esperienza appassionante, capace di accendere la mente e rimanere impressa.\"",
+      "quote": "\"Quando dedichiamo tempo e impegno a imparare qualcosa di utile per il nostro futuro, quel tempo non è mai sprecato. Il nostro obiettivo è trasformare la conoscenza in un'esperienza appassionante, capace di accendere la mente e rimanere impressa.\"",
       "author": {
         "name": "Alessio Buso",
         "role": "Co-Founder & Vice-Presidente",
@@ -22,30 +22,30 @@
     }
   ],
   "mission_box": {
-    "title": "La Terra Sopra cui Camminiamo",
-    "description": "Consumiamo le scarpe tra Monza, la Brianza, Lecco, Bergamo e Milano. Entriamo nelle scuole, nelle piazze, negli uffici comunali. Ci muoviamo dove ci sono ragazzi che rischiano di perdersi o idee che rischiano di rimanere chiuse in un cassetto. Non facciamo filosofia. Sbattiamo la testa sui bandi, sui bilanci, sulla burocrazia. Diamo muscoli e ossa a chi vuole proteggere e far crescere chi viene dopo di noi."
+    "title": "Dove operiamo",
+    "description": "Siamo attivi tra Monza, la Brianza, Lecco, Bergamo e Milano. Entriamo nelle scuole, negli uffici comunali, negli spazi delle associazioni. Lavoriamo fianco a fianco con chi gestisce progetti educativi, con chi ha un'idea e non sa da dove partire, e con chi vuole costruire qualcosa di duraturo per i ragazzi del proprio territorio. Ci occupiamo della parte operativa: bandi, rendicontazione, coordinamento, relazioni istituzionali. Così chi lavora con noi può concentrarsi sulle persone."
   },
   "values": [
     {
-      "title": "Passarsi il testimone, senza farlo cadere",
-      "description": "Un progetto che muore quando finiscono i fondi pubblici è un fallimento. Costruiamo percorsi capaci di camminare sulle gambe di chi oggi ha dodici anni e domani guiderà la fila. Quello che piantiamo oggi deve diventare l'ombra sotto cui si siederanno i ragazzi di domani.",
+      "title": "Progetti che durano nel tempo",
+      "description": "Un progetto che si ferma quando finiscono i fondi non ha funzionato. Costruiamo percorsi educativi pensati per reggere nel tempo, coinvolgendo chi oggi è giovane perché domani possa portarlo avanti. L'obiettivo non è fare una bella cosa adesso. È creare qualcosa che continui a esistere.",
       "icon": "Shield"
     },
     {
-      "title": "Mani diverse, stesso muro",
-      "description": "Ognuno sa fare una cosa sola, e da solo si stanca presto. Mettiamo allo stesso tavolo chi conosce la legge, chi sa insegnare, chi sa fare i conti e chi vive la strada. Mescoliamo i saperi, sporchiamoci la bocca con linguaggi diversi. Se la conoscenza resta chiusa dentro una stanza, marcisce.",
+      "title": "Competenze diverse, obiettivo comune",
+      "description": "Lavoriamo con persone che sanno fare cose diverse: chi conosce la burocrazia, chi sa insegnare, chi sa comunicare, chi vive il territorio. Metterle allo stesso tavolo non è scontato, ma è l'unico modo per costruire qualcosa che funzioni davvero. La conoscenza condivisa vale più di quella tenuta per sé.",
       "icon": "Users"
     },
     {
-      "title": "Nessuno si salva da solo su un'isola",
-      "description": "I successi solitari non ci interessano. Durano lo spazio di una fotografia. Se una scuola migliora, deve migliorare tutto il quartiere attorno. Se un comune si muove, deve trascinarsi dietro gli altri. Si cresce solo se la terra sotto i piedi di tutti diventa più solida.",
+      "title": "Il territorio cresce insieme",
+      "description": "Non ci interessano i successi isolati. Se una scuola migliora, vogliamo che quell'impatto si senta anche fuori dalle sue mura. Se un comune avvia un progetto, vogliamo che diventi un riferimento per gli altri. Lavoriamo in rete perché sappiamo che nessuno, da solo, può fare abbastanza.",
       "icon": "Trophy"
     }
   ],
   "cta_banner": {
-    "title": "Facciamo il lavoro sporco. Insieme.",
-    "subtitle": "Se gestisci una scuola, se hai un progetto, o se hai semplicemente un'idea che brucia ma ti mancano le gambe per farla correre: parliamone. Tira fuori il foglio dal cassetto. Mettiamoci al lavoro.",
-    "button_text": "Inizia da qui",
+    "title": "Hai un progetto per i ragazzi? Parliamoci.",
+    "subtitle": "Che tu gestisca una scuola, un'associazione o un ufficio comunale, possiamo lavorare insieme. Raccontaci quello che stai cercando di costruire.",
+    "button_text": "Scrivici",
     "button_link": "/contatti",
     "illustration": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80"
   }
