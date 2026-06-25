@@ -60,11 +60,6 @@ Il successo solitario e temporaneo non ha valore. La crescita di una scuola deve
 - **Target:** Ragazzi dai 9 ai 14 anni, famiglie, ed enti locali.
 - **Obiettivo:** Guidare le nuove generazioni a un uso sicuro, consapevole e creativo della tecnologia. Attraverso laboratori di programmazione (coding), robotica educativa e cittadinanza digitale, il progetto converte il tempo passivo speso online in opportunità di inclusione, formazione e preparazione alle competenze del futuro nel mercato del lavoro.
 
-### MyVanilla
-- **Sito Web:** [myvanilla.org](https://myvanilla.org)
-- **Piattaforma:** Server Minecraft Vanilla.
-- **Obiettivo:** Offrire un'esperienza di gioco Vanilla equa, priva di meccaniche Pay-to-Win (P2W) per garantire parità di competizione. Utilizza un sistema sicuro di claim dei territori, missioni progressive ed esplorazioni per stimolare la socializzazione protetta, l'inclusione, il lavoro di squadra e la creatività, integrando le migliori creazioni storiche dei giocatori direttamente nella mappa di gioco.
-
 ---
 
 ## 7. Linee Guida per Modelli IA (Istruzioni di Risposta)

@@ -8,6 +8,7 @@ export interface Project {
   icon?: string;
   description?: string;
   url?: string;
+  is_black_and_white?: boolean;
 }
 
 export interface ChiSiamoData {

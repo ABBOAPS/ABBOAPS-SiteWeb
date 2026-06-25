@@ -15,7 +15,7 @@ ABBO APS (Associazione di Promozione Sociale) è un'officina sociale attiva in L
 ## Progetti Principali
 
 - [Digital Heroes](https://digital-heroes.me): Progetto di formazione digitale attivo a Verderio per guidare ragazzi dai 9 ai 14 anni verso un uso sicuro, consapevole e creativo della tecnologia (laboratori pratici di programmazione, robotica e cittadinanza digitale).
-- [MyVanilla](https://myvanilla.org): Server Minecraft Vanilla cooperativo e non pay-to-win, finalizzato a creare una community sicura, collaborativa e inclusiva, stimolando la creatività e valorizzando le costruzioni dei giocatori.
+
 
 ## Pagine Riferimento del Sito
 - [Chi Siamo](https://www.abboaps.org/chi-siamo): La nostra mission, i nostri valori e la storia dei co-fondatori Alessio Bellan e Alessio Buso.

@@ -21,14 +21,15 @@
     "description": "Digital Heroes è un progetto di formazione digitale attivo a Verderio che si occupa di guidare i ragazzi dai 9 ai 14 anni e le realtà locali verso un uso sicuro, creativo e consapevole della tecnologia. Attraverso laboratori interattivi e percorsi pratici, l'iniziativa sviluppa le competenze informatiche fondamentali per il futuro, insegnando a sfruttare le opportunità della rete e a contrastarne i rischi. Questo percorso nasce con l'obiettivo di trasformare il tempo speso online in un'effettiva opportunità di crescita e di inclusione, costruendo così una comunità tecnologica responsabile, aperta al dialogo e pronta ad affrontare l'innovazione del mondo del lavoro."
   },
   {
-    "id": "myvanilla",
-    "title": "MyVanilla",
+    "id": "coming-soon",
+    "title": "Coming Soon",
     "is_video": false,
-    "bg_src": "/bg_MyVanilla.webp",
-    "thumbnail": "/bg_MyVanilla.webp",
-    "cta": "Scopri di più",
-    "url": "https://myvanilla.org",
-    "icon": "/logo_my_vanilla.svg",
-    "description": "MyVanilla è un server Minecraft che offre un'esperienza Vanilla aggiornata, equa e priva di meccaniche Pay-to-Win per garantire una competizione totalmente alla pari. Attraverso un sistema di protezione dei territori, missioni a difficoltà progressiva ed eventi di esplorazione permanente, la piattaforma permette agli utenti di giocare in sicurezza affrontando sfide sempre nuove. Il progetto nasce per mettere al centro il puro divertimento e la community, creando un ambiente amichevole in cui stimolare la collaborazione e valorizzare la creatività dei giocatori, integrando persino le loro migliori costruzioni storiche direttamente nel mondo di gioco."
+    "bg_src": "",
+    "thumbnail": "",
+    "cta": "Coming soon",
+    "url": "",
+    "icon": "",
+    "description": "Progetto in arrivo.",
+    "is_black_and_white": true
   }
 ]

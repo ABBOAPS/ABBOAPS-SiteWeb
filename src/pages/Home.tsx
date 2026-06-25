@@ -21,13 +21,15 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
   return (
     <motion.div
       layoutId={`project-container-${project.id}`}
-      onClick={onClick}
+      onClick={project.is_black_and_white ? undefined : onClick}
       onMouseMove={handleMouseMove}
-      className="clay-card p-0 cursor-pointer relative w-full md:w-[45%] lg:w-[40%] aspect-[4/5] flex flex-col items-center justify-end group overflow-hidden rounded-[2.5rem] shadow-2xl hover:shadow-3xl transition-all duration-500 border-4 border-white/50"
+      className={`clay-card p-0 ${project.is_black_and_white ? "cursor-default grayscale" : "cursor-pointer hover:shadow-3xl"} relative w-full md:w-[45%] lg:w-[40%] aspect-[4/5] flex flex-col items-center justify-end group overflow-hidden rounded-[2.5rem] shadow-2xl transition-all duration-500 border-4 border-white/50`}
     >
       <div className="absolute inset-0 z-0 bg-[#1a0a05]">
-        <img src={project.bg_src} alt="" className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-[1.5s] ease-out" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#2a0e05]/95 via-[#2a0e05]/40 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500"></div>
+        {project.bg_src && (
+          <img src={project.bg_src} alt="" className={`w-full h-full object-cover opacity-60 ${project.is_black_and_white ? "" : "group-hover:opacity-100 group-hover:scale-105"} transition-all duration-[1.5s] ease-out`} />
+        )}
+        <div className={`absolute inset-0 bg-gradient-to-t from-[#2a0e05]/95 via-[#2a0e05]/40 to-transparent opacity-90 ${project.is_black_and_white ? "" : "group-hover:opacity-80"} transition-opacity duration-500`}></div>
 
         {/* Spotlight Effect overlay */}
         <motion.div
@@ -44,15 +46,24 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
         />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-end p-8 w-full h-full gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 pointer-events-none">
-        <motion.img
-          layoutId={`project-icon-${project.id}`}
-          src={project.icon}
-          alt={project.title}
-          width={192}
-          height={192}
-          className={`object-contain drop-shadow-2xl group-hover:scale-110 transition-all duration-500 max-w-[80%] ${project.title === "Digital Heroes" ? "h-32 md:h-48" : project.title === "MyVanilla" ? "h-28 md:h-40" : "h-24 md:h-32"}`}
-        />
+      <div className={`relative z-10 flex flex-col items-center justify-end p-8 w-full h-full gap-6 transform ${project.is_black_and_white ? "" : "translate-y-8 group-hover:translate-y-0"} transition-transform duration-500 pointer-events-none`}>
+        {project.icon ? (
+          <motion.img
+            layoutId={`project-icon-${project.id}`}
+            src={project.icon}
+            alt={project.title}
+            width={192}
+            height={192}
+            className={`object-contain drop-shadow-2xl ${project.is_black_and_white ? "" : "group-hover:scale-110"} transition-all duration-500 max-w-[80%] ${project.title === "Digital Heroes" ? "h-32 md:h-48" : "h-24 md:h-32"}`}
+          />
+        ) : (
+          <motion.h3 
+            layoutId={`project-title-${project.id}`}
+            className={`text-3xl md:text-4xl font-extrabold tracking-tighter text-white/80 drop-shadow-2xl ${project.is_black_and_white ? "" : "group-hover:scale-110"} transition-all duration-500`}
+          >
+            {project.title}
+          </motion.h3>
+        )}
         
         {/* Title and Description - Hidden by default, fade in on hover */}
         <div className="flex flex-col items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
@@ -290,12 +301,12 @@ export function Home() {
                           alt={activeProject.title}
                           width={320}
                           height={320}
-                          className={`object-contain drop-shadow-2xl max-w-full ${activeProject.title === "Digital Heroes" ? "w-64 h-64 md:w-[400px] md:h-[400px] scale-125" : activeProject.title === "MyVanilla" ? "w-56 h-56 md:w-80 md:h-80" : "w-48 h-48 md:w-80 md:h-80"}`}
+                          className={`object-contain drop-shadow-2xl max-w-full ${activeProject.title === "Digital Heroes" ? "w-64 h-64 md:w-[400px] md:h-[400px] scale-125" : "w-48 h-48 md:w-80 md:h-80"}`}
                         />
                       </div>
 
                       <div className="relative z-10 w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center items-start text-left">
-                        {activeProject.title !== "Digital Heroes" && activeProject.title !== "MyVanilla" && (
+                        {activeProject.title !== "Digital Heroes" && (
                           <motion.h3 layoutId={`project-title-${activeProject.id}`} className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4 text-white">
                             {activeProject.title}
                           </motion.h3>
