@@ -42,7 +42,7 @@ export function Team() {
       <section className="px-6 md:px-24 mb-32 max-w-7xl mx-auto">
         <div className="flex items-center gap-6 mb-12">
           <div className="h-px bg-[#e65100]/20 flex-1"></div>
-          <span className="text-[#e65100] font-bold text-sm uppercase tracking-widest px-4">I Fondatori</span>
+          <span className="text-[#e65100] font-bold text-sm uppercase tracking-widest px-4">Il Direttivo</span>
           <div className="h-px bg-[#e65100]/20 flex-1"></div>
         </div>
         <div className="flex flex-wrap justify-center gap-8 lg:gap-10 w-full">
@@ -159,7 +159,7 @@ export function Team() {
           <div className="mt-24">
             <div className="flex items-center gap-6 mb-12">
               <div className="h-px bg-[#e65100]/20 flex-1"></div>
-              <span className="text-[#e65100] font-bold text-sm uppercase tracking-widest px-4">Il resto del Team</span>
+              <span className="text-[#e65100] font-bold text-sm uppercase tracking-widest px-4">Soci Fondatori</span>
               <div className="h-px bg-[#e65100]/20 flex-1"></div>
             </div>
             <div className="flex flex-wrap justify-center gap-8 lg:gap-10 w-full">

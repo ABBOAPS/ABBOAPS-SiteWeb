@@ -4,7 +4,7 @@
   "members": [
     {
       "name": "Alessio Bellan",
-      "role": "Co-Fondatore & Presidente",
+      "role": "Presidente",
       "photo": "./media/profile_alessio.jpg",
       "bio": "Mi occupo della gestione e dello sviluppo dell'associazionee seguo in prima persona i progetti in ambito digitale e di innovazione sociale.",
       "email": "alessio.bellan@abboaps.org",
@@ -18,7 +18,7 @@
     },
     {
       "name": "Alessio Buso",
-      "role": "Co-Fondatore & Vice-Presidente",
+      "role": "Vice-Presidente",
       "photo": "./media/profile_buso.jpg",
       "bio": "Mi occupo della parte visiva e comunicativa dell'associazione, in particolare della grafica e dei social media.",
       "email": "alessio.buso@abboaps.org",
@@ -62,7 +62,7 @@
     },
     {
       "name": "Kay Guarino Hagler",
-      "role": "Consigliere",
+      "role": "Socio Fondatore",
       "photo": "",
       "bio": "",
       "email": "",
