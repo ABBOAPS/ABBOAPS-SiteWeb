@@ -10,9 +10,10 @@
       "email": "alessio.bellan@abboaps.org",
       "phone": "",
       "socials": {
-        "instagram": "https://instagram.com/alessio.bellan",
+        "linkedin": "https://www.linkedin.com/in/alessiobellan/",
         "github": "https://github.com/tonnoconsorzio",
-        "linkedin": "https://linkedin.com/in/alessiobellan"
+        "website": "https://www.alessiobellan.it",
+        "instagram": "https://www.instagram.com/alessio.bellan"
       }
     },
     {
@@ -23,8 +24,54 @@
       "email": "alessio.buso@abboaps.org",
       "phone": "",
       "socials": {
-        "instagram": "https://www.instagram.com/buso_design/",
-        "linkedin": "https://linkedin.com/in/alessiobuso"
+        "linkedin": "https://www.linkedin.com/in/alessiobuso/",
+        "github": "",
+        "website": "",
+        "instagram": "https://www.instagram.com/buso_design/"
+      }
+    }
+  ],
+  "other_members": [
+    {
+      "name": "Luca Sacchi Riccardi",
+      "role": "Consigliere",
+      "photo": "./media/profile_lucasacchi.jpg",
+      "bio": "Veterano IT dal 1998 con vasta esperienza pratica da Unix all'AI locale, forte sostenitore dell'approccio self-hosted. Oggi unisce la docenza pragmatica allo sviluppo di tool open source e alla divulgazione tecnica e senza fronzoli.",
+      "email": "",
+      "phone": "",
+      "socials": {
+        "linkedin": "https://www.linkedin.com/in/lucasacchi/",
+        "github": "https://github.com/lucasacchiricciardi",
+        "website": "https://www.lucasacchi.net",
+        "instagram": ""
+      }
+    },
+    {
+      "name": "Alessandra Guarino",
+      "role": "Segretario",
+      "photo": "",
+      "bio": "Illustratrice e fumettista esperta in tecniche pittoriche, supporta l'associazione unendo le competenze organizzative in segreteria al proprio talento nel disegno e nell'arte.",
+      "email": "",
+      "phone": "",
+      "socials": {
+        "linkedin": "",
+        "github": "",
+        "website": "",
+        "instagram": ""
+      }
+    },
+    {
+      "name": "Kay Guarino Hagler",
+      "role": "Consigliere",
+      "photo": "",
+      "bio": "",
+      "email": "",
+      "phone": "",
+      "socials": {
+        "linkedin": "",
+        "github": "",
+        "website": "",
+        "instagram": ""
       }
     }
   ]

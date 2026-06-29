@@ -1,5 +1,5 @@
 import teamConfig from "../config/team.json";
-import { Mail, Phone, Instagram, Github, Linkedin, ArrowRight, Briefcase } from "lucide-react";
+import { Mail, Phone, Instagram, Github, Linkedin, ArrowRight, Briefcase, Globe, User } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { motion } from "motion/react";
@@ -40,6 +40,11 @@ export function Team() {
 
       {/* Team Members List - Centered Flex (No vacant grid spots) */}
       <section className="px-6 md:px-24 mb-32 max-w-7xl mx-auto">
+        <div className="flex items-center gap-6 mb-12">
+          <div className="h-px bg-[#e65100]/20 flex-1"></div>
+          <span className="text-[#e65100] font-bold text-sm uppercase tracking-widest px-4">I Fondatori</span>
+          <div className="h-px bg-[#e65100]/20 flex-1"></div>
+        </div>
         <div className="flex flex-wrap justify-center gap-8 lg:gap-10 w-full">
           {teamConfig.members.map((member, idx) => (
             <motion.div
@@ -53,12 +58,16 @@ export function Team() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#e65100]/5 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-700 pointer-events-none"></div>
               
               {/* Clean Rounded Image (No keychain shadows/borders) */}
-              <div className="relative w-44 h-44 shrink-0 rounded-3xl overflow-hidden bg-transparent mb-6 shadow-sm">
-                <img 
-                  src={member.photo} 
-                  alt={member.name} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-all duration-[1.2s] ease-out" 
-                />
+              <div className="relative w-44 h-44 shrink-0 rounded-3xl overflow-hidden bg-[#fffcf5] flex items-center justify-center mb-6 shadow-sm border border-[#e65100]/10">
+                {member.photo ? (
+                  <img 
+                    src={member.photo} 
+                    alt={member.name} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-[1.2s] ease-out" 
+                  />
+                ) : (
+                  <User className="w-16 h-16 text-[#e65100] opacity-50" />
+                )}
               </div>
 
               {/* Member Details */}
@@ -94,15 +103,15 @@ export function Team() {
                   {/* Social Icons */}
                   {member.socials && Object.keys(member.socials).length > 0 && (
                     <div className="flex justify-center gap-3">
-                      {member.socials.instagram && (
+                      {member.socials.linkedin && (
                         <a 
-                          href={member.socials.instagram} 
+                          href={member.socials.linkedin} 
                           target="_blank" 
                           rel="noopener noreferrer" 
                           className="w-9 h-9 rounded-full bg-[#fffcf5] border border-[#e65100]/20 flex items-center justify-center text-[#4a1c0d]/60 hover:text-[#e65100] hover:bg-[#e65100]/10 hover:scale-110 transition-all shadow-sm"
-                          aria-label="Instagram"
+                          aria-label="LinkedIn"
                         >
-                          <Instagram className="w-4.5 h-4.5" />
+                          <Linkedin className="w-4.5 h-4.5" />
                         </a>
                       )}
                       {member.socials.github && (
@@ -116,15 +125,26 @@ export function Team() {
                           <Github className="w-4.5 h-4.5" />
                         </a>
                       )}
-                      {member.socials.linkedin && (
+                      {member.socials.website && (
                         <a 
-                          href={member.socials.linkedin} 
+                          href={member.socials.website} 
                           target="_blank" 
                           rel="noopener noreferrer" 
                           className="w-9 h-9 rounded-full bg-[#fffcf5] border border-[#e65100]/20 flex items-center justify-center text-[#4a1c0d]/60 hover:text-[#e65100] hover:bg-[#e65100]/10 hover:scale-110 transition-all shadow-sm"
-                          aria-label="LinkedIn"
+                          aria-label="Website"
                         >
-                          <Linkedin className="w-4.5 h-4.5" />
+                          <Globe className="w-4.5 h-4.5" />
+                        </a>
+                      )}
+                      {member.socials.instagram && (
+                        <a 
+                          href={member.socials.instagram} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="w-9 h-9 rounded-full bg-[#fffcf5] border border-[#e65100]/20 flex items-center justify-center text-[#4a1c0d]/60 hover:text-[#e65100] hover:bg-[#e65100]/10 hover:scale-110 transition-all shadow-sm"
+                          aria-label="Instagram"
+                        >
+                          <Instagram className="w-4.5 h-4.5" />
                         </a>
                       )}
                     </div>
@@ -134,6 +154,122 @@ export function Team() {
             </motion.div>
           ))}
         </div>
+
+        {teamConfig.other_members && teamConfig.other_members.length > 0 && (
+          <div className="mt-24">
+            <div className="flex items-center gap-6 mb-12">
+              <div className="h-px bg-[#e65100]/20 flex-1"></div>
+              <span className="text-[#e65100] font-bold text-sm uppercase tracking-widest px-4">Il resto del Team</span>
+              <div className="h-px bg-[#e65100]/20 flex-1"></div>
+            </div>
+            <div className="flex flex-wrap justify-center gap-8 lg:gap-10 w-full">
+              {teamConfig.other_members.map((member, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: idx * 0.15 }}
+                  className="group flex flex-col items-center clay-member-card p-8 relative overflow-hidden w-full max-w-sm"
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#e65100]/5 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-700 pointer-events-none"></div>
+                  
+                  <div className="relative w-44 h-44 shrink-0 rounded-3xl overflow-hidden bg-[#fffcf5] flex items-center justify-center mb-6 shadow-sm border border-[#e65100]/10">
+                    {member.photo ? (
+                      <img 
+                        src={member.photo} 
+                        alt={member.name} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-[1.2s] ease-out" 
+                      />
+                    ) : (
+                      <User className="w-16 h-16 text-[#e65100] opacity-50" />
+                    )}
+                  </div>
+
+                  <div className="flex-1 flex flex-col items-center text-center w-full">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#8a3a19] opacity-75 mb-2 block">
+                      {member.role}
+                    </span>
+                    <h3 className="font-extrabold text-2xl text-[#4a1c0d] group-hover:text-[#e65100] transition-colors mb-4">
+                      {member.name}
+                    </h3>
+                    {member.bio && (
+                      <p className="text-sm font-medium text-[#8a3a19]/90 leading-relaxed mb-6 flex-1">
+                        {member.bio}
+                      </p>
+                    )}
+
+                    <div className="w-full mt-auto pt-5 border-t border-[#4a1c0d]/10 flex flex-col items-center gap-4">
+                      <div className="flex flex-col items-center gap-1.5 text-xs font-semibold text-[#4a1c0d]/80">
+                        {member.email && (
+                          <a href={`mailto:${member.email}`} className="flex items-center gap-1.5 hover:text-[#e65100] transition-colors">
+                            <Mail className="w-3.5 h-3.5 text-[#e65100]" />
+                            {member.email}
+                          </a>
+                        )}
+                        {member.phone && (
+                          <a href={`tel:${member.phone.replace(/\s+/g, '')}`} className="flex items-center gap-1.5 hover:text-[#e65100] transition-colors">
+                            <Phone className="w-3.5 h-3.5 text-[#e65100]" />
+                            {member.phone}
+                          </a>
+                        )}
+                      </div>
+
+                      {member.socials && Object.keys(member.socials).length > 0 && (
+                        <div className="flex justify-center gap-3">
+                          {member.socials.linkedin && (
+                            <a 
+                              href={member.socials.linkedin} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="w-9 h-9 rounded-full bg-[#fffcf5] border border-[#e65100]/20 flex items-center justify-center text-[#4a1c0d]/60 hover:text-[#e65100] hover:bg-[#e65100]/10 hover:scale-110 transition-all shadow-sm"
+                              aria-label="LinkedIn"
+                            >
+                              <Linkedin className="w-4.5 h-4.5" />
+                            </a>
+                          )}
+                          {member.socials.github && (
+                            <a 
+                              href={member.socials.github} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="w-9 h-9 rounded-full bg-[#fffcf5] border border-[#e65100]/20 flex items-center justify-center text-[#4a1c0d]/60 hover:text-[#e65100] hover:bg-[#e65100]/10 hover:scale-110 transition-all shadow-sm"
+                              aria-label="GitHub"
+                            >
+                              <Github className="w-4.5 h-4.5" />
+                            </a>
+                          )}
+                          {member.socials.website && (
+                            <a 
+                              href={member.socials.website} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="w-9 h-9 rounded-full bg-[#fffcf5] border border-[#e65100]/20 flex items-center justify-center text-[#4a1c0d]/60 hover:text-[#e65100] hover:bg-[#e65100]/10 hover:scale-110 transition-all shadow-sm"
+                              aria-label="Website"
+                            >
+                              <Globe className="w-4.5 h-4.5" />
+                            </a>
+                          )}
+                          {member.socials.instagram && (
+                            <a 
+                              href={member.socials.instagram} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="w-9 h-9 rounded-full bg-[#fffcf5] border border-[#e65100]/20 flex items-center justify-center text-[#4a1c0d]/60 hover:text-[#e65100] hover:bg-[#e65100]/10 hover:scale-110 transition-all shadow-sm"
+                              aria-label="Instagram"
+                            >
+                              <Instagram className="w-4.5 h-4.5" />
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
 
       {/* Large Bottom CTA Banner Section */}

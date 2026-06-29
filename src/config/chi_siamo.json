@@ -9,7 +9,14 @@
       "author": {
         "name": "Alessio Bellan",
         "role": "Co-Founder & Presidente",
-        "photo": "./media/profile_alessio.jpg"
+        "photo": "./media/profile_alessio.jpg",
+        "email": "alessio.bellan@abboaps.org",
+        "phone": "",
+        "social": {
+          "linkedin": "https://www.linkedin.com/in/alessiobellan/",
+          "website": "https://alessiobellan.it",
+          "instagram": "https://www.instagram.com/alessio.bellan"
+        }
       }
     },
     {
@@ -17,10 +24,18 @@
       "author": {
         "name": "Alessio Buso",
         "role": "Co-Founder & Vice-Presidente",
-        "photo": "./media/profile_buso.jpg"
+        "photo": "./media/profile_buso.jpg",
+        "email": "alessio.buso@abboaps.org",
+        "phone": "",
+        "social": {
+          "linkedin": "https://www.linkedin.com/in/alessiobuso/",
+          "website": "",
+          "instagram": "https://www.instagram.com/buso_design/"
+        }
       }
     }
   ],
+
   "mission_box": {
     "title": "Dove operiamo",
     "description": "Siamo attivi tra Monza, la Brianza, Lecco, Bergamo e Milano. Entriamo nelle scuole, negli uffici comunali, negli spazi delle associazioni. Lavoriamo fianco a fianco con chi gestisce progetti educativi, con chi ha un'idea e non sa da dove partire, e con chi vuole costruire qualcosa di duraturo per i ragazzi del proprio territorio. Ci occupiamo della parte operativa: bandi, rendicontazione, coordinamento, relazioni istituzionali. Così chi lavora con noi può concentrarsi sulle persone."
