@@ -34,7 +34,7 @@
   "other_members": [
     {
       "name": "Luca Sacchi Riccardi",
-      "role": "Consigliere",
+      "role": "Socio Fondatore",
       "photo": "./media/profile_lucasacchi.jpg",
       "bio": "Veterano IT dal 1998 con vasta esperienza pratica da Unix all'AI locale, forte sostenitore dell'approccio self-hosted. Oggi unisce la docenza pragmatica allo sviluppo di tool open source e alla divulgazione tecnica e senza fronzoli.",
       "email": "",
@@ -48,7 +48,7 @@
     },
     {
       "name": "Alessandra Guarino",
-      "role": "Segretario",
+      "role": "Segretaria",
       "photo": "",
       "bio": "Illustratrice e fumettista esperta in tecniche pittoriche, supporta l'associazione unendo le competenze organizzative in segreteria al proprio talento nel disegno e nell'arte.",
       "email": "",
