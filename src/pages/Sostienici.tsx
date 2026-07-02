@@ -21,7 +21,7 @@ export function Sostienici() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const handleCopyCF = (e: React.MouseEvent<HTMLButtonElement>) => {
-    navigator.clipboard.writeText("#########");
+    navigator.clipboard.writeText("94070530152");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
     triggerConfetti(e.clientX, e.clientY);
@@ -386,7 +386,7 @@ export function Sostienici() {
             <div className="w-full max-w-md clay-input p-6 flex flex-col sm:flex-row items-center justify-between gap-4 relative group select-none">
               <div className="flex flex-col text-left w-full sm:w-auto">
                 <span className="text-[10px] md:text-xs font-bold text-[#8a3a19] uppercase tracking-wider mb-1">Codice Fiscale dell'Associazione</span>
-                <span className="font-mono text-xl md:text-2xl font-black text-[#e65100] tracking-wider select-all">#########</span>
+                <span className="font-mono text-xl md:text-2xl font-black text-[#e65100] tracking-wider select-all">94070530152</span>
               </div>
               <button
                 onClick={handleCopyCF}

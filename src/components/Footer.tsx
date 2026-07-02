@@ -127,14 +127,14 @@ export function Footer() {
           {/* Left Column: 5 per mille on two lines */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left select-all gap-1.5 cursor-pointer hover:text-[#e65100] transition-colors"
                onClick={() => {
-                 navigator.clipboard.writeText("#########");
+                 navigator.clipboard.writeText("94070530152");
                  setCopiedCF(true);
                  setTimeout(() => setCopiedCF(false), 2000);
                }}
           >
             <span className="font-semibold uppercase text-[#e65100]/80">Destina il tuo 5 per mille ad ABBO APS</span>
             <div className="flex items-center gap-2">
-              <span>C.F. <strong className="font-mono font-bold">#########</strong></span>
+              <span>C.F. <strong className="font-mono font-bold">94070530152</strong></span>
               <span className="text-[8px] px-1.5 py-0.5 rounded bg-[#e65100]/10 text-[#e65100] font-sans font-bold uppercase tracking-normal">{copiedCF ? "Copiato!" : "Copia"}</span>
             </div>
           </div>
