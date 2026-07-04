@@ -45,34 +45,6 @@
         "website": "https://www.lucasacchi.net",
         "instagram": ""
       }
-    },
-    {
-      "name": "Alessandra Guarino",
-      "role": "Segretaria",
-      "photo": "",
-      "bio": "Illustratrice e fumettista esperta in tecniche pittoriche, supporta l'associazione unendo le competenze organizzative in segreteria al proprio talento nel disegno e nell'arte.",
-      "email": "",
-      "phone": "",
-      "socials": {
-        "linkedin": "",
-        "github": "",
-        "website": "",
-        "instagram": ""
-      }
-    },
-    {
-      "name": "Kay Guarino Hagler",
-      "role": "Socio Fondatore",
-      "photo": "",
-      "bio": "",
-      "email": "",
-      "phone": "",
-      "socials": {
-        "linkedin": "",
-        "github": "",
-        "website": "",
-        "instagram": ""
-      }
     }
   ]
 }
