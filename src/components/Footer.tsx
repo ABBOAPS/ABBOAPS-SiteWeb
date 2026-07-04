@@ -1,6 +1,6 @@
 import siteConfig from "../config/site_config.json";
 import footerConfig from "../config/footer.json";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { NewsletterForm } from "./NewsletterForm";
@@ -13,9 +13,12 @@ interface Patron {
 
 export function Footer() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [patrons, setPatrons] = useState<Patron[]>([]);
   const [isHovered, setIsHovered] = useState(false);
   const [copiedCF, setCopiedCF] = useState(false);
+  
+  const isLandingPage = location.pathname.startsWith("/landing");
 
   useEffect(() => {
     fetch("/patrons.json")
@@ -42,8 +45,8 @@ export function Footer() {
   };
 
   return (
-    <footer className="w-full py-16 px-6 flex flex-col items-center justify-center bg-transparent border-t border-[#e65100]/20 relative z-[80]">
-      <div className="clay-panel w-full max-w-7xl p-10 flex flex-col items-center justify-center">
+    <footer className={`w-full py-16 px-6 flex flex-col items-center justify-center border-t relative z-[80] ${isLandingPage ? "bg-brand-bg border-brand-secondary" : "bg-transparent border-[#e65100]/20"}`}>
+      <div className={`w-full max-w-7xl p-10 flex flex-col items-center justify-center ${isLandingPage ? "bg-white border-2 border-brand-secondary rounded-3xl shadow-[6px_6px_0_0_#1a1025]" : "clay-panel"}`}>
         
         <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-8 opacity-80 text-[10px] md:text-xs font-mono uppercase tracking-widest text-[#4a1c0d]">
           <div className="flex flex-col gap-2 mb-4 md:mb-0">

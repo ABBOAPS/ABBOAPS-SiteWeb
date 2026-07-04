@@ -6,10 +6,11 @@ interface SEOProps {
   description?: string;
   image?: string;
   url?: string;
+  jsonLd?: any;
   children?: React.ReactNode;
 }
 
-export function SEO({ title, description, image, url, children }: SEOProps) {
+export function SEO({ title, description, image, url, jsonLd, children }: SEOProps) {
   const finalTitle = title === "Creiamo i momenti a cui vorresti tornare"
     ? `${siteConfig.seo.title_base} | ${title}`
     : title
@@ -36,6 +37,10 @@ export function SEO({ title, description, image, url, children }: SEOProps) {
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDescription} />
       <meta name="twitter:image" content={finalImage} />
+
+      {jsonLd && (
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      )}
 
       {children}
     </Helmet>

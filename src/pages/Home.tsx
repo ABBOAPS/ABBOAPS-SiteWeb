@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { generateNgoSchema } from "../utils/seo-microdata";
 import { dataNews } from "../data/newsData";
+import ambassadorConfig from "../config/ambassador.json";
+import { User } from "lucide-react";
 
 function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
   const mouseX = useMotionValue(0);
@@ -415,6 +417,39 @@ export function Home() {
             </div>
           )}
         </div>
+
+        {/* Preview Ambassador */}
+        {ambassadorConfig.ambassadors && ambassadorConfig.ambassadors.length > 0 && (
+          <div className="w-full max-w-7xl flex flex-col items-center px-6 mb-24 pt-8">
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tighter mb-10 text-[#4a1c0d] text-center">
+              I nostri Ambassador
+            </h2>
+            <div className="flex flex-wrap justify-center gap-6 md:gap-10 mb-10 w-full max-w-4xl">
+              {ambassadorConfig.ambassadors.slice(0, 4).map((ambassador, i) => (
+                <div key={`amb-prev-${i}`} className="flex flex-col items-center group">
+                  <div className="relative w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden bg-[#fffcf5] border-4 border-[#fffcf5] shadow-md mb-4 group-hover:scale-105 transition-transform duration-300">
+                    {ambassador.photo ? (
+                      <img src={ambassador.photo} alt={ambassador.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <User className="w-full h-full p-6 text-[#e65100] opacity-50" />
+                    )}
+                  </div>
+                  <span className="font-bold text-[#4a1c0d] group-hover:text-[#e65100] transition-colors">{ambassador.name}</span>
+                </div>
+              ))}
+            </div>
+            <Link
+              to="/ambassador"
+              className="group clay-btn px-6 py-3 text-sm md:px-8 md:py-4 font-bold tracking-widest uppercase inline-flex items-center gap-3 hover:scale-105 active:scale-95"
+            >
+              Scopri tutti gli Ambassador
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-1 transition-transform">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </Link>
+          </div>
+        )}
 
         <div className="w-full max-w-7xl flex flex-col items-center px-6">
           {/* Notizie Section - Asymmetric Grid */}

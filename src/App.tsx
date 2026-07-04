@@ -13,7 +13,18 @@ import { Notizie } from "./pages/Notizie";
 import { NewsDetail } from "./pages/NewsDetail";
 import { NotFound } from "./pages/NotFound";
 import { PrivacyPolicy } from "./pages/PrivacyPolicy";
+import { Ambassador } from "./pages/Ambassador";
+import ConsapevolezzaDocenti from "./pages/landing/ConsapevolezzaDocenti";
+import ConsapevolezzaIstituti from "./pages/landing/ConsapevolezzaIstituti";
+import ConsapevolezzaRagazzi from "./pages/landing/ConsapevolezzaRagazzi";
+import LegoDocenti from "./pages/landing/LegoDocenti";
+import LegoIstituti from "./pages/landing/LegoIstituti";
+import LegoRagazzi from "./pages/landing/LegoRagazzi";
+import MinecraftDocenti from "./pages/landing/MinecraftDocenti";
+import MinecraftIstituti from "./pages/landing/MinecraftIstituti";
+import MinecraftRagazzi from "./pages/landing/MinecraftRagazzi";
 import siteConfig from "./config/site_config.json";
+import { TwitchLiveWidget } from "./components/TwitchLiveWidget";
 
 import { Footer } from "./components/Footer";
 
@@ -46,11 +57,25 @@ export default function App() {
           <Route path="/notizie" element={<Notizie />} />
           <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/ambassador" element={<Ambassador />} />
+          
+          {/* Landing Pages */}
+          <Route path="/landing/consapevolezza-docenti" element={<ConsapevolezzaDocenti />} />
+          <Route path="/landing/consapevolezza-istituti" element={<ConsapevolezzaIstituti />} />
+          <Route path="/landing/consapevolezza-ragazzi" element={<ConsapevolezzaRagazzi />} />
+          <Route path="/landing/lego-docenti" element={<LegoDocenti />} />
+          <Route path="/landing/lego-istituti" element={<LegoIstituti />} />
+          <Route path="/landing/lego-ragazzi" element={<LegoRagazzi />} />
+          <Route path="/landing/minecraft-docenti" element={<MinecraftDocenti />} />
+          <Route path="/landing/minecraft-istituti" element={<MinecraftIstituti />} />
+          <Route path="/landing/minecraft-ragazzi" element={<MinecraftRagazzi />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
 
       <Footer />
+      <TwitchLiveWidget />
     </div>
   );
 }
