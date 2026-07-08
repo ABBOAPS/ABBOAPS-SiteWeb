@@ -22,7 +22,8 @@ export function DocumentViewer() {
     return fileKey ? mdFiles[fileKey] : null;
   }, [id]);
 
-  const slugify = (text: string) => {
+  const slugify = (text: any) => {
+    if (!text) return '';
     return text.toString().toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/(^-|-$)/g, '');
