@@ -25,6 +25,40 @@ export function ChiSiamo() {
         </p>
       </motion.section>
 
+      {/* Name Origin */}
+      <section className="px-6 md:px-24 mb-32 max-w-7xl mx-auto">
+        <div className="group relative clay-card p-10 md:p-16 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_rgba(230,81,0,0.1)] hover:-translate-y-1">
+          {/* Subtle pattern background on hover */}
+          <div className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" style={{ backgroundImage: `radial-gradient(#e65100 1.5px, transparent 1.5px)`, backgroundSize: '32px 32px', opacity: 0.03 }}></div>
+          
+          <div className="relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
+            <div className="lg:w-1/2 flex flex-col items-start">
+               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#e65100]/10 text-[#e65100] font-bold text-xs uppercase tracking-widest mb-6">
+                <LucideIcons.Fingerprint className="w-4 h-4" />
+                La Nostra Identità
+              </div>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#4a1c0d] leading-tight group-hover:text-[#e65100] transition-colors duration-300 mb-6">
+                {chiSiamoConfig.name_origin.title}
+              </h2>
+              <p className="text-lg font-medium text-[#8a3a19] leading-relaxed group-hover:text-[#4a1c0d] transition-colors duration-300">
+                {chiSiamoConfig.name_origin.description}
+              </p>
+            </div>
+            
+            <div className="lg:w-1/2 w-full">
+              <div className="grid grid-cols-2 gap-4 md:gap-6">
+                {chiSiamoConfig.name_origin.letters.map((item, idx) => (
+                  <div key={idx} className="bg-white/60 backdrop-blur-sm rounded-3xl p-6 shadow-sm border border-black/5 flex flex-col items-start hover:-translate-y-1 hover:shadow-md hover:border-[#e65100]/20 transition-all duration-300">
+                    <span className="text-5xl font-black text-[#e65100] mb-4 leading-none">{item.letter}</span>
+                    <span className="text-sm font-semibold text-[#4a1c0d]/80 leading-relaxed">{item.meaning}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Mission Box (La Terra Sopra cui Camminiamo) */}
       <section className="px-6 md:px-24 mb-32 max-w-7xl mx-auto">
         <div className="group relative clay-card p-10 md:p-16 overflow-hidden transition-all duration-500 hover:shadow-[0_20px_60px_rgba(230,81,0,0.1)] hover:-translate-y-1">

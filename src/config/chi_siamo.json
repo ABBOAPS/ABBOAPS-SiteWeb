@@ -36,6 +36,16 @@
     }
   ],
 
+  "name_origin": {
+    "title": "Cosa significa ABBO?",
+    "description": "Il nostro nome racchiude la nostra identità. Prima di tutto, si ispira alla parola inglese 'Hub', che significa fulcro o centro: uno spazio fisico e ideale di connessione dove i ragazzi si incontrano e le idee prendono forma. Inoltre, le lettere formano un acronimo legato alle radici del progetto, unendo i nomi dei due fondatori principali da cui è partita l'idea:",
+    "letters": [
+      { "letter": "A", "meaning": "Alessio, il nome condiviso da entrambi i fondatori" },
+      { "letter": "B", "meaning": "L'iniziale del cognome di uno dei fondatori (Bellan o Buso?)" },
+      { "letter": "B", "meaning": "L'iniziale del cognome dell'altro fondatore (Buso o Bellan?)" },
+      { "letter": "O", "meaning": "La lettera finale del nome Alessio" }
+    ]
+  },
   "mission_box": {
     "title": "Dove operiamo",
     "description": "Siamo attivi tra Monza, la Brianza, Lecco, Bergamo e Milano. Entriamo nelle scuole, negli uffici comunali, negli spazi delle associazioni. Lavoriamo fianco a fianco con chi gestisce progetti educativi, con chi ha un'idea e non sa da dove partire, e con chi vuole costruire qualcosa di duraturo per i ragazzi del proprio territorio. Ci occupiamo della parte operativa: bandi, rendicontazione, coordinamento, relazioni istituzionali. Così chi lavora con noi può concentrarsi sulle persone."

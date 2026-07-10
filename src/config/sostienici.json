@@ -3,6 +3,14 @@
   "subtitle": "Il tuo supporto garantisce l'indipendenza e lo sviluppo tecnologico dell'associazione. Affrontiamo costi vivi per infrastrutture server, domini, sviluppo e manutenzione per mantenere i nostri servizi accessibili a tutta la community.",
   "active_projects": [
     {
+      "id": "progetto-spazio-ragazzi",
+      "title": "Uno spazio tutto loro — il sabato sera dei ragazzi",
+      "description": "Vogliamo creare uno spazio fisico dedicato ai ragazzi dalle medie alle superiori: un posto dove ritrovarsi il venerdì e sabato sera, giocare a biliardo, ping pong, calcetto, giochi da tavolo e stare insieme. Un'alternativa concreta alla strada, costruita con loro e per loro. Aiutaci a renderlo reale.",
+      "image": "./media/spazio-ragazzi.jpg",
+      "goal_amount": 2000,
+      "current_amount": 0
+    },
+    {
       "id": "lego-spike-prime",
       "title": "LEGO® Education SPIKE™ Prime x (24 Studenti)",
       "description": "Investimento sulla educazione dei ragazzi dei laboratori di Digital Heroes, ci permettrà di creare ufficialmente il corso di Robotica.",
