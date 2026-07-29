@@ -16,22 +16,22 @@ describe('Base64URL Utilities', () => {
 
 describe('Token Parser AB1', () => {
   it('dovrebbe parsare correttamente un token AB1 valido', () => {
-    const rawToken = '#AB1.k2026-01.eyJ2IjoxfQ.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+    const rawToken = '#AB1.k2099-01-test.eyJ2IjoxfQ.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
     const parsed = parseNfcToken(rawToken);
 
     expect(parsed.tokenPrefix).toBe('AB1');
-    expect(parsed.kid).toBe('k2026-01');
+    expect(parsed.kid).toBe('k2099-01-test');
     expect(parsed.payloadB64).toBe('eyJ2IjoxfQ');
     expect(parsed.signatureB64.length).toBe(86);
-    expect(parsed.signedContentString).toBe('AB1.k2026-01.eyJ2IjoxfQ');
+    expect(parsed.signedContentString).toBe('AB1.k2099-01-test.eyJ2IjoxfQ');
   });
 
   it('dovrebbe rifiutare token senza suffisso o con segmenti errati', () => {
-    expect(() => parseNfcToken('#AB1.k2026-01.segmentoIncompleto')).toThrow('TOKEN_MALFORMED_SEGMENTS');
-    expect(() => parseNfcToken('#AB2.k2026-01.payload.signature')).toThrow('TOKEN_UNSUPPORTED_VERSION');
+    expect(() => parseNfcToken('#AB1.k2099-01-test.segmentoIncompleto')).toThrow('TOKEN_MALFORMED_SEGMENTS');
+    expect(() => parseNfcToken('#AB2.k2099-01-test.payload.signature')).toThrow('TOKEN_UNSUPPORTED_VERSION');
   });
 
   it('dovrebbe rifiutare token con firma di lunghezza errata', () => {
-    expect(() => parseNfcToken('#AB1.k2026-01.payload.firmaTroppoCorta')).toThrow('TOKEN_INVALID_SIGNATURE_LENGTH');
+    expect(() => parseNfcToken('#AB1.k2099-01-test.payload.firmaTroppoCorta')).toThrow('TOKEN_INVALID_SIGNATURE_LENGTH');
   });
 });
