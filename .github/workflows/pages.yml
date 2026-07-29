@@ -1,0 +1,2 @@
+# Note: This workflow has been merged into deploy.yml to maintain a single GitHub Pages deployment pipeline.
+# Do not run separate pages workflows to avoid deployment conflicts on www.abboaps.org.

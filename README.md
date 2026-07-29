@@ -1,107 +1,105 @@
-<div align="center">
-  <img src="public/logo_abbo_nero.svg" alt="ABBO APS Logo" width="200" height="200" />
+# ABBO APS — Sistema Prodotti NFC in Edizione Limitata & Sito Web
 
-  # ABBO APS
-  ### *Diamo sostanza e fondamenta ai progetti per i giovani*
-
-  [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-  [![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-  [![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-  [![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-  [![SEO Optimized](https://img.shields.io/badge/SEO-100%2F100-success?style=for-the-badge)](#)
-</div>
+Repository ufficiale di **ABBO APS** per la pubblicazione del sito statico e del verificatore digitale per prodotti fisici in edizione limitata con tag NFC.
 
 ---
 
-## 🛠 L'Officina Sociale Digitale
-**ABBO APS** è un'officina sociale operativa tra Monza, Brianza, Lecco, Bergamo e Milano. 
-Il nostro obiettivo è supportare progetti per ragazzi, sviluppare open source nel sociale e rafforzare le reti territoriali. 
-Questo repository contiene il codice sorgente del sito web ufficiale dell'associazione, progettato per essere ultra-veloce, accessibile e maniacalmente ottimizzato per i motori di ricerca.
+## 🏛️ Architettura del Verificatore NFC
 
-> *"Creiamo i momenti a cui vorresti tornare"*
+Il verificatore per i prodotti NFC ABBO APS è un'applicazione **100% statica**, pubblicata tramite **GitHub Pages**.
 
----
-
-## ✨ Features Principali
-
-- 🚀 **Performance Estreme**: Basato su Vite per un'esperienza SPA fulminea.
-- 🔍 **Semantic SEO & JSON-LD**: Architettura SEO customizzata per indicizzazione locale avanzata (Local SEO) e strutturazione microdati (Organization, NewsArticle, DonateAction).
-- 🎨 **Design Immersivo**: UI moderna e dinamica gestita tramite TailwindCSS e micro-animazioni fluide con `motion/react`.
-- 🤝 **Supporto & Donazioni**: Integrazione nativa per campagne di crowdfunding, recupero materiali e mecenatismo tramite Patreon/PayPal.
-- 📱 **100% Responsive**: Esperienza utente perfetta da desktop a mobile.
+- **Hosting**: Statico su GitHub Pages (compatibile con domini custom e percorsi di sottocartella).
+- **Crittografia**: ECDSA P-256 con SHA-256 (ES256). Firme Raw `r || s` (64 byte) codificate in Base64URL.
+- **Privacy & Sicurezza**: Nessun database pubblico, nessun tracciamento, nessun dato personale e nessuna chiave privata nel repository.
+- **Verifica**: Ogni tag NFC contiene un URL con token nel frammento `#` (`#AB1.<kid>.<payload_base64url>.<signature_base64url>`). Il browser verifica la firma crittografica prima di decodificare e mostrare i dati autenticati.
 
 ---
 
-## 💻 Tech Stack
+## 📁 Struttura del Repository
 
-- **Framework**: React 19 + Vite
-- **Linguaggio**: TypeScript
-- **Styling**: TailwindCSS 4 (Utility-first CSS) + CSS Modules
-- **Animazioni**: Motion (Framer Motion)
-- **Routing**: React Router DOM (HashRouter)
-- **SEO**: React Helmet Async + Generatore JSON-LD Custom
-
----
-
-## 🚀 Getting Started
-
-Il progetto è pronto per essere eseguito in ambiente locale. Assicurati di avere [Node.js](https://nodejs.org/) (versione 18+) installato.
-
-### 1. Clonare il repository
-```bash
-git clone https://github.com/ABBOAPS/ABBOAPS-SiteWeb.git
-cd ABBOAPS-SiteWeb
+```text
+ABBOAPS-SiteWeb/
+├── README.md                          # Panoramica del repository
+├── SECURITY.md                        # Politica di sicurezza e gestione incidenti
+├── LICENSE                            # Licenza open-source MIT
+├── .gitignore                         # Regole di esclusione (componenti e segreti privati)
+├── .editorconfig                      # Standard di formattazione codice
+├── .pre-commit-config.yaml            # Configurazione hook pre-commit
+├── docs/                              # Documentazione pubblica
+│   ├── public-verifier.md             # Architettura del verificatore web statico
+│   ├── public-token-format.md         # Specifiche del protocollo AB1 e delle firme ES256
+│   └── public-security-model.md       # Modello di minaccia e garanzie di sicurezza
+├── schemas/                           # JSON Schema per validazione pubblica
+│   ├── keyring.schema.json            # Schema del registro chiavi pubbliche
+│   ├── edition-envelope.schema.json   # Schema della busta firmata del manifesto
+│   ├── edition-payload.schema.json    # Schema del payload del manifesto dell'edizione
+│   └── product-payload.schema.json    # Schema del payload del singolo esemplare
+├── shared-public-test-vectors/        # Vettori di test pubblici (con chiavi fittizie)
+│   ├── valid/                         # Vettori di test validi
+│   └── invalid/                       # Vettori di test non validi / alterati
+├── site/                              # Verificatore Web Statico (TypeScript / Vite)
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── index.html
+│   ├── src/                           # Logica di verifica crittografica e UI
+│   ├── public/                        # Keyring e manifesti edizioni pubblici
+│   └── tests/                         # Suite di test unitari (Vitest)
+├── scripts/                           # Utility di verifica e sicurezza
+│   ├── scan_for_secrets.py            # Scanner anti-leak segreti e chiavi private
+│   └── verify_public_files.py         # Validatore di firme e manifesti pubblici
+├── .github/                           # Workflow CI/CD GitHub Actions
+│   └── workflows/
+│       ├── ci.yml                     # Continuous Integration per il sito statico
+│       └── pages.yml                  # Build & Deploy automatico su GitHub Pages
+└── .private/                          # [COMPONENTE PRIVATA LOCALE - IGNORATA DA GIT]
+    ├── nfc-generator/                 # Applicazione desktop Python (ABBO NFC Studio)
+    ├── database/                      # Registro SQLite locale di produzione
+    ├── keys/                          # Chiavi private PKCS#8 cifrate e backup
+    └── exports/                       # Pacchetti di export locali prima del deploy
 ```
 
-### 2. Installare le dipendenze
+---
+
+## 🔒 Componenti Privati & Sicurezza
+
+L'applicazione desktop di gestione ed emissione (**ABBO NFC Studio**), il database SQLite locale, le chiavi private e le liste di prodotti **non sono contenuti in questo repository**.
+
+Tali componenti risiedono esclusivamente in locale nella directory dell'utente (`platformdirs`) oppure nella directory locale `.private/` (espressamente ignorata da Git via `.gitignore`).
+
+> [!WARNING]
+> La chiave privata ABBO APS non deve mai essere inserita nel repository, nei file di configurazione del sito, in GitHub Actions o in file `.env`. Lo script `scripts/scan_for_secrets.py` blocca automaticamente qualsiasi commit contenente materiale riservato.
+
+---
+
+## 🚀 Sviluppo del Sito Statico (`site/`)
+
+Il verificatore web è sviluppato in TypeScript con Vite.
+
+### Requisiti
+- Node.js 18+ e npm
+
+### Avvio in Sviluppo
 ```bash
+cd site
 npm install
-```
-
-### 3. Avviare il server di sviluppo
-Il server di sviluppo si avvierà in automatico sulla porta 3000 esposta su tutta la rete locale (`0.0.0.0`).
-```bash
 npm run dev
 ```
 
-### 4. Build per la Produzione
-Per generare la versione statica e ottimizzata per la produzione:
+### Esecuzione Test
 ```bash
+cd site
+npm run test
+```
+
+### Build per Produzione
+```bash
+cd site
 npm run build
 ```
+L'output della build viene generato in `site/dist/` senza source map ed è pronto per il deploy su GitHub Pages.
 
 ---
 
-## 📁 Struttura del Progetto
+## 📜 Licenza
 
-La codebase è organizzata in modo modulare per facilitare la manutenzione:
-
-```text
-src/
-├── api/            # Wrapper per integrazioni API esterne (es. Patreon)
-├── components/     # Componenti React riutilizzabili (SEO, Topbar, Footer, Animazioni)
-├── config/         # File JSON per la configurazione dinamica dei contenuti (Theme, Progetti, ecc.)
-├── content/        # Asset documentali e archivi markdown/csv
-├── data/           # Dati statici e mock strutturati (News)
-├── pages/          # Le singole viste dell'applicazione (Home, Sostienici, Notizie, ecc.)
-├── utils/          # Funzioni di utility (Generatore Microdati SEO, formattazione)
-├── App.tsx         # Root component e definizione dei Route
-└── main.tsx        # Entry point dell'applicazione (Strict Mode, Helmet Provider)
-```
-
----
-
-## 🧱 Supporta il Progetto (Sostienici)
-
-ABBO APS non cerca solo fondi. Cerchiamo **cemento, ferro e mani** per dare sostanza ai progetti dei giovani. Puoi contribuire direttamente dal sito web tramite:
-- **Donazione Materiali**: Strumenti hardware e materiali per lo sviluppo di progetti giovanili.
-- **Volontariato**: Metti a disposizione il tuo tempo o le tue competenze di coding.
-- **Mecenatismo**: Supporto economico tramite Patreon o donazioni singole via PayPal.
-
-Visita la rotta `/sostienici` all'interno dell'app per maggiori dettagli.
-
----
-
-<div align="center">
-  <p>Sviluppato con 🧡 per la community e per i giovani da <strong>ABBO APS</strong>.</p>
-</div>
+Questo progetto è distribuito sotto licenza **MIT**. Consulta il file [LICENSE](LICENSE) per i dettagli.

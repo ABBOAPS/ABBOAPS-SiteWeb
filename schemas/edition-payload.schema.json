@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://abbo.invalid/schemas/edition-payload.schema.json",
+  "title": "ABBO APS signed edition payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "v",
+    "t",
+    "iss",
+    "aud",
+    "e",
+    "r",
+    "code",
+    "title",
+    "description",
+    "n",
+    "releaseDate",
+    "image",
+    "physicalSerialRequired",
+    "createdAt"
+  ],
+  "properties": {
+    "v": {"const": 1},
+    "t": {"const": "edition"},
+    "iss": {"const": "ABBO APS"},
+    "aud": {"const": "ABBO-PRODUCT-VERIFY-V1"},
+    "e": {
+      "type": "string",
+      "pattern": "^ed_[A-Za-z0-9_-]{16,64}$",
+      "maxLength": 67
+    },
+    "r": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+    "code": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{1,63}$",
+      "minLength": 2,
+      "maxLength": 64
+    },
+    "title": {"type": "string", "minLength": 1, "maxLength": 160},
+    "description": {"type": "string", "minLength": 1, "maxLength": 2000},
+    "n": {"type": "integer", "minimum": 1, "maximum": 1000000},
+    "releaseDate": {"type": "string", "format": "date"},
+    "image": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "alt"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^/assets/products/ed_[A-Za-z0-9_-]{16,64}/[A-Za-z0-9._-]+$",
+          "maxLength": 300
+        },
+        "sha256": {"type": "string", "pattern": "^[A-Za-z0-9_-]{43}$"},
+        "alt": {"type": "string", "minLength": 1, "maxLength": 300}
+      }
+    },
+    "physicalSerialRequired": {"type": "boolean"},
+    "createdAt": {"type": "string", "format": "date-time"}
+  }
+}

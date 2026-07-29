@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://abbo.invalid/schemas/site-config.schema.json",
+  "title": "ABBO APS NFC site configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "organization", "verification", "ui"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "organization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "logo", "website"],
+      "properties": {
+        "name": {"const": "ABBO APS"},
+        "logo": {"type": "string", "minLength": 1, "maxLength": 300},
+        "website": {"type": "string", "format": "uri", "maxLength": 300}
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseUrl",
+        "allowedHosts",
+        "audience",
+        "tokenPrefix",
+        "removeFragmentAfterRead",
+        "maxTokenLength",
+        "maxPayloadBytes"
+      ],
+      "properties": {
+        "baseUrl": {"type": "string", "format": "uri", "maxLength": 300},
+        "allowedHosts": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9.-]+$",
+            "minLength": 1,
+            "maxLength": 253
+          }
+        },
+        "audience": {"const": "ABBO-PRODUCT-VERIFY-V1"},
+        "tokenPrefix": {"const": "AB1"},
+        "removeFragmentAfterRead": {"type": "boolean"},
+        "maxTokenLength": {"type": "integer", "minimum": 256, "maximum": 8192},
+        "maxPayloadBytes": {"type": "integer", "minimum": 256, "maximum": 4096}
+      }
+    },
+    "ui": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["locale", "verifiedLabel", "showPhysicalSerialReminder", "officialSiteLabel"],
+      "properties": {
+        "locale": {"type": "string", "pattern": "^[a-z]{2}-[A-Z]{2}$"},
+        "verifiedLabel": {"type": "string", "minLength": 1, "maxLength": 120},
+        "showPhysicalSerialReminder": {"type": "boolean"},
+        "officialSiteLabel": {"type": "string", "minLength": 1, "maxLength": 120}
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "name": "valid_normal_item",
+    "description": "Token item valido per l'esemplare 20 di 200 con dummy key fittizia di test",
+    "expected": "valid"
+  },
+  "keyring": {
+    "schemaVersion": 1,
+    "keys": [
+      {
+        "kid": "k2026-test",
+        "alg": "ES256",
+        "status": "active",
+        "createdAt": "2026-07-28T13:00:00Z",
+        "jwk": {
+          "kty": "EC",
+          "crv": "P-256",
+          "x": "f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU",
+          "y": "x_tE21-4-569P5g89n31x_s67z22-99238n--s72291",
+          "ext": true,
+          "key_ops": ["verify"]
+        }
+      }
+    ]
+  },
+  "manifestEnvelope": {
+    "version": 1,
+    "kid": "k2026-test",
+    "payload": "eyJ2IjoxLCJ0IjoiZWRpdGlvbiIsImlzcyI6IkFCQk8gQVBTIiwiYXVkIjoiQUJCTy1QUk9EVUNULVZFUklGWS1WMSIsImUiOiJlZF9URVNUMTIzNDU2Nzg5MEFCQyIsInIiOjEsImNvZGUiOiJURVNULVBPU1RFUi0yMDI2IiwidGl0bGUiOiJQb3N0ZXIgVGVzdCBBQkJPIEFQUyIsImRlc2NyaXB0aW9uIjoiRWRpemlvbmUgZGkgcHJvdmEiLCJuIjoyMDAsInJlbGVhc2VEYXRlIjoiMjAyNi0wOS0wMSIsImltYWdlIjp7InBhdGgiOiIvYXNzZXRzL3Byb2R1Y3RzL2VkX1RFU1QxMjM0NTY3ODkwQUJDL2NvdmVyLndlYnAiLCJzaGEyNTYiOiJkdW1teV9oYXNoXzEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDUiLCJhbHQiOiJJbW1hZ2luZSBkaSB0ZXN0In0sInBoeXNpY2FsU2VyaWFsUmVxdWlyZWQiOnRydWUsImNyZWF0ZWRBdCI6IjIwMjYtMDctMjhUMTM6MDA6MDBaIn0",
+    "signature": "MEUCIQDf83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEUiAIx_tE21-4-569P5g89n31x_s67z22-99238n"
+  },
+  "token": "AB1.k2026-test.eyJ2IjoxLCJ0IjoicCIsImlzcyI6IkFCQk8gQVBTIiwiYXVkIjoiQUJCTy1QUk9EVUNULVZFUklGWS1WMSIsImUiOiJlZF9URVNUMTIzNDU2Nzg5MEFCQyIsInIiOjEsImgiOiJkdW1teV9tYW5pZmVzdF9oYXNoXzEyMzQ1Njc4OTAxMjM0NTY3IiwicyI6MjAsIm4iOjIwMCwiaSI6Iml0X1RFU1RJVEVNMDAwMDAwMDIwIiwiZCI6IjIwMjYtMDctMjgifQ.MEUCIQDf83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEUiAIx_tE21-4-569P5g89n31x_s67z22-99238n"
+}

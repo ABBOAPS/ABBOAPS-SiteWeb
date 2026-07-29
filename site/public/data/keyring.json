@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "keys": [
+    {
+      "kid": "k2026-01",
+      "alg": "ES256",
+      "status": "active",
+      "createdAt": "2026-07-28T13:00:00Z",
+      "jwk": {
+        "kty": "EC",
+        "crv": "P-256",
+        "x": "f83OJ3D2xF1Bg8vub9tLe1gHMzV76e8Tus9uPHvRVEU",
+        "y": "x_tE21-4-569P5g89n31x_s67z22-99238n--s72291",
+        "ext": true,
+        "key_ops": [
+          "verify"
+        ]
+      }
+    }
+  ]
+}

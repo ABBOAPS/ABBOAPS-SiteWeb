@@ -1,8 +1,8 @@
-name: Deploy static content to Pages
+name: Deploy Complete Site to GitHub Pages
 
 on:
   push:
-    branches: ['main']
+    branches: [ main, master ]
   workflow_dispatch:
 
 permissions:
@@ -15,29 +15,71 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  build:
+    name: Build Main Site & NFC Verifier
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Secret Scanner
+        run: python3 scripts/scan_for_secrets.py
+
+      - name: Run Public Files Verifier
+        run: python3 scripts/verify_public_files.py
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Build Main ABBO APS Site
+        run: |
+          npm ci || npm install
+          npm run build
+
+      - name: Build Static NFC Verifier (/nfc/)
+        run: |
+          cd site
+          npm ci || npm install
+          npm run test
+          VITE_BASE_URL=/nfc/ npm run build
+
+      - name: Integrate NFC Verifier into dist/nfc/
+        run: |
+          mkdir -p dist/nfc
+          cp -r site/dist/* dist/nfc/
+
+      - name: Verify No Source Maps In Production
+        run: |
+          if find dist -name "*.map" | grep -q .; then
+            echo "❌ ERRORE: Trovati file .map di source map in dist!"
+            exit 1
+          fi
+          echo "✅ Build unificata verificata pulita senza source maps."
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
   deploy:
+    name: Deploy to GitHub Pages
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

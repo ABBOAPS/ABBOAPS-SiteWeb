@@ -1,0 +1,66 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+permissions:
+  contents: read
+
+jobs:
+  security-and-lint:
+    name: Secret Scanning & Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Secret Scanner
+        run: python3 scripts/scan_for_secrets.py
+
+      - name: Run Public Files Verifier
+        run: python3 scripts/verify_public_files.py
+
+  build-verifier-site:
+    name: Build Static Verifier Site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'site/package.json'
+
+      - name: Install Site Dependencies
+        run: |
+          cd site
+          npm ci || npm install
+
+      - name: Run Vitest Unit Tests
+        run: |
+          cd site
+          npm run test
+
+      - name: Build Production Bundle
+        run: |
+          cd site
+          npm run build
+
+      - name: Verify No Source Maps In Production
+        run: |
+          if find site/dist -name "*.map" | grep -q .; then
+            echo "❌ ERRORE: Trovati file .map di source map in site/dist!"
+            exit 1
+          fi
+          echo "✅ Build verificata pulita senza source maps."

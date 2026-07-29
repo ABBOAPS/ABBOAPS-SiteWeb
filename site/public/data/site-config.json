@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "organization": {
+    "name": "ABBO APS",
+    "logo": "assets/logo_abbo_nero.svg",
+    "website": "https://abboaps.it"
+  },
+  "verification": {
+    "baseUrl": "https://nfc.abboaps.it/",
+    "allowedHosts": ["nfc.abboaps.it", "abboaps.github.io", "localhost", "127.0.0.1"],
+    "audience": "ABBO-PRODUCT-VERIFY-V1",
+    "tokenPrefix": "AB1",
+    "removeFragmentAfterRead": true,
+    "maxTokenLength": 2048,
+    "maxPayloadBytes": 2048
+  },
+  "ui": {
+    "locale": "it-IT",
+    "verifiedLabel": "Codice digitale ABBO APS verificato",
+    "showPhysicalSerialReminder": true,
+    "officialSiteLabel": "Visita il sito ufficiale ABBO APS"
+  }
+}

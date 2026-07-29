@@ -1,1 +1,111 @@
-node_modules
+# --------------------------------------------------
+# ABBO APS NFC - Documentazione e tooling NFC privati
+# --------------------------------------------------
+ABBO_APS_NFC_PRODOTTI/
+.private/
+.private-*/
+local-private/
+local-tools/
+nfc-generator/
+desktop-private/
+private-docs/
+
+# Archivi che potrebbero includere .git o .private
+ABBOAPS-SiteWeb*.zip
+ABBO*NFC*PRIVATE*.zip
+.private*.zip
+*.private.tar
+*.private.tar.gz
+
+# Chiavi e materiale crittografico segreto
+*.pem
+*.key
+*.p8
+*.p12
+*.pfx
+*.keystore
+*.jks
+*.pkcs8
+private-key*
+private_key*
+master-key*
+master_key*
+secret-key*
+secret_key*
+key-backup*
+key_backup*
+
+# Non ignorare eventuali chiavi pubbliche o manifesti
+!public-key*.json
+!public_key*.json
+!keyring.json
+
+# Database e registri locali
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+audit-log*
+audit_log*
+
+# Configurazioni e segreti
+.env
+.env.*
+!.env.example
+*.secret
+*.secrets
+secrets.json
+config.local.json
+settings.local.json
+
+# Export individuali dei prodotti
+items.csv
+tokens.csv
+nfc-urls.csv
+product-urls.csv
+*.private.csv
+generated-items/
+generated-tokens/
+generated-urls/
+generated-qr/
+site_patch/
+site-patch/
+
+# Backup
+backups/
+backup/
+*.bak
+*.backup
+*.enc
+*.encrypted
+
+# Build del programma desktop
+desktop/dist/
+desktop/build/
+desktop/release/
+*.spec
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Node e build web
+node_modules/
+site/dist/
+dist/
+coverage/
+playwright-report/
+test-results/
+
+# IDE e sistema operativo
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://abbo.invalid/schemas/product-payload.schema.json",
+  "title": "ABBO APS signed product item payload",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["v", "t", "iss", "aud", "e", "r", "h", "s", "n", "i", "d"],
+  "properties": {
+    "v": {"const": 1},
+    "t": {"const": "p"},
+    "iss": {"const": "ABBO APS"},
+    "aud": {"const": "ABBO-PRODUCT-VERIFY-V1"},
+    "e": {
+      "type": "string",
+      "pattern": "^ed_[A-Za-z0-9_-]{16,64}$",
+      "maxLength": 67
+    },
+    "r": {"type": "integer", "minimum": 1, "maximum": 2147483647},
+    "h": {"type": "string", "pattern": "^[A-Za-z0-9_-]{43}$"},
+    "s": {"type": "integer", "minimum": 1, "maximum": 1000000},
+    "n": {"type": "integer", "minimum": 1, "maximum": 1000000},
+    "i": {
+      "type": "string",
+      "pattern": "^it_[A-Za-z0-9_-]{16,64}$",
+      "maxLength": 67
+    },
+    "d": {"type": "string", "format": "date"},
+    "p": {"type": "string", "pattern": "^[A-Za-z0-9_-]{43}$"}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"s": {"type": "integer"}, "n": {"type": "integer"}},
+        "required": ["s", "n"]
+      },
+      "then": {}
+    }
+  ]
+}
