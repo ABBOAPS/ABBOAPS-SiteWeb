@@ -44,14 +44,24 @@ export async function verifyEcdsaEs256(
     return false;
   }
 
+  const sigBuffer = rawSignatureBytes.buffer.slice(
+    rawSignatureBytes.byteOffset,
+    rawSignatureBytes.byteOffset + rawSignatureBytes.byteLength
+  ) as ArrayBuffer;
+
+  const dataBuffer = signedDataBytes.buffer.slice(
+    signedDataBytes.byteOffset,
+    signedDataBytes.byteOffset + signedDataBytes.byteLength
+  ) as ArrayBuffer;
+
   return await crypto.subtle.verify(
     {
       name: 'ECDSA',
       hash: { name: 'SHA-256' },
     },
     cryptoKey,
-    rawSignatureBytes,
-    signedDataBytes
+    sigBuffer,
+    dataBuffer
   );
 }
 
@@ -59,6 +69,11 @@ export async function verifyEcdsaEs256(
  * Calcola l'hash SHA-256 di un array di byte.
  */
 export async function sha256Bytes(dataBytes: Uint8Array): Promise<Uint8Array> {
-  const hashBuffer = await crypto.subtle.digest('SHA-256', dataBytes);
+  const dataBuffer = dataBytes.buffer.slice(
+    dataBytes.byteOffset,
+    dataBytes.byteOffset + dataBytes.byteLength
+  ) as ArrayBuffer;
+
+  const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
   return new Uint8Array(hashBuffer);
 }
