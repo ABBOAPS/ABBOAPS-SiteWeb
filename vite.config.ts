@@ -6,7 +6,26 @@ import {defineConfig} from 'vite';
 export default defineConfig(() => {
   return {
     base: './', // Universal path resolve for Github Pages and Custom Domains
-    plugins: [react(), tailwindcss()],
+    plugins: [
+      react(), 
+      tailwindcss(),
+      {
+        name: 'serve-tessera-and-nfc-dev',
+        configureServer(server) {
+          server.middlewares.use((req, _res, next) => {
+            if (req.url) {
+              const urlPath = req.url.split('?')[0].split('#')[0];
+              if (urlPath === '/tessera' || urlPath === '/tessera/') {
+                req.url = '/site/tessera/index.html';
+              } else if (urlPath === '/nfc' || urlPath === '/nfc/') {
+                req.url = '/site/index.html';
+              }
+            }
+            next();
+          });
+        }
+      }
+    ],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
@@ -51,8 +70,12 @@ export default defineConfig(() => {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // Do not modify—file watching is disabled to prevent flickering during agent edits.
       hmr: process.env.DISABLE_HMR !== 'true',
-      // Disable file watching when DISABLE_HMR is true to save CPU during agent edits.
-      watch: process.env.DISABLE_HMR === 'true' ? null : {},
+      // Ignore watching heavy non-source directories using Regex to prevent EMFILE (too many open files)
+      watch: process.env.DISABLE_HMR === 'true' ? null : {
+        ignored: [
+          /(^|[\/\\])(\.git|node_modules|\.private|dist|shared-public-test-vectors)($|[\/\\])/
+        ],
+      },
     },
   };
 });

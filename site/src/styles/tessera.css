@@ -1,0 +1,436 @@
+/* Design System ABBO APS — Claymorphism 3D Theme per Tessera Associativa NFC */
+
+:root {
+  --abbo-bg: #fcf7f2;
+  --abbo-card-bg: #fffcf5;
+  --abbo-text-dark: #4a1c0d;
+  --abbo-text-muted: rgba(74, 28, 13, 0.7);
+  --abbo-orange: #e65100;
+  --abbo-orange-hover: #ff8f00;
+  --abbo-brown-light: #8a3a19;
+  
+  --clay-shadow-main: 10px 10px 20px rgba(74, 28, 13, 0.08), inset 3px 3px 6px rgba(255, 255, 255, 1), inset -4px -4px 8px rgba(74, 28, 13, 0.06);
+  --clay-shadow-hover: 14px 14px 28px rgba(230, 81, 0, 0.12), inset 3px 3px 8px rgba(255, 255, 255, 1), inset -5px -5px 10px rgba(74, 28, 13, 0.08);
+  --clay-border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+body {
+  background-color: var(--abbo-bg) !important;
+  color: var(--abbo-text-dark) !important;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  margin: 0;
+  padding: 0;
+}
+
+.tessera-page-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  box-sizing: border-box;
+  color: var(--abbo-text-dark);
+}
+
+.tessera-bg-decor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: radial-gradient(circle at 50% 20%, #fffbf7 0%, #fcf7f2 70%);
+}
+
+.tessera-bg-decor::before,
+.tessera-bg-decor::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.35;
+  animation: floatClayOrb 14s infinite alternate ease-in-out;
+}
+
+.tessera-bg-decor::before {
+  width: 320px;
+  height: 320px;
+  top: -60px;
+  right: -60px;
+  background: #ffb300;
+}
+
+.tessera-bg-decor::after {
+  width: 260px;
+  height: 260px;
+  bottom: 5%;
+  left: -50px;
+  background: #e65100;
+  animation-delay: -7s;
+}
+
+@keyframes floatClayOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(25px, 35px) scale(1.1); }
+}
+
+/* Card Principale Claymorphism 3D */
+.tessera-card {
+  width: 100%;
+  background: var(--abbo-card-bg);
+  border-radius: 2.5rem;
+  border: var(--clay-border);
+  box-shadow: var(--clay-shadow-main);
+  padding: 2.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+  transition: all 0.3s ease;
+  animation: tesseraClayPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes tesseraClayPop {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.tessera-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.tessera-logo {
+  max-width: 160px;
+  height: auto;
+  filter: drop-shadow(0 4px 6px rgba(74, 28, 13, 0.08));
+}
+
+.tessera-content-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.tessera-member-name {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--abbo-text-dark);
+  line-height: 1.25;
+}
+
+.tessera-member-subtitle {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--abbo-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.tessera-header-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--abbo-text-dark);
+  letter-spacing: -0.02em;
+}
+
+/* Loghi 3D Claymorphic (Stile Airbnb 3D Clay) */
+.tessera-3d-clay-badge {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0.5rem 0;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+/* Badge 3D Attivo / Quota in Regola (Emerald Clay) */
+.badge-3d-active {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #FFFFFF;
+  box-shadow: 
+    6px 6px 14px rgba(5, 150, 105, 0.35),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.6),
+    inset -4px -4px 8px rgba(4, 120, 87, 0.6);
+}
+
+/* Badge 3D Inattivo / Warning (Amber Clay) */
+.badge-3d-warning {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: #FFFFFF;
+  box-shadow: 
+    6px 6px 14px rgba(217, 119, 6, 0.35),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.6),
+    inset -4px -4px 8px rgba(180, 83, 9, 0.6);
+}
+
+/* Badge 3D Non Valida / Danger (Red Clay) */
+.badge-3d-danger {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+  color: #FFFFFF;
+  box-shadow: 
+    6px 6px 14px rgba(220, 38, 38, 0.35),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.6),
+    inset -4px -4px 8px rgba(185, 28, 28, 0.6);
+}
+
+/* Badge 3D Offline / Unavailable (Gray Clay) */
+.badge-3d-neutral {
+  background: linear-gradient(135deg, #94A3B8 0%, #64748B 100%);
+  color: #FFFFFF;
+  box-shadow: 
+    6px 6px 14px rgba(100, 116, 139, 0.35),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.6),
+    inset -4px -4px 8px rgba(51, 65, 85, 0.6);
+}
+
+/* Testo Badge di Stato Clay */
+.tessera-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.25rem;
+  border-radius: 1.25rem;
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  margin: 0.2rem 0;
+}
+
+.pill-active {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #047857;
+}
+
+.pill-warning {
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  color: #B45309;
+}
+
+.pill-danger {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #B91C1C;
+}
+
+.pill-neutral {
+  background: rgba(100, 116, 139, 0.12);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  color: #475569;
+}
+
+.tessera-validity-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--abbo-brown-light);
+}
+
+.tessera-code-pill {
+  font-size: 0.88rem;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-weight: 800;
+  color: var(--abbo-text-dark);
+  background: #fffaf0;
+  border: 1px solid rgba(74, 28, 13, 0.08);
+  box-shadow: inset 2px 2px 4px rgba(74, 28, 13, 0.04), inset -2px -2px 4px rgba(255, 255, 255, 0.8);
+  padding: 0.45rem 0.9rem;
+  border-radius: 1rem;
+  letter-spacing: 0.04em;
+}
+
+.tessera-disclaimer-note {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--abbo-text-muted);
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(74, 28, 13, 0.1);
+}
+
+.tessera-desc-text {
+  font-size: 0.95rem;
+  color: var(--abbo-text-muted);
+  line-height: 1.55;
+  font-weight: 500;
+}
+
+/* Spinner Claymorphic */
+.tessera-spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgba(230, 81, 0, 0.15);
+  border-top-color: var(--abbo-orange);
+  border-radius: 50%;
+  animation: tesseraSpin 0.9s linear infinite;
+  margin: 1rem 0;
+}
+
+@keyframes tesseraSpin {
+  to { transform: rotate(360deg); }
+}
+
+.tessera-title-loading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--abbo-text-dark);
+}
+
+/* Galleria Link Tree Claymorphism */
+.tessera-links-gallery {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.tessera-links-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.tessera-link-card {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  padding: 1rem 1.25rem;
+  min-height: 56px;
+  background: var(--abbo-card-bg);
+  border-radius: 1.75rem;
+  border: var(--clay-border);
+  box-shadow: var(--clay-shadow-main);
+  color: var(--abbo-text-dark);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tessera-link-card:hover,
+.tessera-link-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--clay-shadow-hover);
+  border-color: rgba(230, 81, 0, 0.3);
+  outline: none;
+}
+
+/* 3D Clay Icon Container for Link Tree */
+.tessera-link-icon-3d {
+  width: 44px;
+  height: 44px;
+  border-radius: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  color: #FFFFFF;
+  box-shadow: 
+    3px 3px 8px rgba(74, 28, 13, 0.15),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.6),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.icon-3d-instagram {
+  background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.icon-3d-globe {
+  background: linear-gradient(135deg, #e65100 0%, #ff8f00 100%);
+}
+
+.icon-3d-mail {
+  background: linear-gradient(135deg, #8a3a19 0%, #4a1c0d 100%);
+}
+
+.icon-3d-heart {
+  background: linear-gradient(135deg, #ff424d 0%, #d81b60 100%);
+}
+
+.icon-3d-shield {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.tessera-link-text {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tessera-link-title {
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--abbo-text-dark);
+}
+
+.tessera-link-subtitle {
+  font-size: 0.8rem;
+  color: var(--abbo-text-muted);
+  font-weight: 500;
+}
+
+/* Footer */
+.tessera-footer {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.tessera-footer a {
+  color: var(--abbo-text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: underline;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tessera-footer a:hover,
+.tessera-footer a:focus-visible {
+  color: var(--abbo-orange);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tessera-bg-decor::before,
+  .tessera-bg-decor::after,
+  .tessera-card,
+  .tessera-link-card,
+  .tessera-spinner,
+  .tessera-3d-clay-badge {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

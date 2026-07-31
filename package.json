@@ -4,10 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "fetch-patrons": "node scripts/fetch-patrons.js || true",
-    "predev": "npm run fetch-patrons",
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "prebuild": "npm run fetch-patrons",
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",

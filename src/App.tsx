@@ -14,6 +14,7 @@ import { NewsDetail } from "./pages/NewsDetail";
 import { NotFound } from "./pages/NotFound";
 import { PrivacyPolicy } from "./pages/PrivacyPolicy";
 import { Ambassador } from "./pages/Ambassador";
+import { Tessera } from "./pages/Tessera";
 import ConsapevolezzaDocenti from "./pages/landing/ConsapevolezzaDocenti";
 import ConsapevolezzaIstituti from "./pages/landing/ConsapevolezzaIstituti";
 import ConsapevolezzaRagazzi from "./pages/landing/ConsapevolezzaRagazzi";
@@ -58,6 +59,7 @@ export default function App() {
           <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/ambassador" element={<Ambassador />} />
+          <Route path="/tessera" element={<Tessera />} />
           
           {/* Landing Pages */}
           <Route path="/landing/consapevolezza-docenti" element={<ConsapevolezzaDocenti />} />

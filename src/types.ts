@@ -16,7 +16,3 @@ export interface ChiSiamoData {
   paragraphs: string[];
 }
 
-export interface PatreonStats {
-  subscriberCount: number;
-  monthlyIncome: number;
-}

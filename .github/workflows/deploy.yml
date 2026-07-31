@@ -47,17 +47,22 @@ jobs:
           npm ci || npm install
           npm run build
 
-      - name: Build Static NFC Verifier (/nfc/)
+      - name: Build Static NFC Verifiers (/nfc/ & /tessera/)
         run: |
           cd site
           npm ci || npm install
           npm run test
-          VITE_BASE_URL=/nfc/ npm run build
+          VITE_BASE_URL=/ npm run build
 
-      - name: Integrate NFC Verifier into dist/nfc/
+      - name: Integrate NFC Verifiers into dist/nfc/ and dist/tessera/
         run: |
-          mkdir -p dist/nfc
-          cp -r site/dist/* dist/nfc/
+          mkdir -p dist/nfc dist/tessera
+          cp -r site/dist/index.html dist/nfc/index.html
+          cp -r site/dist/assets dist/nfc/ 2>/dev/null || true
+          if [ -d "site/dist/tessera" ]; then
+            cp -r site/dist/tessera/* dist/tessera/
+            cp -r site/dist/assets dist/tessera/ 2>/dev/null || true
+          fi
 
       - name: Verify No Source Maps In Production
         run: |

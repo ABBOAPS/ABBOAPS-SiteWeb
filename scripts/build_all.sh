@@ -17,20 +17,25 @@ python3 scripts/verify_public_files.py
 echo "3. Build Sito Principale ABBO APS..."
 npm run build
 
-echo "4. Build Verificatore Web Statico (/nfc/)..."
+echo "4. Build Verificatori Web Statici (/nfc/ e /tessera/)..."
 cd "$REPO_ROOT/site"
 if [ -d "node_modules" ]; then
   npm run test
-  VITE_BASE_URL=/nfc/ npm run build
+  VITE_BASE_URL=/ npm run build
 else
   echo "⚠️ node_modules non presenti in site/. Esegui 'npm install' dentro site/ prima della build."
 fi
 
-echo "5. Integrazione Verificatore in dist/nfc/..."
+echo "5. Integrazione Verificatori in dist/nfc/ e dist/tessera/..."
 cd "$REPO_ROOT"
-mkdir -p dist/nfc
+mkdir -p dist/nfc dist/tessera
 if [ -d "site/dist" ]; then
-  cp -r site/dist/* dist/nfc/
+  cp -r site/dist/index.html dist/nfc/index.html
+  cp -r site/dist/assets dist/nfc/ 2>/dev/null || true
+  if [ -d "site/dist/tessera" ]; then
+    cp -r site/dist/tessera/* dist/tessera/
+    cp -r site/dist/assets dist/tessera/ 2>/dev/null || true
+  fi
 fi
 
 echo "6. Verifica Assenza Source Maps in Produzione..."

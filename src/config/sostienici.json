@@ -27,16 +27,7 @@
       "current_amount": 0
     }
   ],
-  "patreon": {
-    "title": "Sostegno Ricorrente",
-    "description": "Coming soon... Stiamo sviluppando un nuovo sistema per sostenere ABBO APS mensilmente e garantire stabilità ai progetti.",
-    "perks": [
-      "Iscrizione formale nell'Albo dei Mecenati e menzione d'onore sul sito web",
-      "Accesso in anteprima ai progetti",
-      "Supporto diretto alla manutenzione dei server e alla sostenibilità dei laboratori didattici"
-    ],
-    "link": "#"
-  },
+
   "paypal": {
     "title": "Donatori (PayPal)",
     "description": "Per chi desidera sostenere ABBO APS con una donazione singola (una tantum). Ogni contributo, erogato in totale trasparenza, è interamente reinvestito nelle attività istituzionali, nella strumentazione tecnologica e nella copertura dei costi vivi dell'associazione.",

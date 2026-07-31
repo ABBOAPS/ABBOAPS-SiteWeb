@@ -1,0 +1,39 @@
+{
+  "links": [
+    {
+      "id": "instagram",
+      "title": "Instagram",
+      "subtitle": "Seguici su Instagram",
+      "url": "https://instagram.com/abboaps",
+      "icon": "instagram"
+    },
+    {
+      "id": "website",
+      "title": "Sito ufficiale",
+      "subtitle": "Scopri ABBO APS",
+      "url": "https://www.abboaps.org",
+      "icon": "globe"
+    },
+    {
+      "id": "email",
+      "title": "Contattaci",
+      "subtitle": "Scrivi ad ABBO APS",
+      "url": "mailto:info@abboaps.org",
+      "icon": "mail"
+    },
+    {
+      "id": "paypal",
+      "title": "Sostieni ABBO",
+      "subtitle": "Fai una donazione",
+      "url": "https://www.paypal.com/donate/?hosted_button_id=ABBOAPS",
+      "icon": "heart"
+    },
+    {
+      "id": "privacy",
+      "title": "Informativa Privacy",
+      "subtitle": "Trattamento dati personali",
+      "url": "https://www.abboaps.org/privacy-policy",
+      "icon": "shield"
+    }
+  ]
+}

@@ -5,13 +5,6 @@ import { motion, AnimatePresence } from "motion/react";
 import { SEO } from "../components/SEO";
 import { generateDonateActionSchema } from "../utils/seo-microdata";
 
-// Define Patron Interface
-interface Patron {
-  id: string;
-  name: string;
-  imageUrl: string;
-}
-
 export function Sostienici() {
   const schema = generateDonateActionSchema();
   const [currentProjectIdx, setCurrentProjectIdx] = useState(0);
@@ -19,7 +12,6 @@ export function Sostienici() {
   
   const [copied, setCopied] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-
   const handleCopyCF = (e: React.MouseEvent<HTMLButtonElement>) => {
     navigator.clipboard.writeText("94070530152");
     setCopied(true);
@@ -89,29 +81,6 @@ export function Sostienici() {
 
     update();
   };
-  
-  // Patron State
-  const [patrons, setPatrons] = useState<Patron[]>([]);
-  const [patronsError, setPatronsError] = useState<string | null>(null);
-  const [isLoadingPatrons, setIsLoadingPatrons] = useState(true);
-
-  useEffect(() => {
-    // Fetch patrons directly from the static file generated at build time
-    fetch("./patrons.json")
-      .then((res) => {
-        if (!res.ok) throw new Error("API error");
-        return res.json();
-      })
-      .then((data) => {
-        if (data.error) throw new Error(data.error);
-        setPatrons(data.patrons || []);
-      })
-      .catch((err) => {
-        console.error("Error loading patrons:", err);
-        setPatronsError("Nessun mecenate da caricare.");
-      })
-      .finally(() => setIsLoadingPatrons(false));
-  }, []);
 
   const nextProject = () => {
     setCurrentProjectIdx((prev) => (prev + 1) % sostieniciConfig.active_projects.length);
@@ -233,49 +202,7 @@ export function Sostienici() {
           </div>
         </div>
 
-        {/* I Nostri Mecenati (Wall) */}
-        {!isLoadingPatrons && !patronsError && patrons.length > 0 && (
-          <div className="w-full flex flex-col mb-32 pt-16 border-t border-[#4a1c0d]/10">
-            <div className="flex flex-col items-center mb-16 text-center">
-              <Heart className="w-12 h-12 text-[#ff424d] mb-6 animate-pulse" />
-              <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4 text-[#4a1c0d]">
-                I Nostri Mecenati
-              </h2>
-              <p className="text-xl font-medium tracking-tight text-[#4a1c0d]/70 max-w-2xl text-center leading-relaxed mb-8">
-                Un ringraziamento speciale a chi sostiene costantemente la nostra missione.
-              </p>
-              <button 
-                onClick={scrollToDonation}
-                className="clay-btn px-8 py-4 font-bold uppercase tracking-widest text-white transition-all hover:scale-105"
-              >
-                Diventa un mecenate
-              </button>
-            </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
-              {patrons.map((patron) => (
-                <motion.div
-                  key={patron.id}
-                  whileHover={{ y: -10, scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className="flex flex-col items-center justify-center space-y-4"
-                >
-                  <div className="w-24 h-24 rounded-full overflow-hidden clay-card p-1 shadow-lg border-2 border-[#ff424d]/20 hover:border-[#ff424d] transition-colors">
-                    <img 
-                      src={patron.imageUrl} 
-                      alt={`Mecenate ${patron.name}`} 
-                      className="w-full h-full object-cover rounded-full"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                  <span className="text-sm font-extrabold text-[#4a1c0d] text-center max-w-full truncate px-2">
-                      {patron.name}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Support Options */}
         <div id="support-options" ref={donationRef} className="w-full flex flex-col items-center mb-16 pt-20">
@@ -283,43 +210,7 @@ export function Sostienici() {
             Sostienici
           </h2>
         </div>
-        <div className="grid md:grid-cols-2 gap-12 mb-16 max-w-5xl mx-auto w-full">
-          {/* Sostegno Ricorrente Card */}
-          <div className="clay-card flex flex-col p-10 md:p-14 relative overflow-hidden group grayscale opacity-80 cursor-not-allowed">
-            <div className="w-16 h-16 bg-gray-500/10 text-gray-600 rounded-full flex items-center justify-center mb-10 self-start aspect-square shrink-0">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-              </svg>
-            </div>
-            <h2 className="text-4xl font-extrabold tracking-tight mb-4 text-[#4a1c0d]">
-              {sostieniciConfig.patreon.title}
-            </h2>
-            <div className="inline-block bg-gray-200 text-gray-700 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-6 self-start">
-              Coming Soon
-            </div>
-            <p className="text-[#4a1c0d]/70 mb-8 leading-relaxed font-medium text-lg">
-              {sostieniciConfig.patreon.description}
-            </p>
-
-            <ul className="mb-12 space-y-4">
-              {sostieniciConfig.patreon.perks.map((perk, i) => (
-                <li key={i} className="flex items-start space-x-3 text-[#4a1c0d]/80 font-semibold opacity-50">
-                  <div className="w-6 h-6 rounded-full bg-gray-500/20 flex items-center justify-center text-gray-600 shrink-0 mt-0.5">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <span>{perk}</span>
-                </li>
-             ))}
-            </ul>
-
-            <button
-              disabled
-              className="mt-auto clay-btn px-8 py-5 text-center text-white font-bold tracking-widest uppercase w-full opacity-50 cursor-not-allowed"
-            >
-              Coming Soon...
-            </button>
-          </div>
+        <div className="max-w-2xl mx-auto mb-16 w-full">
 
           {/* PayPal Card (Singola) */}
           <div className="clay-card flex flex-col p-10 md:p-14 relative overflow-hidden group">

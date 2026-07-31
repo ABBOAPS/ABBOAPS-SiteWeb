@@ -93,6 +93,9 @@ export function Topbar() {
               <Link to="/notizie" className="hover:text-[#e65100] transition-colors">
                 {(siteConfig.navigation as any).news || "News"}
               </Link>
+              <Link to="/tessera" className="hover:text-[#e65100] transition-colors">
+                Tessera
+              </Link>
               <Link to="/sostienici" className="hover:text-[#e65100] transition-colors">
                 {siteConfig.navigation.sostienici}
               </Link>
@@ -172,6 +175,13 @@ export function Topbar() {
                 className={`hover:text-[#e65100] transition-colors flex items-center h-12 ${location.pathname === "/notizie" || location.pathname.startsWith("/news/") ? "text-[#e65100]" : ""}`}
               >
                 {(siteConfig.navigation as any).news || "News"}
+              </Link>
+
+              <Link
+                to="/tessera"
+                className={`hover:text-[#e65100] transition-colors flex items-center h-12 ${location.pathname === "/tessera" ? "text-[#e65100]" : ""}`}
+              >
+                Tessera
               </Link>
 
               <Link
