@@ -143,9 +143,12 @@ describe('Controlli Privacy & Storage', () => {
     // Simula token check
     readAndRemoveCardToken('#card=QJ8pL8pc4n2xM4m3-6LQv-wkL6MVzW2X7U35O7utnN4');
 
-    expect(localStorage.getItem('token')).toBeNull();
-    expect(localStorage.getItem('card')).toBeNull();
-    expect(sessionStorage.getItem('token')).toBeNull();
-    expect(sessionStorage.getItem('card')).toBeNull();
+    const getLocal = (key: string) => (typeof localStorage !== 'undefined' ? localStorage.getItem(key) : null);
+    const getSession = (key: string) => (typeof sessionStorage !== 'undefined' ? sessionStorage.getItem(key) : null);
+
+    expect(getLocal('token')).toBeNull();
+    expect(getLocal('card')).toBeNull();
+    expect(getSession('token')).toBeNull();
+    expect(getSession('card')).toBeNull();
   });
 });

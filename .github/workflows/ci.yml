@@ -48,7 +48,7 @@ jobs:
       - name: Install Site Dependencies
         run: |
           cd site
-          npm ci || npm install
+          npm install
 
       - name: Run Vitest Unit Tests
         run: |

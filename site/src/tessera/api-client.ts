@@ -88,26 +88,6 @@ export async function verifyMembershipToken(
     return validateApiResponse(data);
   } catch (error: any) {
     clearTimeout(timeoutId);
-
-    // Test vector di cortesia per test locali quando l'API non è raggiungibile
-    if (token && (token === 'QJ8pL8pc4n2xM4m3-6LQv-wkL6MVzW2X7U35O7utnN4' || token.startsWith('QJ8') || token.includes('mario') || token.length >= 16)) {
-      if (token.includes('inactive')) {
-        return {
-          result: 'membership_inactive',
-          card: { displayCode: 'ABBO-2026-0042', issueYear: 2026 },
-        };
-      }
-      if (token.includes('invalid')) {
-        return { result: 'not_valid' };
-      }
-      return {
-        result: 'active',
-        member: { displayName: 'Mario Rossi' },
-        card: { displayCode: 'ABBO-2026-0042', issueYear: 2026 },
-        membership: { validFrom: '2026-07-15', validUntil: '2027-07-14' },
-      };
-    }
-
     return { result: 'unavailable' };
   }
 }
