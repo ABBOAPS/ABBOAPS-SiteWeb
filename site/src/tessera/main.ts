@@ -8,6 +8,7 @@ async function initTesseraApp(): Promise<void> {
   const container = document.getElementById('app');
   if (!container) return;
 
+  const baseUrl = (typeof import.meta !== 'undefined' && import.meta.env ? import.meta.env.BASE_URL : undefined) || '/';
   const logoPath = '/assets/logo_abbo_nero.svg';
 
   // Carica i link utili in background
