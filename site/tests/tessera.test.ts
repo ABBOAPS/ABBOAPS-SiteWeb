@@ -46,6 +46,37 @@ describe('API Client e Validatore Risposte API', () => {
     expect(validated.membership?.validUntil).toBe('2027-07-14');
   });
 
+  it('dovrebbe supportare il nuovo contratto API (card.code, card.issuedYear, member.memberNumber)', () => {
+    const rawData = {
+      result: 'active',
+      member: { displayName: 'Mario Rossi', memberNumber: 42 },
+      membership: { status: 'active', validUntil: '2029-12-31' },
+      card: { status: 'active', code: 'ABBO-2026-0042', issuedYear: 2026 },
+    };
+
+    const validated = validateApiResponse(rawData);
+    expect(validated.result).toBe('active');
+    expect(validated.member?.displayName).toBe('Mario Rossi');
+    expect(validated.member?.memberNumber).toBe(42);
+    expect(validated.card?.code).toBe('ABBO-2026-0042');
+    expect(validated.card?.issuedYear).toBe(2026);
+    expect(validated.membership?.validUntil).toBe('2029-12-31');
+  });
+
+  it('dovrebbe gestire un socio senza card dove card è null o assente', () => {
+    const rawData = {
+      result: 'active',
+      member: { displayName: 'Luca Bianchi', memberNumber: 15 },
+      membership: { status: 'active', validUntil: '2028-12-31' },
+      card: null,
+    };
+
+    const validated = validateApiResponse(rawData);
+    expect(validated.result).toBe('active');
+    expect(validated.member?.displayName).toBe('Luca Bianchi');
+    expect(validated.card).toBeUndefined();
+  });
+
   it('dovrebbe validare lo stato membership_inactive ed escludere dati personali se forniti errati', () => {
     const rawData = {
       result: 'membership_inactive',

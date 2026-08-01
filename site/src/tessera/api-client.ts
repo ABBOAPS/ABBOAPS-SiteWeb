@@ -11,14 +11,20 @@ export type MembershipResultState =
 
 export interface MembershipMember {
   displayName: string;
+  memberNumber?: number;
+  gender?: 'M' | 'F' | string;
 }
 
 export interface MembershipCardInfo {
-  displayCode: string;
+  code?: string;
+  displayCode?: string;
+  issuedYear?: number;
   issueYear?: number;
+  status?: string;
 }
 
 export interface MembershipValidity {
+  status?: string;
   validFrom?: string;
   validUntil?: string;
 }
@@ -26,7 +32,7 @@ export interface MembershipValidity {
 export interface TesseraApiResponse {
   result: MembershipResultState;
   member?: MembershipMember;
-  card?: MembershipCardInfo;
+  card?: MembershipCardInfo | null;
   membership?: MembershipValidity;
 }
 
@@ -94,6 +100,8 @@ export async function verifyMembershipToken(
 
 /**
  * Valida la struttura sintattica del payload JSON ricevuto dall'API.
+ * Gestisce sia il nuovo contratto API (card.code, card.issuedYear, member.memberNumber)
+ * sia i formati di retrocompatibilità.
  */
 export function validateApiResponse(data: any): TesseraApiResponse {
   if (!data || typeof data !== 'object') {
@@ -118,19 +126,39 @@ export function validateApiResponse(data: any): TesseraApiResponse {
 
   if (data.result === 'active') {
     if (data.member && typeof data.member.displayName === 'string') {
-      result.member = { displayName: data.member.displayName.trim() };
+      result.member = { 
+        displayName: data.member.displayName.trim(),
+        memberNumber: typeof data.member.memberNumber === 'number' ? data.member.memberNumber : undefined,
+        gender: typeof data.member.gender === 'string' ? data.member.gender.trim() : undefined,
+      };
     }
   }
 
   if (data.result === 'active' || data.result === 'membership_inactive') {
-    if (data.card && typeof data.card.displayCode === 'string') {
-      result.card = {
-        displayCode: data.card.displayCode.trim(),
-        issueYear: typeof data.card.issueYear === 'number' ? data.card.issueYear : undefined,
-      };
+    // Se il socio non ha una card (data.card è null o undefined), non viene creato alcun codice card
+    if (data.card && typeof data.card === 'object') {
+      const code = typeof data.card.code === 'string' 
+        ? data.card.code.trim() 
+        : (typeof data.card.displayCode === 'string' ? data.card.displayCode.trim() : undefined);
+      
+      const issuedYear = typeof data.card.issuedYear === 'number' 
+        ? data.card.issuedYear 
+        : (typeof data.card.issueYear === 'number' ? data.card.issueYear : undefined);
+
+      if (code || issuedYear !== undefined) {
+        result.card = {
+          code: code || (issuedYear && data.member?.memberNumber ? `ABBO-${issuedYear}-${String(data.member.memberNumber).padStart(4, '0')}` : undefined),
+          displayCode: code || (issuedYear && data.member?.memberNumber ? `ABBO-${issuedYear}-${String(data.member.memberNumber).padStart(4, '0')}` : undefined),
+          issuedYear: issuedYear,
+          issueYear: issuedYear,
+          status: typeof data.card.status === 'string' ? data.card.status : undefined,
+        };
+      }
     }
+
     if (data.membership && typeof data.membership === 'object') {
       result.membership = {
+        status: typeof data.membership.status === 'string' ? data.membership.status : undefined,
         validFrom: typeof data.membership.validFrom === 'string' ? data.membership.validFrom : undefined,
         validUntil: typeof data.membership.validUntil === 'string' ? data.membership.validUntil : undefined,
       };

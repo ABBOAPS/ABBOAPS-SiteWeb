@@ -1,0 +1,491 @@
+{
+  "legalPlaceholders": {
+    "codiceFiscale": "94070530152",
+    "sedeLegale": "Via Indipendenza 19, 20883 Mezzago (MB)",
+    "email": "admin@abboaps.org",
+    "pec": "abboaps@pec.it",
+    "runts": "179698",
+    "contattoPrivacy": "admin@abboaps.org",
+    "canaleSegnalazioneAbusiPartner": "admin@abboaps.org",
+    "proceduraAlternativaErroreTecnico": "Il partner può scrivere al Presidente di ABBO APS all'indirizzo admin@abboaps.org per richiedere una verifica.",
+    "baseGiuridicaNote": "Da validare con il consulente privacy",
+    "tempoConservazioneLogTecnici": "12 mesi",
+    "fornitoriEResponsabili": "Supabase, IONOS, OVH e Google, previa verifica dei servizi effettivamente utilizzati e degli accordi sul trattamento dei dati"
+  },
+  "cardPage": {
+    "it": {
+      "socioM": "Socio",
+      "socioF": "Socia",
+      "statusActive": "Quota associativa in regola",
+      "statusInactive": "Quota associativa non in regola",
+      "statusSuspended": "Posizione sospesa",
+      "statusInvalid": "Tessera non valida",
+      "statusUnavailable": "Verifica momentaneamente non disponibile",
+      "website": "Sito Web",
+      "donate": "Donazione",
+      "crowdfundingTitle": "Crowdfunding in corso",
+      "latestNewsTitle": "Ultima Notizia",
+      "raised": "Raccolti",
+      "goal": "Obiettivo",
+      "donateSatispay": "Dona con Satispay",
+      "donatePaypal": "Dona con PayPal",
+      "close": "Chiudi",
+      "readArticle": "Leggi Articolo",
+      "projectsTitle": "Progetti",
+      "partnersTitle": "Partner",
+      "becomePartner": "Diventa un partner",
+      "becomePartnerDesc": "Unisciti ad ABBO APS come azienda o associazione partner.",
+      "contactUs": "Contattaci",
+      "fivePerMilleTitle": "Destina il tuo 5×1000 ad ABBO APS",
+      "fivePerMilleDesc": "Un gesto a costo zero per sostenere i laboratori didattici di robotica, informatica e le attività sociali dell'officina in Brianza.",
+      "fiscalCodeLabel": "CODICE FISCALE DELL'ASSOCIAZIONE",
+      "copyCode": "COPIA CODICE",
+      "copied": "COPIATO!"
+    },
+    "en": {
+      "socioM": "Member",
+      "socioF": "Member",
+      "statusActive": "Active Membership",
+      "statusInactive": "Inactive Membership",
+      "statusSuspended": "Suspended",
+      "statusInvalid": "Invalid Card",
+      "statusUnavailable": "Verification Temporarily Unavailable",
+      "website": "Website",
+      "donate": "Donate",
+      "crowdfundingTitle": "Crowdfunding",
+      "latestNewsTitle": "Latest News",
+      "raised": "Raised",
+      "goal": "Goal",
+      "donateSatispay": "Donate with Satispay",
+      "donatePaypal": "Donate with PayPal",
+      "close": "Close",
+      "readArticle": "Read Article",
+      "projectsTitle": "Projects",
+      "partnersTitle": "Partners",
+      "becomePartner": "Become a Partner",
+      "becomePartnerDesc": "Join ABBO APS as a local associate or partner organization.",
+      "contactUs": "Contact Us",
+      "fivePerMilleTitle": "Support ABBO APS with 5x1000",
+      "fivePerMilleDesc": "A zero-cost gesture to support youth robotics, coding labs and social initiatives in Brianza.",
+      "fiscalCodeLabel": "ASSOCIATION TAX CODE",
+      "copyCode": "COPY CODE",
+      "copied": "COPIED!"
+    }
+  },
+  "disclaimer": {
+    "title": "Informazioni sulla verifica",
+    "titleEn": "Verification Information",
+    "mainNotice": "Questa verifica conferma che il codice digitale presentato risulta associato a una Card ABBO APS e mostra lo stato restituito dal gestionale al momento della consultazione. I normali tag NFC possono essere copiati o clonati: l’esito non certifica da solo l’autenticità materiale della Card né l’identità del portatore. La Card è personale e non cedibile. In caso di dubbio può essere richiesto un documento di identità.",
+    "mainNoticeEn": "This verification confirms that the digital code presented is associated with an ABBO APS Card and displays the status returned by the management system at the time of consultation. Standard NFC tags can be copied or cloned: the result alone does not certify the physical authenticity of the Card nor the identity of the bearer. The Card is personal and non-transferable. In case of doubt, an identity document may be requested.",
+    "subNotice": "In caso di smarrimento, furto o utilizzo sospetto, contatta tempestivamente ABBO APS per richiedere la revoca del token.",
+    "subNoticeEn": "In case of loss, theft, or suspicious use, contact ABBO APS promptly to request token revocation.",
+    "accordionBtn": "Come funziona la verifica",
+    "accordionBtnEn": "How verification works",
+    "accordionContent": [
+      "1. Il tag NFC contiene un token URL opaco, casuale e revocabile che non contiene dati personali.",
+      "2. Alla scansione, il sistema verifica in modo sicuro lo stato della card e della quota associativa annuale via API server.",
+      "3. Nessuno storico delle scansioni, posizione geografica o cookie di tracciamento viene memorizzato da ABBO APS.",
+      "4. I partner ed i verificatori consultano unicamente la schermata pubblica puntuale e non possono cercare o consultare elenchi di soci."
+    ],
+    "accordionContentEn": [
+      "1. The NFC tag contains an opaque, random, and revocable URL token that contains no personal data.",
+      "2. When scanned, the system securely checks the status of the card and annual membership quota via server API.",
+      "3. No scan history, location, or tracking cookies are recorded by ABBO APS.",
+      "4. Partners and verifiers only see the immediate public verification screen and cannot search or browse member lists."
+    ],
+    "linkCondizioni": "Condizioni d’uso della Card",
+    "linkCondizioniEn": "Card Terms of Use",
+    "linkPrivacy": "Informativa privacy Card NFC",
+    "linkPrivacyEn": "NFC Card Privacy Policy",
+    "linkPartner": "Regole per i partner convenzionati",
+    "linkPartnerEn": "Partner Rules"
+  },
+  "condizioni": {
+    "title": "Condizioni d’uso della Card NFC ABBO APS",
+    "version": "Versione 1.0 — Ultimo aggiornamento: 1 agosto 2026",
+    "sections": [
+      {
+        "id": "sec-1",
+        "num": "1.",
+        "heading": "Oggetto e ambito di applicazione",
+        "paragraphs": [
+          "Le presenti Condizioni d’uso disciplinano esclusivamente l’emissione, la custodia, l’utilizzo, la verifica digitale, la revoca e la sostituzione della Card associativa fisica dotata di chip NFC distribuita dall’Associazione di Promozione Sociale ABBO APS.",
+          "Nota: Le presenti condizioni regolano l’ausilio tecnologico costituito dalla Card NFC e non sostituiscono né modificano lo Statuto dell’Associazione o i Regolamenti interni approvati dagli organi associativi."
+        ]
+      },
+      {
+        "id": "sec-2",
+        "num": "2.",
+        "heading": "Natura della Card",
+        "bullets": [
+          "È facoltativa: l’adesione ad ABBO APS non richiede obbligatoriamente il possesso di una Card fisica;",
+          "È personale e non cedibile a terzi;",
+          "Non è un documento di identità e non certifica da sola l’identità personale del portatore;",
+          "Non è uno strumento di pagamento né una carta ricaricabile o di credito;",
+          "Non attribuisce da sola la qualifica di socio, la quale risulta esclusivamente dal libro soci tenuto ai sensi di legge e dello statuto;",
+          "Serve esclusivamente come strumento pratico per agevolare la rapida verifica della posizione associativa in regola."
+        ]
+      },
+      {
+        "id": "sec-3",
+        "num": "3.",
+        "heading": "Card e quota associativa",
+        "bullets": [
+          "La Card fisica non scade automaticamente al termine dell’anno di emissione;",
+          "Il rinnovo annuale della quota associativa non richiede l’emissione di una nuova Card;",
+          "La medesima Card può continuare ad essere utilizzata negli anni successivi;",
+          "Una Card rilasciata negli anni precedenti (es. emessa nel 2026) evidenzierà la posizione in regola per l’anno corrente qualora la quota sia stata regolarmente versata;",
+          "L’eventuale introduzione di nuove grafiche annuali non rende inattive le Card precedenti in possesso dei soci."
+        ]
+      },
+      {
+        "id": "sec-4",
+        "num": "4.",
+        "heading": "Codice della Card",
+        "paragraphs": [
+          "Ciascuna Card riporta o ha associato un codice pubblico di identificazione nel formato ABBO-ANNODELLACARD-NUMEROSOCIO (es. ABBO-2026-0042).",
+          "Dove l’anno (es. 2026) indica l’anno di produzione/emissione fisica del supporto e non la scadenza della quota. Il codice è un identificativo pubblico della tessera, non costituisce una password riservata e non permette l’accesso al gestionale interno dell’Associazione."
+        ]
+      },
+      {
+        "id": "sec-5",
+        "num": "5.",
+        "heading": "Utilizzo e presentazione",
+        "bullets": [
+          "Il socio deve presentare personalmente la Card;",
+          "È vietato cedere o prestare la Card a terzi per consentire loro di beneficiare indebitamente delle agevolazioni;",
+          "In caso di ragionevole dubbio, gli incaricati o i partner possono richiedere l’esibizione di un documento di riconoscimento in corso di validità."
+        ]
+      },
+      {
+        "id": "sec-6",
+        "num": "6.",
+        "heading": "Verifica presso ABBO APS e partner",
+        "paragraphs": [
+          "La scansione della Card tramite smartphone o lettore NFC indirizza il browser ad una pagina web statica di verifica che interroga l’API di ABBO APS.",
+          "La risposta evidenzia lo stato della quota al momento esatto della consultazione. Una schermata precedentemente fotografata o salvata non costituisce prova di validità aggiornata: la verifica deve essere svolta in tempo reale al momento dell’accesso ai servizi."
+        ]
+      },
+      {
+        "id": "sec-7",
+        "num": "7.",
+        "heading": "Clonazione e limiti tecnici",
+        "paragraphs": [
+          "Avvertenza di trasparenza tecnica: I comuni tag NFC (NTAG213/215/216) possono essere clonati bit-a-bit tramite dispositivi o smartphone idonei. Pertanto, la sola scansione digitale del chip conferma la validità del token nel gestionale, ma non garantisce l’autenticità materiale incondizionata del supporto o l’identità di chi lo presenta. Per questo motivo l’Associazione integra controlli visivi ed eventuali verifiche identitarie."
+        ]
+      },
+      {
+        "id": "sec-8",
+        "num": "8.",
+        "heading": "Smarrimento, furto, clonazione e sostituzione",
+        "bullets": [
+          "Il socio deve informare tempestivamente ABBO APS tramite i canali ufficiali;",
+          "L’Associazione provvederà a revocare ed inattivare immediatamente il token digitale nel gestionale;",
+          "Una Card revocata non mostrerà più alcun dato personale alla scansione e risulterà inattiva;",
+          "Il socio potrà richiedere l’emissione di una nuova Card sostitutiva secondo le modalità operative deliberate dall’Associazione."
+        ]
+      },
+      {
+        "id": "sec-9",
+        "num": "9.",
+        "heading": "Vantaggi e convenzioni",
+        "paragraphs": [
+          "Le agevolazioni o gli sconti eventualmente offerti dai partner convenzionati sono regolati dalle rispettive convenzioni stipulate con ABBO APS. L’Associazione non garantisce la disponibilità ininterrotta o l’erogazione di prodotti/servizi di terzi, che rimangono di esclusiva responsabilità degli esercenti convenzionati."
+        ]
+      },
+      {
+        "id": "sec-10",
+        "num": "10.",
+        "heading": "Disponibilità del servizio",
+        "paragraphs": [
+          "ABBO APS adotta adeguate misure tecniche ed organizzative per mantenere il servizio di verifica disponibile e sicuro. Tuttavia, in caso di temporanea indisponibilità della rete internet, dell’API o dei server, la mancata verifica immediata non costituisce di per sé perdita della qualifica di socio o inadempimento dell’Associazione."
+        ]
+      },
+      {
+        "id": "sec-11",
+        "num": "11.",
+        "heading": "Modifiche",
+        "paragraphs": [
+          "ABBO APS si riserva il diritto di aggiornare le presenti Condizioni d’uso in qualsiasi momento per adeguarle all’evoluzione tecnologica, normativa o alle esigenze organizzative dell’Associazione. Le modifiche saranno pubblicate su questa pagina con indicazione della versione e della data."
+        ]
+      },
+      {
+        "id": "sec-12",
+        "num": "12.",
+        "heading": "Contatti e riferimenti ufficiali",
+        "paragraphs": [
+          "Per qualsiasi comunicazione, segnalazione di smarrimento o richiesta relativa alla Card NFC contattare ABBO APS."
+        ]
+      }
+    ]
+  },
+  "privacy": {
+    "title": "Informativa privacy relativa alla Card NFC ABBO APS",
+    "version": "Informativa specifica ex artt. 13-14 Reg. UE 2016/679 (GDPR) — Versione 1.0 — Ultimo aggiornamento: 1 agosto 2026",
+    "sections": [
+      {
+        "id": "sec-1",
+        "num": "1.",
+        "heading": "Titolare del Trattamento",
+        "paragraphs": [
+          "Il Titolare del trattamento dei dati personali raccolti tramite il servizio Card NFC è ABBO APS — Associazione di Promozione Sociale."
+        ]
+      },
+      {
+        "id": "sec-2",
+        "num": "2.",
+        "heading": "Ambito dell'informativa",
+        "paragraphs": [
+          "La presente informativa riguarda esclusivamente le operazioni di trattamento dei dati connesse alla Card fisica NFC: emissione e codifica del chip NFC, associazione token, verifica pubblica e gestione di smarrimento/revoca."
+        ]
+      },
+      {
+        "id": "sec-3",
+        "num": "3.",
+        "heading": "Dati trattati",
+        "bullets": [
+          "Dati identificativi: Nome, cognome, numero socio e codice pubblico della Card (es. ABBO-2026-0042).",
+          "Dati associativi: Stato della posizione associativa e validità della quota annuale.",
+          "Dati della Card: Anno di emissione, stato del chip (attivo / revocato / sostituito).",
+          "Dati tecnici: Token casuale opaco ed hash/HMAC lato server."
+        ]
+      },
+      {
+        "id": "sec-4",
+        "num": "4.",
+        "heading": "Finalità del trattamento",
+        "bullets": [
+          "Emissione e gestione operativa della Card NFC facoltativa;",
+          "Verifica istantanea della titolarità e della quota associativa;",
+          "Fruizione delle agevolazioni presso i partner convenzionati;",
+          "Prevenzione degli abusi e revoca tempestiva in caso di smarrimento;",
+          "Sicurezza informatica dell'infrastruttura API."
+        ]
+      },
+      {
+        "id": "sec-5",
+        "num": "5.",
+        "heading": "Base giuridica del trattamento",
+        "paragraphs": [
+          "Base giuridica da validare con il consulente privacy: gestione del rapporto associativo (Art. 6(1)(b) GDPR), legittimo interesse (Art. 6(1)(f) GDPR) e adempimento degli obblighi di legge (Art. 6(1)(c) GDPR)."
+        ]
+      },
+      {
+        "id": "sec-6",
+        "num": "6.",
+        "heading": "Natura del conferimento",
+        "paragraphs": [
+          "La richiesta ed il rilascio della Card NFC sono completamente facoltativi. Il socio può iscriversi ed esercitare i propri diritti associativi anche senza possedere una Card NFC."
+        ]
+      },
+      {
+        "id": "sec-7",
+        "num": "7.",
+        "heading": "Funzionamento tecnico della scansione",
+        "bullets": [
+          "Lo smartphone legge il token URL casuale dal chip NFC;",
+          "La pagina web interroga via HTTPS l'API del gestionale;",
+          "L'API verifica il token ed il database restituisce esclusivamente i dati previsti;",
+          "Il browser rimuove immediatamente il token dalla barra dell'URL;",
+          "Nessun registro applicativo o cronologia delle scansioni viene memorizzata dal sistema."
+        ]
+      },
+      {
+        "id": "sec-8",
+        "num": "8.",
+        "heading": "Visibilità dei dati e rischi di copia",
+        "paragraphs": [
+          "Chiunque sia in possesso della Card fisica o ne abbia duplicato il token NFC o l'URL può avviare la verifica. In caso di Card attiva, la pagina mostrerà nome, cognome e stato quota. A seguito di revoca per smarrimento, nessun dato personale verrà mostrato."
+        ]
+      },
+      {
+        "id": "sec-9",
+        "num": "9.",
+        "heading": "Destinatari dei dati",
+        "bullets": [
+          "Incaricati ed amministratori autorizzati di ABBO APS;",
+          "Esercenti e partner convenzionati davanti ai quali il socio esibisce la Card;",
+          "Fornitori di servizi tecnici nominati Responsabili del Trattamento ex Art. 28 GDPR."
+        ]
+      },
+      {
+        "id": "sec-10",
+        "num": "10.",
+        "heading": "Trasferimenti e fornitori tecnici",
+        "paragraphs": [
+          "I fornitori utilizzati possono includere Supabase, IONOS, OVH e Google, previa verifica dei servizi effettivamente impiegati, dei ruoli privacy e degli accordi sul trattamento dei dati. I trattamenti si svolgono all'interno dello Spazio Economico Europeo (SEE) o presso fornitori che adottano garanzie adeguate ai sensi dell'Art. 46 GDPR."
+        ]
+      },
+      {
+        "id": "sec-11",
+        "num": "11.",
+        "heading": "Conservazione dei dati",
+        "paragraphs": [
+          "Dati del socio e della quota conservati per la durata del rapporto associativo e per i tempi previsti dalla legge. Log tecnici di sicurezza conservati per 12 mesi."
+        ]
+      },
+      {
+        "id": "sec-12",
+        "num": "12.",
+        "heading": "Misure di sicurezza",
+        "paragraphs": [
+          "ABBO APS adotta cifratura HTTPS, token casuali ad elevata entropia, hash/HMAC lato server, rate-limiting ed assenza di token nei log pubblici."
+        ]
+      },
+      {
+        "id": "sec-13",
+        "num": "13.",
+        "heading": "Diritti dell'interessato",
+        "paragraphs": [
+          "Esercizio dei diritti ex Artt. 15-22 GDPR tramite comunicazione a admin@abboaps.org e diritto di reclamo al Garante Privacy (www.garanteprivacy.it)."
+        ]
+      },
+      {
+        "id": "sec-14",
+        "num": "14.",
+        "heading": "Processi decisionali automatizzati",
+        "paragraphs": [
+          "Assenza di profilazione, decisioni automatizzate o monitoraggio delle abitudini di utilizzo."
+        ]
+      },
+      {
+        "id": "sec-15",
+        "num": "15.",
+        "heading": "Trattamento dati relativi ai minori",
+        "paragraphs": [
+          "La funzione Card NFC descritta nella presente informativa è attualmente destinata ai soci maggiorenni."
+        ]
+      },
+      {
+        "id": "sec-16",
+        "num": "16.",
+        "heading": "Cookie e strumenti di tracciamento",
+        "paragraphs": [
+          "Assenza di cookie di profilazione, tracker di terze parti o analytics nelle pagine /tessera*."
+        ]
+      },
+      {
+        "id": "sec-17",
+        "num": "17.",
+        "heading": "Aggiornamenti",
+        "paragraphs": [
+          "Informativa soggetta a periodico aggiornamento con indicazione della versione e della data."
+        ]
+      }
+    ]
+  },
+  "partner": {
+    "title": "Regole per la verifica della Card NFC presso i partner ABBO APS",
+    "version": "Guida Operativa Esercenti e Partner Convenzionati — Versione 1.0 — Ultimo aggiornamento: 1 agosto 2026",
+    "notice": "Le presenti regole integrano le indicazioni operative della convenzione stipulata tra ABBO APS ed il partner. Gli obblighi legali ed i trattamenti privacy autorizzati devono essere disciplinati anche nell’accordo sottoscritto con ABBO APS.",
+    "sections": [
+      {
+        "id": "sec-1",
+        "num": "1.",
+        "heading": "Finalità della verifica",
+        "paragraphs": [
+          "Il partner convenzionato utilizza la pagina di verifica unicamente per accertare in tempo reale, in presenza del socio, l’esistenza della Card, lo stato attivo della quota associativa ed la corrispondenza del nome visualizzato."
+        ]
+      },
+      {
+        "id": "sec-2",
+        "num": "2.",
+        "heading": "Procedura corretta per l'esercente",
+        "bullets": [
+          "Chiedere al socio di presentare la propria Card NFC ABBO APS;",
+          "Avvicinare lo smartphone o lettore NFC alla Card esclusivamente alla presenza del socio;",
+          "Attendere l’apertura della pagina web e la risposta aggiornata dell’API;",
+          "Verificare che la pagina mostri la dicitura Socio ABBO APS e la quota in regola;",
+          "Applicare lo sconto o il vantaggio previsto dalla convenzione;",
+          "Chiudere la scheda del browser al termine dell’operazione."
+        ]
+      },
+      {
+        "id": "sec-3",
+        "num": "3.",
+        "heading": "Cosa verifica la pagina",
+        "paragraphs": [
+          "La pagina di verifica interroga l’API di ABBO APS e conferma l’associazione valida del token, lo stato nel gestionale e la validità della quota al momento della richiesta."
+        ]
+      },
+      {
+        "id": "sec-4",
+        "num": "4.",
+        "heading": "Cosa NON verifica la pagina",
+        "bullets": [
+          "L’impossibilità assoluta di clonazione del supporto fisico NFC;",
+          "L’identità certa della persona fisica che presenta la Card;",
+          "La validità di schermate precedentemente fotografate o salvate (screenshots);",
+          "Il diritto ad agevolazioni non contemplate dalla specifica convenzione."
+        ]
+      },
+      {
+        "id": "sec-5",
+        "num": "5.",
+        "heading": "Verifica del Documento di Identità",
+        "paragraphs": [
+          "Il partner può richiedere al socio l’esibizione di un documento di riconoscimento esclusivamente in caso di dubbio ragionevole sulla corrispondenza del nome.",
+          "Divieto assoluto: È severamente vietato fotografare, fotocopiare, annotare gli estremi o conservare copia del documento di identità del socio."
+        ]
+      },
+      {
+        "id": "sec-6",
+        "num": "6.",
+        "heading": "Divieti tassativi per il partner",
+        "bullets": [
+          "Fotografare o registrare lo schermo del telefono con i dati del socio;",
+          "Salvare o registrare il token URL contenuto nel chip;",
+          "Annotare o trascrivere il nome, cognome o codice della Card del socio;",
+          "Creare elenchi, database o registri cartacei/digitali dei soci verificate;",
+          "Utilizzare i dati del socio per finalità di marketing proprio o di terzi;",
+          "Effettuare verifiche a distanza o in assenza della presentazione fisica del socio."
+        ]
+      },
+      {
+        "id": "sec-7",
+        "num": "7.",
+        "heading": "Gestione degli esiti della verifica",
+        "bullets": [
+          "Socio in regola (Spunta verde): Applicare regolarmente il vantaggio o lo sconto stabilito dalla convenzione.",
+          "Quota non in regola / Posizione sospesa: Non applicare i vantaggi riservati ai soci in regola.",
+          "Card non valida / Revocata: La pagina non mostra alcun dato. Non applicare alcun vantaggio.",
+          "Verifica momentaneamente non disponibile: il partner può scrivere al Presidente di ABBO APS all'indirizzo admin@abboaps.org per richiedere una verifica."
+        ]
+      },
+      {
+        "id": "sec-8",
+        "num": "8.",
+        "heading": "Sospetto abuso o clonazione",
+        "bullets": [
+          "Non trattenere o sequestrare la Card fisica né lo smartphone della persona;",
+          "Non effettuare contestazioni aggressive o foto al cliente;",
+          "Non applicare la convenzione e segnalare l’evento ad ABBO APS tramite il canale riservato: admin@abboaps.org."
+        ]
+      },
+      {
+        "id": "sec-9",
+        "num": "9.",
+        "heading": "Riservatezza",
+        "paragraphs": [
+          "L’esercente ed il suo personale si impegnano a mantenere la massima riservatezza sui dati personali eventualmente visualizzati durante la procedura di verifica."
+        ]
+      },
+      {
+        "id": "sec-10",
+        "num": "10.",
+        "heading": "Offerte e vantaggi",
+        "paragraphs": [
+          "Le condizioni economiche sono definite unicamente dalla convenzione stipulata tra ABBO APS ed il partner."
+        ]
+      },
+      {
+        "id": "sec-11",
+        "num": "11.",
+        "heading": "Contatti dedicati ai partner",
+        "paragraphs": [
+          "Assistenza Partner: admin@abboaps.org | Segnalazione Abusi: admin@abboaps.org | Contatto Privacy: admin@abboaps.org"
+        ]
+      }
+    ]
+  }
+}

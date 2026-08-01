@@ -127,10 +127,11 @@ export function renderTesseraUi(options: RenderOptions): void {
         contentArea.appendChild(validUntilEl);
       }
 
-      if (apiData?.card?.displayCode) {
+      const cardCode = apiData?.card?.code || apiData?.card?.displayCode;
+      if (cardCode) {
         const codeEl = document.createElement('p');
         codeEl.className = 'tessera-code-pill';
-        codeEl.textContent = `Tessera ${apiData.card.displayCode}`;
+        codeEl.textContent = cardCode;
         contentArea.appendChild(codeEl);
       }
 
@@ -328,6 +329,52 @@ export function renderTesseraUi(options: RenderOptions): void {
     gallerySection.appendChild(linksGrid);
     pageWrapper.appendChild(gallerySection);
   }
+
+  // Legal Disclaimer & 3 mandatory legal links
+  const disclaimerSection = document.createElement('section');
+  disclaimerSection.className = 'tessera-disclaimer-card';
+  disclaimerSection.setAttribute('aria-label', 'Informazioni sulla verifica');
+  disclaimerSection.style.cssText = 'margin-top: 2rem; padding: 1.25rem; border-radius: 1.5rem; background: rgba(255, 252, 245, 0.9); border: 1px solid rgba(74, 28, 13, 0.15); font-size: 0.8125rem; color: #4a1c0d;';
+
+  const discTitle = document.createElement('h4');
+  discTitle.style.cssText = 'font-weight: 800; font-size: 0.95rem; margin-bottom: 0.5rem; color: #4a1c0d;';
+  discTitle.textContent = 'ℹ️ Informazioni sulla verifica';
+  disclaimerSection.appendChild(discTitle);
+
+  const discP = document.createElement('p');
+  discP.style.cssText = 'line-height: 1.5; margin-bottom: 0.75rem; color: rgba(74, 28, 13, 0.85);';
+  discP.textContent = 'Questa verifica conferma che il codice digitale presentato risulta associato a una Card ABBO APS e mostra lo stato restituito dal gestionale al momento della consultazione. I normali tag NFC possono essere copiati o clonati: l’esito non certifica da solo l’autenticità materiale della Card né l’identità del portatore. La Card è personale e non cedibile. In caso di dubbio può essere richiesto un documento di identità.';
+  disclaimerSection.appendChild(discP);
+
+  const discAlert = document.createElement('div');
+  discAlert.style.cssText = 'padding: 0.5rem 0.75rem; border-radius: 0.75rem; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.25); color: #78350f; font-weight: 600; font-size: 0.75rem; margin-bottom: 0.75rem;';
+  discAlert.textContent = '⚠️ In caso di smarrimento, furto o utilizzo sospetto, contatta tempestivamente ABBO APS per richiedere la revoca del token.';
+  disclaimerSection.appendChild(discAlert);
+
+  // Mandatory 3 Legal Links
+  const legalLinksBox = document.createElement('div');
+  legalLinksBox.style.cssText = 'margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(74, 28, 13, 0.1); display: flex; flex-direction: column; gap: 0.5rem;';
+
+  const link1 = document.createElement('a');
+  link1.href = '/#/tessera/condizioni';
+  link1.style.cssText = 'min-height: 44px; display: inline-flex; items-center; font-weight: 700; color: #e65100; text-decoration: none; font-size: 0.8125rem;';
+  link1.textContent = '📄 Condizioni d’uso della Card';
+  legalLinksBox.appendChild(link1);
+
+  const link2 = document.createElement('a');
+  link2.href = '/#/tessera/privacy';
+  link2.style.cssText = 'min-height: 44px; display: inline-flex; items-center; font-weight: 700; color: #e65100; text-decoration: none; font-size: 0.8125rem;';
+  link2.textContent = '🔒 Informativa privacy Card NFC';
+  legalLinksBox.appendChild(link2);
+
+  const link3 = document.createElement('a');
+  link3.href = '/#/tessera/partner';
+  link3.style.cssText = 'min-height: 44px; display: inline-flex; items-center; font-weight: 700; color: #e65100; text-decoration: none; font-size: 0.8125rem;';
+  link3.textContent = '🤝 Regole per i partner convenzionati';
+  legalLinksBox.appendChild(link3);
+
+  disclaimerSection.appendChild(legalLinksBox);
+  pageWrapper.appendChild(disclaimerSection);
 
   // Footer
   const footerEl = document.createElement('footer');

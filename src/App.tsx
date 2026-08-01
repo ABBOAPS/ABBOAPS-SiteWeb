@@ -15,6 +15,9 @@ import { NotFound } from "./pages/NotFound";
 import { PrivacyPolicy } from "./pages/PrivacyPolicy";
 import { Ambassador } from "./pages/Ambassador";
 import { Tessera } from "./pages/Tessera";
+import { TesseraCondizioni } from "./pages/TesseraCondizioni";
+import { TesseraPrivacy } from "./pages/TesseraPrivacy";
+import { TesseraPartner } from "./pages/TesseraPartner";
 import ConsapevolezzaDocenti from "./pages/landing/ConsapevolezzaDocenti";
 import ConsapevolezzaIstituti from "./pages/landing/ConsapevolezzaIstituti";
 import ConsapevolezzaRagazzi from "./pages/landing/ConsapevolezzaRagazzi";
@@ -36,13 +39,15 @@ export default function App() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  const isTesseraPage = location.pathname.startsWith("/tessera");
+
   return (
     <div 
       className="relative min-h-screen w-full flex flex-col overflow-x-hidden selection:bg-[#e65100] selection:text-white"
       style={{ backgroundColor: siteConfig.theme.background.base, backgroundImage: siteConfig.theme.background.gradient, color: siteConfig.theme.text.primary }}
     >
       {/* Primary Top Navigation */}
-      <Topbar />
+      {!isTesseraPage && <Topbar />}
 
       <main className="flex-1 relative z-10">
         <Routes>
@@ -60,6 +65,9 @@ export default function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/ambassador" element={<Ambassador />} />
           <Route path="/tessera" element={<Tessera />} />
+          <Route path="/tessera/condizioni" element={<TesseraCondizioni />} />
+          <Route path="/tessera/privacy" element={<TesseraPrivacy />} />
+          <Route path="/tessera/partner" element={<TesseraPartner />} />
           
           {/* Landing Pages */}
           <Route path="/landing/consapevolezza-docenti" element={<ConsapevolezzaDocenti />} />
@@ -76,8 +84,8 @@ export default function App() {
         </Routes>
       </main>
 
-      <Footer />
-      <TwitchLiveWidget />
+      {!isTesseraPage && <Footer />}
+      {!isTesseraPage && <TwitchLiveWidget />}
     </div>
   );
 }
