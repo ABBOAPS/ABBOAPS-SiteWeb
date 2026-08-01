@@ -152,6 +152,8 @@ describe('Sicurezza Link Tree Galleria', () => {
     expect(isValidLinkUrl('https://instagram.com/abboaps')).toBe(true);
     expect(isValidLinkUrl('https://www.abboaps.org/privacy-policy')).toBe(true);
     expect(isValidLinkUrl('mailto:info@abboaps.org')).toBe(true);
+    expect(isValidLinkUrl('https://evil.example/phishing')).toBe(false);
+    expect(isValidLinkUrl('mailto:attacker@example.com')).toBe(false);
 
     expect(isValidLinkUrl('http://insecure-site.com')).toBe(false);
     expect(isValidLinkUrl('javascript:alert(1)')).toBe(false);

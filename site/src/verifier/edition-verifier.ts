@@ -194,19 +194,21 @@ export async function verifyEditionManifest(
       const fullImgUrl = `${baseUrl}${imgRelPath}`;
       const imgRes = await fetch(fullImgUrl);
 
-      if (imgRes.ok) {
-        const imgBuffer = await imgRes.arrayBuffer();
-        const imgBytes = new Uint8Array(imgBuffer);
-        const imgHashBytes = await sha256Bytes(imgBytes);
-        const imgHashB64 = uint8ArrayToBase64Url(imgHashBytes);
+      if (!imgRes.ok) {
+        throw new Error('IMAGE_NOT_FOUND');
+      }
 
-        if (imgHashB64 === editionPayload.image.sha256) {
-          const blob = new Blob([imgBuffer], { type: 'image/webp' });
-          verifiedImageBlobUrl = URL.createObjectURL(blob);
-        } else {
-          console.warn('⚠️ Immagine alterata o hash non coincidente:', imgHashB64, 'vs', editionPayload.image.sha256);
-          throw new Error('IMAGE_INVALID_HASH');
-        }
+      const imgBuffer = await imgRes.arrayBuffer();
+      const imgBytes = new Uint8Array(imgBuffer);
+      const imgHashBytes = await sha256Bytes(imgBytes);
+      const imgHashB64 = uint8ArrayToBase64Url(imgHashBytes);
+
+      if (imgHashB64 === editionPayload.image.sha256) {
+        const blob = new Blob([imgBuffer], { type: 'image/webp' });
+        verifiedImageBlobUrl = URL.createObjectURL(blob);
+      } else {
+        console.warn('⚠️ Immagine alterata o hash non coincidente:', imgHashB64, 'vs', editionPayload.image.sha256);
+        throw new Error('IMAGE_INVALID_HASH');
       }
     } catch (imgErr) {
       console.warn('⚠️ Errore durante la verifica dell\'immagine autenticata:', imgErr);

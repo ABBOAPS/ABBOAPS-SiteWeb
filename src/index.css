@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
   
   /* Digital Heroes Brand Colors */
   --color-brand-primary: #cc7cf7;
@@ -184,4 +184,3 @@ body {
   backdrop-filter: blur(4px);
   border: 1px solid rgba(106, 65, 127, 0.2);
 }
-

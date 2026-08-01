@@ -15,7 +15,7 @@ export interface TesseraLinksConfig {
 }
 
 /**
- * Valida che un URL utilizzi esclusivamente i protocolli https: o mailto:.
+ * Valida schema, host e forma dell'URL prima di esporlo nell'interfaccia.
  */
 export function isValidLinkUrl(rawUrl: string): boolean {
   if (!rawUrl || typeof rawUrl !== 'string') return false;
@@ -23,7 +23,23 @@ export function isValidLinkUrl(rawUrl: string): boolean {
 
   try {
     const parsed = new URL(trimmed, 'https://www.abboaps.org');
-    return parsed.protocol === 'https:' || parsed.protocol === 'mailto:';
+    if (parsed.protocol === 'mailto:') {
+      return /^[^\s@]+@abboaps\.org$/i.test(parsed.pathname);
+    }
+
+    if (parsed.protocol !== 'https:' || parsed.username || parsed.password || parsed.port) {
+      return false;
+    }
+
+    const allowedHosts = new Set([
+      'abboaps.org',
+      'www.abboaps.org',
+      'instagram.com',
+      'www.instagram.com',
+      'paypal.com',
+      'www.paypal.com',
+    ]);
+    return allowedHosts.has(parsed.hostname.toLowerCase());
   } catch {
     return false;
   }

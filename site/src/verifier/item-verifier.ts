@@ -66,10 +66,6 @@ function isIntegerInRange(value: unknown, min: number, max: number): value is nu
   return typeof value === 'number' && Number.isInteger(value) && value >= min && value <= max;
 }
 
-function isString(value: unknown, minLength: number, maxLength: number): value is string {
-  return typeof value === 'string' && value.length >= minLength && value.length <= maxLength;
-}
-
 function validateJwk(value: unknown): JwkPublicKey {
   if (!isRecord(value) || !hasOnlyKeys(value, ['kty', 'crv', 'x', 'y', 'ext', 'key_ops'])) {
     throw new Error('KEYRING_INVALID');

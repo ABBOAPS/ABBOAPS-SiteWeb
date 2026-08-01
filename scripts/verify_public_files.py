@@ -12,14 +12,8 @@ from pathlib import Path
 try:
     import jsonschema
 except ImportError:
-    import subprocess
-    print("⚠️ Modulo 'jsonschema' non presente. Tentativo di installazione automatica...")
-    try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "jsonschema"])
-        import jsonschema
-    except Exception as e:
-        print(f"❌ Impossibile installare jsonschema: {e}")
-        jsonschema = None
+    print("❌ Dipendenza 'jsonschema' non installata. Eseguire pip install -r scripts/requirements-ci.txt.")
+    sys.exit(2)
 
 def load_json(path: Path) -> dict:
     with open(path, "r", encoding="utf-8") as f:
@@ -44,10 +38,7 @@ def verify_public_files(root_dir: Path) -> bool:
     if keyring_path.exists():
         try:
             keyring_data = load_json(keyring_path)
-            if jsonschema:
-                jsonschema.validate(instance=keyring_data, schema=keyring_schema)
-            else:
-                assert "schemaVersion" in keyring_data and "keys" in keyring_data
+            jsonschema.validate(instance=keyring_data, schema=keyring_schema)
             print(f"  ✓ Keyring valido: {keyring_path.relative_to(root_dir)}")
         except Exception as e:
             print(f"  ❌ Errore di validazione keyring in {keyring_path}: {e}")
@@ -59,10 +50,7 @@ def verify_public_files(root_dir: Path) -> bool:
         for envelope_file in editions_dir.rglob("*.json"):
             try:
                 envelope_data = load_json(envelope_file)
-                if jsonschema:
-                    jsonschema.validate(instance=envelope_data, schema=envelope_schema)
-                else:
-                    assert envelope_data.get("format") == "ABBO-EDITION-1"
+                jsonschema.validate(instance=envelope_data, schema=envelope_schema)
                 print(f"  ✓ Busta edizione valida: {envelope_file.relative_to(root_dir)}")
             except Exception as e:
                 print(f"  ❌ Errore di validazione busta edizione in {envelope_file}: {e}")
