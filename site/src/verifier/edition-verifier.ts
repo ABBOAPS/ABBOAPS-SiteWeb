@@ -37,6 +37,77 @@ export interface VerifiedEditionResult {
   verifiedImageBlobUrl?: string;
 }
 
+const KID_PATTERN = /^k[0-9]{4}-[0-9]{2}(?:-[A-Za-z0-9_-]{1,16})?$/;
+const EDITION_ID_PATTERN = /^ed_[A-Za-z0-9_-]{16,64}$/;
+const BASE64URL_PATTERN = /^[A-Za-z0-9_-]+$/;
+const SIGNATURE_PATTERN = /^[A-Za-z0-9_-]{86}$/;
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function hasOnlyKeys(value: Record<string, unknown>, keys: readonly string[]): boolean {
+  return Object.keys(value).every((key) => keys.includes(key));
+}
+
+function isIntegerInRange(value: unknown, min: number, max: number): value is number {
+  return typeof value === 'number' && Number.isInteger(value) && value >= min && value <= max;
+}
+
+function isDate(value: unknown): value is string {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
+  const [year, month, day] = value.split('-').map(Number);
+  const date = new Date(Date.UTC(year, month - 1, day));
+  return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day;
+}
+
+function isDateTime(value: unknown): value is string {
+  return typeof value === 'string' && value.length <= 64 && !Number.isNaN(Date.parse(value));
+}
+
+export function validateEditionEnvelope(value: unknown): EditionEnvelope {
+  if (!isRecord(value) || !hasOnlyKeys(value, ['format', 'kid', 'payload', 'signature'])) {
+    throw new Error('MANIFEST_INVALID_SCHEMA');
+  }
+  if (
+    value.format !== 'ABBO-EDITION-1' ||
+    typeof value.kid !== 'string' || !KID_PATTERN.test(value.kid) || value.kid.length > 32 ||
+    typeof value.payload !== 'string' || !BASE64URL_PATTERN.test(value.payload) || value.payload.length < 16 || value.payload.length > 8192 || value.payload.length % 4 === 1 ||
+    typeof value.signature !== 'string' || !SIGNATURE_PATTERN.test(value.signature)
+  ) {
+    throw new Error('MANIFEST_INVALID_SCHEMA');
+  }
+  return value as unknown as EditionEnvelope;
+}
+
+export function validateEditionPayload(value: unknown): EditionPayload {
+  if (!isRecord(value) || !hasOnlyKeys(value, ['v', 't', 'iss', 'aud', 'e', 'r', 'code', 'title', 'description', 'n', 'releaseDate', 'image', 'physicalSerialRequired', 'createdAt'])) {
+    throw new Error('MANIFEST_INVALID_SCHEMA');
+  }
+  const image = value.image;
+  if (!isRecord(image) || !hasOnlyKeys(image, ['path', 'sha256', 'alt'])) {
+    throw new Error('MANIFEST_INVALID_SCHEMA');
+  }
+  if (
+    value.v !== 1 || value.t !== 'edition' || value.iss !== 'ABBO APS' || value.aud !== 'ABBO-PRODUCT-VERIFY-V1' ||
+    typeof value.e !== 'string' || !EDITION_ID_PATTERN.test(value.e) || value.e.length > 67 ||
+    !isIntegerInRange(value.r, 1, 2147483647) ||
+    typeof value.code !== 'string' || !/^[A-Za-z0-9][A-Za-z0-9._-]{1,63}$/.test(value.code) ||
+    typeof value.title !== 'string' || value.title.length < 1 || value.title.length > 160 ||
+    typeof value.description !== 'string' || value.description.length < 1 || value.description.length > 2000 ||
+    !isIntegerInRange(value.n, 1, 1000000) ||
+    !isDate(value.releaseDate) ||
+    typeof value.physicalSerialRequired !== 'boolean' ||
+    !isDateTime(value.createdAt) ||
+    typeof image.path !== 'string' || !/^\/assets\/products\/ed_[A-Za-z0-9_-]{16,64}\/[A-Za-z0-9._-]+$/.test(image.path) || image.path.length > 300 ||
+    typeof image.sha256 !== 'string' || !/^[A-Za-z0-9_-]{43}$/.test(image.sha256) ||
+    typeof image.alt !== 'string' || image.alt.length < 1 || image.alt.length > 300
+  ) {
+    throw new Error('MANIFEST_INVALID_SCHEMA');
+  }
+  return value as unknown as EditionPayload;
+}
+
 /**
  * Fetch e verifica del manifesto dell'edizione e dell'immagine autenticata.
  */
@@ -64,20 +135,22 @@ export async function verifyEditionManifest(
     throw new Error('MANIFEST_NOT_FOUND');
   }
 
-  const envelope: EditionEnvelope = await response.json();
-
-  if (envelope.format !== 'ABBO-EDITION-1') {
-    throw new Error('MANIFEST_FORMAT_UNSUPPORTED');
-  }
+  const envelope = validateEditionEnvelope(await response.json());
 
   const keyEntry = keyring.keys.find((k) => k.kid === envelope.kid);
   if (!keyEntry) {
     throw new Error('MANIFEST_KEY_UNKNOWN');
   }
+  if (keyEntry.status === 'compromised') {
+    throw new Error('MANIFEST_KEY_COMPROMISED');
+  }
 
   const signedString = `ABBO-EDITION-1.${envelope.kid}.${envelope.payload}`;
   const signedDataBytes = encodeUtf8(signedString);
   const rawSignatureBytes = base64UrlToUint8Array(envelope.signature);
+  if (rawSignatureBytes.length !== 64) {
+    throw new Error('MANIFEST_SIGNATURE_INVALID');
+  }
 
   const cryptoKey = await importJwkPublicKey(keyEntry.jwk);
   const isSignatureValid = await verifyEcdsaEs256(cryptoKey, rawSignatureBytes, signedDataBytes);
@@ -94,7 +167,13 @@ export async function verifyEditionManifest(
     throw new Error('MANIFEST_HASH_MISMATCH');
   }
 
-  const editionPayload: EditionPayload = JSON.parse(decodeUtf8(manifestPayloadBytes));
+  let editionJson: unknown;
+  try {
+    editionJson = JSON.parse(decodeUtf8(manifestPayloadBytes));
+  } catch {
+    throw new Error('MANIFEST_INVALID_JSON');
+  }
+  const editionPayload = validateEditionPayload(editionJson);
 
   if (editionPayload.e !== itemPayload.e) throw new Error('MANIFEST_FIELD_MISMATCH_EDITION');
   if (editionPayload.r !== itemPayload.r) throw new Error('MANIFEST_FIELD_MISMATCH_REVISION');

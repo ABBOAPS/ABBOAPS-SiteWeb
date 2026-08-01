@@ -26,7 +26,8 @@ export function uint8ArrayToBase64Url(bytes: Uint8Array): string {
 }
 
 export function decodeUtf8(bytes: Uint8Array): string {
-  const decoder = new TextDecoder('utf-8');
+  // Input firmati non devono essere trasformati silenziosamente in U+FFFD.
+  const decoder = new TextDecoder('utf-8', { fatal: true });
   return decoder.decode(bytes);
 }
 

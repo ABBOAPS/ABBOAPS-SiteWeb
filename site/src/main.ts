@@ -83,12 +83,14 @@ async function initApp(): Promise<void> {
     const msg = error?.message || 'UNKNOWN_ERROR';
 
     let state: UiState = 'NETWORK_ERROR';
-    if (msg === 'TOKEN_MALFORMED_SEGMENTS' || msg === 'TOKEN_UNSUPPORTED_VERSION' || msg === 'TOKEN_INVALID_KID') {
+    if (msg.startsWith('TOKEN_') || msg === 'PAYLOAD_INVALID_SCHEMA' || msg === 'PAYLOAD_INVALID_JSON') {
       state = 'TOKEN_MALFORMED';
     } else if (msg === 'SIGNATURE_INVALID' || msg === 'SIGNATURE_INVALID_LENGTH') {
       state = 'SIGNATURE_INVALID';
     } else if (msg === 'KEY_UNKNOWN') {
       state = 'KEY_UNKNOWN';
+    } else if (msg === 'MANIFEST_KEY_COMPROMISED') {
+      state = 'MANIFEST_KEY_COMPROMISED';
     } else if (msg === 'MANIFEST_NOT_FOUND') {
       state = 'MANIFEST_MISSING';
     } else if (msg === 'MANIFEST_SIGNATURE_INVALID') {

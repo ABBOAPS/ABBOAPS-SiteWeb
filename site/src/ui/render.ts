@@ -7,6 +7,7 @@ export type UiState =
   | 'VERIFIED'
   | 'VERIFIED_KEY_RETIRED'
   | 'KEY_COMPROMISED'
+  | 'MANIFEST_KEY_COMPROMISED'
   | 'SIGNATURE_INVALID'
   | 'MANIFEST_MISSING'
   | 'MANIFEST_SIGNATURE_INVALID'
@@ -202,6 +203,16 @@ export function renderUi(options: RenderOptions): void {
       const badge = createElement('div', 'badge badge-danger', '⚠️ CHIAVE PRIVATA COMPROMESSA');
       const title = createElement('h2', 'status-title text-danger', 'Avviso di Incidente di Sicurezza');
       const text = createElement('p', 'status-desc', 'La chiave di firma utilizzata per questo token è stata contrassegnata come compromessa. Non considerare l\'autenticità digitale come valida e contatta immediatamente ABBO APS.');
+      contentSection.appendChild(badge);
+      contentSection.appendChild(title);
+      contentSection.appendChild(text);
+      break;
+    }
+
+    case 'MANIFEST_KEY_COMPROMISED': {
+      const badge = createElement('div', 'badge badge-danger', '⚠️ CHIAVE MANIFESTO COMPROMESSA');
+      const title = createElement('h2', 'status-title text-danger', 'Avviso di Incidente di Sicurezza');
+      const text = createElement('p', 'status-desc', 'La chiave usata per firmare il manifesto dell’edizione è stata contrassegnata come compromessa. Non considerare questa verifica come valida e contatta ABBO APS.');
       contentSection.appendChild(badge);
       contentSection.appendChild(title);
       contentSection.appendChild(text);
