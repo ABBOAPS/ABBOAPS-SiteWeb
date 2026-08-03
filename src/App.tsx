@@ -18,6 +18,9 @@ import { Tessera } from "./pages/Tessera";
 import { TesseraCondizioni } from "./pages/TesseraCondizioni";
 import { TesseraPrivacy } from "./pages/TesseraPrivacy";
 import { TesseraPartner } from "./pages/TesseraPartner";
+import { TermsAndConditions } from "./pages/TermsAndConditions";
+import { CookiePolicy } from "./pages/CookiePolicy";
+import { AiTransparency } from "./pages/AiTransparency";
 import ConsapevolezzaDocenti from "./pages/landing/ConsapevolezzaDocenti";
 import ConsapevolezzaIstituti from "./pages/landing/ConsapevolezzaIstituti";
 import ConsapevolezzaRagazzi from "./pages/landing/ConsapevolezzaRagazzi";
@@ -28,8 +31,6 @@ import MinecraftDocenti from "./pages/landing/MinecraftDocenti";
 import MinecraftIstituti from "./pages/landing/MinecraftIstituti";
 import MinecraftRagazzi from "./pages/landing/MinecraftRagazzi";
 import siteConfig from "./config/site_config.json";
-import { TwitchLiveWidget } from "./components/TwitchLiveWidget";
-
 import { Footer } from "./components/Footer";
 
 export default function App() {
@@ -63,6 +64,9 @@ export default function App() {
           <Route path="/notizie" element={<Notizie />} />
           <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/termini-e-condizioni" element={<TermsAndConditions />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/trasparenza-ia" element={<AiTransparency />} />
           <Route path="/ambassador" element={<Ambassador />} />
           <Route path="/tessera" element={<Tessera />} />
           <Route path="/tessera/condizioni" element={<TesseraCondizioni />} />
@@ -85,8 +89,6 @@ export default function App() {
       </main>
 
       {!isTesseraPage && <Footer />}
-      {!isTesseraPage && <TwitchLiveWidget />}
     </div>
   );
 }
-

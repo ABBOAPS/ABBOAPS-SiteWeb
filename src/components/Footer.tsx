@@ -18,6 +18,9 @@ export function Footer() {
   const allLinks = [
     ...footerConfig.links,
     { label: "Privacy Policy", url: "/privacy-policy" },
+    { label: "Termini e condizioni", url: "/termini-e-condizioni" },
+    { label: "Cookie Policy", url: "/cookie-policy" },
+    { label: "Trasparenza IA", url: "/trasparenza-ia" },
     { label: "Sostienici", url: "/sostienici" }
   ];
 

@@ -1,4 +1,5 @@
 import { MailCheck, Send } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface NewsletterFormProps {
   variant?: "full" | "compact";
@@ -32,9 +33,9 @@ export function NewsletterForm({ variant = "full", className = "" }: NewsletterF
             </button>
           </div>
           <div className="flex items-start gap-2 mt-1">
-            <input type="checkbox" id="privacy-compact" required className="mt-0.5 w-3 h-3 cursor-pointer accent-[#e65100]" />
+        <input type="checkbox" id="privacy-compact" name="consent" value="newsletter" required className="mt-0.5 w-3 h-3 cursor-pointer accent-[#e65100]" />
             <label htmlFor="privacy-compact" className="text-[10px] opacity-80 leading-tight cursor-pointer">
-              Accetto la Privacy Policy per l'iscrizione.
+              Acconsento a ricevere la newsletter e ho letto la <Link to="/privacy-policy" className="underline font-bold">Privacy Policy</Link>.
             </label>
           </div>
         </div>
@@ -68,9 +69,9 @@ export function NewsletterForm({ variant = "full", className = "" }: NewsletterF
         />
         
         <div className="flex items-start gap-3 pt-2 text-left">
-          <input type="checkbox" id="privacy-full" required className="mt-1 w-4 h-4 cursor-pointer accent-[#e65100] shrink-0" />
+          <input type="checkbox" id="privacy-full" name="consent" value="newsletter" required className="mt-1 w-4 h-4 cursor-pointer accent-[#e65100] shrink-0" />
           <label htmlFor="privacy-full" className="text-sm text-[#8a3a19] font-medium leading-tight cursor-pointer">
-            Ho letto e accetto i Termini e la Privacy Policy per il trattamento dei dati ai fini dell'invio della newsletter.
+            Acconsento a ricevere la newsletter e ho letto la <Link to="/privacy-policy" className="underline font-bold">Privacy Policy</Link>.
           </label>
         </div>
         
