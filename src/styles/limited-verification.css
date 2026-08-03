@@ -1,0 +1,58 @@
+.limited-verification-page {
+  width: min(100%, 32rem);
+  margin: 0 auto;
+  padding: 1rem;
+  color: #0f172a;
+}
+
+.limited-verification-page .verifier-card {
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  background: #fff;
+  box-shadow: 0 10px 25px -5px rgb(0 0 0 / 5%);
+}
+
+.limited-verification-page .card-header,
+.limited-verification-page .card-footer {
+  padding: 1rem 1.5rem;
+  text-align: center;
+  background: #f8fafc;
+}
+
+.limited-verification-page .card-header { border-bottom: 1px solid #e2e8f0; }
+.limited-verification-page .card-footer { border-top: 1px solid #e2e8f0; }
+.limited-verification-page .brand-title { margin: 0; color: #1a365d; font-size: 1.5rem; font-weight: 800; }
+.limited-verification-page .brand-subtitle { margin: 0.25rem 0 0; color: #64748b; font-size: 0.85rem; }
+.limited-verification-page .card-body { display: flex; flex-direction: column; gap: 1rem; padding: 1.5rem; }
+.limited-verification-page .status-icon { text-align: center; font-size: 3rem; }
+.limited-verification-page .status-title { margin: 0; text-align: center; font-size: 1.2rem; font-weight: 700; }
+.limited-verification-page .status-desc { margin: 0; text-align: center; color: #64748b; font-size: 0.9rem; }
+.limited-verification-page .text-danger { color: #b91c1c; }
+.limited-verification-page .badge { display: inline-block; padding: 0.5rem 1rem; border-radius: 9999px; text-align: center; font-size: 0.9rem; font-weight: 700; }
+.limited-verification-page .badge-success { background: #dcfce7; color: #15803d; }
+.limited-verification-page .badge-warning { background: #fef3c7; color: #b45309; }
+.limited-verification-page .badge-danger { background: #fee2e2; color: #b91c1c; }
+.limited-verification-page .product-image-container { text-align: center; }
+.limited-verification-page .product-verified-image { max-width: 100%; border-radius: 0.75rem; }
+.limited-verification-page .product-title { margin: 0; font-size: 1.25rem; font-weight: 700; }
+.limited-verification-page .product-desc { margin: 0; color: #64748b; }
+.limited-verification-page .serial-box,
+.limited-verification-page .meta-grid { border-radius: 0.75rem; background: #f8fafc; }
+.limited-verification-page .serial-box { padding: 1rem; text-align: center; }
+.limited-verification-page .serial-label,
+.limited-verification-page .meta-label { display: block; color: #64748b; font-size: 0.75rem; }
+.limited-verification-page .serial-value { display: block; color: #2b6cb0; font-size: 1.5rem; font-weight: 800; }
+.limited-verification-page .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0.75rem 1rem; }
+.limited-verification-page .meta-value { display: block; font-size: 0.9rem; font-weight: 600; }
+.limited-verification-page .alert-box,
+.limited-verification-page .pairing-card { padding: 1rem; border-radius: 0.75rem; }
+.limited-verification-page .alert-info { border: 1px solid #bfdbfe; background: #eff6ff; color: #1e40af; }
+.limited-verification-page .pairing-card { border: 1px dashed #e2e8f0; }
+.limited-verification-page .pairing-form { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+.limited-verification-page .pairing-input { min-width: 0; flex: 1; padding: 0.6rem 0.75rem; border: 1px solid #e2e8f0; border-radius: 0.5rem; }
+.limited-verification-page .btn { min-height: 2.75rem; padding: 0.6rem 1rem; border: 0; border-radius: 0.5rem; background: #2b6cb0; color: #fff; font-weight: 600; }
+.limited-verification-page .info-details { border-top: 1px solid #e2e8f0; padding-top: 0.75rem; }
+.limited-verification-page .info-summary { color: #2b6cb0; cursor: pointer; font-size: 0.85rem; font-weight: 600; }
+.limited-verification-page .info-text { color: #64748b; font-size: 0.8rem; }
+.limited-verification-page .official-link { display: inline-block; min-height: 2.75rem; color: #2b6cb0; line-height: 2.75rem; text-decoration: none; font-weight: 600; }

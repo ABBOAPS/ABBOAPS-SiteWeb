@@ -15,8 +15,10 @@ export type UiState =
   | 'IMAGE_INVALID'
   | 'KEY_UNKNOWN'
   | 'TOKEN_MALFORMED'
+  | 'ITEM_NOT_FOUND'
   | 'HOST_MISMATCH'
-  | 'NETWORK_ERROR';
+  | 'NETWORK_ERROR'
+  | 'TECHNICAL_ERROR';
 
 export interface RenderOptions {
   container: HTMLElement;
@@ -24,7 +26,6 @@ export interface RenderOptions {
   itemPayload?: ProductItemPayload;
   editionPayload?: EditionPayload;
   verifiedImageBlobUrl?: string;
-  errorMessage?: string;
   onPhysicalPairingSubmit?: (code: string) => void;
   pairingConfirmed?: boolean;
   pairingError?: boolean;
@@ -42,7 +43,7 @@ function createElement<K extends keyof HTMLElementTagNameMap>(
 }
 
 export function renderUi(options: RenderOptions): void {
-  const { container, state, itemPayload, editionPayload, verifiedImageBlobUrl, errorMessage, onPhysicalPairingSubmit, pairingConfirmed, pairingError } = options;
+  const { container, state, itemPayload, editionPayload, verifiedImageBlobUrl, onPhysicalPairingSubmit, pairingConfirmed, pairingError } = options;
 
   while (container.firstChild) {
     container.removeChild(container.firstChild);
@@ -234,7 +235,9 @@ export function renderUi(options: RenderOptions): void {
     case 'MANIFEST_HASH_MISMATCH': {
       const icon = createElement('div', 'status-icon status-icon-danger', '⚠️');
       const title = createElement('h2', 'status-title text-danger', 'Errore Dati Edizione');
-      const text = createElement('p', 'status-desc', errorMessage || 'Impossibile verificare l\'integrità del manifesto dell\'edizione pubblica.');
+      const text = createElement('p', 'status-desc', state === 'MANIFEST_MISSING'
+        ? 'Il manifesto pubblico dell\'edizione non è disponibile.'
+        : 'Non è stato possibile verificare i dati pubblici dell\'edizione.');
       contentSection.appendChild(icon);
       contentSection.appendChild(title);
       contentSection.appendChild(text);
@@ -261,6 +264,16 @@ export function renderUi(options: RenderOptions): void {
       break;
     }
 
+    case 'ITEM_NOT_FOUND': {
+      const icon = createElement('div', 'status-icon status-icon-danger', '🔎');
+      const title = createElement('h2', 'status-title text-danger', 'Elemento Non Trovato');
+      const text = createElement('p', 'status-desc', 'L\'elemento richiesto non è presente nei dati pubblici disponibili.');
+      contentSection.appendChild(icon);
+      contentSection.appendChild(title);
+      contentSection.appendChild(text);
+      break;
+    }
+
     case 'HOST_MISMATCH': {
       const icon = createElement('div', 'status-icon status-icon-danger', '🛑');
       const title = createElement('h2', 'status-title text-danger', 'Host Non Autorizzato');
@@ -272,10 +285,13 @@ export function renderUi(options: RenderOptions): void {
     }
 
     case 'NETWORK_ERROR':
+    case 'TECHNICAL_ERROR':
     default: {
       const icon = createElement('div', 'status-icon status-icon-danger', '⚡');
       const title = createElement('h2', 'status-title', 'Errore di Rete o Tecnico');
-      const text = createElement('p', 'status-desc', errorMessage || 'Si è verificato un errore durante la connessione con il verificatore statico.');
+      const text = createElement('p', 'status-desc', state === 'NETWORK_ERROR'
+        ? 'Il verificatore non è riuscito a raggiungere i dati pubblici.'
+        : 'Si è verificato un errore tecnico durante la verifica.');
       contentSection.appendChild(icon);
       contentSection.appendChild(title);
       contentSection.appendChild(text);
@@ -296,6 +312,36 @@ export function renderUi(options: RenderOptions): void {
   wrapper.appendChild(footer);
 
   container.appendChild(wrapper);
+}
+
+export function stateFromVerificationError(error: unknown): UiState {
+  const code = error instanceof Error ? error.message : '';
+
+  if (code.startsWith('TOKEN_') || code === 'PAYLOAD_INVALID_SCHEMA' || code === 'PAYLOAD_INVALID_JSON') {
+    return 'TOKEN_MALFORMED';
+  }
+  if (code === 'SIGNATURE_INVALID' || code === 'SIGNATURE_INVALID_LENGTH') {
+    return 'SIGNATURE_INVALID';
+  }
+  if (code === 'KEY_UNKNOWN' || code === 'MANIFEST_KEY_UNKNOWN') {
+    return 'KEY_UNKNOWN';
+  }
+  if (code === 'MANIFEST_KEY_COMPROMISED') {
+    return 'MANIFEST_KEY_COMPROMISED';
+  }
+  if (code === 'MANIFEST_NOT_FOUND') {
+    return 'MANIFEST_MISSING';
+  }
+  if (code === 'ITEM_NOT_FOUND') {
+    return 'ITEM_NOT_FOUND';
+  }
+  if (code === 'IMAGE_INVALID' || code === 'IMAGE_INVALID_HASH') {
+    return 'IMAGE_INVALID';
+  }
+  if (code === 'KEYRING_FETCH_FAILED' || code === 'MANIFEST_FETCH_FAILED') {
+    return 'NETWORK_ERROR';
+  }
+  return 'TECHNICAL_ERROR';
 }
 
 export function removeUrlFragment(): void {

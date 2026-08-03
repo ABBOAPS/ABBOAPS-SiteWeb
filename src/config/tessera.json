@@ -2,6 +2,7 @@
   "legalPlaceholders": {
     "codiceFiscale": "94070530152",
     "sedeLegale": "Via Indipendenza 19, 20883 Mezzago (MB)",
+    "rappresentanteLegale": "Alessio Bellan",
     "email": "admin@abboaps.org",
     "pec": "abboaps@pec.it",
     "runts": "179698",
@@ -228,7 +229,7 @@
         "num": "1.",
         "heading": "Titolare del Trattamento",
         "paragraphs": [
-          "Il Titolare del trattamento dei dati personali raccolti tramite il servizio Card NFC è ABBO APS — Associazione di Promozione Sociale."
+          "Il Titolare del trattamento dei dati personali raccolti tramite il servizio Card NFC è ABBO APS — Associazione di Promozione Sociale. Il rappresentante legale e referente per la protezione dei dati è Alessio Bellan."
         ]
       },
       {

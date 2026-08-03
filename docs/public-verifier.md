@@ -8,9 +8,9 @@ Il **Verificatore Web Statico ABBO APS** è una Single Page Application (SPA) re
 
 ## Flusso Operativo Client-Side
 
-1. **Lettura del Frammento**: Quando lo smartphone legge l'NFC, apre l'URL principale contenente il token nel frammento hash:
+1. **Lettura del Frammento**: Quando lo smartphone legge l'NFC, apre l'URL principale contenente il token nella route HashRouter:
    ```text
-   https://nfc.dominio-abbo.it/#AB1.<kid>.<payload_base64url>.<signature_base64url>
+   https://abboaps.org/#/limited/AB1.<kid>.<payload_base64url>.<signature_base64url>
    ```
 2. **Parsing del Token**: L'applicazione estrae `kid`, `payload_base64url` e `signature_base64url`.
 3. **Caricamento Keyring**: Fetch del file `public/data/keyring.json` e ricerca del JWK corrispondente al `kid`.
@@ -19,7 +19,7 @@ Il **Verificatore Web Statico ABBO APS** è una Single Page Application (SPA) re
 6. **Fetch del Manifesto**: Recupero del file busta firmata dell'edizione `/data/e/<edition-id>/<revision>.json`.
 7. **Verifica della Firma del Manifesto**: Controllo della firma della busta rispetto alla chiave pubblica.
 8. **Riscontro Hash**: Calcolo di `SHA-256` dei byte del payload del manifesto e confronto con il campo `h` del token dell'item.
-9. **Rimozione dell'Hash**: Rimozione sicura del frammento dalla barra degli indirizzi tramite `history.replaceState`.
+9. **Rimozione del Token dall'URL**: Dopo l'acquisizione in memoria, il token viene rimosso dalla barra degli indirizzi tramite `history.replaceState`, lasciando attiva la route `https://abboaps.org/#/limited`.
 10. **Rendering Sicuro**: Rendering dei dati verificati tramite manipolazione DOM sicura (`textContent`).
 
 ---

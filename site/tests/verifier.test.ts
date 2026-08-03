@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { parseNfcToken } from '../src/verifier/token-parser';
 import { base64UrlToUint8Array, uint8ArrayToBase64Url, encodeUtf8, decodeUtf8 } from '../src/crypto/base64url';
-import { validateProductItemPayload } from '../src/verifier/item-verifier';
+import { validateProductItemPayload, verifyItemToken, Keyring } from '../src/verifier/item-verifier';
 import { validateEditionEnvelope, validateEditionPayload, verifyEditionManifest } from '../src/verifier/edition-verifier';
 
 describe('Base64URL Utilities', () => {
@@ -46,6 +46,56 @@ describe('Token Parser AB1', () => {
 
   it('dovrebbe rifiutare Base64URL con lunghezza impossibile', () => {
     expect(() => parseNfcToken(`AB1.k2099-01-test.A.${'A'.repeat(86)}`)).toThrow('TOKEN_INVALID_PAYLOAD_B64');
+  });
+
+  it('dovrebbe rifiutare caratteri non ammessi nel token pubblico', () => {
+    expect(() => parseNfcToken(` AB1.k2099-01-test.eyJ2IjoxfQ.${'A'.repeat(86)}`)).toThrow('TOKEN_INVALID_CHARACTERS');
+    expect(() => parseNfcToken(`AB1.k2099-01-test.eyJ2IjoxfQ.${'A'.repeat(86)}!`)).toThrow('TOKEN_INVALID_SIGNATURE_LENGTH');
+  });
+});
+
+describe('Verifica firma item AB1', () => {
+  async function createSignedToken() {
+    const kid = 'k2026-test';
+    const keyPair = await crypto.subtle.generateKey(
+      { name: 'ECDSA', namedCurve: 'P-256' },
+      true,
+      ['sign', 'verify'],
+    );
+    const payload = {
+      v: 1, t: 'p', iss: 'ABBO APS', aud: 'ABBO-PRODUCT-VERIFY-V1',
+      e: 'ed_1234567890abcdef', r: 1, h: 'A'.repeat(43), s: 1, n: 10,
+      i: 'it_1234567890abcdef', d: '2026-07-28',
+    };
+    const payloadB64 = uint8ArrayToBase64Url(encodeUtf8(JSON.stringify(payload)));
+    const signedContent = `AB1.${kid}.${payloadB64}`;
+    const signature = new Uint8Array(await crypto.subtle.sign(
+      { name: 'ECDSA', hash: 'SHA-256' },
+      keyPair.privateKey,
+      encodeUtf8(signedContent),
+    ));
+    const token = `${signedContent}.${uint8ArrayToBase64Url(signature)}`;
+    const jwk = await crypto.subtle.exportKey('jwk', keyPair.publicKey);
+    return {
+      token,
+      keyring: {
+        schemaVersion: 1,
+        keys: [{ kid, alg: 'ES256', status: 'active' as const, createdAt: '2026-07-28T13:00:00Z', jwk: jwk as Keyring['keys'][number]['jwk'] }],
+      } satisfies Keyring,
+    };
+  }
+
+  it('accetta la firma valida del vettore dummy pubblico', async () => {
+    const { token, keyring } = await createSignedToken();
+    await expect(verifyItemToken(parseNfcToken(token), keyring)).resolves.toMatchObject({ valid: true });
+  });
+
+  it('rifiuta una firma non valida senza esporre il token', async () => {
+    const { token, keyring } = await createSignedToken();
+    const parts = token.split('.');
+    parts[2] = `${parts[2].slice(0, -1)}A`;
+    const tamperedToken = parts.join('.');
+    await expect(verifyItemToken(parseNfcToken(tamperedToken), keyring)).rejects.toThrow('SIGNATURE_INVALID');
   });
 });
 

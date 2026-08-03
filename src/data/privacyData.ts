@@ -9,6 +9,8 @@ Questa informativa descrive come ABBO APS tratta i dati personali attraverso il 
 
 Il Titolare del trattamento è **ABBO APS — Associazione di Promozione Sociale**, con sede legale in **Via Indipendenza 19, 20883 Mezzago (MB), Italia**, codice fiscale **94070530152**.
 
+Il **rappresentante legale e referente per la protezione dei dati** è **Alessio Bellan**.
+
 Per informazioni sul trattamento o per esercitare i tuoi diritti puoi scrivere a **admin@abboaps.org**. Per comunicazioni istituzionali è disponibile anche **info@abboaps.it**. PEC: **abboaps@pec.it**.
 
 ABBO APS non ha indicato un Responsabile della protezione dei dati (DPO) per i trattamenti descritti in questa informativa. Se tale figura verrà nominata, i suoi contatti saranno pubblicati in questa pagina.
@@ -43,16 +45,45 @@ I token QR sono progettati per non contenere direttamente dati personali. La ver
 
 ## 3. Finalità e basi giuridiche
 
-| Finalità | Dati principali | Base giuridica indicativa |
-|---|---|---|
-| Rispondere a richieste di contatto | Nome, email, messaggio | Misure precontrattuali o legittimo interesse a rispondere |
-| Gestire candidatura, ammissione e rapporto associativo | Anagrafica, contatti, codice fiscale, nascita, indirizzo, iscrizione | Rapporto associativo e obblighi applicabili |
-| Gestire quote, donazioni e ricevute | Dati associativi, importi, metodo e riferimenti dell’operazione | Obblighi amministrativi/contabili e gestione del rapporto |
-| Consentire accesso, sicurezza e MFA | Email, dati Auth, sessioni, fattori di sicurezza | Esecuzione del rapporto e legittimo interesse alla sicurezza |
-| Gestire tessere, QR, revoche e verifiche | Identificativi della tessera, token e stato associativo | Esecuzione del rapporto e legittimo interesse alla prevenzione degli abusi |
-| Inviare comunicazioni di servizio | Email, notifiche push, preferenze | Esecuzione del rapporto associativo e legittimo interesse organizzativo |
-| Inviare newsletter | Email e nome facoltativo | Consenso, revocabile in ogni momento |
-| Gestire sicurezza, audit e incidenti | Log tecnici e amministrativi | Legittimo interesse alla sicurezza e alla difesa dei diritti |
+### Contatto e richieste
+
+- **Dati:** nome, email e messaggio.
+- **Base giuridica indicativa:** misure precontrattuali o legittimo interesse a rispondere.
+
+### Rapporto associativo e candidatura
+
+- **Dati:** anagrafica, contatti, codice fiscale, dati di nascita, indirizzo e iscrizione.
+- **Base giuridica indicativa:** rapporto associativo e obblighi applicabili.
+
+### Quote, donazioni e ricevute
+
+- **Dati:** dati associativi, importi, metodo e riferimenti dell’operazione.
+- **Base giuridica indicativa:** obblighi amministrativi/contabili e gestione del rapporto.
+
+### Accesso, sicurezza e MFA
+
+- **Dati:** email, dati Auth, sessioni e fattori di sicurezza.
+- **Base giuridica indicativa:** esecuzione del rapporto e legittimo interesse alla sicurezza.
+
+### Tessere, QR, revoche e verifiche
+
+- **Dati:** identificativi della tessera, token e stato associativo.
+- **Base giuridica indicativa:** esecuzione del rapporto e legittimo interesse alla prevenzione degli abusi.
+
+### Comunicazioni di servizio
+
+- **Dati:** email, notifiche push e preferenze.
+- **Base giuridica indicativa:** esecuzione del rapporto associativo e legittimo interesse organizzativo.
+
+### Newsletter
+
+- **Dati:** email e nome facoltativo.
+- **Base giuridica:** consenso, revocabile in ogni momento.
+
+### Sicurezza, audit e incidenti
+
+- **Dati:** log tecnici e amministrativi.
+- **Base giuridica indicativa:** legittimo interesse alla sicurezza e alla difesa dei diritti.
 
 Le basi giuridiche sono indicate in modo generale e devono essere mantenute coerenti con il Registro dei trattamenti, lo Statuto, la contabilità e le procedure interne effettivamente adottate.
 

@@ -6,8 +6,8 @@
     "website": "https://abboaps.it"
   },
   "verification": {
-    "baseUrl": "https://nfc.abboaps.it/",
-    "allowedHosts": ["nfc.abboaps.it", "abboaps.github.io", "localhost", "127.0.0.1"],
+    "baseUrl": "https://abboaps.org/",
+    "allowedHosts": ["abboaps.org", "www.abboaps.org", "abboaps.github.io", "localhost", "127.0.0.1"],
     "audience": "ABBO-PRODUCT-VERIFY-V1",
     "tokenPrefix": "AB1",
     "removeFragmentAfterRead": true,

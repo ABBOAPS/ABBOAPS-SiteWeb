@@ -12,13 +12,13 @@
 ### FASE 1 — Scrittura del Tag NFC
 1. Apri l'app **NFC Tools** sul tuo smartphone.
 2. Seleziona **Scrivi** -> **Aggiungi un campo** -> **URL / URI**.
-3. Incolla l'URL completo firmato generato dal programma (es. `https://www.abboaps.org/nfc/#AB1.k2099-01-test...`).
+3. Incolla l'URL completo firmato generato dal programma (es. `https://abboaps.org/#/limited/AB1.k2099-01-test...`).
 4. Premi **Scrivi / Write** e avvicina il tag NFC alla parte posteriore dello smartphone finché non ricevi il segnale di conferma (suono/vibrazione).
 
 ### FASE 2 — Collaudo di Rilettura e Verifica Web
 1. Chiudi l'applicazione NFC Tools.
 2. Avvicina lo smartphone al tag appena scritto per provocare l'apertura automatica del browser.
-3. Verifica che il browser apra la pagina ufficiale `https://www.abboaps.org/nfc/`.
+3. Verifica che il browser apra la pagina ufficiale `https://abboaps.org/#/limited`.
 4. Controlla che compaia il badge:
    > **Codice digitale ABBO APS verificato**  
    > Poster Festival Abbiamo 1 — TEST  

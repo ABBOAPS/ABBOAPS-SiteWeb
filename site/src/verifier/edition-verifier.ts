@@ -207,11 +207,10 @@ export async function verifyEditionManifest(
         const blob = new Blob([imgBuffer], { type: 'image/webp' });
         verifiedImageBlobUrl = URL.createObjectURL(blob);
       } else {
-        console.warn('⚠️ Immagine alterata o hash non coincidente:', imgHashB64, 'vs', editionPayload.image.sha256);
         throw new Error('IMAGE_INVALID_HASH');
       }
     } catch (imgErr) {
-      console.warn('⚠️ Errore durante la verifica dell\'immagine autenticata:', imgErr);
+      void imgErr;
       throw new Error('IMAGE_INVALID');
     }
   }

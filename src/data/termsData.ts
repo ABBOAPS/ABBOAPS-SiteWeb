@@ -7,7 +7,7 @@ export const termsMarkdown = `
 
 Questi Termini disciplinano l’uso del sito **www.abboaps.org**, dei contenuti pubblicati da ABBO APS e del servizio digitale **ABBO APP**. Le regole associative dello Statuto e le deliberazioni degli organi dell’associazione prevalgono sulle presenti condizioni quando disciplinano il rapporto associativo.
 
-Il servizio è gestito da **ABBO APS — Associazione di Promozione Sociale**, Via Indipendenza 19, 20883 Mezzago (MB), CF 94070530152. Contatti: **admin@abboaps.org**, **info@abboaps.it**, PEC **abboaps@pec.it**.
+Il servizio è gestito da **ABBO APS — Associazione di Promozione Sociale**, Via Indipendenza 19, 20883 Mezzago (MB), CF 94070530152. Il rappresentante legale è **Alessio Bellan**. Contatti: **admin@abboaps.org**, **info@abboaps.it**, PEC **abboaps@pec.it**.
 
 ## 2. Uso del sito
 

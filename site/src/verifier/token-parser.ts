@@ -25,11 +25,15 @@ export function parseNfcToken(
 ): ParsedToken {
   // Rimuovi eventuale '#' iniziale
   const tokenString = rawHashFragment.startsWith('#')
-    ? rawHashFragment.slice(1).trim()
-    : rawHashFragment.trim();
+    ? rawHashFragment.slice(1)
+    : rawHashFragment;
 
   if (!tokenString) {
     throw new Error('TOKEN_EMPTY');
+  }
+
+  if (tokenString !== tokenString.trim()) {
+    throw new Error('TOKEN_INVALID_CHARACTERS');
   }
 
   const maxTokenLength = options.maxTokenLength ?? DEFAULT_MAX_TOKEN_LENGTH;

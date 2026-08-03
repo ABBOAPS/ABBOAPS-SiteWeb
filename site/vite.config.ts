@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
 export default defineConfig({
-  base: process.env.VITE_BASE_URL || '/',
+  base: process.env.VITE_BASE_URL || './',
   build: {
     outDir: 'dist',
     sourcemap: false, // Disabilitata in produzione per sicurezza

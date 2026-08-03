@@ -32,6 +32,7 @@ import MinecraftIstituti from "./pages/landing/MinecraftIstituti";
 import MinecraftRagazzi from "./pages/landing/MinecraftRagazzi";
 import siteConfig from "./config/site_config.json";
 import { Footer } from "./components/Footer";
+import { LimitedVerification, LimitedVerificationRoute } from "./pages/LimitedVerification";
 
 export default function App() {
   const location = useLocation();
@@ -41,6 +42,7 @@ export default function App() {
   }, [location.pathname]);
 
   const isTesseraPage = location.pathname.startsWith("/tessera");
+  const isLimitedVerificationPage = location.pathname === "/limited" || location.pathname.startsWith("/limited/");
 
   return (
     <div 
@@ -48,7 +50,7 @@ export default function App() {
       style={{ backgroundColor: siteConfig.theme.background.base, backgroundImage: siteConfig.theme.background.gradient, color: siteConfig.theme.text.primary }}
     >
       {/* Primary Top Navigation */}
-      {!isTesseraPage && <Topbar />}
+      {!isTesseraPage && !isLimitedVerificationPage && <Topbar />}
 
       <main className="flex-1 relative z-10">
         <Routes>
@@ -72,6 +74,8 @@ export default function App() {
           <Route path="/tessera/condizioni" element={<TesseraCondizioni />} />
           <Route path="/tessera/privacy" element={<TesseraPrivacy />} />
           <Route path="/tessera/partner" element={<TesseraPartner />} />
+          <Route path="/limited" element={<LimitedVerification />} />
+          <Route path="/limited/:token" element={<LimitedVerificationRoute />} />
           
           {/* Landing Pages */}
           <Route path="/landing/consapevolezza-docenti" element={<ConsapevolezzaDocenti />} />
@@ -88,7 +92,7 @@ export default function App() {
         </Routes>
       </main>
 
-      {!isTesseraPage && <Footer />}
+      {!isTesseraPage && !isLimitedVerificationPage && <Footer />}
     </div>
   );
 }

@@ -52,7 +52,7 @@ jobs:
           cd site
           npm ci
           npm run test
-          VITE_BASE_URL=/ npm run build
+          VITE_BASE_URL=./ npm run build
 
       - name: Integrate NFC Verifiers into dist/nfc/ and dist/tessera/
         run: |

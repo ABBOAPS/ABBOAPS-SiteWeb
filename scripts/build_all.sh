@@ -21,7 +21,7 @@ echo "4. Build Verificatori Web Statici (/nfc/ e /tessera/)..."
 cd "$REPO_ROOT/site"
 if [ -d "node_modules" ]; then
   npm run test
-  VITE_BASE_URL=/ npm run build
+  VITE_BASE_URL=./ npm run build
 else
   echo "⚠️ node_modules non presenti in site/. Esegui 'npm install' dentro site/ prima della build."
 fi

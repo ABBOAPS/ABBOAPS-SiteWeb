@@ -5,7 +5,7 @@ Prima di eseguire il comando di produzione per i 200 poster del Festival Abbiamo
 ---
 
 ## 1. Verifiche Infrastrutturali e di Dominio
-- [ ] Il dominio ufficiale HTTPS (`https://www.abboaps.org/nfc/`) è attivo, raggiungibile e protetto da certificato SSL valido.
+- [ ] Il dominio ufficiale HTTPS (`https://abboaps.org/#/limited`) è attivo, raggiungibile e protetto da certificato SSL valido.
 - [ ] Il workflow GitHub Actions `deploy.yml` è l'unico attivo per GitHub Pages e compila correttamente il sito principale + il verificatore in `/nfc/`.
 - [ ] Il file `site/public/data/keyring.json` contiene la chiave pubblica ufficiale attiva e non sono presenti chiavi o dati di test.
 

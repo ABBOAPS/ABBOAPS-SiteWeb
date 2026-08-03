@@ -9,8 +9,8 @@ Repository ufficiale di **ABBO APS** per la pubblicazione del sito web dell'asso
 Questo repository contiene il sito web principale dell'associazione ABBO APS, sviluppato come applicazione staticamente compilata e pubblicata tramite **GitHub Pages**.
 
 - **Dominio Ufficiale**: `https://www.abboaps.org`
-- **Sezione NFC Verificatore**: `https://www.abboaps.org/nfc/`
-- **Deployment**: Unica pipeline integrata tramite GitHub Actions (`.github/workflows/deploy.yml`) che compila il sito principale ed integra la sottocartella `/nfc/`.
+- **Percorso canonico di verifica**: `https://abboaps.org/#/limited`
+- **Compatibilità NFC legacy**: la pipeline integra anche il verificatore statico nella sottocartella `/nfc/` per gli URL già prodotti.
 
 ---
 
@@ -19,9 +19,9 @@ Questo repository contiene il sito web principale dell'associazione ABBO APS, sv
 Il verificatore di autenticità per i prodotti fisici ABBO APS (poster, capi o gadget numerati) è un'applicazione **100% statica** che gira interamente nel browser del visitatore.
 
 ### Principio di Funzionamento
-1. **Ogni esemplare ha un tag NFC**: Il tag NFC contiene un URL univoco firmato digitalmente (es. `https://www.abboaps.org/nfc/#AB1.<kid>.<payload_base64url>.<signature_base64url>`).
+1. **Ogni esemplare ha un tag NFC**: Il tag NFC contiene un URL univoco firmato digitalmente (es. `https://abboaps.org/#/limited/AB1.<kid>.<payload_base64url>.<signature_base64url>`).
 2. **Scansione con Smartphone**: Avvicinando lo smartphone al prodotto fisicamente numerato (es. *Esemplare 20 di 200*), si apre il browser sulla pagina del verificatore.
-3. **Verifica Crittografica Locale**: Il codice JavaScript legge la firma ECDSA P-256 nel frammento URL (`#`), la verifica con la chiave pubblica dell'associazione presente in `data/keyring.json` e confronta l'hash SHA-256 del manifesto dell'edizione.
+3. **Verifica Crittografica Locale**: Il codice JavaScript legge la firma ECDSA P-256 del token nella route, la verifica con la chiave pubblica dell'associazione presente in `data/keyring.json` e confronta l'hash SHA-256 del manifesto dell'edizione.
 4. **Nessun Database Pubblico**: L'integrità è garantita dalla firma crittografica. Non esiste un database pubblico e nessuna informazione privata o tracciamento viene inviato al server.
 
 ---
@@ -66,7 +66,7 @@ python3 -m abbo_nfc_studio.cli create-edition \
   --quantity 200 \
   --date 2026-09-01 \
   --image /percorso/al/tuo/poster_2026.png \
-  --base-url https://www.abboaps.org/nfc/ \
+  --base-url https://abboaps.org \
   --chip NTAG215
 ```
 *(Se desideri generare anche i file di immagine PNG/SVG dei QR Code, aggiungi il flag facoltativo `--generate-qr`).*
@@ -91,7 +91,7 @@ git add site/public/
 git commit -m "feat: Pubblicazione manifesto ed edizione 2026 (200 poster)"
 git push origin main
 ```
-*La pipeline GitHub Actions pubblicherà automaticamente il verificatore aggiornato su `https://www.abboaps.org/nfc/`.*
+*La pipeline GitHub Actions pubblicherà automaticamente il verificatore aggiornato. Gli URL già scritti con `https://www.abboaps.org/nfc/#AB1...` restano supportati come alias compatibile.*
 
 ---
 

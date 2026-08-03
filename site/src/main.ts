@@ -2,7 +2,8 @@ import './styles/main.css';
 import { verifyEditionManifest } from './verifier/edition-verifier';
 import { fetchKeyring, verifyItemToken } from './verifier/item-verifier';
 import { parseNfcToken } from './verifier/token-parser';
-import { removeUrlFragment, renderUi, UiState } from './ui/render';
+import { readVerificationTokenFromHash } from './verifier/verification-url';
+import { removeUrlFragment, renderUi, stateFromVerificationError, UiState } from './ui/render';
 import { encodeUtf8, uint8ArrayToBase64Url } from './crypto/base64url';
 import { sha256Bytes } from './crypto/web-crypto';
 
@@ -10,10 +11,11 @@ async function initApp(): Promise<void> {
   const container = document.getElementById('app');
   if (!container) return;
 
-  const baseUrl = import.meta.env.BASE_URL || '/nfc/';
+  const baseUrl = new URL(import.meta.env.BASE_URL || './', document.baseURI).toString();
   const hashFragment = window.location.hash;
+  const tokenFromHash = readVerificationTokenFromHash(hashFragment);
 
-  if (!hashFragment || hashFragment === '#' || hashFragment === '') {
+  if (!tokenFromHash) {
     renderUi({ container, state: 'TOKEN_MISSING' });
     return;
   }
@@ -21,7 +23,7 @@ async function initApp(): Promise<void> {
   renderUi({ container, state: 'LOADING' });
 
   try {
-    const parsedToken = parseNfcToken(hashFragment);
+    const parsedToken = parseNfcToken(tokenFromHash);
     removeUrlFragment();
 
     const keyring = await fetchKeyring(baseUrl);
@@ -78,30 +80,9 @@ async function initApp(): Promise<void> {
 
     renderCurrentState();
 
-  } catch (error: any) {
-    console.error('Errore di verifica NFC:', error);
-    const msg = error?.message || 'UNKNOWN_ERROR';
-
-    let state: UiState = 'NETWORK_ERROR';
-    if (msg.startsWith('TOKEN_') || msg === 'PAYLOAD_INVALID_SCHEMA' || msg === 'PAYLOAD_INVALID_JSON') {
-      state = 'TOKEN_MALFORMED';
-    } else if (msg === 'SIGNATURE_INVALID' || msg === 'SIGNATURE_INVALID_LENGTH') {
-      state = 'SIGNATURE_INVALID';
-    } else if (msg === 'KEY_UNKNOWN') {
-      state = 'KEY_UNKNOWN';
-    } else if (msg === 'MANIFEST_KEY_COMPROMISED') {
-      state = 'MANIFEST_KEY_COMPROMISED';
-    } else if (msg === 'MANIFEST_NOT_FOUND') {
-      state = 'MANIFEST_MISSING';
-    } else if (msg === 'MANIFEST_SIGNATURE_INVALID') {
-      state = 'MANIFEST_SIGNATURE_INVALID';
-    } else if (msg === 'MANIFEST_HASH_MISMATCH') {
-      state = 'MANIFEST_HASH_MISMATCH';
-    } else if (msg === 'IMAGE_INVALID' || msg === 'IMAGE_INVALID_HASH') {
-      state = 'IMAGE_INVALID';
-    }
-
-    renderUi({ container, state, errorMessage: msg });
+  } catch (error: unknown) {
+    const state: UiState = stateFromVerificationError(error);
+    renderUi({ container, state });
   }
 }
 
