@@ -11,7 +11,7 @@ Il Titolare del trattamento è **ABBO APS — Associazione di Promozione Sociale
 
 Il **rappresentante legale e referente per la protezione dei dati** è **Alessio Bellan**.
 
-Per informazioni sul trattamento o per esercitare i tuoi diritti puoi scrivere a **admin@abboaps.org**. Per comunicazioni istituzionali è disponibile anche **info@abboaps.it**. PEC: **abboaps@pec.it**.
+Per informazioni sul trattamento o per esercitare i tuoi diritti puoi scrivere a **admin@abboaps.org**. Per comunicazioni istituzionali è disponibile anche **info@abboaps.org**. PEC: **abboaps@pec.it**.
 
 ABBO APS non ha indicato un Responsabile della protezione dei dati (DPO) per i trattamenti descritti in questa informativa. Se tale figura verrà nominata, i suoi contatti saranno pubblicati in questa pagina.
 

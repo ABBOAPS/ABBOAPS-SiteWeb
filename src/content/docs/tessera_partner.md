@@ -73,6 +73,6 @@ Le condizioni economiche, le percentuali di sconto ed i prodotti esclusi sono de
 
 ## 11. Contatti dedicati ai partner
 
-- **Assistenza Partner:** `[EMAIL]`
+- **Assistenza Partner:** `info@abboaps.org`
 - **Segnalazione Abusi / Anomalie:** `[CANALE SEGNALAZIONE ABUSI PARTNER]`
 - **Contatto Privacy:** `[CONTATTO PRIVACY]`

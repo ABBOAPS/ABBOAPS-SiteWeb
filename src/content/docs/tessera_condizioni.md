@@ -83,6 +83,6 @@ Per qualsiasi comunicazione, segnalazione di smarrimento o richiesta relativa al
 - **Ente:** ABBO APS — Associazione di Promozione Sociale
 - **Codice Fiscale:** `[CODICE FISCALE ABBO APS]`
 - **Sede Legale:** `[SEDE LEGALE]`
-- **Email Ufficiale:** `[EMAIL]`
+- **Email Ufficiale:** `info@abboaps.org`
 - **PEC:** `[PEC]`
 - **RUNTS:** `[NUMERO RUNTS, SE APPLICABILE]`

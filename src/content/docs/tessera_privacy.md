@@ -10,7 +10,7 @@ Il Titolare del trattamento dei dati personali raccolti tramite il servizio Card
 - **Denominazione:** ABBO APS — Associazione di Promozione Sociale
 - **Codice Fiscale:** `[CODICE FISCALE ABBO APS]`
 - **Sede Legale:** `[SEDE LEGALE]`
-- **Email Ufficiale:** `[EMAIL]`
+- **Email Ufficiale:** `info@abboaps.org`
 - **PEC:** `[PEC]`
 - **Contatto Privacy:** `[CONTATTO PRIVACY]`
 - **RUNTS:** `[NUMERO RUNTS, SE APPLICABILE]`
