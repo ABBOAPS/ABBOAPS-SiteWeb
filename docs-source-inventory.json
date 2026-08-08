@@ -1,0 +1,17 @@
+{
+  "generatedFor": "ABBO Docs",
+  "lastVerified": "2026-08-08",
+  "sourceRepository": "APP SOCI",
+  "targetRepository": "ABBOAPS-SiteWeb",
+  "features": [
+    { "feature": "soci", "implementationStatus": "implemented", "publiclyDocumentable": true, "needsSanitization": true },
+    { "feature": "ricevute", "implementationStatus": "partial", "publiclyDocumentable": true, "needsSanitization": true },
+    { "feature": "economia", "implementationStatus": "partial", "publiclyDocumentable": true, "needsSanitization": true },
+    { "feature": "libro-soci", "implementationStatus": "partial", "publiclyDocumentable": true, "needsSanitization": true },
+    { "feature": "volontari", "implementationStatus": "partial", "publiclyDocumentable": true, "needsSanitization": true },
+    { "feature": "tessera-nfc", "implementationStatus": "partial", "publiclyDocumentable": true, "needsSanitization": true },
+    { "feature": "api-card-pubblica", "implementationStatus": "partial", "publiclyDocumentable": true, "needsSanitization": true },
+    { "feature": "pwa", "implementationStatus": "implemented", "publiclyDocumentable": true, "needsSanitization": true },
+    { "feature": "rendiconto-ets", "implementationStatus": "planned", "publiclyDocumentable": true, "needsSanitization": true }
+  ]
+}

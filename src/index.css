@@ -21,6 +21,15 @@ body {
   overflow-x: hidden;
 }
 
+.app-loading {
+  display: grid;
+  min-height: 50vh;
+  place-items: center;
+  padding: 2rem;
+  color: #4a1c0d;
+  font-weight: 700;
+}
+
 /* Claymorphism Global Utilities */
 .clay-card {
   border-radius: 2rem !important;

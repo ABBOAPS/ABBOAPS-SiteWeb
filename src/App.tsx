@@ -1,38 +1,41 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { Topbar } from "./components/Topbar";
-import { Home } from "./pages/Home";
-import { ChiSiamo } from "./pages/ChiSiamo";
-import { Team } from "./pages/Team";
-import { Sostienici } from "./pages/Sostienici";
-import { Contatti } from "./pages/Contatti";
-import { Documenti } from "./pages/Documenti";
-import { DocumentViewer } from "./pages/DocumentViewer";
-import { BalanceViewer } from "./pages/BalanceViewer";
-import { Notizie } from "./pages/Notizie";
-import { NewsDetail } from "./pages/NewsDetail";
-import { NotFound } from "./pages/NotFound";
-import { PrivacyPolicy } from "./pages/PrivacyPolicy";
-import { Ambassador } from "./pages/Ambassador";
-import { Tessera } from "./pages/Tessera";
-import { TesseraCondizioni } from "./pages/TesseraCondizioni";
-import { TesseraPrivacy } from "./pages/TesseraPrivacy";
-import { TesseraPartner } from "./pages/TesseraPartner";
-import { TermsAndConditions } from "./pages/TermsAndConditions";
-import { CookiePolicy } from "./pages/CookiePolicy";
-import { AiTransparency } from "./pages/AiTransparency";
-import ConsapevolezzaDocenti from "./pages/landing/ConsapevolezzaDocenti";
-import ConsapevolezzaIstituti from "./pages/landing/ConsapevolezzaIstituti";
-import ConsapevolezzaRagazzi from "./pages/landing/ConsapevolezzaRagazzi";
-import LegoDocenti from "./pages/landing/LegoDocenti";
-import LegoIstituti from "./pages/landing/LegoIstituti";
-import LegoRagazzi from "./pages/landing/LegoRagazzi";
-import MinecraftDocenti from "./pages/landing/MinecraftDocenti";
-import MinecraftIstituti from "./pages/landing/MinecraftIstituti";
-import MinecraftRagazzi from "./pages/landing/MinecraftRagazzi";
 import siteConfig from "./config/site_config.json";
 import { Footer } from "./components/Footer";
-import { LimitedVerification, LimitedVerificationRoute } from "./pages/LimitedVerification";
+
+const Home = lazy(() => import("./pages/Home").then(({ Home }) => ({ default: Home })));
+const ChiSiamo = lazy(() => import("./pages/ChiSiamo").then(({ ChiSiamo }) => ({ default: ChiSiamo })));
+const Team = lazy(() => import("./pages/Team").then(({ Team }) => ({ default: Team })));
+const Sostienici = lazy(() => import("./pages/Sostienici").then(({ Sostienici }) => ({ default: Sostienici })));
+const Contatti = lazy(() => import("./pages/Contatti").then(({ Contatti }) => ({ default: Contatti })));
+const Documenti = lazy(() => import("./pages/Documenti").then(({ Documenti }) => ({ default: Documenti })));
+const DocumentViewer = lazy(() => import("./pages/DocumentViewer").then(({ DocumentViewer }) => ({ default: DocumentViewer })));
+const BalanceViewer = lazy(() => import("./pages/BalanceViewer").then(({ BalanceViewer }) => ({ default: BalanceViewer })));
+const Notizie = lazy(() => import("./pages/Notizie").then(({ Notizie }) => ({ default: Notizie })));
+const NewsDetail = lazy(() => import("./pages/NewsDetail").then(({ NewsDetail }) => ({ default: NewsDetail })));
+const NotFound = lazy(() => import("./pages/NotFound").then(({ NotFound }) => ({ default: NotFound })));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy").then(({ PrivacyPolicy }) => ({ default: PrivacyPolicy })));
+const Ambassador = lazy(() => import("./pages/Ambassador").then(({ Ambassador }) => ({ default: Ambassador })));
+const Tessera = lazy(() => import("./pages/Tessera").then(({ Tessera }) => ({ default: Tessera })));
+const TesseraCondizioni = lazy(() => import("./pages/TesseraCondizioni").then(({ TesseraCondizioni }) => ({ default: TesseraCondizioni })));
+const TesseraPrivacy = lazy(() => import("./pages/TesseraPrivacy").then(({ TesseraPrivacy }) => ({ default: TesseraPrivacy })));
+const TesseraPartner = lazy(() => import("./pages/TesseraPartner").then(({ TesseraPartner }) => ({ default: TesseraPartner })));
+const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions").then(({ TermsAndConditions }) => ({ default: TermsAndConditions })));
+const CookiePolicy = lazy(() => import("./pages/CookiePolicy").then(({ CookiePolicy }) => ({ default: CookiePolicy })));
+const AiTransparency = lazy(() => import("./pages/AiTransparency").then(({ AiTransparency }) => ({ default: AiTransparency })));
+const LimitedVerification = lazy(() => import("./pages/LimitedVerification").then(({ LimitedVerification }) => ({ default: LimitedVerification })));
+const LimitedVerificationRoute = lazy(() => import("./pages/LimitedVerification").then(({ LimitedVerificationRoute }) => ({ default: LimitedVerificationRoute })));
+const ConsapevolezzaDocenti = lazy(() => import("./pages/landing/ConsapevolezzaDocenti"));
+const ConsapevolezzaIstituti = lazy(() => import("./pages/landing/ConsapevolezzaIstituti"));
+const ConsapevolezzaRagazzi = lazy(() => import("./pages/landing/ConsapevolezzaRagazzi"));
+const LegoDocenti = lazy(() => import("./pages/landing/LegoDocenti"));
+const LegoIstituti = lazy(() => import("./pages/landing/LegoIstituti"));
+const LegoRagazzi = lazy(() => import("./pages/landing/LegoRagazzi"));
+const MinecraftDocenti = lazy(() => import("./pages/landing/MinecraftDocenti"));
+const MinecraftIstituti = lazy(() => import("./pages/landing/MinecraftIstituti"));
+const MinecraftRagazzi = lazy(() => import("./pages/landing/MinecraftRagazzi"));
+const Docs = lazy(() => import("./docs/Docs").then((module) => ({ default: module.Docs })));
 
 export default function App() {
   const location = useLocation();
@@ -53,6 +56,7 @@ export default function App() {
       {!isTesseraPage && !isLimitedVerificationPage && <Topbar />}
 
       <main className="flex-1 relative z-10">
+        <Suspense fallback={<div className="app-loading" role="status">Caricamento pagina…</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/chi-siamo" element={<ChiSiamo />} />
@@ -76,6 +80,7 @@ export default function App() {
           <Route path="/tessera/partner" element={<TesseraPartner />} />
           <Route path="/limited" element={<LimitedVerification />} />
           <Route path="/limited/:token" element={<LimitedVerificationRoute />} />
+          <Route path="/docs/*" element={<Docs />} />
           
           {/* Landing Pages */}
           <Route path="/landing/consapevolezza-docenti" element={<ConsapevolezzaDocenti />} />
@@ -90,6 +95,7 @@ export default function App() {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
       </main>
 
       {!isTesseraPage && !isLimitedVerificationPage && <Footer />}

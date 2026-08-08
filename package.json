@@ -9,6 +9,10 @@
     "typecheck": "tsc --noEmit",
     "build": "vite build",
     "preview": "vite preview",
+    "docs:validate": "node scripts/validate-docs.mjs validate",
+    "docs:check-links": "node scripts/validate-docs.mjs check-links",
+    "docs:public-safety": "node scripts/validate-docs.mjs public-safety",
+    "docs:check-pii": "node scripts/validate-docs.mjs check-pii",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"
   },
