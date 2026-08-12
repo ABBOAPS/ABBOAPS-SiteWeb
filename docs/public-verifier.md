@@ -8,6 +8,14 @@ Il **Verificatore Web Statico ABBO APS** è una Single Page Application (SPA) re
 
 ## Flusso Operativo Client-Side
 
+Per vedere l’aspetto della pagina senza un token reale è disponibile l’anteprima:
+
+```text
+https://abboaps.org/#/limited/demo
+```
+
+La demo genera placeholder casuali solo nel browser, non verifica firme, non carica manifesti e non rappresenta un’autenticità reale.
+
 1. **Lettura del Frammento**: Quando lo smartphone legge l'NFC, apre l'URL principale contenente il token nella route HashRouter:
    ```text
    https://abboaps.org/#/limited/AB1.<kid>.<payload_base64url>.<signature_base64url>

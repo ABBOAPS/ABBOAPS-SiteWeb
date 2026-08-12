@@ -10,6 +10,7 @@ Questo repository contiene il sito web principale dell'associazione ABBO APS, sv
 
 - **Dominio Ufficiale**: `https://www.abboaps.org`
 - **Percorso canonico di verifica**: `https://abboaps.org/#/limited`
+- **Anteprima demo**: `https://abboaps.org/#/limited/demo` — mostra dati sintetici casuali e non esegue una verifica reale.
 - **Compatibilità NFC legacy**: la pipeline integra anche il verificatore statico nella sottocartella `/nfc/` per gli URL già prodotti.
 
 ---
