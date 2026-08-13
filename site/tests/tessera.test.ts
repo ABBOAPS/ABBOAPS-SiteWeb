@@ -149,7 +149,10 @@ describe('API Client e Validatore Risposte API', () => {
 
 describe('Sicurezza Link Tree Galleria', () => {
   it('dovrebbe consentire esclusivamente i protocolli https: e mailto:', () => {
-    expect(isValidLinkUrl('https://instagram.com/abboaps')).toBe(true);
+    expect(isValidLinkUrl('https://www.instagram.com/abboaps/')).toBe(true);
+    expect(isValidLinkUrl('https://www.linkedin.com/company/abboaps/')).toBe(true);
+    expect(isValidLinkUrl('https://www.tiktok.com/@abbo.aps')).toBe(true);
+    expect(isValidLinkUrl('https://discord.gg/HDuD3tCvus')).toBe(true);
     expect(isValidLinkUrl('https://www.abboaps.org/privacy-policy')).toBe(true);
     expect(isValidLinkUrl('mailto:info@abboaps.org')).toBe(true);
     expect(isValidLinkUrl('https://evil.example/phishing')).toBe(false);

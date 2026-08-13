@@ -1,0 +1,90 @@
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+}
+
+.social-links__link {
+  --social-rotation: 0deg;
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  color: #4a1c0d;
+  border: 1px solid rgba(74, 28, 13, .13);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 220ms cubic-bezier(.2, .8, .2, 1), background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.social-links__link:hover {
+  color: #e65100;
+  background: rgba(230, 81, 0, .08);
+  border-color: rgba(230, 81, 0, .32);
+  transform: translateY(-3px) rotate(var(--social-rotation)) scale(1.04);
+}
+
+.social-links__link:active { transform: scale(.94); }
+.social-links__link:focus-visible { outline: 3px solid rgba(230, 81, 0, .45); outline-offset: 3px; }
+.social-links__link--instagram:hover { --social-rotation: -2deg; }
+.social-links__link--linkedin:hover { --social-rotation: 2deg; }
+.social-links__link--tiktok:hover { --social-rotation: -1deg; }
+.social-links__link--discord:hover { --social-rotation: 1deg; }
+
+.social-links--header {
+  gap: .2rem;
+}
+
+.social-links--header .social-links__link {
+  border-color: transparent;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.social-links--header .social-links__label,
+.social-links--tessera .social-links__label,
+.social-links--footer .social-links__label { display: none; }
+
+.social-links--limited {
+  gap: .55rem;
+}
+
+.social-links--limited .social-links__link {
+  padding: .55rem .8rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.social-links--tessera {
+  justify-content: center;
+  gap: .55rem;
+}
+
+.social-links--tessera .social-links__link {
+  width: 52px;
+  border: 0;
+  color: #fffaf0;
+  background: #e65100;
+  box-shadow: 3px 3px 0 rgba(74, 28, 13, .2);
+}
+
+.social-links--tessera .social-links__link:hover {
+  color: #fffaf0;
+  background: #8a3a19;
+}
+
+@media (max-width: 420px) {
+  .social-links--limited .social-links__link {
+    flex: 1 1 calc(50% - .55rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-links__link { transition: none; }
+  .social-links__link:hover,
+  .social-links__link:active { transform: none; }
+}

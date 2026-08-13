@@ -293,7 +293,7 @@
 
 .limited-links { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.25rem; opacity: 0; transform: translateY(.4rem); }
 .limited-experience.is-ready .limited-links { animation: limited-rise .42s 1.58s var(--limited-ease) forwards; }
-.limited-links a {
+.limited-links > a {
   display: inline-flex;
   min-height: 2.75rem;
   align-items: center;
@@ -308,9 +308,9 @@
   transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
-.limited-links a:hover,
-.limited-links a:focus-visible { background: var(--limited-ink); color: var(--limited-paper); transform: translateY(-2px); }
-.limited-links a:focus-visible,
+.limited-links > a:hover,
+.limited-links > a:focus-visible { background: var(--limited-ink); color: var(--limited-paper); transform: translateY(-2px); }
+.limited-links > a:focus-visible,
 .limited-pairing input:focus-visible,
 .limited-pairing button:focus-visible { outline: 3px solid var(--limited-orange); outline-offset: 3px; }
 .limited-demo-note { margin: 1rem 0 0; color: var(--limited-ink-muted); font-size: .7rem; line-height: 1.5; }

@@ -3,6 +3,7 @@ import footerConfig from "../config/footer.json";
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { NewsletterForm } from "./NewsletterForm";
+import { SocialLinks } from "./SocialLinks";
 
 export function Footer() {
   const location = useLocation();
@@ -88,6 +89,11 @@ export function Footer() {
             <NewsletterForm variant="compact" className="w-full" />
           </div>
 
+        </div>
+
+        <div className="flex flex-col items-center gap-3 border-t border-[#4a1c0d]/10 pt-6">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#e65100]">Seguici</span>
+          <SocialLinks variant="footer" />
         </div>
 
         {/* Bottom Credits Bar */}

@@ -304,7 +304,7 @@ export function renderTesseraUi(options: RenderOptions): void {
       const iconBox = document.createElement('div');
       iconBox.className = `tessera-link-icon-3d icon-3d-${link.icon || 'globe'}`;
       iconBox.setAttribute('aria-hidden', 'true');
-      iconBox.textContent = getIconSymbol(link.icon);
+      appendLinkIcon(iconBox, link.icon);
       a.appendChild(iconBox);
 
       const textWrapper = document.createElement('div');
@@ -389,19 +389,52 @@ export function renderTesseraUi(options: RenderOptions): void {
   container.appendChild(pageWrapper);
 }
 
-function getIconSymbol(iconName?: string): string {
+function appendLinkIcon(container: HTMLElement, iconName?: string): void {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.setAttribute('width', '24');
+  svg.setAttribute('height', '24');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('fill', 'none');
+  svg.setAttribute('stroke', 'currentColor');
+  svg.setAttribute('stroke-width', '1.8');
+  svg.setAttribute('stroke-linecap', 'round');
+  svg.setAttribute('stroke-linejoin', 'round');
+
+  const add = (tag: string, attributes: Record<string, string>): void => {
+    const element = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    Object.entries(attributes).forEach(([name, value]) => element.setAttribute(name, value));
+    svg.appendChild(element);
+  };
+
   switch (iconName) {
     case 'instagram':
-      return '📷';
-    case 'globe':
-      return '🌐';
+      add('rect', { x: '2.5', y: '2.5', width: '19', height: '19', rx: '5' });
+      add('circle', { cx: '12', cy: '12', r: '4' });
+      add('circle', { cx: '17.5', cy: '6.5', r: '.7', fill: 'currentColor', stroke: 'none' });
+      break;
+    case 'linkedin':
+      add('path', { d: 'M5 8.5V19M5 5.2v.1M10 19v-5.8a3.2 3.2 0 0 1 6.4 0V19M10 11v8' });
+      break;
+    case 'tiktok':
+      add('path', { d: 'M15.2 4.2c.4 2.2 1.7 3.5 3.8 3.7v2.7a8 8 0 0 1-3.8-1.1v5.1a5 5 0 1 1-4.3-5v2.8a2.3 2.3 0 1 0 1.6 2.2V4.2h2.7Z', fill: 'currentColor', stroke: 'none' });
+      break;
+    case 'discord':
+      add('path', { d: 'M20.3 4.4a19.8 19.8 0 0 0-4.9-1.5c-.2.4-.5.9-.7 1.3a18.8 18.8 0 0 0-5.5 0c-.2-.4-.4-.9-.6-1.3a19.7 19.7 0 0 0-4.9 1.5C1 8.2.3 12.8.7 17.4c2 1.5 4 2.4 6 3 .5-.6.9-1.3 1.2-2-.6-.2-1.3-.5-1.9-.9 1.3-1 2.5-1.4 3.9-1.4s2.6.4 3.9 1.4c-.6.4-1.2.7-1.9.9.4.7.8 1.4 1.2 2 2-.6 4-1.5 6-3 .5-5.2-.8-9.7-3.5-13.6ZM8 15.3c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z', fill: 'currentColor', stroke: 'none' });
+      break;
     case 'mail':
-      return '✉️';
+      add('rect', { x: '3', y: '5', width: '18', height: '14', rx: '2' });
+      add('path', { d: 'm3 7 9 6 9-6' });
+      break;
     case 'heart':
-      return '❤️';
+      add('path', { d: 'M20.8 8.8c0 5.4-8.8 10-8.8 10s-8.8-4.6-8.8-10a4.7 4.7 0 0 1 8.8-2.3 4.7 4.7 0 0 1 8.8 2.3Z' });
+      break;
     case 'shield':
-      return '🛡️';
+      add('path', { d: 'M12 3 20 6v5c0 5-3.4 8.3-8 10-4.6-1.7-8-5-8-10V6l8-3Z' });
+      break;
     default:
-      return '🔗';
+      add('path', { d: 'M10 13a5 5 0 0 0 7.1.1l2-2a5 5 0 0 0-7.1-7.1l-1.1 1.1M14 11a5 5 0 0 0-7.1-.1l-2 2A5 5 0 0 0 12 20l1.1-1.1' });
   }
+
+  container.appendChild(svg);
 }
