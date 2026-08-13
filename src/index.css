@@ -176,11 +176,14 @@ body {
 
 .tessera-verification-card .tessera-pattern {
   display: block;
-  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
   object-position: center;
-  opacity: .9;
+  opacity: 1;
   mix-blend-mode: normal;
   filter: none;
+  image-rendering: auto;
 }
 
 .tessera-verification-card {

@@ -317,7 +317,7 @@ export function Tessera() {
           transition={{ type: "spring", stiffness: 220, damping: 22, duration: 0.8 }}
           className="tessera-verification-card w-full clay-card p-8 sm:p-10 rounded-[2.5rem] bg-[#fffcf5] border-2 border-white/80 shadow-2xl relative overflow-hidden flex flex-col items-center text-center justify-center gap-4 min-h-[260px] sm:min-h-[290px] my-2"
         >
-          {/* Sfondo mockup locale, escluso dal repository */}
+          {/* Pattern raster pubblico; il mockup sorgente resta escluso dal repository */}
           <img
             src={`${import.meta.env.BASE_URL}CardSoci_Mockup_F_AB_pattern.png`}
             alt=""
