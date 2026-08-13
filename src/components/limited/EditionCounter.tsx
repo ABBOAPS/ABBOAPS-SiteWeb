@@ -57,7 +57,7 @@ export function EditionCounter({ current, total, revealed }: EditionCounterProps
             </span>
           ))}
         </span>
-        <span className="limited-counter-total">/ {total}</span>
+        <span className="limited-counter-total" aria-hidden="true">/ {total}</span>
       </div>
     </div>
   );

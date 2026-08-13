@@ -104,8 +104,7 @@ export function LimitedVerificationExperience({
   return (
     <main className={`limited-experience limited-state-${state} ${introReady ? "is-ready" : ""}`}>
       <div className="limited-topline">
-        <NfcHandoffIndicator demo={demo} received={state !== "missing"} />
-        {demo && <span className="limited-demo-badge">DEMO UI</span>}
+        <NfcHandoffIndicator received={state !== "missing"} />
       </div>
 
       <section
@@ -117,7 +116,6 @@ export function LimitedVerificationExperience({
       >
         <div className="limited-artwork" data-has-image={Boolean(imageSrc)}>
           {imageSrc ? <img src={imageSrc} alt={imageAlt} /> : <div className="limited-artwork-placeholder" aria-hidden="true"><span>ABBO<br />APS</span></div>}
-          <span className="limited-artwork-rule" aria-hidden="true" />
           {demo && <span className="limited-artwork-demo">DEMO</span>}
           <VerificationStamp visible={verified && showDetails} />
         </div>
@@ -138,10 +136,6 @@ export function LimitedVerificationExperience({
             <div>
               <dt>Edizione</dt>
               <dd>{editionCode ?? "In attesa"}</dd>
-            </div>
-            <div>
-              <dt>Segno digitale</dt>
-              <dd>{verified ? "Confermato" : "Protetto"}</dd>
             </div>
           </dl>
 
