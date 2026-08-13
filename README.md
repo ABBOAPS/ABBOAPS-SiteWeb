@@ -11,7 +11,7 @@ Questo repository contiene il sito web principale dell'associazione ABBO APS, sv
 - **Dominio Ufficiale**: `https://www.abboaps.org`
 - **Percorso canonico di verifica**: `https://abboaps.org/#/limited`
 - **Anteprima demo**: `https://abboaps.org/#/limited/demo` — mostra dati sintetici casuali e non esegue una verifica reale.
-- **Compatibilità NFC legacy**: la pipeline integra anche il verificatore statico nella sottocartella `/nfc/` per gli URL già prodotti.
+- **Compatibilità NFC legacy**: `/nfc/#AB1...` resta un alias same-origin e inoltra al verificatore canonico `/#/limited/<TOKEN>` senza modificare il token.
 
 ---
 
@@ -92,7 +92,7 @@ git add site/public/
 git commit -m "feat: Pubblicazione manifesto ed edizione 2026 (200 poster)"
 git push origin main
 ```
-*La pipeline GitHub Actions pubblicherà automaticamente il verificatore aggiornato. Gli URL già scritti con `https://www.abboaps.org/nfc/#AB1...` restano supportati come alias compatibile.*
+*La pipeline GitHub Actions pubblicherà automaticamente il verificatore aggiornato. Gli URL già scritti con `https://www.abboaps.org/nfc/#AB1...` restano supportati come alias same-origin verso la route canonica.*
 
 ---
 

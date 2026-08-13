@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import { encodeUtf8, uint8ArrayToBase64Url } from "../../site/src/crypto/base64url";
@@ -6,10 +6,10 @@ import { sha256Bytes } from "../../site/src/crypto/web-crypto";
 import { verifyEditionManifest } from "../../site/src/verifier/edition-verifier";
 import { fetchKeyring, verifyItemToken } from "../../site/src/verifier/item-verifier";
 import { parseNfcToken } from "../../site/src/verifier/token-parser";
-import { renderUi, stateFromVerificationError, UiState } from "../../site/src/ui/render";
 import { buildLimitedVerificationCleanUrl } from "../../site/src/verifier/verification-url";
-
-import "../styles/limited-verification.css";
+import { stateFromVerificationError } from "../../site/src/ui/render";
+import { LimitedVerificationExperience } from "../components/limited/LimitedVerificationExperience";
+import type { LimitedVerificationState } from "../components/limited/limited-types";
 
 function getVerifierBaseUrl(): string {
   const appBaseUrl = new URL(import.meta.env.BASE_URL, document.baseURI);
@@ -24,84 +24,69 @@ function removeLimitedTokenFromAddressBar(): void {
   );
 }
 
+function toLimitedState(error: unknown): LimitedVerificationState {
+  const state = stateFromVerificationError(error);
+  if (state === "MANIFEST_KEY_COMPROMISED" || state === "KEY_COMPROMISED") return "compromised";
+  if (state === "NETWORK_ERROR" || state === "TECHNICAL_ERROR" || state === "MANIFEST_MISSING") return "technical";
+  return "invalid";
+}
+
 export function LimitedVerification({ token }: { token?: string }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const routeToken = token;
+  const [state, setState] = useState<LimitedVerificationState>(token ? "loading" : "missing");
+  const [item, setItem] = useState<{ title: string; editionCode: string; serial: number; total: number; imageSrc?: string; imageAlt?: string }>();
+  const [pairingConfirmed, setPairingConfirmed] = useState(false);
+  const [pairingError, setPairingError] = useState(false);
+  const tokenInMemory = useRef<string | undefined>(undefined);
+  const pairingHash = useRef<string | undefined>(undefined);
+  const pairingEditionId = useRef<string | undefined>(undefined);
+  const pairingItemId = useRef<string | undefined>(undefined);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return undefined;
-
-    if (!routeToken) {
-      renderUi({ container, state: "TOKEN_MISSING" });
-      return () => container.replaceChildren();
+    if (!token) {
+      setState("missing");
+      return undefined;
     }
 
-    // Acquisizione in memoria prima della sostituzione della cronologia.
-    let tokenInMemory: string | undefined = routeToken;
+    // Conserva token solo in memoria, poi rimuovilo dalla barra degli indirizzi.
+    tokenInMemory.current = token;
     removeLimitedTokenFromAddressBar();
-    renderUi({ container, state: "LOADING" });
 
     let disposed = false;
     let verifiedImageBlobUrl: string | undefined;
 
-    const verify = async (): Promise<void> => {
+    const verify = async () => {
       try {
-        const parsedToken = parseNfcToken(tokenInMemory ?? "");
-        tokenInMemory = undefined;
+        const parsedToken = parseNfcToken(tokenInMemory.current ?? "");
+        tokenInMemory.current = undefined;
 
-        const keyring = await fetchKeyring(getVerifierBaseUrl());
+        const baseUrl = getVerifierBaseUrl();
+        const keyring = await fetchKeyring(baseUrl);
         const itemVerification = await verifyItemToken(parsedToken, keyring);
 
         if (itemVerification.keyStatus === "compromised") {
-          if (!disposed) renderUi({ container, state: "KEY_COMPROMISED" });
+          if (!disposed) setState("compromised");
           return;
         }
 
-        const editionVerification = await verifyEditionManifest(
-          itemVerification.payload,
-          keyring,
-          getVerifierBaseUrl(),
-        );
+        const editionVerification = await verifyEditionManifest(itemVerification.payload, keyring, baseUrl);
         verifiedImageBlobUrl = editionVerification.verifiedImageBlobUrl;
+        pairingHash.current = itemVerification.payload.p;
+        pairingEditionId.current = itemVerification.payload.e;
+        pairingItemId.current = itemVerification.payload.i;
+        if (disposed) return;
 
-        const initialState: UiState = itemVerification.keyStatus === "retired"
-          ? "VERIFIED_KEY_RETIRED"
-          : "VERIFIED";
-        let pairingConfirmed = false;
-        let pairingError = false;
-
-        const renderCurrentState = () => {
-          if (disposed) return;
-          renderUi({
-            container,
-            state: initialState,
-            itemPayload: itemVerification.payload,
-            editionPayload: editionVerification.editionPayload,
-            verifiedImageBlobUrl,
-            onPhysicalPairingSubmit: itemVerification.payload.p
-              ? async (code: string) => {
-                  try {
-                    const input = `${itemVerification.payload.e}:${itemVerification.payload.i}:${code.trim()}`;
-                    const inputHash = uint8ArrayToBase64Url(await sha256Bytes(encodeUtf8(input)));
-                    pairingConfirmed = inputHash === itemVerification.payload.p;
-                    pairingError = !pairingConfirmed;
-                  } catch {
-                    pairingConfirmed = false;
-                    pairingError = true;
-                  }
-                  renderCurrentState();
-                }
-              : undefined,
-            pairingConfirmed,
-            pairingError,
-          });
-        };
-
-        renderCurrentState();
+        setItem({
+          title: editionVerification.editionPayload.title,
+          editionCode: editionVerification.editionPayload.code,
+          serial: itemVerification.payload.s,
+          total: itemVerification.payload.n,
+          imageSrc: verifiedImageBlobUrl,
+          imageAlt: editionVerification.editionPayload.image.alt,
+        });
+        setState("verified");
       } catch (error: unknown) {
-        tokenInMemory = undefined;
-        if (!disposed) renderUi({ container, state: stateFromVerificationError(error) });
+        tokenInMemory.current = undefined;
+        if (!disposed) setState(toLimitedState(error));
       }
     };
 
@@ -109,11 +94,27 @@ export function LimitedVerification({ token }: { token?: string }) {
 
     return () => {
       disposed = true;
-      tokenInMemory = undefined;
+      tokenInMemory.current = undefined;
+      pairingHash.current = undefined;
+      pairingEditionId.current = undefined;
+      pairingItemId.current = undefined;
       if (verifiedImageBlobUrl) URL.revokeObjectURL(verifiedImageBlobUrl);
-      container.replaceChildren();
     };
-  }, [routeToken]);
+  }, [token]);
+
+  const handlePairingSubmit = async (code: string) => {
+    if (!item || !pairingHash.current || !pairingEditionId.current || !pairingItemId.current) return;
+    try {
+      const input = `${pairingEditionId.current}:${pairingItemId.current}:${code.trim()}`;
+      const inputHash = uint8ArrayToBase64Url(await sha256Bytes(encodeUtf8(input)));
+      const matches = inputHash === pairingHash.current;
+      setPairingConfirmed(matches);
+      setPairingError(!matches);
+    } catch {
+      setPairingConfirmed(false);
+      setPairingError(true);
+    }
+  };
 
   return (
     <>
@@ -122,9 +123,14 @@ export function LimitedVerification({ token }: { token?: string }) {
         <meta name="robots" content="noindex,nofollow,noarchive" />
         <meta name="referrer" content="no-referrer" />
       </Helmet>
-      <div className="limited-verification-page">
-        <div ref={containerRef} aria-live="polite" />
-      </div>
+      <LimitedVerificationExperience
+        {...item}
+        state={state}
+        pairingEnabled={Boolean(pairingHash.current)}
+        pairingConfirmed={pairingConfirmed}
+        pairingError={pairingError}
+        onPhysicalPairingSubmit={handlePairingSubmit}
+      />
     </>
   );
 }

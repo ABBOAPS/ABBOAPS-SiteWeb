@@ -2,7 +2,7 @@ import './styles/main.css';
 import { verifyEditionManifest } from './verifier/edition-verifier';
 import { fetchKeyring, verifyItemToken } from './verifier/item-verifier';
 import { parseNfcToken } from './verifier/token-parser';
-import { readVerificationTokenFromHash } from './verifier/verification-url';
+import { buildLegacyVerificationRedirectUrl, readVerificationTokenFromHash } from './verifier/verification-url';
 import { removeUrlFragment, renderUi, stateFromVerificationError, UiState } from './ui/render';
 import { encodeUtf8, uint8ArrayToBase64Url } from './crypto/base64url';
 import { sha256Bytes } from './crypto/web-crypto';
@@ -14,6 +14,12 @@ async function initApp(): Promise<void> {
   const baseUrl = new URL(import.meta.env.BASE_URL || './', document.baseURI).toString();
   const hashFragment = window.location.hash;
   const tokenFromHash = readVerificationTokenFromHash(hashFragment);
+
+  const legacyRedirectUrl = buildLegacyVerificationRedirectUrl(hashFragment);
+  if (legacyRedirectUrl) {
+    window.location.replace(legacyRedirectUrl);
+    return;
+  }
 
   if (!tokenFromHash) {
     renderUi({ container, state: 'TOKEN_MISSING' });

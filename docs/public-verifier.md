@@ -34,4 +34,6 @@ La demo genera placeholder casuali solo nel browser, non verifica firme, non car
 
 ## Compatibilità e Deployment
 
+Gli URL NFC già prodotti nella forma `https://abboaps.org/nfc/#AB1...` sono mantenuti come alias compatibile: il verificatore statico li inoltra sullo stesso dominio a `https://abboaps.org/#/limited/<TOKEN>`, conservando il token firmato completo. Input legacy non valido resta su un errore neutro.
+
 Il verificatore utilizza `import.meta.env.BASE_URL` per garantire la risoluzione corretta di asset e manifesti sia in caso di installazione con dominio personalizzato (es. `nfc.dominio-abbo.it/`), sia in caso di hosting su project site GitHub Pages (es. `username.github.io/ABBOAPS-SiteWeb/`).

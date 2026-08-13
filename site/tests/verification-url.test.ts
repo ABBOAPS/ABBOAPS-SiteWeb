@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  buildLegacyVerificationRedirectUrl,
   buildLimitedVerificationCleanUrl,
   buildLimitedVerificationUrl,
   readVerificationTokenFromHash,
@@ -25,6 +26,12 @@ describe('URL pubblici di verifica edizioni limitate', () => {
     expect(readVerificationTokenFromHash('#/limited')).toBeUndefined();
     expect(readVerificationTokenFromHash('#/limited/')).toBeUndefined();
     expect(readVerificationTokenFromHash(`#${validToken}`)).toBe(validToken);
+  });
+
+  it('inoltra l\'alias NFC valido alla route canonica senza cambiare token', () => {
+    expect(buildLegacyVerificationRedirectUrl(`#${validToken}`)).toBe(`https://abboaps.org/#/limited/${validToken}`);
+    expect(buildLegacyVerificationRedirectUrl(`#/limited/${validToken}`)).toBeUndefined();
+    expect(buildLegacyVerificationRedirectUrl('#AB1.invalid')).toBeUndefined();
   });
 
   it('prepara la sostituzione della cronologia senza il token', () => {

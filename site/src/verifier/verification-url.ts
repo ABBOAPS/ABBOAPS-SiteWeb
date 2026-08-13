@@ -43,3 +43,19 @@ export function readVerificationTokenFromHash(hash: string): string | undefined 
   // Alias compatibile per gli URL già scritti sui tag NFC: /nfc/#AB1....
   return hash.startsWith('#') ? hash.slice(1) : hash;
 }
+
+/**
+ * Returns the same-site canonical URL for a token from the legacy /nfc/ route.
+ * Invalid legacy input stays on the legacy verifier so it can render a neutral error.
+ */
+export function buildLegacyVerificationRedirectUrl(hash: string): string | undefined {
+  if (!hash || hash.startsWith('#/limited')) return undefined;
+  const token = readVerificationTokenFromHash(hash);
+  if (!token) return undefined;
+
+  try {
+    return buildLimitedVerificationUrl(token);
+  } catch {
+    return undefined;
+  }
+}
