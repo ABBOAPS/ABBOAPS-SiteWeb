@@ -50,28 +50,6 @@ export interface MembershipData {
   membership?: MembershipValidity;
 }
 
-function TopographicPattern() {
-  return (
-    <svg 
-      className="absolute inset-0 w-full h-full text-[#4a1c0d]/15 pointer-events-none select-none" 
-      viewBox="0 0 640 404" 
-      preserveAspectRatio="none" 
-      aria-hidden="true"
-    >
-      <path d="M-40 102C54 24 106 168 198 91S349 17 405 99s116 96 274 20" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M-34 127c85-76 140 66 232-10S340 47 390 124s142 92 278 4" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M-25 153c78-74 151 52 241-9s132-62 181 8 144 88 283-12" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M-18 179c86-63 158 42 246-6s128-49 177 11 157 76 280-16" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M-10 206c92-55 162 32 248-3s127-33 172 16 168 59 281-16" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M-4 234c99-48 166 20 250 2s126-18 169 19 176 43 282-14" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M5 263c104-41 167 7 251 7s125-3 167 22 184 27 282-11" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M12 293c108-35 170-8 253 11s122 11 165 24 189 13 281-7" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M20 323c111-27 172-22 255 15s123 25 163 25 192-1 279-2" stroke="currentColor" strokeWidth="1.5" fill="none" />
-      <path d="M30 353c111-18 171-36 258 19s120 39 159 27 190-13 277 7" stroke="currentColor" strokeWidth="1.5" fill="none" />
-    </svg>
-  );
-}
-
 export function Tessera() {
   const [state, setState] = useState<MembershipResultState>('LOADING');
   const [apiData, setApiData] = useState<MembershipData | null>(null);
@@ -332,30 +310,23 @@ export function Tessera() {
 
       <div className="w-full max-w-lg flex flex-col items-center gap-5">
 
-        {/* 1. CARD PRINCIPALE TESSERA CON PATTERN TOPOGRAFICO ORIGINALE E RIFLESSO */}
+        {/* 1. Card principale della tessera */}
         <motion.div
           initial={{ y: -140, opacity: 0 }}
           animate={animateIn ? { y: 0, opacity: 1 } : { y: -140, opacity: 0 }}
           transition={{ type: "spring", stiffness: 220, damping: 22, duration: 0.8 }}
-          className="w-full clay-card p-8 sm:p-10 rounded-[2.5rem] bg-[#fffcf5] border-2 border-white/80 shadow-2xl relative overflow-hidden flex flex-col items-center text-center justify-between min-h-[260px] sm:min-h-[290px] my-2"
+          className="tessera-verification-card w-full clay-card p-8 sm:p-10 rounded-[2.5rem] bg-[#fffcf5] border-2 border-white/80 shadow-2xl relative overflow-hidden flex flex-col items-center text-center justify-center gap-4 min-h-[260px] sm:min-h-[290px] my-2"
         >
-          {/* Topographic Pattern vettoriale originale dal design system */}
-          <TopographicPattern />
-
-          {/* Effetto Sheen / Riflesso di luce sulla card */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/30 to-transparent pointer-events-none"></div>
-
-          {/* Logo ABBO APS quadrato (Favicon style) AL CENTRO IN ALTO */}
-          <div className="flex items-center justify-center w-full mb-4 relative z-10">
-            <img
-              src="/logo_abbo_nero.svg"
-              alt="ABBO APS Logo"
-              className="h-10 w-10 sm:h-12 sm:w-12 object-contain drop-shadow-sm"
-            />
-          </div>
+          {/* Sfondo mockup locale, escluso dal repository */}
+          <img
+            src={`${import.meta.env.BASE_URL}CardSoci_Mockup_F_AB_pattern.png`}
+            alt=""
+            aria-hidden="true"
+            className="tessera-pattern absolute inset-0 z-0 h-full w-full pointer-events-none select-none"
+          />
 
           {/* Centro Card: Scritta Socio/Socia/Member AL CENTRO + Nome e Cognome AL CENTRO con SPUNTA VERIFICATA */}
-          <div className="flex flex-col items-center text-center w-full relative z-10 my-2">
+          <div className="flex flex-col items-center text-center w-full relative z-10">
             
             {/* Scritta Socio / Socia / Member */}
             <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-[#e65100] mb-1">
@@ -363,7 +334,7 @@ export function Tessera() {
             </span>
 
             {/* Nome e Cognome AL CENTRO + Spunta Verificata Proporzionata */}
-            <div className="flex items-center justify-center w-full my-1">
+            <div className="flex items-center justify-center w-full">
               <h1 className="text-2xl sm:text-4xl font-extrabold text-[#4a1c0d] tracking-tight text-center inline-flex items-center gap-2.5">
                 <span>{apiData?.member?.displayName || "Mario Rossi"}</span>
 
@@ -414,7 +385,7 @@ export function Tessera() {
 
           {/* Parte Bassa Card: Codice Card ABBO-ANNO-NUMERO ben visibile ma elegante */}
           {(cardSerialCode || state === 'LOADING') && (
-            <div className="flex items-center justify-center w-full pt-4 mt-3 border-t border-[#4a1c0d]/10 relative z-10 text-center">
+            <div className="flex items-center justify-center w-full pt-3 mt-1 border-t border-[#4a1c0d]/10 relative z-10 text-center">
               <span className="text-xs sm:text-sm font-mono font-semibold text-[#4a1c0d]/55 tracking-widest text-center select-all drop-shadow-sm">
                 {cardSerialCode || "ABBO-2026-0042"}
               </span>
@@ -438,13 +409,9 @@ export function Tessera() {
             target="_blank"
             rel="noopener noreferrer"
             title={t.website}
-            className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center text-white shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 group"
-            style={{
-              background: 'linear-gradient(135deg, #e65100 0%, #ff8f00 100%)',
-              boxShadow: '4px 4px 10px rgba(230, 81, 0, 0.3), inset 2px 2px 4px rgba(255, 255, 255, 0.6), inset -2px -2px 4px rgba(138, 58, 25, 0.5)'
-            }}
+            className="tessera-action-tile tessera-action-tile--website"
           >
-            <Globe className="w-6 h-6 sm:w-7 sm:h-7 stroke-[2.5] group-hover:scale-110 transition-transform" />
+            <Globe className="w-5 h-5 stroke-[2.5]" />
           </a>
 
           {/* PayPal (Logo Ufficiale) */}
@@ -453,13 +420,9 @@ export function Tessera() {
             target="_blank"
             rel="noopener noreferrer"
             title={t.donate}
-            className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center text-white shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 group"
-            style={{
-              background: 'linear-gradient(135deg, #0070ba 0%, #003087 100%)',
-              boxShadow: '4px 4px 10px rgba(0, 112, 186, 0.3), inset 2px 2px 4px rgba(255, 255, 255, 0.6), inset -2px -2px 4px rgba(0, 0, 0, 0.3)'
-            }}
+            className="tessera-action-tile tessera-action-tile--paypal"
           >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-6 h-6 sm:w-7 sm:h-7 group-hover:scale-110 transition-transform">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-5 h-5">
               <path d="M7.07593 21.3368H2.47036C2.11586 21.3368 1.8385 21.0366 1.88414 20.6865L4.94507 0.90098C4.99613 0.589886 5.25052 0.351562 5.56942 0.351562H13.6111C18.2173 0.351562 20.9859 2.47953 20.1666 7.29415C19.6481 10.331 17.5492 12.6661 14.5772 13.5505C13.4704 13.8797 12.2614 14.0322 10.6575 14.0322H9.0275C8.68128 14.0322 8.3887 14.2858 8.33496 14.629L7.07593 21.3368Z" fill="#FFFFFF"/>
             </svg>
           </a>

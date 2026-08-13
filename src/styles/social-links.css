@@ -69,12 +69,68 @@
 
 .social-links--tessera {
   justify-content: center;
-  gap: .55rem;
+  gap: .65rem;
 }
 
-.social-links--tessera .social-links__link {
-  width: 44px;
+.social-links--tessera .social-links__link,
+.tessera-action-tile {
+  --social-rotation: 0deg;
+  --social-brand: #4a1c0d;
+  --tile-bg: var(--social-brand);
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 0;
+  border: 1px solid rgba(255, 255, 255, .7);
+  border-radius: 1rem;
+  color: #fffaf0;
+  background: var(--tile-bg);
+  box-shadow: 4px 4px 0 rgba(74, 28, 13, .18), inset 2px 2px 4px rgba(255, 255, 255, .45), inset -2px -2px 4px rgba(0, 0, 0, .14);
+  text-decoration: none;
+  transition: transform 220ms cubic-bezier(.2, .8, .2, 1), filter 180ms ease, box-shadow 180ms ease;
+}
+
+.social-links--tessera .social-links__link:hover,
+.tessera-action-tile:hover {
+  color: #fffaf0;
+  border-color: rgba(255, 255, 255, .9);
+  background: var(--tile-bg);
+  filter: brightness(1.08) saturate(1.08);
+  box-shadow: 5px 5px 0 rgba(74, 28, 13, .2), inset 2px 2px 5px rgba(255, 255, 255, .5), inset -2px -2px 5px rgba(0, 0, 0, .16);
+}
+
+.social-links--tessera .social-links__link:active,
+.tessera-action-tile:active { transform: scale(.94); }
+
+.social-links--tessera .social-links__link:focus-visible,
+.tessera-action-tile:focus-visible {
+  outline-color: var(--social-brand);
+}
+
+.social-links--tessera .social-links__link--instagram { --social-brand: linear-gradient(135deg, #f58529 0%, #dd2a7b 55%, #8134af 100%); }
+.social-links--tessera .social-links__link--linkedin { --social-brand: #0a66c2; }
+.social-links--tessera .social-links__link--tiktok { --social-brand: #111111; }
+.social-links--tessera .social-links__link--discord { --social-brand: #5865f2; }
+.tessera-action-tile--website { --social-brand: linear-gradient(135deg, #e65100 0%, #ff8f00 100%); }
+.tessera-action-tile--paypal { --social-brand: linear-gradient(135deg, #0070ba 0%, #003087 100%); }
+
+@media (min-width: 640px) {
+  .social-links--tessera .social-links__link,
+  .tessera-action-tile {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-links--tessera .social-links__link,
+  .tessera-action-tile { transition: none; }
 }
 
 @media (max-width: 420px) {
