@@ -2,7 +2,7 @@ import { type PointerEvent, useEffect, useRef, useState } from "react";
 import { EditionCounter } from "./EditionCounter";
 import { LimitedLinks } from "./LimitedLinks";
 import { NfcHandoffIndicator } from "./NfcHandoffIndicator";
-import { VerificationStamp } from "./VerificationStamp";
+import { Check } from "lucide-react";
 import type { LimitedVerificationData, LimitedVerificationState } from "./limited-types";
 import "../../styles/limited-verification.css";
 
@@ -17,21 +17,21 @@ export interface LimitedVerificationExperienceProps extends LimitedVerificationD
   onPhysicalPairingSubmit?: (code: string) => void | Promise<void>;
 }
 
-function stateCopy(state: LimitedVerificationState): { title: string; detail: string } {
+function stateCopy(state: LimitedVerificationState): string {
   switch (state) {
     case "verified":
-      return { title: "Elemento verificato", detail: "Firma digitale confermata" };
+      return "Elemento verificato";
     case "invalid":
-      return { title: "Non verificato", detail: "Non è stato possibile verificare digitalmente questo elemento." };
+      return "Non verificato";
     case "compromised":
-      return { title: "Verifica sospesa", detail: "Questo elemento richiede un controllo da parte di ABBO APS." };
+      return "Verifica sospesa";
     case "technical":
-      return { title: "Verifica temporaneamente non disponibile", detail: "Riprova tra poco o visita abboaps.org." };
+      return "Verifica non disponibile";
     case "missing":
-      return { title: "Apri un link valido", detail: "Questa pagina richiede un link NFC o QR ABBO APS." };
+      return "Apri un link valido";
     case "loading":
     default:
-      return { title: "Verifica digitale", detail: "Controllo dell'edizione" };
+      return "Verifica in corso";
   }
 }
 
@@ -117,17 +117,20 @@ export function LimitedVerificationExperience({
         <div className="limited-artwork" data-has-image={Boolean(imageSrc)}>
           {imageSrc ? <img src={imageSrc} alt={imageAlt} /> : <div className="limited-artwork-placeholder" aria-hidden="true"><span>ABBO<br />APS</span></div>}
           {demo && <span className="limited-artwork-demo">DEMO</span>}
-          <VerificationStamp visible={verified && showDetails} />
         </div>
 
         <div className="limited-content">
-          <p className="limited-eyebrow">ABBO APS · LIMITED EDITION</p>
           <h1 id="limited-experience-title">{title ?? "Poster ABBO APS"}</h1>
 
           <div className="limited-status" aria-live="polite">
-            <span className="limited-status-mark" aria-hidden="true" />
-            <span>{copy.title}</span>
-            <small>{copy.detail}</small>
+            {verified ? (
+              <span className="limited-status-mark limited-status-mark--verified" aria-hidden="true">
+                <Check size={13} strokeWidth={3} />
+              </span>
+            ) : (
+              <span className="limited-status-mark" aria-hidden="true" />
+            )}
+            <span>{copy}</span>
           </div>
 
           <EditionCounter current={verified ? serial : undefined} total={verified ? total : undefined} revealed={showDetails} />
@@ -161,6 +164,11 @@ export function LimitedVerificationExperience({
           {showDetails && <LimitedLinks />}
 
           {demo && <p className="limited-demo-note">Demo UI · dati generati localmente.</p>}
+          {!demo && (
+            <p className="limited-nfc-note">
+              Un tag NFC può essere clonato. Controlla visivamente l&apos;elemento e verifica che il contesto sia coerente.
+            </p>
+          )}
         </div>
       </section>
     </main>

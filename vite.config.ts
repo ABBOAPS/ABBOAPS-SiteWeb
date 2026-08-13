@@ -4,6 +4,8 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
+  const pollingWatch = process.env.VITE_USE_POLLING !== 'false';
+
   return {
     base: './', // Universal path resolve for Github Pages and Custom Domains
     plugins: [
@@ -67,11 +69,13 @@ export default defineConfig(() => {
       }
     },
     server: {
-      // HMR is disabled in AI Studio via DISABLE_HMR env var.
-      // Do not modify—file watching is disabled to prevent flickering during agent edits.
+      // HMR resta attivo, ma il polling evita EMFILE sui sistemi con molti watcher aperti.
+      // Per usare il watcher nativo: VITE_USE_POLLING=false npm run dev
       hmr: process.env.DISABLE_HMR !== 'true',
-      // Ignore watching heavy non-source directories using Regex to prevent EMFILE (too many open files)
+      // Ignore directory pesanti e usa un solo ciclo di polling invece di un watcher per file.
       watch: process.env.DISABLE_HMR === 'true' ? null : {
+        usePolling: pollingWatch,
+        interval: 1000,
         ignored: [
           /(^|[\/\\])(\.git|node_modules|\.private|dist|shared-public-test-vectors)($|[\/\\])/
         ],
