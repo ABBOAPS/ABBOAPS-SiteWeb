@@ -1,4 +1,5 @@
 import type { SVGProps } from "react";
+import { MessageCircle } from "lucide-react";
 import { OFFICIAL_SOCIALS, type SocialPlatform } from "../config/socials";
 import "../styles/social-links.css";
 
@@ -42,6 +43,10 @@ function SocialIcon({ platform, ...props }: SocialIconProps) {
         <path d="M15.2 4.2c.4 2.2 1.7 3.5 3.8 3.7v2.7a8 8 0 0 1-3.8-1.1v5.1a5 5 0 1 1-4.3-5v2.8a2.3 2.3 0 1 0 1.6 2.2V4.2h2.7Z" fill="currentColor" stroke="none" />
       </svg>
     );
+  }
+
+  if (platform === "whatsapp") {
+    return <MessageCircle {...props} aria-hidden="true" strokeWidth={1.8} />;
   }
 
   return (

@@ -37,6 +37,7 @@
 .social-links__link--linkedin:hover { --social-rotation: 2deg; }
 .social-links__link--tiktok:hover { --social-rotation: -1deg; }
 .social-links__link--discord:hover { --social-rotation: 1deg; }
+.social-links__link--whatsapp:hover { --social-rotation: -1deg; }
 
 .social-links--header {
   gap: .2rem;
@@ -115,6 +116,7 @@
 .social-links--tessera .social-links__link--linkedin { --social-brand: #0a66c2; }
 .social-links--tessera .social-links__link--tiktok { --social-brand: #111111; }
 .social-links--tessera .social-links__link--discord { --social-brand: #5865f2; }
+.social-links--tessera .social-links__link--whatsapp { --social-brand: #128c7e; }
 .tessera-action-tile--website { --social-brand: linear-gradient(135deg, #e65100 0%, #ff8f00 100%); }
 .tessera-action-tile--paypal { --social-brand: linear-gradient(135deg, #0070ba 0%, #003087 100%); }
 

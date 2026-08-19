@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Mail, MailCheck, ExternalLink } from "lucide-react";
+import { Mail, MailCheck, ExternalLink, MessageCircle } from "lucide-react";
 import contattiConfig from "../config/contatti.json";
+import { SOCIAL_LINKS } from "../config/socials";
 import { SEO } from "../components/SEO";
 import { NewsletterForm } from "../components/NewsletterForm";
 
@@ -94,6 +95,16 @@ export function Contatti() {
               Scrivici direttamente via email
               <ExternalLink className="w-4 h-4" />
             </a>
+
+            <a
+              href={SOCIAL_LINKS.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 rounded-full border-2 border-[#128c7e] px-8 py-4 font-bold uppercase tracking-wider text-[#128c7e] transition-colors hover:bg-[#128c7e] hover:text-white"
+            >
+              <MessageCircle className="h-5 w-5" aria-hidden="true" />
+              Parlaci su WhatsApp
+            </a>
         </div>
 
         {/* Newsletter Form */}
@@ -114,6 +125,15 @@ export function Contatti() {
               <span className="text-[#8a3a19] text-sm font-bold uppercase tracking-widest mb-2">{contattiConfig.info.phone_label}</span>
               <a href={`tel:${contattiConfig.info.phone_value.replace(/\s+/g, '')}`} className="text-xl md:text-2xl font-mono font-bold text-[#4a1c0d] hover:text-[#e65100] transition-colors">
                 {contattiConfig.info.phone_value}
+              </a>
+              <a
+                href={SOCIAL_LINKS.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-flex items-center gap-2 text-sm font-bold text-[#128c7e] hover:text-[#0b6258] transition-colors"
+              >
+                <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                Scrivici su WhatsApp
               </a>
             </div>
         </div>
