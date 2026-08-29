@@ -2,7 +2,7 @@ import { motion, AnimatePresence, useMotionValue, useMotionTemplate } from "moti
 import { Project } from "../types";
 import projectData from "../config/projects.json";
 import homeConfig from "../config/home.json";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SEO } from "../components/SEO";
 import { generateNgoSchema } from "../utils/seo-microdata";
@@ -21,9 +21,11 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
   }
 
   return (
-    <motion.div
+    <motion.button
+      type="button"
       layoutId={`project-container-${project.id}`}
       onClick={project.is_black_and_white ? undefined : onClick}
+      disabled={project.is_black_and_white}
       onMouseMove={handleMouseMove}
       className={`clay-card p-0 ${project.is_black_and_white ? "cursor-default grayscale" : "cursor-pointer hover:shadow-3xl"} relative w-full md:w-[45%] lg:w-[40%] aspect-[4/5] flex flex-col items-center justify-end group overflow-hidden rounded-[2.5rem] shadow-2xl transition-all duration-500 border-4 border-white/50`}
     >
@@ -74,7 +76,7 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
           </p>
         </div>
       </div>
-    </motion.div>
+    </motion.button>
   );
 }
 
@@ -168,6 +170,15 @@ export function Home() {
   // Filter out the hero item if it's mixed with projects
   const actualProjects = (projectData as Project[]).filter(p => p.id !== "hero-air");
   const activeProject = actualProjects.find((p) => p.id === expandedProjectId);
+
+  useEffect(() => {
+    if (!expandedProjectId) return undefined;
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setExpandedProjectId(null);
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [expandedProjectId]);
 
   return (
     <>
@@ -281,11 +292,16 @@ export function Home() {
                   <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-12 pointer-events-none">
                     <motion.div
                       layoutId={`project-container-${activeProject.id}`}
+                      role="dialog"
+                      aria-modal="true"
+                      aria-label={activeProject.title}
                       className="clay-card relative flex flex-col md:flex-row items-center w-full max-w-5xl pointer-events-auto overflow-hidden rounded-[2.5rem] border-4 border-white/20 shadow-2xl p-0"
                     >
                       {/* Close button */}
                       <button
                         onClick={() => setExpandedProjectId(null)}
+                        type="button"
+                        aria-label="Chiudi progetto"
                         className="absolute top-6 right-6 z-50 bg-white/10 hover:bg-white/30 backdrop-blur-md rounded-full p-3 text-white shadow-sm transition-all hover:scale-110 active:scale-95"
                       >
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -545,4 +561,3 @@ export function Home() {
     </>
   );
 }
-

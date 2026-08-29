@@ -5,6 +5,10 @@ import { HelmetProvider } from "react-helmet-async";
 import App from "./App.tsx";
 import "./index.css";
 
+if (/\/abbiamo\/?$/.test(window.location.pathname) && !window.location.hash) {
+  window.history.replaceState(null, "", `${window.location.pathname.replace(/\/?$/, "/")}#/abbiamo`);
+}
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <HelmetProvider>

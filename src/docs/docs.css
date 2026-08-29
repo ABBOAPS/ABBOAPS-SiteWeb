@@ -87,5 +87,15 @@
   .docs-feature-heading p { font-size:.9rem; }
 }
 
+/* Keep the two-column shell stable on narrow desktop and tablet widths. */
+.docs-shell { box-sizing:border-box; width:100%; grid-template-columns:minmax(220px,280px) minmax(0,1fr); }
+.docs-map-node > span { min-width:0; }
+.docs-map-node > svg { flex:0 0 14px; width:14px; height:14px; }
+
+@media (max-width:1100px) and (min-width:801px) {
+  .docs-shell { grid-template-columns:minmax(220px,250px) minmax(0,1fr); padding-left:1.25rem; padding-right:1.25rem; }
+  .docs-main { padding-left:1.5rem; }
+}
+
 @media (prefers-reduced-motion:reduce) { .docs-shell * { transition:none!important; animation:none!important; scroll-behavior:auto!important; } }
 @media print { .docs-shell { display:block; padding:1rem; }.docs-sidebar,.docs-mobile-menu,.docs-mobile-toolbar,.docs-toc,.docs-article-feedback,.docs-related,.docs-prevnext,.docs-command-backdrop { display:none!important; }.docs-main { padding:0; }.docs-article-header h1 { font-size:2.2rem; }.docs-markdown { font-size:11pt; }.docs-markdown a { color:inherit; text-decoration:underline; }.docs-feature { box-shadow:none; break-inside:avoid; } }

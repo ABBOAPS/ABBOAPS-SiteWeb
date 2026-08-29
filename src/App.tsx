@@ -27,6 +27,7 @@ const AiTransparency = lazy(() => import("./pages/AiTransparency").then(({ AiTra
 const LimitedVerification = lazy(() => import("./pages/LimitedVerification").then(({ LimitedVerification }) => ({ default: LimitedVerification })));
 const LimitedVerificationRoute = lazy(() => import("./pages/LimitedVerification").then(({ LimitedVerificationRoute }) => ({ default: LimitedVerificationRoute })));
 const LimitedDemo = lazy(() => import("./pages/LimitedDemo").then(({ LimitedDemo }) => ({ default: LimitedDemo })));
+const Abbiamo = lazy(() => import("./pages/Abbiamo").then(({ Abbiamo }) => ({ default: Abbiamo })));
 const ConsapevolezzaDocenti = lazy(() => import("./pages/landing/ConsapevolezzaDocenti"));
 const ConsapevolezzaIstituti = lazy(() => import("./pages/landing/ConsapevolezzaIstituti"));
 const ConsapevolezzaRagazzi = lazy(() => import("./pages/landing/ConsapevolezzaRagazzi"));
@@ -82,6 +83,7 @@ export default function App() {
           <Route path="/limited" element={<LimitedVerification />} />
           <Route path="/limited/demo" element={<LimitedDemo />} />
           <Route path="/limited/:token" element={<LimitedVerificationRoute />} />
+          <Route path="/abbiamo" element={<Abbiamo />} />
           <Route path="/docs/*" element={<Docs />} />
           
           {/* Landing Pages */}

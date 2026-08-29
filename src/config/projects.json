@@ -21,15 +21,15 @@
     "description": "Digital Heroes è un progetto di formazione digitale attivo a Verderio che si occupa di guidare i ragazzi dai 9 ai 14 anni e le realtà locali verso un uso sicuro, creativo e consapevole della tecnologia. Attraverso laboratori interattivi e percorsi pratici, l'iniziativa sviluppa le competenze informatiche fondamentali per il futuro, insegnando a sfruttare le opportunità della rete e a contrastarne i rischi. Questo percorso nasce con l'obiettivo di trasformare il tempo speso online in un'effettiva opportunità di crescita e di inclusione, costruendo così una comunità tecnologica responsabile, aperta al dialogo e pronta ad affrontare l'innovazione del mondo del lavoro."
   },
   {
-    "id": "coming-soon",
-    "title": "Coming Soon",
+    "id": "abbiamo",
+    "title": "Festival ABBIAMO",
     "is_video": false,
-    "bg_src": "",
-    "thumbnail": "",
-    "cta": "Coming soon",
-    "url": "",
-    "icon": "",
-    "description": "Progetto in arrivo.",
-    "is_black_and_white": true
+    "bg_src": "/media/BG_Home.webp",
+    "thumbnail": "/media/BG_Home.webp",
+    "cta": "Vai al sito",
+    "url": "/#/abbiamo",
+    "icon": "/abbiamo/logo-primary.svg",
+    "description": "La prima fiera delle associazioni: incontro, attività e rete nel territorio.",
+    "is_black_and_white": false
   }
 ]

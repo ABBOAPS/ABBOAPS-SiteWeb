@@ -21,6 +21,8 @@ export default defineConfig(() => {
                 req.url = '/site/tessera/index.html';
               } else if (urlPath === '/nfc' || urlPath === '/nfc/') {
                 req.url = '/site/index.html';
+              } else if (urlPath === '/abbiamo' || urlPath === '/abbiamo/') {
+                req.url = '/index.html';
               }
             }
             next();

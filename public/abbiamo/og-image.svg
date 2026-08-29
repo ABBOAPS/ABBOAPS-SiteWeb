@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Festival ABBIAMO 2026</title>
+  <desc id="desc">Non una fiera da guardare, ma un territorio da vivere.</desc>
+  <rect width="1200" height="630" fill="#fae6d5"/>
+  <circle cx="1080" cy="-30" r="270" fill="#e63033"/>
+  <circle cx="-60" cy="620" r="240" fill="#e63033"/>
+  <image href="logo-primary.svg" x="90" y="80" width="500" height="302" preserveAspectRatio="xMidYMid meet"/>
+  <text x="650" y="260" fill="#24120f" font-family="Arial, sans-serif" font-size="52" font-weight="700">FESTIVAL</text>
+  <text x="650" y="325" fill="#e63033" font-family="Arial, sans-serif" font-size="52" font-weight="700">ABBIAMO 2026</text>
+  <text x="650" y="405" fill="#24120f" font-family="Arial, sans-serif" font-size="24">4 OTTOBRE · VERDERIO (LC)</text>
+  <text x="650" y="450" fill="#71483d" font-family="Arial, sans-serif" font-size="22">Fiera delle associazioni</text>
+</svg>
