@@ -1,9 +1,156 @@
 import sostieniciConfig from "../config/sostienici.json";
-import { Check, ChevronRight, ChevronLeft, Heart } from "lucide-react";
+import { ArrowLeft, ChevronRight, ChevronLeft, CreditCard, HandHeart, Landmark } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { SEO } from "../components/SEO";
 import { generateDonateActionSchema } from "../utils/seo-microdata";
+import { organization } from "../config/organization";
+import { CopyableValue } from "../components/CopyableValue";
+
+type DonationStep = "intro" | "methods" | "bank";
+
+function DonationCard() {
+  const [step, setStep] = useState<DonationStep>("intro");
+  const [paypalNotice, setPaypalNotice] = useState(false);
+  const noticeTimer = useRef<number | undefined>(undefined);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => () => window.clearTimeout(noticeTimer.current), []);
+
+  const showPaypalNotice = () => {
+    setPaypalNotice(true);
+    window.clearTimeout(noticeTimer.current);
+    noticeTimer.current = window.setTimeout(() => setPaypalNotice(false), 3200);
+  };
+
+  const transition = reduceMotion ? { duration: 0 } : { duration: 0.24, ease: "easeOut" as const };
+  const enter = reduceMotion ? {} : { opacity: 0, y: 12 };
+  const exit = reduceMotion ? {} : { opacity: 0, y: -8 };
+  const tileShape = { clipPath: "polygon(0 0, 100% 0, 92% 100%, 8% 100%)" };
+
+  return (
+    <section aria-labelledby="single-donation-title" className="max-w-2xl mx-auto mb-16 w-full">
+      <div className="clay-card relative min-h-[31rem] overflow-hidden p-7 sm:p-10 md:p-14">
+        <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#ffb300]/20 blur-3xl" aria-hidden="true" />
+        <div className="pointer-events-none absolute -bottom-24 -left-20 h-60 w-60 rounded-full bg-[#e65100]/10 blur-3xl" aria-hidden="true" />
+
+        <AnimatePresence mode="wait" initial={false}>
+          {step === "intro" && (
+            <motion.div key="intro" initial={enter} animate={{ opacity: 1, y: 0 }} exit={exit} transition={transition} className="relative flex min-h-[25rem] flex-col">
+              <div className="mb-9 flex size-20 items-center justify-center rounded-[1.65rem] bg-[#e65100]/12 text-[#e65100] shadow-[inset_3px_3px_8px_rgba(255,255,255,.7),3px_5px_12px_rgba(150,62,20,.12)]">
+                <HandHeart className="size-10" strokeWidth={1.9} aria-hidden="true" />
+              </div>
+              <h2 id="single-donation-title" className="max-w-md text-4xl font-extrabold tracking-tight text-[#4a1c0d] text-balance sm:text-5xl">
+                {sostieniciConfig.donation.title}
+              </h2>
+              <p className="mt-6 max-w-xl text-lg font-medium leading-relaxed text-[#4a1c0d]/72">
+                {sostieniciConfig.donation.description}
+              </p>
+              <button
+                type="button"
+                onClick={() => setStep("methods")}
+                className="clay-btn mt-auto min-h-14 w-full px-7 py-4 text-base font-extrabold uppercase tracking-wider transition-transform hover:scale-[1.015] active:scale-[0.985] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e65100] touch-manipulation"
+              >
+                Fai una donazione
+              </button>
+            </motion.div>
+          )}
+
+          {step === "methods" && (
+            <motion.div key="methods" initial={enter} animate={{ opacity: 1, y: 0 }} exit={exit} transition={transition} className="relative flex min-h-[25rem] flex-col">
+              <button
+                type="button"
+                onClick={() => setStep("intro")}
+                className="mb-8 inline-flex min-h-11 w-fit items-center gap-2 rounded-full px-2 text-sm font-bold text-[#8a3a19] transition-colors hover:text-[#e65100] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e65100]"
+              >
+                <ArrowLeft className="size-4" aria-hidden="true" />
+                Indietro
+              </button>
+              <h2 id="single-donation-title" className="text-4xl font-extrabold tracking-tight text-[#4a1c0d] text-balance sm:text-5xl">
+                {sostieniciConfig.donation.method_title}
+              </h2>
+              <p className="mt-4 text-lg font-medium leading-relaxed text-[#4a1c0d]/72">{sostieniciConfig.donation.method_description}</p>
+              <div className="mt-10 grid gap-5 sm:grid-cols-2" role="group" aria-label="Metodo di donazione">
+                <motion.button
+                  type="button"
+                  onClick={() => setStep("bank")}
+                  whileHover={reduceMotion ? undefined : { scale: 1.025, y: -3 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 360, damping: 24 }}
+                  style={tileShape}
+                  className="min-h-48 bg-[#198754] px-8 py-8 text-left text-white shadow-[0_14px_26px_rgba(25,135,84,.22)] transition-shadow hover:shadow-[0_20px_32px_rgba(25,135,84,.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#198754] touch-manipulation"
+                >
+                  <Landmark className="mb-7 size-8" strokeWidth={1.9} aria-hidden="true" />
+                  <span className="block text-2xl font-extrabold tracking-tight">Bonifico</span>
+                  <span className="mt-1 block text-sm font-bold text-white/78">Disponibile ora</span>
+                </motion.button>
+                <motion.button
+                  type="button"
+                  onClick={showPaypalNotice}
+                  aria-describedby={paypalNotice ? "paypal-notice" : undefined}
+                  whileHover={reduceMotion ? undefined : { scale: 1.025, y: -3 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 360, damping: 24 }}
+                  style={tileShape}
+                  className="min-h-48 bg-[#1769aa] px-8 py-8 text-left text-white shadow-[0_14px_26px_rgba(23,105,170,.22)] transition-shadow hover:shadow-[0_20px_32px_rgba(23,105,170,.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1769aa] touch-manipulation"
+                >
+                  <CreditCard className="mb-7 size-8" strokeWidth={1.9} aria-hidden="true" />
+                  <span className="block text-2xl font-extrabold tracking-tight">PayPal</span>
+                  <span className="mt-1 block text-sm font-bold text-white/78">{sostieniciConfig.donation.paypal_label}</span>
+                </motion.button>
+              </div>
+              <AnimatePresence>
+                {paypalNotice && (
+                  <motion.p
+                    id="paypal-notice"
+                    role="status"
+                    aria-live="polite"
+                    initial={enter}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={exit}
+                    transition={transition}
+                    className="mt-6 rounded-2xl bg-[#1769aa]/10 px-5 py-4 text-sm font-semibold leading-relaxed text-[#124f80]"
+                  >
+                    {sostieniciConfig.donation.paypal_notice}
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          )}
+
+          {step === "bank" && (
+            <motion.div key="bank" initial={enter} animate={{ opacity: 1, y: 0 }} exit={exit} transition={transition} className="relative flex min-h-[25rem] flex-col">
+              <button
+                type="button"
+                onClick={() => setStep("methods")}
+                className="mb-8 inline-flex min-h-11 w-fit items-center gap-2 rounded-full px-2 text-sm font-bold text-[#8a3a19] transition-colors hover:text-[#e65100] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e65100]"
+              >
+                <ArrowLeft className="size-4" aria-hidden="true" />
+                Metodi di donazione
+              </button>
+              <div className="mb-8 flex size-16 items-center justify-center rounded-[1.35rem] bg-[#198754]/12 text-[#198754] shadow-[inset_3px_3px_8px_rgba(255,255,255,.7),3px_5px_12px_rgba(25,135,84,.12)]">
+                <Landmark className="size-8" strokeWidth={1.9} aria-hidden="true" />
+              </div>
+              <h2 id="single-donation-title" className="text-4xl font-extrabold tracking-tight text-[#4a1c0d] text-balance sm:text-5xl">Bonifico bancario</h2>
+              <p className="mt-5 max-w-lg text-lg font-medium leading-relaxed text-[#4a1c0d]/72">{sostieniciConfig.donation.bank_description}</p>
+              <div className="mt-auto rounded-[1.6rem] border border-[#198754]/18 bg-[#198754]/8 p-5 sm:p-6">
+                <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-[#176a43]">IBAN</span>
+                <CopyableValue
+                  value={organization.iban}
+                  copyLabel="Copia IBAN"
+                  actionLabel="Copia IBAN"
+                  copiedLabel="IBAN copiato"
+                  className="mt-2 max-w-full"
+                  valueClassName="text-base sm:text-lg md:text-xl tracking-wide break-all"
+                />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </section>
+  );
+}
 
 export function Sostienici() {
   const schema = generateDonateActionSchema();
@@ -13,7 +160,7 @@ export function Sostienici() {
   const [copied, setCopied] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const handleCopyCF = (e: React.MouseEvent<HTMLButtonElement>) => {
-    navigator.clipboard.writeText("94070530152");
+    navigator.clipboard.writeText(organization.taxCode);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
     triggerConfetti(e.clientX, e.clientY);
@@ -210,45 +357,7 @@ export function Sostienici() {
             Sostienici
           </h2>
         </div>
-        <div className="max-w-2xl mx-auto mb-16 w-full">
-
-          {/* PayPal Card (Singola) */}
-          <div className="clay-card flex flex-col p-10 md:p-14 relative overflow-hidden group">
-            <div className="w-16 h-16 bg-[#0070ba]/10 text-[#0070ba] rounded-full flex items-center justify-center mb-10 group-hover:scale-110 transition-transform self-start aspect-square shrink-0">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7.07593 21.3368H2.47036C2.11586 21.3368 1.8385 21.0366 1.88414 20.6865L4.94507 0.90098C4.99613 0.589886 5.25052 0.351562 5.56942 0.351562H13.6111C18.2173 0.351562 20.9859 2.47953 20.1666 7.29415C19.6481 10.331 17.5492 12.6661 14.5772 13.5505C13.4704 13.8797 12.2614 14.0322 10.6575 14.0322H9.0275C8.68128 14.0322 8.3887 14.2858 8.33496 14.629L7.07593 21.3368Z" fill="#003087"/>
-                <path d="M6.09635 15.0635C6.14856 14.7262 6.43632 14.4828 6.77884 14.4828H8.40884C10.0128 14.4828 11.2217 14.3291 12.3286 13.9996C15.3006 13.1143 17.398 10.7797 17.9179 7.74238C18.1783 6.22295 18.0658 4.91263 17.6206 3.86043C17.3362 3.19236 16.913 2.63428 16.3621 2.20459C15.5492 1.5 14.5034 1 13.0645 1H5.73359C5.6416 1 5.55938 0.0654316 5.53763 0.154546L2.19794 19.7941C2.18306 19.8808 2.25014 19.9577 2.33855 19.9577H6.49129C6.61394 19.9577 6.71804 19.8696 6.73693 19.747L6.09635 15.0635Z" fill="#0070ba"/>
-                <path d="M16.9452 2.19828C17.4956 2.62846 17.9538 3.22416 18.2016 3.8533C18.647 4.90422 18.7909 6.2131 18.5292 7.7303C18.0105 10.7628 15.9126 13.097 12.9416 13.9818C11.8354 14.3106 10.6272 14.4636 9.02409 14.4636H7.39486C7.054 14.4636 6.76495 14.7077 6.71285 15.045L5.4542 21.7516H9.03541C9.36306 21.7516 9.64547 21.4998 9.69785 21.1764L10.5907 15.9169C10.6441 15.6009 10.9167 15.3676 11.2372 15.3676H12.4005C16.5137 15.3676 19.3041 13.4308 20.0438 9.10656C20.1989 8.19693 20.179 7.35805 19.9992 6.62174C19.7342 5.53177 18.9598 4.72149 17.8041 4.12097C16.403 3.3913 14.4754 3.27092 12.4187 3.27092H10.2828L10.0177 4.82115C10.3934 4.83615 10.7709 4.85415 11.155 4.88815C12.285 5.03185 13.208 5.23685 13.978 5.68825V5.68725L16.9452 2.19828Z" fill="#012169"/>
-              </svg>
-            </div>
-            <h2 className="text-4xl font-extrabold tracking-tight mb-4 text-[#4a1c0d]">
-              {sostieniciConfig.paypal.title}
-            </h2>
-            <p className="text-[#4a1c0d]/70 mb-8 leading-relaxed font-medium text-lg">
-              {sostieniciConfig.paypal.description}
-            </p>
-
-            <ul className="mb-12 space-y-4">
-              {sostieniciConfig.paypal.perks.map((perk, i) => (
-                <li key={i} className="flex items-start space-x-3 text-[#4a1c0d]/80 font-semibold">
-                  <div className="w-6 h-6 rounded-full bg-[#0070ba]/20 flex items-center justify-center text-[#0070ba] shrink-0 mt-0.5">
-                    <Check className="w-3 h-3" />
-                  </div>
-                  <span>{perk}</span>
-                </li>
-             ))}
-            </ul>
-
-            <a
-              href={sostieniciConfig.paypal.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-auto clay-btn px-8 py-5 text-center text-white font-bold tracking-widest uppercase w-full hover:scale-105 active:scale-95"
-            >
-              Donazione Singola
-            </a>
-          </div>
-        </div>
+        <DonationCard />
 
         {/* Sezione 5 per Mille */}
         <div className="w-full flex flex-col items-center pt-8 pb-16 max-w-5xl mx-auto relative z-20">
@@ -277,7 +386,7 @@ export function Sostienici() {
             <div className="w-full max-w-md clay-input p-6 flex flex-col sm:flex-row items-center justify-between gap-4 relative group select-none">
               <div className="flex flex-col text-left w-full sm:w-auto">
                 <span className="text-[10px] md:text-xs font-bold text-[#8a3a19] uppercase tracking-wider mb-1">Codice Fiscale dell'Associazione</span>
-                <span className="font-mono text-xl md:text-2xl font-black text-[#e65100] tracking-wider select-all">94070530152</span>
+                <span className="font-mono text-xl md:text-2xl font-black text-[#e65100] tracking-wider select-all">{organization.taxCode}</span>
               </div>
               <button
                 onClick={handleCopyCF}
@@ -307,5 +416,3 @@ export function Sostienici() {
     </div>
   );
 }
-
-

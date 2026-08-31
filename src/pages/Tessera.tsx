@@ -12,6 +12,7 @@ import tesseraConfig from "../config/tessera.json";
 import { dataNews, Articolo } from "../data/newsData";
 import { TesseraLegalDisclaimer } from "../components/TesseraLegalDisclaimer";
 import { SocialLinks } from "../components/SocialLinks";
+import { organization } from "../config/organization";
 
 export type MembershipResultState =
   | 'active'
@@ -230,7 +231,7 @@ export function Tessera() {
   }, []);
 
   const handleCopyCF = (e: React.MouseEvent<HTMLButtonElement>) => {
-    navigator.clipboard.writeText("94070530152");
+    navigator.clipboard.writeText(organization.taxCode);
     setCopiedCF(true);
     setTimeout(() => setCopiedCF(false), 2000);
     triggerConfetti(e.clientX, e.clientY);
@@ -601,7 +602,7 @@ export function Tessera() {
                 {t.fiscalCodeLabel}
               </span>
               <span className="font-mono text-2xl sm:text-3xl font-black text-[#e65100] tracking-wider text-center">
-                94070530152
+                {organization.taxCode}
               </span>
               <button
                 onClick={handleCopyCF}

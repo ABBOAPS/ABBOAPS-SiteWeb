@@ -17,14 +17,30 @@ export interface AbbiamoFaq {
   answer: string;
 }
 
+export interface AbbiamoSupporter {
+  name: string;
+  role: "patronage" | "logistics";
+  logoSrc: string;
+  logoWidth: number;
+  logoHeight: number;
+}
+
 export type AbbiamoInfoIcon = "ticket" | "users" | "accessibility" | "parking" | "bar" | "clock" | "indoor";
 
 const viteBaseUrl = import.meta.env?.BASE_URL ?? "/";
 
-export function abbiamoAsset(filename: string): string {
+function publicAsset(path: string): string {
   const inCrawlableEntry = typeof window !== "undefined" && /^\/abbiamo\/?$/.test(window.location.pathname);
   const baseUrl = inCrawlableEntry && viteBaseUrl === "./" ? "../" : viteBaseUrl;
-  return `${baseUrl}abbiamo/${filename}`;
+  return `${baseUrl}${path}`;
+}
+
+export function abbiamoAsset(filename: string): string {
+  return publicAsset(`abbiamo/${filename}`);
+}
+
+export function partnerAsset(filename: string): string {
+  return publicAsset(`partners/${filename}`);
 }
 
 export const abbiamoData = {
@@ -160,7 +176,22 @@ export const abbiamoData = {
         "Sì, compatibilmente con i tempi organizzativi. Scrivi ad ABBO con il maggior anticipo possibile tramite l’email ufficiale presente sul sito.",
     },
   ] satisfies AbbiamoFaq[],
-  patronage: { enabled: false },
+  supporters: [
+    {
+      name: "CSV Monza Lecco Sondrio ETS",
+      role: "patronage",
+      logoSrc: abbiamoAsset("csv-monza-lecco-sondrio-ets.png"),
+      logoWidth: 2000,
+      logoHeight: 591,
+    },
+    {
+      name: "ABC Sport",
+      role: "logistics",
+      logoSrc: partnerAsset("logo-abc-sport.webp"),
+      logoWidth: 240,
+      logoHeight: 193,
+    },
+  ] satisfies AbbiamoSupporter[],
 } as const;
 
 export function buildAbbiamoEventSchema() {

@@ -28,14 +28,13 @@
     }
   ],
 
-  "paypal": {
-    "title": "Donatori (PayPal)",
-    "description": "Per chi desidera sostenere ABBO APS con una donazione singola (una tantum). Ogni contributo, erogato in totale trasparenza, è interamente reinvestito nelle attività istituzionali, nella strumentazione tecnologica e nella copertura dei costi vivi dell'associazione.",
-    "perks": [
-      "Finanziamento diretto della strumentazione informatica e hardware per i laboratori",
-      "Supporto immediato per la copertura dei costi di hosting, VPS e infrastruttura di rete",
-      "Ringraziamento pubblico sui canali ufficiali e nei report di rendicontazione dell'associazione"
-    ],
-    "link": "#"
+  "donation": {
+    "title": "Donazione singola",
+    "description": "Sostieni ABBO APS con un contributo una tantum. La tua donazione aiuta a portare avanti i progetti, le attività e i laboratori che hai visto in questa pagina.",
+    "method_title": "Come vuoi donare?",
+    "method_description": "Scegli il metodo che preferisci.",
+    "bank_description": "Puoi effettuare una donazione singola tramite bonifico.",
+    "paypal_label": "Prossimamente",
+    "paypal_notice": "PayPal non è ancora disponibile. Per ora puoi donare tramite bonifico."
   }
 }

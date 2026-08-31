@@ -9,6 +9,7 @@ import { generateNgoSchema } from "../utils/seo-microdata";
 import { dataNews } from "../data/newsData";
 import ambassadorConfig from "../config/ambassador.json";
 import { User } from "lucide-react";
+import { organization } from "../config/organization";
 
 function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
   const mouseX = useMotionValue(0);
@@ -90,7 +91,7 @@ export function Home() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const handleCopyCF = (e: React.MouseEvent<HTMLButtonElement>) => {
-    navigator.clipboard.writeText("94070530152");
+    navigator.clipboard.writeText(organization.taxCode);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
     triggerConfetti(e.clientX, e.clientY);
@@ -530,7 +531,7 @@ export function Home() {
               <div className="w-full max-w-md clay-input p-6 flex flex-col sm:flex-row items-center justify-between gap-4 relative group select-none">
                 <div className="flex flex-col text-left w-full sm:w-auto">
                   <span className="text-[10px] md:text-xs font-bold text-[#8a3a19] uppercase tracking-wider mb-1">Codice Fiscale dell'Associazione</span>
-                  <span className="font-mono text-xl md:text-2xl font-black text-[#e65100] tracking-wider select-all">94070530152</span>
+                  <span className="font-mono text-xl md:text-2xl font-black text-[#e65100] tracking-wider select-all">{organization.taxCode}</span>
                 </div>
                 <button
                   onClick={handleCopyCF}

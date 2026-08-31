@@ -1,20 +1,15 @@
 import siteConfig from "../config/site_config.json";
 import footerConfig from "../config/footer.json";
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
 import { NewsletterForm } from "./NewsletterForm";
 import { SocialLinks } from "./SocialLinks";
+import { organization } from "../config/organization";
+import { CopyableValue } from "./CopyableValue";
 
 export function Footer() {
   const location = useLocation();
-  const [copiedCF, setCopiedCF] = useState(false);
   const isLandingPage = location.pathname.startsWith("/landing");
-
-  const handleCopyCF = () => {
-    navigator.clipboard.writeText(footerConfig.fiscal_code);
-    setCopiedCF(true);
-    setTimeout(() => setCopiedCF(false), 2000);
-  };
+  const logoHorizontal = (siteConfig as { logo_horizontal?: string }).logo_horizontal;
 
   const allLinks = [
     ...footerConfig.links,
@@ -35,26 +30,18 @@ export function Footer() {
           {/* Column 1: Brand & Legal Info */}
           <div className="md:col-span-4 flex flex-col gap-4">
             <div className="flex items-center">
-              <img 
-                src={(siteConfig as any).logo_horizontal || "https://img.icons8.com/ios-filled/50/e65100/home.png"} 
-                alt="ABBO APS Logo" 
-                width="160" 
-                height="40" 
-                className="h-9 w-auto object-contain grayscale opacity-85" 
-              />
+              {logoHorizontal && <img src={logoHorizontal} alt="ABBO APS" width="160" height="40" className="h-9 w-auto object-contain grayscale opacity-85" />}
             </div>
             
-            <div className="flex flex-col gap-1.5 text-xs font-mono text-[#4a1c0d]/80">
+            <div className="flex flex-col gap-1 text-xs font-mono text-[#4a1c0d]/80">
               <span>Sede Legale: <strong>{footerConfig.legal_address}</strong></span>
-              <div className="flex items-center gap-2">
-                <span>Codice Fiscale: <strong className="font-bold">{footerConfig.fiscal_code}</strong></span>
-                <button 
-                  onClick={handleCopyCF} 
-                  type="button"
-                  className="text-[10px] px-2 py-0.5 rounded bg-[#e65100]/10 text-[#e65100] font-sans font-bold uppercase hover:bg-[#e65100]/20 transition-colors cursor-pointer"
-                >
-                  {copiedCF ? "Copiato!" : "Copia"}
-                </button>
+              <div className="flex items-center gap-1.5">
+                <span className="shrink-0">Codice Fiscale:</span>
+                <CopyableValue value={organization.taxCode} copyLabel="Copia codice fiscale" valueClassName="font-bold" />
+              </div>
+              <div className="flex max-w-full items-center gap-1.5">
+                <span className="shrink-0">IBAN:</span>
+                <CopyableValue value={organization.iban} copyLabel="Copia IBAN" className="min-w-0" valueClassName="break-all" />
               </div>
             </div>
 

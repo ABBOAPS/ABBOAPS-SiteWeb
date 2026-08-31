@@ -9,6 +9,7 @@ import {
   Clock3,
   DoorOpen,
   Hand,
+  HeartHandshake,
   Mail,
   MapPin,
   MapPinned,
@@ -119,9 +120,60 @@ function InformationIcon({ kind }: { kind: string }) {
   return <Coffee aria-hidden="true" />;
 }
 
-function PatronageBlock({ config }: { config: { enabled: boolean; name?: string; logoSrc?: string } }) {
-  if (!config.enabled || !config.name) return null;
-  return <section className="festival-patronage" aria-label="Patrocinio">{config.logoSrc && <img src={config.logoSrc} alt="" />}<strong>{config.name}</strong></section>;
+function SupporterLogo({ supporter, className = "", loading = "lazy" }: { supporter: (typeof abbiamoData.supporters)[number]; className?: string; loading?: "eager" | "lazy" }) {
+  return <img className={className} src={supporter.logoSrc} alt={supporter.name} width={supporter.logoWidth} height={supporter.logoHeight} decoding="async" loading={loading} translate="no" />;
+}
+
+function FestivalHeroPatronage() {
+  const csv = abbiamoData.supporters[0];
+
+  return (
+    <aside className="festival-hero-patronage" aria-label="Patrocinio">
+      <p>Con il patrocinio di</p>
+      <SupporterLogo supporter={csv} loading="eager" />
+    </aside>
+  );
+}
+
+function FestivalSupportSection() {
+  const [csv, abcSport] = abbiamoData.supporters;
+
+  return (
+    <section className="festival-section festival-support" aria-labelledby="abbiamo-support-title">
+      <div className="festival-shell festival-support-layout">
+        <header className="festival-support-heading">
+          <div>
+            <h2 id="abbiamo-support-title">ABBIAMO si fa insieme.</h2>
+            <p>Un festival di territorio nasce dalle collaborazioni che lo rendono possibile.</p>
+          </div>
+          <div className="festival-support-icon" aria-hidden="true"><HeartHandshake /></div>
+        </header>
+        <div className="festival-support-composition">
+          <article className="festival-supporter festival-supporter--patronage">
+            <p>Con il patrocinio di</p>
+            <SupporterLogo supporter={csv} />
+          </article>
+          <article className="festival-supporter festival-supporter--logistics">
+            <p>Con il supporto logistico di</p>
+            <SupporterLogo supporter={abcSport} />
+          </article>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FestivalClosingPatronage() {
+  const csv = abbiamoData.supporters[0];
+
+  return (
+    <section className="festival-closing-patronage" aria-label="Patrocinio">
+      <div className="festival-shell">
+        <p>Con il patrocinio di</p>
+        <SupporterLogo supporter={csv} />
+      </div>
+    </section>
+  );
 }
 
 export function FestivalAbbiamoContent() {
@@ -131,9 +183,9 @@ export function FestivalAbbiamoContent() {
     <div className="festival-page">
       <section className="festival-hero" aria-labelledby="abbiamo-title">
         <FestivalHeroScene className="festival-hero-scene" />
-        <div className="festival-shell festival-hero-layout">
+          <div className="festival-shell festival-hero-layout">
           <div className="festival-hero-copy">
-            <img className="festival-logo" src={abbiamoData.logoSrc} alt="Festival ABBIAMO" width="420" height="254" />
+            <img className="festival-logo" src={abbiamoData.logoSrc} alt="Festival ABBIAMO" width="420" height="254" fetchPriority="high" />
             <h1 id="abbiamo-title" className="sr-only">ABBiamo</h1>
             <p className="festival-payoff">Non una fiera da guardare,<br />ma un territorio da vivere.</p>
             <div className="festival-event-meta" aria-label={`${abbiamoData.dateLabel}, dalle ${abbiamoData.startTime} alle ${abbiamoData.endTime}, ${abbiamoData.location}`}>
@@ -146,6 +198,7 @@ export function FestivalAbbiamoContent() {
               <a className="festival-button festival-button--line" href={abbiamoData.mapsUrl} target="_blank" rel="noopener noreferrer">Come arrivare <MapPin size={18} aria-hidden="true" /></a>
             </div>
           </div>
+          <FestivalHeroPatronage />
         </div>
       </section>
 
@@ -199,6 +252,8 @@ export function FestivalAbbiamoContent() {
           </div>
         </section>
 
+        <FestivalSupportSection />
+
         <section className="festival-invitation" aria-labelledby="abbiamo-join-title">
           <div className="festival-shell festival-invitation-grid">
             <FestivalClayIcon className="festival-invitation-art"><UsersRound /></FestivalClayIcon>
@@ -219,10 +274,10 @@ export function FestivalAbbiamoContent() {
               ))}
             </div>
           </div>
-          <PatronageBlock config={abbiamoData.patronage} />
         </section>
       </main>
 
+      <FestivalClosingPatronage />
       <div className="festival-footer-bridge"><FestivalFooterBridge /></div>
       {calendarOpen && <CalendarChooser onClose={() => setCalendarOpen(false)} />}
     </div>
