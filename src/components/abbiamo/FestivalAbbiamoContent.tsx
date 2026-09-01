@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   Accessibility,
   ArrowUpRight,
@@ -92,12 +92,26 @@ function CalendarChooser({ onClose }: { onClose: () => void }) {
 }
 
 function ParticipantMarquee() {
-  const names = abbiamoData.participants.map((participant) => participant.name);
   const list = (copy: number) => (
     <ul className="festival-marquee-list" aria-hidden={copy === 1}>
-      {names.map((name) => (
-        <li key={`${copy}-${name}`}>
-          <span>{name}</span><b aria-hidden="true">✦</b>
+      {abbiamoData.participants.map((participant) => (
+        <li key={`${copy}-${participant.name}`}>
+          <div className={`festival-participant${participant.textOnly ? " festival-participant--text-only" : ""}`}>
+            {participant.logoSrc && (
+              <div className="festival-participant-logo" style={{ "--festival-participant-scale": participant.visualScale ?? 1 } as CSSProperties}>
+                <img
+                  src={participant.logoSrc}
+                  alt={`Logo ${participant.name}`}
+                  width={participant.logoWidth}
+                  height={participant.logoHeight}
+                  loading="eager"
+                  decoding="async"
+                  translate="no"
+                />
+              </div>
+            )}
+            <span className="festival-participant-name">{participant.name}</span>
+          </div>
         </li>
       ))}
     </ul>
