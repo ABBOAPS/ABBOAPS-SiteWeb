@@ -1,6 +1,6 @@
 
 ---
-title: "Festival ABBIAMO: a Verderio nasce la fiera delle associazioni del territorio"
+title: Festival ABBIAMO: Fiera delle associazioni
 date: 2026-09-02
 tags: Annuncio
 cover_image: /media/banner_abbiamo_26.jpg
