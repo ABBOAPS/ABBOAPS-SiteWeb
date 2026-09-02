@@ -11,10 +11,9 @@ export interface AbbiamoScheduleItem {
 export interface AbbiamoParticipant {
   name: string;
   category?: "progetto ABBO APS";
-  logoSrc?: string;
+  logoSrc: string | null;
   logoWidth?: number;
   logoHeight?: number;
-  textOnly?: true;
   visualScale?: number;
 }
 
@@ -49,9 +48,16 @@ export function partnerAsset(filename: string): string {
   return publicAsset(`partners/${filename}`);
 }
 
-function participantAsset(filename: string): string {
-  return abbiamoAsset(`participants/${filename}`);
-}
+const participantLogos = {
+  fiumeDiVita: abbiamoAsset("participants/loghi associazioni_FIUME DI VITA.svg"),
+  techApp: abbiamoAsset("participants/loghi associazioni_TECH-APP.svg"),
+  vimelug: abbiamoAsset("participants/loghi associazioni_VIMELUG.svg"),
+  unAmicoAlTelefono: abbiamoAsset("participants/loghi associazioni_UN AMICO AL TELEFONO.svg"),
+  coderDojo: abbiamoAsset("participants/loghi associazioni_CODERDOJO.svg"),
+  genitoriBernareggioVillanova: abbiamoAsset("participants/loghi associazioni_ASS. GENITORI BERNAREGGIO VILLANOVA.svg"),
+  oltreGioco: abbiamoAsset("participants/loghi associazioni_OLTREGIOCO.svg"),
+  mediciSenzaFrontiere: abbiamoAsset("participants/loghi associazioni_MEDICI SENZA FRONTIERE.svg"),
+} as const;
 
 export const abbiamoData = {
   name: "Festival ABBIAMO",
@@ -136,20 +142,20 @@ export const abbiamoData = {
     },
   ] satisfies AbbiamoScheduleItem[],
   participants: [
-    { name: "Fiume di Vita ETS", logoSrc: participantAsset("fiume-di-vita.svg"), logoWidth: 100, logoHeight: 100, visualScale: 1.04 },
-    { name: "Tech-APP", logoSrc: participantAsset("tech-app.svg"), logoWidth: 100, logoHeight: 100, visualScale: 1.08 },
-    { name: "VIMELUG", logoSrc: participantAsset("vimelug.svg"), logoWidth: 75, logoHeight: 100, visualScale: 1.17 },
-    { name: "Verderio Oggi", textOnly: true },
-    { name: "Un Amico al Telefono", logoSrc: participantAsset("un-amico-al-telefono.svg"), logoWidth: 100, logoHeight: 100, visualScale: 1.02 },
-    { name: "CoderDojo", logoSrc: participantAsset("coderdojo.svg"), logoWidth: 100, logoHeight: 62, visualScale: 0.78 },
-    { name: "Associazione Sindrome Bardet-Biedl", textOnly: true },
-    { name: "Associazione Genitori Bernareggio Villanova", logoSrc: participantAsset("genitori-bernareggio-villanova.svg"), logoWidth: 75, logoHeight: 100, visualScale: 1.25 },
+    { name: "Fiume di Vita ETS", logoSrc: participantLogos.fiumeDiVita, logoWidth: 100, logoHeight: 100, visualScale: 1.04 },
+    { name: "Tech-APP", logoSrc: participantLogos.techApp, logoWidth: 100, logoHeight: 100, visualScale: 1.08 },
+    { name: "VIMELUG", logoSrc: participantLogos.vimelug, logoWidth: 75, logoHeight: 100, visualScale: 1.17 },
+    { name: "Verderio Oggi", logoSrc: null },
+    { name: "Un Amico al Telefono", logoSrc: participantLogos.unAmicoAlTelefono, logoWidth: 100, logoHeight: 100, visualScale: 1.02 },
+    { name: "CoderDojo", logoSrc: participantLogos.coderDojo, logoWidth: 100, logoHeight: 62, visualScale: 0.78 },
+    { name: "Associazione Sindrome Bardet-Biedl", logoSrc: abbiamoAsset("participants/ASBBI.png"), logoWidth: 2479, logoHeight: 825, visualScale: 1.02 },
+    { name: "Associazione Genitori Bernareggio Villanova", logoSrc: participantLogos.genitoriBernareggioVillanova, logoWidth: 75, logoHeight: 100, visualScale: 1.2 },
     { name: "ABBO APS", logoSrc: publicAsset("logo_abbo_nero.svg"), logoWidth: 500, logoHeight: 167, visualScale: 1.06 },
     { name: "ABC Sport", logoSrc: abcSportLogo, logoWidth: 400, logoHeight: 322, visualScale: 0.96 },
     { name: "Digital Heroes", category: "progetto ABBO APS", logoSrc: publicAsset("logo_dh_viola.svg"), logoWidth: 480, logoHeight: 322, visualScale: 1.04 },
-    { name: "OltreGioco APS", logoSrc: participantAsset("oltre-gioco.svg"), logoWidth: 100, logoHeight: 100, visualScale: 1.02 },
-    { name: "SE@SONROSE ODV", textOnly: true },
-    { name: "Medici Senza Frontiere", logoSrc: participantAsset("medici-senza-frontiere.svg"), logoWidth: 100, logoHeight: 85, visualScale: 1.06 },
+    { name: "OltreGioco APS", logoSrc: participantLogos.oltreGioco, logoWidth: 100, logoHeight: 100, visualScale: 1.02 },
+    { name: "SE@SONROSE ODV", logoSrc: abbiamoAsset("participants/Sesonrose.png"), logoWidth: 832, logoHeight: 832, visualScale: 0.92 },
+    { name: "Medici Senza Frontiere", logoSrc: participantLogos.mediciSenzaFrontiere, logoWidth: 100, logoHeight: 85, visualScale: 1.06 },
   ] satisfies AbbiamoParticipant[],
   faqs: [
     {

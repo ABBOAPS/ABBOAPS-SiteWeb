@@ -96,7 +96,7 @@ function ParticipantMarquee() {
     <ul className="festival-marquee-list" aria-hidden={copy === 1}>
       {abbiamoData.participants.map((participant) => (
         <li key={`${copy}-${participant.name}`}>
-          <div className={`festival-participant${participant.textOnly ? " festival-participant--text-only" : ""}`}>
+          <div className={`festival-participant${participant.logoSrc ? "" : " festival-participant--text-only"}`}>
             {participant.logoSrc && (
               <div className="festival-participant-logo" style={{ "--festival-participant-scale": participant.visualScale ?? 1 } as CSSProperties}>
                 <img
@@ -104,7 +104,8 @@ function ParticipantMarquee() {
                   alt={`Logo ${participant.name}`}
                   width={participant.logoWidth}
                   height={participant.logoHeight}
-                  loading="eager"
+                  loading={copy === 0 ? "eager" : "lazy"}
+                  fetchPriority={copy === 0 ? "high" : "auto"}
                   decoding="async"
                   translate="no"
                 />
