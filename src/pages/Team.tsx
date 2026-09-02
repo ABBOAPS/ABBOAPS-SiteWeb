@@ -58,12 +58,12 @@ export function Team() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#e65100]/5 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-700 pointer-events-none"></div>
               
               {/* Clean Rounded Image (No keychain shadows/borders) */}
-              <div className="relative w-44 h-44 shrink-0 rounded-3xl overflow-hidden bg-[#fffcf5] flex items-center justify-center mb-6 shadow-sm border border-[#e65100]/10">
+              <div className="relative w-44 aspect-[3/2] shrink-0 rounded-3xl overflow-hidden bg-[#fffcf5] flex items-center justify-center mb-6 shadow-sm border border-[#e65100]/10">
                 {member.photo ? (
                   <img 
                     src={member.photo} 
                     alt={member.name} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-[1.2s] ease-out" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-all duration-[1.2s] ease-out"
                   />
                 ) : (
                   <User className="w-16 h-16 text-[#e65100] opacity-50" />
@@ -174,12 +174,12 @@ export function Team() {
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#e65100]/5 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-700 pointer-events-none"></div>
                   
-                  <div className="relative w-44 h-44 shrink-0 rounded-3xl overflow-hidden bg-[#fffcf5] flex items-center justify-center mb-6 shadow-sm border border-[#e65100]/10">
+                  <div className="relative w-44 aspect-[3/2] shrink-0 rounded-3xl overflow-hidden bg-[#fffcf5] flex items-center justify-center mb-6 shadow-sm border border-[#e65100]/10">
                     {member.photo ? (
                       <img 
                         src={member.photo} 
                         alt={member.name} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-[1.2s] ease-out" 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-all duration-[1.2s] ease-out"
                       />
                     ) : (
                       <User className="w-16 h-16 text-[#e65100] opacity-50" />

@@ -154,6 +154,25 @@ export function ChiSiamo() {
           ))}
         </div>
 
+        <figure className="relative mt-16 overflow-hidden rounded-[2rem] bg-[#4a1c0d] shadow-[0_24px_70px_rgba(74,28,13,0.16)]">
+          <div className="relative aspect-[4/3] w-full overflow-hidden">
+            <img
+              src={chiSiamoConfig.founding_act.image}
+              alt={chiSiamoConfig.founding_act.alt}
+              width="1355"
+              height="1800"
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover object-[center_48%]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#4a1c0d]/85 via-[#4a1c0d]/15 to-transparent" />
+            <figcaption className="absolute inset-x-0 bottom-0 p-6 text-white md:p-10">
+              <span className="mb-2 block text-xs font-extrabold uppercase tracking-[0.22em] text-[#ffb38f]">L'inizio di ABBO</span>
+              <p className="max-w-xl text-2xl font-extrabold leading-tight md:text-4xl">{chiSiamoConfig.founding_act.caption}</p>
+            </figcaption>
+          </div>
+        </figure>
+
 
       </section>
 
@@ -227,4 +246,3 @@ export function ChiSiamo() {
     </div>
   );
 }
-

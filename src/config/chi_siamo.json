@@ -24,7 +24,7 @@
       "author": {
         "name": "Alessio Buso",
         "role": "Co-Founder & Vice-Presidente",
-        "photo": "./media/profile_buso.jpg",
+        "photo": "./media/profile_buso.webp",
         "email": "alessio.buso@abboaps.org",
         "phone": "",
         "social": {
@@ -49,6 +49,11 @@
   "mission_box": {
     "title": "Dove operiamo",
     "description": "Siamo attivi tra Monza, la Brianza, Lecco, Bergamo e Milano. Entriamo nelle scuole, negli uffici comunali, negli spazi delle associazioni. Lavoriamo fianco a fianco con chi gestisce progetti educativi, con chi ha un'idea e non sa da dove partire, e con chi vuole costruire qualcosa di duraturo per i ragazzi del proprio territorio. Ci occupiamo della parte operativa: bandi, rendicontazione, coordinamento, relazioni istituzionali. Così chi lavora con noi può concentrarsi sulle persone."
+  },
+  "founding_act": {
+    "image": "./media/firma-atto-costitutivo-abboaps.webp",
+    "alt": "Alessio Bellan e Alessio Buso firmano l'atto costitutivo di ABBO APS",
+    "caption": "La firma dell'atto costitutivo"
   },
   "values": [
     {
