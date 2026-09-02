@@ -1,5 +1,3 @@
-import abcSportLogo from "../content/partners/logo-abc-sport.png";
-
 export interface AbbiamoScheduleItem {
   time: string;
   dateTime?: string;
@@ -47,6 +45,8 @@ export function abbiamoAsset(filename: string): string {
 export function partnerAsset(filename: string): string {
   return publicAsset(`partners/${filename}`);
 }
+
+const abcSportLogo = partnerAsset("logo-abc-sport.webp");
 
 const participantLogos = {
   fiumeDiVita: abbiamoAsset("participants/loghi associazioni_FIUME DI VITA.svg"),
@@ -151,7 +151,7 @@ export const abbiamoData = {
     { name: "Associazione Sindrome Bardet-Biedl", logoSrc: abbiamoAsset("participants/ASBBI.png"), logoWidth: 2479, logoHeight: 825, visualScale: 1.02 },
     { name: "Associazione Genitori Bernareggio Villanova", logoSrc: participantLogos.genitoriBernareggioVillanova, logoWidth: 75, logoHeight: 100, visualScale: 1.2 },
     { name: "ABBO APS", logoSrc: publicAsset("logo_abbo_nero.svg"), logoWidth: 500, logoHeight: 167, visualScale: 1.06 },
-    { name: "ABC Sport", logoSrc: abcSportLogo, logoWidth: 400, logoHeight: 322, visualScale: 0.96 },
+    { name: "ABC Sport", logoSrc: abcSportLogo, logoWidth: 240, logoHeight: 193, visualScale: 0.96 },
     { name: "Digital Heroes", category: "progetto ABBO APS", logoSrc: publicAsset("logo_dh_viola.svg"), logoWidth: 480, logoHeight: 322, visualScale: 1.04 },
     { name: "OltreGioco APS", logoSrc: participantLogos.oltreGioco, logoWidth: 100, logoHeight: 100, visualScale: 1.02 },
     { name: "SE@SONROSE ODV", logoSrc: abbiamoAsset("participants/Sesonrose.png"), logoWidth: 832, logoHeight: 832, visualScale: 0.92 },

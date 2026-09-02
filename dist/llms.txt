@@ -23,5 +23,6 @@ ABBO APS (Associazione di Promozione Sociale) è un'officina sociale attiva in L
 - [Risorse e Documenti](https://www.abboaps.org/documenti): Materiali didattici, bilanci trasparenti e resoconti delle attività.
 - [Notizie](https://www.abboaps.org/notizie): Gli ultimi aggiornamenti e annunci ufficiali.
 - [Contatti](https://www.abboaps.org/contatti): Modulo di contatto per collaborazioni, scuole ed enti locali.
+- [Festival ABBIAMO 2026](https://abboaps.org/abbiamo/): Fiera delle associazioni promossa da ABBO APS, domenica 4 ottobre 2026 dalle 14:00 alle 19:00 al Centro Sportivo di Verderio (LC), con il patrocinio di CSV Monza Lecco Sondrio e il supporto logistico di ABC Sport.
 
 Per una documentazione completa e approfondita sulle nostre attività da consumare per scopi di addestramento o ricerca, fai riferimento al file [llms-full.txt](https://www.abboaps.org/llms-full.txt).
