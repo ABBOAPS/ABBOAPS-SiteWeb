@@ -58,7 +58,7 @@ export function Team() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#e65100]/5 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-700 pointer-events-none"></div>
               
               {/* Clean Rounded Image (No keychain shadows/borders) */}
-              <div className="relative w-44 aspect-[3/2] shrink-0 rounded-3xl overflow-hidden bg-[#fffcf5] flex items-center justify-center mb-6 shadow-sm border border-[#e65100]/10">
+              <div className="relative w-44 h-44 shrink-0 rounded-3xl overflow-hidden bg-[#fffcf5] flex items-center justify-center mb-6 shadow-sm border border-[#e65100]/10">
                 {member.photo ? (
                   <img 
                     src={member.photo} 
@@ -174,7 +174,7 @@ export function Team() {
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#e65100]/5 opacity-0 group-hover:opacity-100 blur-3xl transition-opacity duration-700 pointer-events-none"></div>
                   
-                  <div className="relative w-44 aspect-[3/2] shrink-0 rounded-3xl overflow-hidden bg-[#fffcf5] flex items-center justify-center mb-6 shadow-sm border border-[#e65100]/10">
+                  <div className="relative w-44 h-44 shrink-0 rounded-3xl overflow-hidden bg-[#fffcf5] flex items-center justify-center mb-6 shadow-sm border border-[#e65100]/10">
                     {member.photo ? (
                       <img 
                         src={member.photo} 
