@@ -101,21 +101,27 @@ export function ChiSiamo() {
                 {quote.quote}
               </p>
               
-              <div className="flex items-center justify-between mt-auto relative z-10 w-full gap-5">
-                <div className="flex items-center gap-5">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-[#e65100] rounded-full scale-110 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
-                    <img src={quote.author.photo} alt={quote.author.name} className="w-16 h-16 rounded-full object-cover border-2 border-transparent group-hover:border-[#e65100]/50 transition-all duration-300" />
+              <div className="mt-auto flex w-full flex-col items-start gap-4 relative z-10 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex min-w-0 w-full items-center gap-5">
+                  <div className="relative shrink-0">
+                    <div className="absolute inset-0 rounded-2xl bg-[#e65100] scale-110 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                    <img
+                      src={quote.author.photo}
+                      alt={quote.author.name}
+                      width="64"
+                      height="64"
+                      className="aspect-square w-16 h-16 shrink-0 rounded-2xl object-cover border-2 border-transparent group-hover:border-[#e65100]/50 transition-all duration-300"
+                    />
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex min-w-0 flex-col">
                     <span className="font-extrabold text-xl text-[#4a1c0d] group-hover:text-[#e65100] transition-colors">{quote.author.name}</span>
                     <span className="text-sm font-bold uppercase tracking-wider text-[#8a3a19] opacity-70">{quote.author.role}</span>
                     {(quote.author.email || quote.author.phone) && (
                       <div className="flex flex-col gap-1 mt-2">
                         {quote.author.email && (
-                          <a href={`mailto:${quote.author.email}`} className="text-xs font-semibold text-[#8a3a19] hover:text-[#e65100] transition-colors flex items-center gap-1.5">
+                          <a href={`mailto:${quote.author.email}`} className="flex min-w-0 items-center gap-1.5 break-all text-xs font-semibold text-[#8a3a19] hover:text-[#e65100] transition-colors">
                             <LucideIcons.Mail className="w-3.5 h-3.5" />
-                            {quote.author.email}
+                            <span className="min-w-0 break-all">{quote.author.email}</span>
                           </a>
                         )}
                         {quote.author.phone && (
@@ -130,20 +136,20 @@ export function ChiSiamo() {
                 </div>
                 {/* Social links */}
                 {quote.author.social && (
-                  <div className="flex items-center gap-3">
+                  <div className="flex shrink-0 items-center gap-3 self-end sm:self-auto">
                     {quote.author.social.linkedin && (
-                      <a href={quote.author.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#8a3a19] hover:text-[#e65100] transition-colors">
+                      <a href={quote.author.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${quote.author.name} su LinkedIn`} className="text-[#8a3a19] hover:text-[#e65100] transition-colors">
                         <LucideIcons.Linkedin className="w-5 h-5" />
                       </a>
                     )}
 
                     {quote.author.social.website && (
-                      <a href={quote.author.social.website} target="_blank" rel="noopener noreferrer" className="text-[#8a3a19] hover:text-[#e65100] transition-colors">
+                      <a href={quote.author.social.website} target="_blank" rel="noopener noreferrer" aria-label={`${quote.author.name} sito web`} className="text-[#8a3a19] hover:text-[#e65100] transition-colors">
                         <LucideIcons.Globe className="w-5 h-5" />
                       </a>
                     )}
                     {quote.author.social.instagram && (
-                      <a href={quote.author.social.instagram} target="_blank" rel="noopener noreferrer" className="text-[#8a3a19] hover:text-[#e65100] transition-colors">
+                      <a href={quote.author.social.instagram} target="_blank" rel="noopener noreferrer" aria-label={`${quote.author.name} su Instagram`} className="text-[#8a3a19] hover:text-[#e65100] transition-colors">
                         <LucideIcons.Instagram className="w-5 h-5" />
                       </a>
                     )}
