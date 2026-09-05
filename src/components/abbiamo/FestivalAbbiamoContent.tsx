@@ -20,6 +20,7 @@ import {
   X,
 } from "lucide-react";
 import { abbiamoData, buildAbbiamoIcs, buildGoogleCalendarUrl } from "../../data/abbiamo";
+import { PressMentions } from "../PressMentions";
 import { FestivalClayIcon, FestivalFooterBridge, FestivalHeroScene } from "./FestivalGraphics";
 
 function downloadAbbiamoCalendar(): void {
@@ -268,6 +269,8 @@ export function FestivalAbbiamoContent() {
         </section>
 
         <FestivalSupportSection />
+
+        <PressMentions variant="abbiamo" />
 
         <section className="festival-invitation" aria-labelledby="abbiamo-join-title">
           <div className="festival-shell festival-invitation-grid">

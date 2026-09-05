@@ -10,6 +10,7 @@ import { dataNews } from "../data/newsData";
 import ambassadorConfig from "../config/ambassador.json";
 import { User } from "lucide-react";
 import { organization } from "../config/organization";
+import { PressMentions } from "../components/PressMentions";
 
 function ProjectCard({ project, onClick }: { project: Project; onClick: () => void }) {
   const mouseX = useMotionValue(0);
@@ -467,6 +468,8 @@ export function Home() {
             </Link>
           </div>
         )}
+
+        <PressMentions variant="abbo" />
 
         <div className="w-full max-w-7xl flex flex-col items-center px-6">
           {/* Notizie Section - Asymmetric Grid */}
