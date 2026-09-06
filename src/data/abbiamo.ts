@@ -12,7 +12,6 @@ export interface AbbiamoParticipant {
   logoSrc: string | null;
   logoWidth?: number;
   logoHeight?: number;
-  visualScale?: number;
 }
 
 export interface AbbiamoFaq {
@@ -57,6 +56,7 @@ const participantLogos = {
   genitoriBernareggioVillanova: abbiamoAsset("participants/loghi associazioni_ASS. GENITORI BERNAREGGIO VILLANOVA.svg"),
   oltreGioco: abbiamoAsset("participants/loghi associazioni_OLTREGIOCO.svg"),
   mediciSenzaFrontiere: abbiamoAsset("participants/loghi associazioni_MEDICI SENZA FRONTIERE.svg"),
+  riCircolo: abbiamoAsset("participants/ricircolo.png"),
 } as const;
 
 export const abbiamoData = {
@@ -142,20 +142,21 @@ export const abbiamoData = {
     },
   ] satisfies AbbiamoScheduleItem[],
   participants: [
-    { name: "Fiume di Vita ETS", logoSrc: participantLogos.fiumeDiVita, logoWidth: 100, logoHeight: 100, visualScale: 1.04 },
-    { name: "Tech-APP", logoSrc: participantLogos.techApp, logoWidth: 100, logoHeight: 100, visualScale: 1.08 },
-    { name: "VIMELUG", logoSrc: participantLogos.vimelug, logoWidth: 75, logoHeight: 100, visualScale: 1.17 },
+    { name: "Fiume di Vita ETS", logoSrc: participantLogos.fiumeDiVita, logoWidth: 100, logoHeight: 100 },
+    { name: "Tech-APP", logoSrc: participantLogos.techApp, logoWidth: 100, logoHeight: 100 },
+    { name: "VIMELUG", logoSrc: participantLogos.vimelug, logoWidth: 75, logoHeight: 100 },
     { name: "Verderio Oggi", logoSrc: null },
-    { name: "Un Amico al Telefono", logoSrc: participantLogos.unAmicoAlTelefono, logoWidth: 100, logoHeight: 100, visualScale: 1.02 },
-    { name: "CoderDojo", logoSrc: participantLogos.coderDojo, logoWidth: 100, logoHeight: 62, visualScale: 0.78 },
-    { name: "Associazione Sindrome Bardet-Biedl", logoSrc: abbiamoAsset("participants/ASBBI.png"), logoWidth: 2479, logoHeight: 825, visualScale: 1.02 },
-    { name: "Associazione Genitori Bernareggio Villanova", logoSrc: participantLogos.genitoriBernareggioVillanova, logoWidth: 75, logoHeight: 100, visualScale: 1.2 },
-    { name: "ABBO APS", logoSrc: publicAsset("logo_abbo_nero.svg"), logoWidth: 500, logoHeight: 167, visualScale: 1.06 },
-    { name: "ABC Sport", logoSrc: abcSportLogo, logoWidth: 240, logoHeight: 193, visualScale: 0.96 },
-    { name: "Digital Heroes", category: "progetto ABBO APS", logoSrc: publicAsset("logo_dh_viola.svg"), logoWidth: 480, logoHeight: 322, visualScale: 1.04 },
-    { name: "OltreGioco APS", logoSrc: participantLogos.oltreGioco, logoWidth: 100, logoHeight: 100, visualScale: 1.02 },
-    { name: "SE@SONROSE ODV", logoSrc: abbiamoAsset("participants/Sesonrose.png"), logoWidth: 832, logoHeight: 832, visualScale: 0.92 },
-    { name: "Medici Senza Frontiere", logoSrc: participantLogos.mediciSenzaFrontiere, logoWidth: 100, logoHeight: 85, visualScale: 1.06 },
+    { name: "Un Amico al Telefono", logoSrc: participantLogos.unAmicoAlTelefono, logoWidth: 100, logoHeight: 100 },
+    { name: "CoderDojo", logoSrc: participantLogos.coderDojo, logoWidth: 100, logoHeight: 62 },
+    { name: "Associazione Sindrome Bardet-Biedl", logoSrc: abbiamoAsset("participants/ASBBI.png"), logoWidth: 2479, logoHeight: 825 },
+    { name: "Associazione Genitori Bernareggio Villanova", logoSrc: participantLogos.genitoriBernareggioVillanova, logoWidth: 75, logoHeight: 100 },
+    { name: "ABBO APS", logoSrc: publicAsset("logo_abbo_nero.svg"), logoWidth: 500, logoHeight: 167 },
+    { name: "ABC Sport", logoSrc: abcSportLogo, logoWidth: 240, logoHeight: 193 },
+    { name: "Digital Heroes", category: "progetto ABBO APS", logoSrc: publicAsset("logo_dh_viola.svg"), logoWidth: 480, logoHeight: 322 },
+    { name: "OltreGioco APS", logoSrc: participantLogos.oltreGioco, logoWidth: 100, logoHeight: 100 },
+    { name: "SE@SONROSE ODV", logoSrc: abbiamoAsset("participants/Sesonrose.png"), logoWidth: 832, logoHeight: 832 },
+    { name: "Medici Senza Frontiere", logoSrc: participantLogos.mediciSenzaFrontiere, logoWidth: 100, logoHeight: 85 },
+    { name: "RiCircolo", logoSrc: participantLogos.riCircolo, logoWidth: 899, logoHeight: 899 },
   ] satisfies AbbiamoParticipant[],
   faqs: [
     {

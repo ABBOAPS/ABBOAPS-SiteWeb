@@ -41,20 +41,99 @@
 .festival-button--red { background: var(--festival-red); color: var(--festival-cream); }
 .festival-button--ink { background: var(--festival-ink); color: var(--festival-cream); }
 
-.festival-marquee { --festival-marquee-gap: 1.625rem; overflow: hidden; padding-block: 1.25rem; background: var(--festival-cream); color: var(--festival-red); }
+.festival-marquee {
+  --festival-marquee-gap: 1.75rem;
+  --festival-participant-width: 8.625rem;
+  overflow: hidden;
+  padding-block: 1.25rem;
+  background: var(--festival-cream);
+  color: var(--festival-red);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 4%, black 96%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, black 4%, black 96%, transparent 100%);
+}
 .festival-marquee-viewport { width: 100%; overflow: hidden; }
-.festival-marquee-track { display: flex; width: max-content; animation: festival-marquee 44s linear infinite; will-change: transform; }
-.festival-marquee-list { display: flex; flex: 0 0 auto; align-items: start; gap: var(--festival-marquee-gap); margin: 0; padding: .3rem 0 .45rem; list-style: none; }
-.festival-marquee-list::after { flex: 0 0 0; content: ""; }
-.festival-marquee-list li { display: flex; flex: 0 0 auto; align-items: center; }
-.festival-participant { --festival-participant-width: clamp(8.125rem, 9vw, 9.375rem); display: grid; width: var(--festival-participant-width); flex: 0 0 var(--festival-participant-width); grid-template-rows: 4rem 3.6em; row-gap: .5rem; align-items: center; justify-items: center; text-align: center; }
-.festival-participant-logo { --festival-participant-scale: 1; display: flex; width: 6.875rem; height: 4rem; align-items: center; justify-content: center; }
-.festival-participant-logo img { display: block; width: 6.25rem; height: 3.625rem; object-fit: contain; transform: scale(var(--festival-participant-scale)); transform-origin: center; transition: transform 220ms var(--festival-ease-out); }
-.festival-participant-name { display: block; max-width: 100%; min-height: 3.6em; overflow: visible; color: var(--festival-red); font-size: .8125rem; font-weight: 680; letter-spacing: -.02em; line-height: 1.2; overflow-wrap: normal; word-break: normal; text-overflow: clip; white-space: normal; hyphens: none; }
-.festival-participant--text-only { display: flex; min-height: calc(4rem + .5rem + 3.6em); align-items: center; justify-content: center; }
-.festival-participant--text-only .festival-participant-name { align-self: center; font-size: .875rem; }
-@media (hover: hover) and (pointer: fine) { .festival-participant:hover .festival-participant-logo img { transform: scale(calc(var(--festival-participant-scale) * 1.045)); } .festival-participant:hover .festival-participant-name { color: var(--festival-ink); } }
-@keyframes festival-marquee { to { transform: translate3d(-50%, 0, 0); } }
+.festival-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: var(--festival-marquee-gap);
+  animation: festival-marquee-scroll 44s linear infinite;
+  will-change: transform;
+}
+.festival-marquee-group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: stretch;
+  gap: var(--festival-marquee-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.festival-marquee-group > li {
+  display: flex;
+  width: var(--festival-participant-width);
+  flex: 0 0 var(--festival-participant-width);
+  align-items: stretch;
+}
+.festival-participant {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  min-height: calc(3.625rem + .5rem + 3.6em);
+  grid-template-rows: 3.625rem auto;
+  row-gap: .5rem;
+  align-content: start;
+  justify-items: center;
+  text-align: center;
+}
+.festival-participant-logo {
+  --festival-participant-scale: 1;
+  display: flex;
+  width: 100%;
+  height: 3.625rem;
+  align-items: center;
+  justify-content: center;
+}
+.festival-participant-logo img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 92px;
+  max-height: 54px;
+  object-fit: contain;
+  transform: scale(var(--festival-participant-scale));
+  transform-origin: center;
+  transition: transform 220ms var(--festival-ease-out);
+}
+.festival-participant-name {
+  display: block;
+  max-width: 100%;
+  min-height: 3.6em;
+  color: var(--festival-red);
+  font-size: .8125rem;
+  font-weight: 680;
+  letter-spacing: -.02em;
+  line-height: 1.2;
+  overflow-wrap: normal;
+  word-break: normal;
+  white-space: normal;
+  hyphens: none;
+  text-align: center;
+  text-wrap: balance;
+}
+.festival-participant--text-only {
+  display: flex;
+  min-height: calc(3.625rem + .5rem + 3.6em);
+  align-items: center;
+  justify-content: center;
+}
+.festival-participant--text-only .festival-participant-name { min-height: 0; }
+@media (hover: hover) and (pointer: fine) {
+  .festival-participant:hover .festival-participant-logo img { transform: scale(calc(var(--festival-participant-scale) * 1.03)); }
+  .festival-participant:hover .festival-participant-name { color: var(--festival-ink); }
+}
+@keyframes festival-marquee-scroll {
+  to { transform: translate3d(calc(-50% - var(--festival-marquee-gap) / 2), 0, 0); }
+}
 
 .festival-section { padding-block: var(--festival-space-section); }
 .festival-shape-red { fill: var(--festival-red); }
@@ -171,14 +250,12 @@
   .festival-hero-patronage img { margin-inline: auto; }
   .festival-button { min-height: 3rem; }
   .festival-hero-scene { top: -1rem; right: -15rem; width: 58rem; clip-path: inset(0 0 0 52%); opacity: .62; }
-  .festival-marquee { --festival-marquee-gap: 1.125rem; padding-block: 1.1rem; }
-  .festival-marquee-list { padding-block: .25rem .4rem; }
-  .festival-participant { --festival-participant-width: 7rem; grid-template-rows: 3.5rem 3.6em; row-gap: .45rem; }
-  .festival-participant-logo { width: 6rem; height: 3.5rem; }
-  .festival-participant-logo img { width: 5.875rem; height: 3.1rem; }
+  .festival-marquee { --festival-marquee-gap: 1.125rem; --festival-participant-width: 6.75rem; padding-block: 1.1rem; }
+  .festival-participant { min-height: calc(3rem + .5rem + 3.6em); grid-template-rows: 3rem auto; row-gap: .5rem; }
+  .festival-participant-logo { height: 3rem; }
+  .festival-participant-logo img { max-width: 78px; max-height: 46px; }
   .festival-participant-name { font-size: .75rem; line-height: 1.2; }
-  .festival-participant--text-only { min-height: calc(3.5rem + .45rem + 3.6em); }
-  .festival-participant--text-only .festival-participant-name { font-size: .8125rem; }
+  .festival-participant--text-only { min-height: calc(3rem + .5rem + 3.6em); }
   .festival-section, .festival-invitation { padding-block: clamp(3.75rem, 12vw, 5rem); }
   .festival-manifesto-grid, .festival-experience-grid, .festival-location-grid, .festival-invitation-grid, .festival-faq-grid { grid-template-columns: 1fr; }
   .festival-manifesto-title, .festival-manifesto-copy, .festival-experience-copy, .festival-section-icon, .festival-location-stage, .festival-practical-list, .festival-invitation-art, .festival-invitation-grid > div:not(.festival-invitation-art), .festival-faq h2, .festival-faq-list { grid-column: auto; }
@@ -221,7 +298,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .festival-marquee-track { width: 100%; animation: none; }
-  .festival-marquee-list[aria-hidden="true"] { display: none; }
-  .festival-marquee-list { width: 100%; flex-wrap: wrap; justify-content: center; row-gap: 1.25rem; }
+  .festival-marquee-group[aria-hidden="true"] { display: none; }
+  .festival-marquee-group { width: 100%; flex-wrap: wrap; justify-content: center; row-gap: 1.25rem; }
   .festival-button, .festival-faq-list summary svg { transition: none; }
 }

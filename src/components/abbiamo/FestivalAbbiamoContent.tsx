@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Accessibility,
   ArrowUpRight,
@@ -93,13 +93,13 @@ function CalendarChooser({ onClose }: { onClose: () => void }) {
 }
 
 function ParticipantMarquee() {
-  const list = (copy: number) => (
-    <ul className="festival-marquee-list" aria-hidden={copy === 1}>
+  const group = (copy: number) => (
+    <ul className="festival-marquee-group" aria-hidden={copy === 1 ? "true" : undefined}>
       {abbiamoData.participants.map((participant) => (
         <li key={`${copy}-${participant.name}`}>
           <div className={`festival-participant${participant.logoSrc ? "" : " festival-participant--text-only"}`}>
             {participant.logoSrc && (
-              <div className="festival-participant-logo" style={{ "--festival-participant-scale": participant.visualScale ?? 1 } as CSSProperties}>
+              <div className="festival-participant-logo">
                 <img
                   src={participant.logoSrc}
                   alt={`Logo ${participant.name}`}
@@ -121,7 +121,9 @@ function ParticipantMarquee() {
 
   return (
     <section className="festival-marquee" aria-label="Realtà partecipanti">
-      <div className="festival-marquee-viewport"><div className="festival-marquee-track">{list(0)}{list(1)}</div></div>
+      <div className="festival-marquee-viewport">
+        <div className="festival-marquee-track">{group(0)}{group(1)}</div>
+      </div>
     </section>
   );
 }
