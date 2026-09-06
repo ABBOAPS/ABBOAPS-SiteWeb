@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   Accessibility,
   ArrowUpRight,
@@ -19,7 +19,7 @@ import {
   UsersRound,
   X,
 } from "lucide-react";
-import { abbiamoData, buildAbbiamoIcs, buildGoogleCalendarUrl } from "../../data/abbiamo";
+import { abbiamoAsset, abbiamoData, buildAbbiamoIcs, buildGoogleCalendarUrl } from "../../data/abbiamo";
 import { PressMentions } from "../PressMentions";
 import { FestivalClayIcon, FestivalFooterBridge, FestivalHeroScene } from "./FestivalGraphics";
 
@@ -196,15 +196,20 @@ function FestivalClosingPatronage() {
 
 export function FestivalAbbiamoContent() {
   const [calendarOpen, setCalendarOpen] = useState(false);
+  const festivalBackgroundStyle = {
+    "--festival-bg-2k": `url("${abbiamoAsset("backgrounds/festival-abbiamo-bg-2k.webp")}")`,
+    "--festival-bg-4k": `url("${abbiamoAsset("backgrounds/festival-abbiamo-bg-4k.webp")}")`,
+    "--festival-bg-ultrawide": `url("${abbiamoAsset("backgrounds/festival-abbiamo-bg-ultrawide.webp")}")`,
+  } as CSSProperties;
 
   return (
-    <div className="festival-page">
+    <div className="festival-page" style={festivalBackgroundStyle}>
       <section className="festival-hero" aria-labelledby="abbiamo-title">
         <FestivalHeroScene className="festival-hero-scene" />
           <div className="festival-shell festival-hero-layout">
           <div className="festival-hero-copy">
-            <img className="festival-logo" src={abbiamoData.logoSrc} alt="Festival ABBIAMO" width="420" height="254" fetchPriority="high" />
-            <h1 id="abbiamo-title" className="sr-only">ABBiamo</h1>
+            <img className="festival-logo" src={abbiamoData.logoSrc} alt="Festival ABBIAMO — fiera delle associazioni a Verderio" width="420" height="254" fetchPriority="high" />
+            <h1 id="abbiamo-title" className="sr-only">Festival ABBIAMO — Fiera delle associazioni a Verderio</h1>
             <p className="festival-payoff">Non una fiera da guardare,<br />ma un territorio da vivere.</p>
             <div className="festival-event-meta" aria-label={`${abbiamoData.dateLabel}, dalle ${abbiamoData.startTime} alle ${abbiamoData.endTime}, ${abbiamoData.location}`}>
               <strong>{abbiamoData.dateLabel}</strong>

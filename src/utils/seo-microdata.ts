@@ -1,5 +1,4 @@
-const BASE_URL = "https://www.abboaps.org";
-const LOGO_URL = `${BASE_URL}/logo.png`;
+const BASE_URL = "https://abboaps.org";
 
 /**
  * Genera lo schema Organization/NGO per ABBO APS.
@@ -7,20 +6,24 @@ const LOGO_URL = `${BASE_URL}/logo.png`;
 export const generateNgoSchema = () => {
   return {
     "@context": "https://schema.org",
-    "@type": "NGO",
+    "@type": "Organization",
+    "@id": `${BASE_URL}/#organization`,
     "name": "ABBO APS",
     "alternateName": "ABBO Associazione di Promozione Sociale",
     "url": BASE_URL,
-    "logo": LOGO_URL,
-    "description": "Officina sociale: diamo sostanza ai progetti per ragazzi e all'open source nel sociale in Brianza e Lombardia.",
-    "areaServed": ["Monza", "Brianza", "Lecco", "Bergamo", "Milano"],
-    "taxID": "#", // Placeholder
-    "vatID": "#", // Placeholder
-    "foundingLocation": {
-      "@type": "Place",
-      "name": "Monza e Brianza"
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${BASE_URL}/logo_abbo_nero.svg`,
     },
-    "keywords": "sociale, giovani, no-profit, open source sociale, Monza, Brianza"
+    "email": "info@abboaps.org",
+    "description": "ABBO APS è un’associazione di promozione sociale che crea spazi educativi, occasioni di aggregazione e progetti per i ragazzi e il territorio.",
+    "areaServed": ["Monza", "Brianza", "Lecco", "Bergamo", "Milano"],
+    "sameAs": [
+      "https://www.instagram.com/abboaps/",
+      "https://www.linkedin.com/company/abboaps/",
+      "https://www.tiktok.com/@abbo.aps",
+      "https://discord.gg/HDuD3tCvus",
+    ],
   };
 };
 
@@ -61,7 +64,7 @@ export const generateNewsArticleSchema = (title: string, description: string, da
       "name": "ABBO APS",
       "logo": {
         "@type": "ImageObject",
-        "url": LOGO_URL
+        "url": `${BASE_URL}/logo_abbo_nero.svg`
       }
     },
     "mainEntityOfPage": {

@@ -1,21 +1,21 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import App from "./App.tsx";
 import "./index.css";
 import "./styles/press-mentions.css";
 
-if (/\/abbiamo\/?$/.test(window.location.pathname) && !window.location.hash) {
-  window.history.replaceState(null, "", `${window.location.pathname.replace(/\/?$/, "/")}#/abbiamo`);
-}
+const isDirectCrawlableEntry =
+  !window.location.hash && (/^\/abbiamo\/?$/.test(window.location.pathname) || /^\/news\/[^/]+\/?$/.test(window.location.pathname));
+const Router = isDirectCrawlableEntry ? BrowserRouter : HashRouter;
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <HelmetProvider>
-      <HashRouter>
+      <Router>
         <App />
-      </HashRouter>
+      </Router>
     </HelmetProvider>
   </StrictMode>,
 );

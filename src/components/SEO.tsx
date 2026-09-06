@@ -14,10 +14,10 @@ export function SEO({ title, description, image, url, jsonLd, children }: SEOPro
   const finalTitle = title === "Creiamo i momenti a cui vorresti tornare"
     ? `${siteConfig.seo.title_base} | ${title}`
     : title
-      ? `${title} | ${siteConfig.seo.title_base}`
+      ? title.includes(siteConfig.seo.title_base) ? title : `${title} | ${siteConfig.seo.title_base}`
       : siteConfig.seo.title_base;
   const finalDescription = description || siteConfig.seo.description;
-  const finalImage = image || siteConfig.seo.og_image;
+  const finalImage = image?.startsWith("/") ? `${siteConfig.seo.url}${image}` : image || siteConfig.seo.og_image;
   const finalUrl = url ? `${siteConfig.seo.url}${url}` : siteConfig.seo.url;
 
   return (
@@ -31,6 +31,7 @@ export function SEO({ title, description, image, url, jsonLd, children }: SEOPro
       <meta property="og:image" content={finalImage} />
       <meta property="og:url" content={finalUrl} />
       <meta property="og:type" content="website" />
+      <link rel="canonical" href={finalUrl} />
       
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />

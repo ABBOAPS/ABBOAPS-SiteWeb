@@ -16,8 +16,11 @@ export function Abbiamo() {
         <meta property="og:title" content={abbiamoData.title} />
         <meta property="og:description" content={abbiamoData.description} />
         <meta property="og:url" content={abbiamoData.canonicalUrl} />
-        <meta property="og:type" content="event" />
+        <meta property="og:type" content="website" />
         <meta property="og:image" content={abbiamoData.ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Festival ABBIAMO 2026, fiera delle associazioni a Verderio" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={abbiamoData.title} />
         <meta name="twitter:description" content={abbiamoData.description} />

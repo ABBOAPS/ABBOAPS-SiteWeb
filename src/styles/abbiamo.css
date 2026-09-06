@@ -16,12 +16,11 @@
 .festival-page h2, .festival-page h3 { min-width: 0; word-break: normal; overflow-wrap: normal; hyphens: none; font-style: normal; text-wrap: balance; }
 .festival-page p { text-wrap: pretty; }
 
-.festival-hero { position: relative; overflow: hidden; background: var(--festival-red); isolation: isolate; }
-.festival-hero::before { position: absolute; inset: 0; z-index: -1; opacity: .26; background-image: repeating-linear-gradient(119deg, color-mix(in oklch, var(--festival-cream) 12%, transparent) 0 1px, transparent 1px 24px); content: ""; }
-.festival-hero::after { position: absolute; right: -10rem; bottom: -12rem; z-index: 0; width: min(43vw, 38rem); aspect-ratio: 1; border: clamp(2.5rem, 5vw, 5rem) solid color-mix(in oklch, var(--festival-cream) 17%, transparent); border-radius: 61% 39% 48% 52%; content: ""; transform: rotate(21deg); }
+.festival-hero { position: relative; overflow: hidden; background-color: var(--festival-red); background-image: var(--festival-bg-4k); background-position: center; background-repeat: no-repeat; background-size: cover; isolation: isolate; }
+.festival-hero::before, .festival-hero::after { display: none; }
 .festival-hero-layout { display: grid; min-height: min(100svh, 58rem); grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: center; padding-block: clamp(11rem, 16vh, 13rem) clamp(5rem, 8vh, 7rem); }
 .festival-hero-copy { position: relative; z-index: 2; grid-column: 2 / span 10; max-width: 66rem; }
-.festival-hero-scene { position: absolute; top: -6%; right: -11%; z-index: 0; width: min(92rem, 96vw); height: auto; clip-path: inset(0 0 0 55%); pointer-events: none; }
+.festival-hero-scene { display: none; }
 .festival-logo { display: block; width: clamp(16rem, 29vw, 29rem); height: auto; margin-bottom: clamp(1.5rem, 3vw, 2.5rem); }
 .festival-payoff { max-width: none; margin: 0; color: var(--festival-cream); font-size: clamp(3.2rem, 5.1vw, 5.8rem); font-weight: 760; letter-spacing: -.07em; line-height: .99; text-wrap: balance; }
 .festival-event-meta { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; max-width: 52rem; margin-top: clamp(1.75rem, 3vw, 2.5rem); color: var(--festival-cream); font-size: clamp(1rem, 1.35vw, 1.2rem); font-weight: 730; letter-spacing: .04em; line-height: 1.5; text-transform: uppercase; }
@@ -249,7 +248,6 @@
   .festival-hero-patronage { position: static; justify-self: center; align-self: auto; width: min(100%, 13rem); margin: 2.25rem 0 0; text-align: center; }
   .festival-hero-patronage img { margin-inline: auto; }
   .festival-button { min-height: 3rem; }
-  .festival-hero-scene { top: -1rem; right: -15rem; width: 58rem; clip-path: inset(0 0 0 52%); opacity: .62; }
   .festival-marquee { --festival-marquee-gap: 1.125rem; --festival-participant-width: 6.75rem; padding-block: 1.1rem; }
   .festival-participant { min-height: calc(3rem + .5rem + 3.6em); grid-template-rows: 3rem auto; row-gap: .5rem; }
   .festival-participant-logo { height: 3rem; }
@@ -294,6 +292,14 @@
   .festival-faq-grid { gap: 2.5rem; }
   .festival-faq-list summary { min-height: 4.5rem; }
   .festival-faq-list p { padding-right: 0; }
+}
+
+@media (max-width: 1439px) {
+  .festival-hero { background-image: var(--festival-bg-2k); }
+}
+
+@media (min-width: 1800px) {
+  .festival-hero { background-image: var(--festival-bg-ultrawide); }
 }
 
 @media (prefers-reduced-motion: reduce) {

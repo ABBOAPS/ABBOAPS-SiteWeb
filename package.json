@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit",
     "test:abbiamo-calendar": "tsx scripts/check-abbiamo-calendar.ts",
     "build": "vite build && tsx scripts/prerender-abbiamo.tsx",
+    "seo:check": "node scripts/check-festival-seo.mjs",
     "preview": "vite preview",
     "docs:validate": "node scripts/validate-docs.mjs validate",
     "docs:check-links": "node scripts/validate-docs.mjs check-links",

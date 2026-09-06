@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "motion/react";
 import Markdown from "react-markdown";
 import { SEO } from "../components/SEO";
 import { dataNews, Articolo } from "../data/newsData";
 import { generateNewsArticleSchema } from "../utils/seo-microdata";
+import siteConfig from "../config/site_config.json";
 
 function formatItalianDate(dateStr: string) {
   if (!dateStr) return "";
@@ -23,34 +23,21 @@ function formatItalianDate(dateStr: string) {
 
 export function NewsDetail() {
   const { id } = useParams<{ id: string }>();
-  const [article, setArticle] = useState<Articolo | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    // Directly find from our static array
-    const found = dataNews.find((item) => item.id === id);
-    if (found) {
-      setArticle(found);
-    } else {
-      setArticle(null);
-    }
-    setLoading(false);
-  }, [id]);
+  const article: Articolo | null = dataNews.find((item) => item.id === id) ?? null;
 
   const schema = article ? generateNewsArticleSchema(
     article.titolo,
-    article.estratto,
+    article.descrizione || article.estratto,
     article.data,
-    article.immagine,
-    `https://www.abboaps.it/news/${article.id}`
+    `${siteConfig.seo.url}${article.immagine}`,
+    `https://abboaps.org/news/${article.id}/`
   ) : null;
 
   return (
     <main className="relative z-20 w-full min-h-screen pt-40 px-6 md:px-24 flex flex-col pb-48 text-[#4a1c0d]">
       <SEO 
         title={article ? `${article.titolo} | ABBO APS Notizie` : "Notizia | ABBO APS"} 
-        description={article ? article.estratto : undefined}
+        description={article ? article.descrizione || article.estratto : undefined}
         image={article ? article.immagine : undefined}
         url={`/news/${id}`} 
       >
@@ -82,14 +69,7 @@ export function NewsDetail() {
           </Link>
         </div>
 
-        {loading ? (
-          /* Loading Skeletal State */
-          <div className="w-full space-y-8 animate-pulse text-center py-12">
-            <span className="text-violet-600 font-extrabold tracking-widest text-xs uppercase">
-              Caricamento articolo...
-            </span>
-          </div>
-        ) : !article ? (
+        {!article ? (
           /* NotFound State */
           <div className="text-center py-20 clay-card p-12">
             <svg

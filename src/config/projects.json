@@ -27,7 +27,7 @@
     "bg_src": "/media/BG_Home.webp",
     "thumbnail": "/media/BG_Home.webp",
     "cta": "Vai al sito",
-    "url": "/#/abbiamo",
+    "url": "/abbiamo/",
     "icon": "/abbiamo/logo-primary.svg",
     "description": "La prima fiera delle associazioni: incontro, attività e rete nel territorio.",
     "is_black_and_white": false

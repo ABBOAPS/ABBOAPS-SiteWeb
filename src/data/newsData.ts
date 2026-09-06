@@ -4,6 +4,7 @@ export interface Articolo {
   estratto: string;
   contenuto: string;
   data: string;
+  descrizione: string;
   immagine: string;
   tags: string[];
 }
@@ -32,6 +33,7 @@ export const dataNews: Articolo[] = Object.entries(newsFiles).map(([path, conten
   
   const title = metadata.title || "Untitled";
   const date = metadata.date || "";
+  const descrizione = metadata.description || "";
   let cover = metadata.cover_image || "";
   // Check if someone accidentally included quotes
   if (cover.startsWith('"') && cover.endsWith('"')) { cover = cover.slice(1, -1); }
@@ -50,6 +52,7 @@ export const dataNews: Articolo[] = Object.entries(newsFiles).map(([path, conten
     estratto: estratto,
     contenuto: markdownContent,
     data: date,
+    descrizione,
     immagine: cover || "https://images.unsplash.com/photo-1542435503-956c469947f6?auto=format&fit=crop&q=80",
     tags: tags
   };

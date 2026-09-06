@@ -62,11 +62,11 @@ const participantLogos = {
 export const abbiamoData = {
   name: "Festival ABBIAMO",
   edition: 2026,
-  title: "Festival ABBIAMO 2026 a Verderio | Fiera delle associazioni",
-  eventName: "Festival ABBIAMO - Fiera delle associazioni",
+  title: "Festival ABBIAMO a Verderio | Fiera delle associazioni 2026",
+  eventName: "Festival ABBIAMO 2026 – Fiera delle associazioni",
   payoff: "Non una fiera da guardare, ma un territorio da vivere.",
   description:
-    "Festival ABBIAMO 2026: domenica 4 ottobre, dalle 14:00 alle 19:00 al Centro Sportivo di Verderio. Associazioni, attività, talk e spettacolo.",
+    "Festival ABBIAMO è la fiera delle associazioni e del volontariato a Verderio (LC): domenica 4 ottobre 2026, dalle 14:00 alle 19:00. Attività, talk, spettacoli e realtà del territorio.",
   date: "2026-10-04",
   dateLabel: "Domenica 4 ottobre 2026",
   startTime: "14:00",
@@ -89,7 +89,7 @@ export const abbiamoData = {
   },
   intro: {
     title: "Il territorio, tutto nello stesso posto.",
-    body: "Il Festival ABBIAMO nasce per riunire associazioni e cooperative no-profit del territorio in un’unica giornata di incontro, scoperta e festa. Un luogo dove cittadini e realtà locali possono conoscersi, raccontare progetti e creare nuove collaborazioni.",
+    body: "Festival ABBIAMO è la fiera delle associazioni e del volontariato promossa da ABBO APS a Verderio, nel territorio del Meratese in provincia di Lecco. Domenica 4 ottobre 2026 il Centro Sportivo di Verderio riunirà realtà del territorio, famiglie e cittadini per un pomeriggio di attività, incontri, talk e spettacoli.",
   },
   experience: {
     title: "Qui non vieni solo a guardare.",
@@ -160,6 +160,10 @@ export const abbiamoData = {
   ] satisfies AbbiamoParticipant[],
   faqs: [
     {
+      question: "Quanto costa partecipare?",
+      answer: "La partecipazione a Festival ABBIAMO è gratuita.",
+    },
+    {
       question: "Serve prenotarsi?",
       answer: "No. L’ingresso è libero e non è necessaria la prenotazione.",
     },
@@ -214,45 +218,40 @@ export const abbiamoData = {
 export function buildAbbiamoEventSchema() {
   return {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Event",
-        name: abbiamoData.eventName,
-        startDate: "2026-10-04T14:00:00+02:00",
-        endDate: "2026-10-04T19:00:00+02:00",
-        eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-        eventStatus: "https://schema.org/EventScheduled",
-        location: {
-          "@type": "Place",
-          name: abbiamoData.locationName,
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: abbiamoData.locality,
-            addressRegion: abbiamoData.province,
-            addressCountry: abbiamoData.province === "LC" ? "IT" : undefined,
-          },
-        },
-        image: [abbiamoData.ogImage],
-        description: abbiamoData.description,
-        organizer: {
-          "@type": "Organization",
-          name: "ABBO APS",
-          url: "https://abboaps.org/",
-        },
-        url: abbiamoData.canonicalUrl,
+    "@type": "Event",
+    "@id": `${abbiamoData.canonicalUrl}#event`,
+    name: abbiamoData.eventName,
+    url: abbiamoData.canonicalUrl,
+    startDate: "2026-10-04T14:00:00+02:00",
+    endDate: "2026-10-04T19:00:00+02:00",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventScheduled",
+    isAccessibleForFree: true,
+    location: {
+      "@type": "Place",
+      name: abbiamoData.locationName,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Via Caduti della Libertà 56",
+        postalCode: "23878",
+        addressLocality: abbiamoData.locality,
+        addressRegion: abbiamoData.province,
+        addressCountry: "IT",
       },
-      {
-        "@type": "FAQPage",
-        mainEntity: abbiamoData.faqs.map((faq) => ({
-          "@type": "Question",
-          name: faq.question,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: faq.answer,
-          },
-        })),
-      },
-    ],
+    },
+    image: [{
+      "@type": "ImageObject",
+      url: abbiamoData.ogImage,
+      width: 1200,
+      height: 630,
+    }],
+    description: abbiamoData.description,
+    organizer: {
+      "@id": "https://abboaps.org/#organization",
+      "@type": "Organization",
+      name: "ABBO APS",
+      url: "https://abboaps.org/",
+    },
   };
 }
 

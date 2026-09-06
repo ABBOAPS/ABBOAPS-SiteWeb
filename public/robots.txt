@@ -1,3 +1,6 @@
 User-agent: *
 Allow: /
+Allow: /abbiamo/
+Allow: /media/
+Allow: /assets/
 Sitemap: https://abboaps.org/sitemap.xml

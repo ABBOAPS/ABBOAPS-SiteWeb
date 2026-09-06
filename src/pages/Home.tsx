@@ -22,15 +22,9 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
     mouseY.set(clientY - top);
   }
 
-  return (
-    <motion.button
-      type="button"
-      layoutId={`project-container-${project.id}`}
-      onClick={project.is_black_and_white ? undefined : onClick}
-      disabled={project.is_black_and_white}
-      onMouseMove={handleMouseMove}
-      className={`clay-card p-0 ${project.is_black_and_white ? "cursor-default grayscale" : "cursor-pointer hover:shadow-3xl"} relative w-full md:w-[45%] lg:w-[40%] aspect-[4/5] flex flex-col items-center justify-end group overflow-hidden rounded-[2.5rem] shadow-2xl transition-all duration-500 border-4 border-white/50`}
-    >
+  const cardClassName = `clay-card p-0 ${project.is_black_and_white ? "cursor-default grayscale" : "cursor-pointer hover:shadow-3xl"} relative w-full md:w-[45%] lg:w-[40%] aspect-[4/5] flex flex-col items-center justify-end group overflow-hidden rounded-[2.5rem] shadow-2xl transition-all duration-500 border-4 border-white/50`;
+  const cardContent = (
+    <>
       <div className="absolute inset-0 z-0 bg-[#1a0a05]">
         {project.bg_src && (
           <img src={project.bg_src} alt="" className={`w-full h-full object-cover opacity-60 ${project.is_black_and_white ? "" : "group-hover:opacity-100 group-hover:scale-105"} transition-all duration-[1.5s] ease-out`} />
@@ -78,6 +72,32 @@ function ProjectCard({ project, onClick }: { project: Project; onClick: () => vo
           </p>
         </div>
       </div>
+    </>
+  );
+
+  if (project.url) {
+    return (
+      <motion.a
+        href={project.url}
+        layoutId={`project-container-${project.id}`}
+        onMouseMove={handleMouseMove}
+        className={cardClassName}
+      >
+        {cardContent}
+      </motion.a>
+    );
+  }
+
+  return (
+    <motion.button
+      type="button"
+      layoutId={`project-container-${project.id}`}
+      onClick={project.is_black_and_white ? undefined : onClick}
+      disabled={project.is_black_and_white}
+      onMouseMove={handleMouseMove}
+      className={cardClassName}
+    >
+      {cardContent}
     </motion.button>
   );
 }
