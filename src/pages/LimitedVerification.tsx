@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import { encodeUtf8, uint8ArrayToBase64Url } from "../../site/src/crypto/base64url";
 import { sha256Bytes } from "../../site/src/crypto/web-crypto";
+import { fingerprintToken } from "../../site/src/crypto/fingerprint";
 import { verifyEditionManifest } from "../../site/src/verifier/edition-verifier";
 import { fetchKeyring, verifyItemToken } from "../../site/src/verifier/item-verifier";
 import { parseNfcToken } from "../../site/src/verifier/token-parser";
@@ -44,7 +45,7 @@ function logVerificationError(error: unknown): void {
 
 export function LimitedVerification({ token }: { token?: string }) {
   const [state, setState] = useState<LimitedVerificationState>(token ? "loading" : "missing");
-  const [item, setItem] = useState<{ title: string; editionCode: string; serial: number; total: number; imageSrc?: string; imageAlt?: string }>();
+  const [item, setItem] = useState<{ title: string; editionCode: string; serial: number; total: number; imageSrc?: string; imageAlt?: string; fingerprint?: string }>();
   const [pairingConfirmed, setPairingConfirmed] = useState(false);
   const [pairingError, setPairingError] = useState(false);
   const tokenInMemory = useRef<string | undefined>(undefined);
@@ -80,6 +81,7 @@ export function LimitedVerification({ token }: { token?: string }) {
         }
 
         const editionVerification = await verifyEditionManifest(itemVerification.payload, keyring, baseUrl);
+        const fingerprint = await fingerprintToken(`${parsedToken.signedContentString}.${parsedToken.signatureB64}`);
         verifiedImageBlobUrl = editionVerification.verifiedImageBlobUrl;
         pairingHash.current = itemVerification.payload.p;
         pairingEditionId.current = itemVerification.payload.e;
@@ -93,6 +95,7 @@ export function LimitedVerification({ token }: { token?: string }) {
           total: itemVerification.payload.n,
           imageSrc: verifiedImageBlobUrl,
           imageAlt: editionVerification.editionPayload.image.alt,
+          fingerprint,
         });
         setState("verified");
       } catch (error: unknown) {
@@ -131,7 +134,7 @@ export function LimitedVerification({ token }: { token?: string }) {
   return (
     <>
       <Helmet>
-        <title>Verifica edizione limitata — ABBO APS</title>
+        <title>{item?.title ? `${item.title} — ABBO APS` : "Verifica edizione limitata — ABBO APS"}</title>
         <meta name="robots" content="noindex,nofollow,noarchive" />
         <meta name="referrer" content="no-referrer" />
       </Helmet>

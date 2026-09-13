@@ -1,4 +1,4 @@
-import { Globe2 } from "lucide-react";
+import { Globe2, Heart } from "lucide-react";
 import { SocialLinks } from "../SocialLinks";
 
 export function LimitedLinks() {
@@ -8,6 +8,10 @@ export function LimitedLinks() {
       <a className="limited-links__item limited-links__item--website" href="https://www.abboaps.org" target="_blank" rel="noreferrer">
         <Globe2 size={17} strokeWidth={1.8} aria-hidden="true" />
         abboaps.org
+      </a>
+      <a className="limited-links__item limited-links__item--support" href="/sostienici">
+        <Heart size={17} strokeWidth={1.8} aria-hidden="true" />
+        Sostieni ABBO
       </a>
     </div>
   );

@@ -13,4 +13,5 @@ export interface LimitedVerificationData {
   total?: number;
   imageSrc?: string;
   imageAlt?: string;
+  fingerprint?: string;
 }

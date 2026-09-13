@@ -4,6 +4,7 @@ import { LimitedLinks } from "./LimitedLinks";
 import { NfcHandoffIndicator } from "./NfcHandoffIndicator";
 import { Check } from "lucide-react";
 import type { LimitedVerificationData, LimitedVerificationState } from "./limited-types";
+import { pickLimitedPhrase } from "../../data/limitedPhrases";
 import "../../styles/limited-verification.css";
 
 const MINIMUM_HANDOFF_MS = 1_050;
@@ -68,12 +69,14 @@ export function LimitedVerificationExperience({
   total,
   imageSrc,
   imageAlt = "Artwork ABBO APS",
+  fingerprint,
   pairingEnabled = false,
   pairingConfirmed = false,
   pairingError = false,
   onPhysicalPairingSubmit,
 }: LimitedVerificationExperienceProps) {
   const introReady = useIntroReady(state);
+  const [phrase] = useState(() => pickLimitedPhrase());
   const copy = stateCopy(state);
   const verified = state === "verified";
   const showDetails = introReady && (verified || state === "invalid" || state === "compromised" || state === "technical" || state === "missing");
@@ -112,6 +115,13 @@ export function LimitedVerificationExperience({
 
           <EditionCounter current={verified ? serial : undefined} total={verified ? total : undefined} revealed={showDetails} />
 
+          {verified && fingerprint && (
+            <div className="limited-fingerprint" aria-label={`Codice digitale ${fingerprint.replace("-", " ")}`}>
+              <span>Codice digitale</span>
+              <strong>{fingerprint}</strong>
+            </div>
+          )}
+
           <dl className="limited-edition-meta">
             <div>
               <dt>Edizione</dt>
@@ -138,8 +148,6 @@ export function LimitedVerificationExperience({
             </form>
           )}
 
-          {showDetails && <LimitedLinks />}
-
           {demo && <p className="limited-demo-note">Demo UI · dati generati localmente.</p>}
           {!demo && (
             <p className="limited-nfc-note">
@@ -148,6 +156,19 @@ export function LimitedVerificationExperience({
           )}
         </div>
       </section>
+
+      {showDetails && (
+        <>
+          <figure className="limited-phrase-block">
+            <blockquote>“{phrase.text}”</blockquote>
+            <figcaption>{phrase.author}</figcaption>
+          </figure>
+          <section className="limited-discovery" aria-labelledby="limited-discovery-title">
+          <h2 id="limited-discovery-title">Scopri ABBO</h2>
+          <LimitedLinks />
+          </section>
+        </>
+      )}
     </main>
   );
 }

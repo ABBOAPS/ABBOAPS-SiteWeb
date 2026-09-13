@@ -6,7 +6,7 @@ import type { LimitedVerificationData } from "../components/limited/limited-type
 const RANDOM_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 const DEMO_TOTAL = 200;
 
-export interface LimitedDemoData extends Required<LimitedVerificationData> {
+export interface LimitedDemoData extends Omit<Required<LimitedVerificationData>, "fingerprint"> {
   editionCode: string;
   serial: number;
   total: number;
