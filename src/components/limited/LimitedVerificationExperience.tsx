@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { EditionCounter } from "./EditionCounter";
-import { LimitedLinks } from "./LimitedLinks";
+import { LimitedLinks, LimitedSupport } from "./LimitedLinks";
 import { NfcHandoffIndicator } from "./NfcHandoffIndicator";
 import { Check } from "lucide-react";
 import type { LimitedVerificationData, LimitedVerificationState } from "./limited-types";
@@ -102,6 +102,13 @@ export function LimitedVerificationExperience({
         <div className="limited-content">
           <h1 id="limited-experience-title">{title ?? "Poster ABBO APS"}</h1>
 
+          {showDetails && (
+            <figure className="limited-phrase-block">
+              <blockquote>“{phrase.text}”</blockquote>
+              <figcaption>{phrase.author}</figcaption>
+            </figure>
+          )}
+
           <div className="limited-status" aria-live="polite">
             {verified ? (
               <span className="limited-status-mark limited-status-mark--verified" aria-hidden="true">
@@ -159,14 +166,11 @@ export function LimitedVerificationExperience({
 
       {showDetails && (
         <>
-          <figure className="limited-phrase-block">
-            <blockquote>“{phrase.text}”</blockquote>
-            <figcaption>{phrase.author}</figcaption>
-          </figure>
           <section className="limited-discovery" aria-labelledby="limited-discovery-title">
-          <h2 id="limited-discovery-title">Scopri ABBO</h2>
-          <LimitedLinks />
+            <h2 id="limited-discovery-title">Scopri ABBO</h2>
+            <LimitedLinks />
           </section>
+          <LimitedSupport />
         </>
       )}
     </main>
