@@ -12,8 +12,7 @@ import { LimitedVerificationExperience } from "../components/limited/LimitedVeri
 import type { LimitedVerificationState } from "../components/limited/limited-types";
 
 function getVerifierBaseUrl(): string {
-  const appBaseUrl = new URL(import.meta.env.BASE_URL, document.baseURI);
-  return new URL("nfc/", appBaseUrl).toString();
+  return new URL(import.meta.env.BASE_URL, document.baseURI).toString();
 }
 
 function removeLimitedTokenFromAddressBar(): void {
