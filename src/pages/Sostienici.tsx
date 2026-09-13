@@ -1,6 +1,6 @@
 import sostieniciConfig from "../config/sostienici.json";
 import { ArrowLeft, ChevronRight, ChevronLeft, CreditCard, HandHeart, Landmark } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { SEO } from "../components/SEO";
 import { generateDonateActionSchema } from "../utils/seo-microdata";
@@ -11,22 +11,11 @@ type DonationStep = "intro" | "methods" | "bank";
 
 function DonationCard() {
   const [step, setStep] = useState<DonationStep>("intro");
-  const [paypalNotice, setPaypalNotice] = useState(false);
-  const noticeTimer = useRef<number | undefined>(undefined);
   const reduceMotion = useReducedMotion();
-
-  useEffect(() => () => window.clearTimeout(noticeTimer.current), []);
-
-  const showPaypalNotice = () => {
-    setPaypalNotice(true);
-    window.clearTimeout(noticeTimer.current);
-    noticeTimer.current = window.setTimeout(() => setPaypalNotice(false), 3200);
-  };
 
   const transition = reduceMotion ? { duration: 0 } : { duration: 0.24, ease: "easeOut" as const };
   const enter = reduceMotion ? {} : { opacity: 0, y: 12 };
   const exit = reduceMotion ? {} : { opacity: 0, y: -8 };
-  const tileShape = { clipPath: "polygon(0 0, 100% 0, 92% 100%, 8% 100%)" };
 
   return (
     <section aria-labelledby="single-donation-title" className="max-w-2xl mx-auto mb-16 w-full">
@@ -70,51 +59,48 @@ function DonationCard() {
                 {sostieniciConfig.donation.method_title}
               </h2>
               <p className="mt-4 text-lg font-medium leading-relaxed text-[#4a1c0d]/72">{sostieniciConfig.donation.method_description}</p>
-              <div className="mt-10 grid gap-5 sm:grid-cols-2" role="group" aria-label="Metodo di donazione">
+              <div className="mt-9 grid gap-4 sm:grid-cols-2" role="group" aria-label="Metodo di donazione">
                 <motion.button
                   type="button"
                   onClick={() => setStep("bank")}
-                  whileHover={reduceMotion ? undefined : { scale: 1.025, y: -3 }}
+                  whileHover={reduceMotion ? undefined : { y: -3 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 360, damping: 24 }}
-                  style={tileShape}
-                  className="min-h-48 bg-[#198754] px-8 py-8 text-left text-white shadow-[0_14px_26px_rgba(25,135,84,.22)] transition-shadow hover:shadow-[0_20px_32px_rgba(25,135,84,.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#198754] touch-manipulation"
+                  className="group flex min-h-44 flex-col justify-between rounded-[1.7rem] border border-[#e65100]/18 bg-[#fffaf0]/76 p-5 text-left shadow-[0_10px_24px_rgba(74,28,13,.08)] transition-[box-shadow,border-color,background-color] hover:border-[#e65100]/38 hover:bg-white hover:shadow-[0_16px_28px_rgba(74,28,13,.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e65100] touch-manipulation sm:p-6"
                 >
-                  <Landmark className="mb-7 size-8" strokeWidth={1.9} aria-hidden="true" />
-                  <span className="block text-2xl font-extrabold tracking-tight">Bonifico</span>
-                  <span className="mt-1 block text-sm font-bold text-white/78">Disponibile ora</span>
+                  <span className="flex items-start justify-between gap-4">
+                    <span className="flex size-12 items-center justify-center rounded-2xl bg-[#e65100]/10 text-[#e65100] transition-colors group-hover:bg-[#e65100] group-hover:text-white">
+                      <Landmark className="size-6" strokeWidth={1.9} aria-hidden="true" />
+                    </span>
+                    <ChevronRight className="mt-2 size-5 text-[#8a3a19]/45 transition-transform group-hover:translate-x-1 group-hover:text-[#e65100]" aria-hidden="true" />
+                  </span>
+                  <span className="mt-8 block">
+                    <span className="block text-2xl font-extrabold tracking-tight text-[#4a1c0d]">Bonifico</span>
+                    <span className="mt-1 block text-sm font-semibold text-[#8a3a19]/75">Disponibile ora</span>
+                  </span>
                 </motion.button>
-                <motion.button
-                  type="button"
-                  onClick={showPaypalNotice}
-                  aria-describedby={paypalNotice ? "paypal-notice" : undefined}
-                  whileHover={reduceMotion ? undefined : { scale: 1.025, y: -3 }}
+                <motion.a
+                  href={organization.paypalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Dona con PayPal"
+                  whileHover={reduceMotion ? undefined : { y: -3 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 360, damping: 24 }}
-                  style={tileShape}
-                  className="min-h-48 bg-[#1769aa] px-8 py-8 text-left text-white shadow-[0_14px_26px_rgba(23,105,170,.22)] transition-shadow hover:shadow-[0_20px_32px_rgba(23,105,170,.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1769aa] touch-manipulation"
+                  className="group flex min-h-44 flex-col justify-between rounded-[1.7rem] border border-[#e65100]/18 bg-[#fffaf0]/76 p-5 text-left shadow-[0_10px_24px_rgba(74,28,13,.08)] transition-[box-shadow,border-color,background-color] hover:border-[#e65100]/38 hover:bg-white hover:shadow-[0_16px_28px_rgba(74,28,13,.12)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e65100] touch-manipulation sm:p-6"
                 >
-                  <CreditCard className="mb-7 size-8" strokeWidth={1.9} aria-hidden="true" />
-                  <span className="block text-2xl font-extrabold tracking-tight">PayPal</span>
-                  <span className="mt-1 block text-sm font-bold text-white/78">{sostieniciConfig.donation.paypal_label}</span>
-                </motion.button>
+                  <span className="flex items-start justify-between gap-4">
+                    <span className="flex size-12 items-center justify-center rounded-2xl bg-[#ff8f00]/14 text-[#e65100] transition-colors group-hover:bg-[#e65100] group-hover:text-white">
+                      <CreditCard className="size-6" strokeWidth={1.9} aria-hidden="true" />
+                    </span>
+                    <ChevronRight className="mt-2 size-5 text-[#8a3a19]/45 transition-transform group-hover:translate-x-1 group-hover:text-[#e65100]" aria-hidden="true" />
+                  </span>
+                  <span className="mt-8 block">
+                    <span className="block text-2xl font-extrabold tracking-tight text-[#4a1c0d]">PayPal</span>
+                    <span className="mt-1 block text-sm font-semibold text-[#8a3a19]/75">{sostieniciConfig.donation.paypal_label}</span>
+                  </span>
+                </motion.a>
               </div>
-              <AnimatePresence>
-                {paypalNotice && (
-                  <motion.p
-                    id="paypal-notice"
-                    role="status"
-                    aria-live="polite"
-                    initial={enter}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={exit}
-                    transition={transition}
-                    className="mt-6 rounded-2xl bg-[#1769aa]/10 px-5 py-4 text-sm font-semibold leading-relaxed text-[#124f80]"
-                  >
-                    {sostieniciConfig.donation.paypal_notice}
-                  </motion.p>
-                )}
-              </AnimatePresence>
             </motion.div>
           )}
 

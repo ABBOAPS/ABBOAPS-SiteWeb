@@ -6,6 +6,7 @@ import { buildLegacyVerificationRedirectUrl, readVerificationTokenFromHash } fro
 import { removeUrlFragment, renderUi, stateFromVerificationError, UiState } from './ui/render';
 import { encodeUtf8, uint8ArrayToBase64Url } from './crypto/base64url';
 import { sha256Bytes } from './crypto/web-crypto';
+import { fingerprintToken } from './crypto/fingerprint';
 
 async function initApp(): Promise<void> {
   const container = document.getElementById('app');
@@ -41,6 +42,7 @@ async function initApp(): Promise<void> {
     }
 
     const editionVerification = await verifyEditionManifest(itemVerification.payload, keyring, baseUrl);
+    const fingerprint = await fingerprintToken(`${parsedToken.signedContentString}.${parsedToken.signatureB64}`);
 
     const initialState: UiState = itemVerification.keyStatus === 'retired'
       ? 'VERIFIED_KEY_RETIRED'
@@ -78,6 +80,7 @@ async function initApp(): Promise<void> {
         itemPayload: itemVerification.payload,
         editionPayload: editionVerification.editionPayload,
         verifiedImageBlobUrl: editionVerification.verifiedImageBlobUrl,
+        fingerprint,
         onPhysicalPairingSubmit: itemVerification.payload.p ? handlePairingSubmit : undefined,
         pairingConfirmed,
         pairingError,

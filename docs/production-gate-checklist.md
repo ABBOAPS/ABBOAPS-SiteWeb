@@ -16,7 +16,10 @@ Prima di eseguire il comando di produzione per i 200 poster del Festival Abbiamo
 
 ## 3. Verifiche di Prodotto e Asset Pubblici
 - [ ] Titolo (`Poster Festival Abbiamo 1 — Edizione 2026`), codice (`FESTIVAL-ABBO-1-POSTER`), descrizione e data di uscita sono stati confermati dal direttivo ABBO APS.
+- [ ] `--alt-text` descrive la copertina, è stato confermato dal direttivo e verrà incluso nel manifesto firmato.
+- [ ] `--dry-run` ha dato esito positivo prima dell'emissione reale.
 - [ ] L'immagine di copertina WebP finale è stata caricata e l'hash SHA-256 è stato verificato.
+- [ ] Il generatore ha creato automaticamente l'`edition_id` tecnico casuale; non è stato scelto manualmente per una nuova production.
 - [ ] I 200 prodotti fisici recano stampato, inciso o tessuto il numero seriale univoco da `001 / 200` a `200 / 200`.
 
 ## 4. Verifiche Hardware NFC

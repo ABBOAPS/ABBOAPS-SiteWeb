@@ -2,7 +2,8 @@
   "metadata": {
     "name": "valid_normal_item",
     "description": "Token item valido per l'esemplare 20 di 200 con dummy key fittizia di test",
-    "expected": "valid"
+    "expected": "valid",
+    "fingerprint": "3E14-B56F"
   },
   "keyring": {
     "schemaVersion": 1,

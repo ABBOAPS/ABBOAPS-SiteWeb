@@ -26,6 +26,7 @@ export interface RenderOptions {
   itemPayload?: ProductItemPayload;
   editionPayload?: EditionPayload;
   verifiedImageBlobUrl?: string;
+  fingerprint?: string;
   onPhysicalPairingSubmit?: (code: string) => void;
   pairingConfirmed?: boolean;
   pairingError?: boolean;
@@ -43,7 +44,7 @@ function createElement<K extends keyof HTMLElementTagNameMap>(
 }
 
 export function renderUi(options: RenderOptions): void {
-  const { container, state, itemPayload, editionPayload, verifiedImageBlobUrl, onPhysicalPairingSubmit, pairingConfirmed, pairingError } = options;
+  const { container, state, itemPayload, editionPayload, verifiedImageBlobUrl, fingerprint, onPhysicalPairingSubmit, pairingConfirmed, pairingError } = options;
 
   while (container.firstChild) {
     container.removeChild(container.firstChild);
@@ -105,6 +106,18 @@ export function renderUi(options: RenderOptions): void {
         img.className = 'product-verified-image';
         imgBox.appendChild(img);
         contentSection.appendChild(imgBox);
+      }
+
+      if (fingerprint && /^[0-9A-F]{4}-[0-9A-F]{4}$/.test(fingerprint)) {
+        const fingerprintBox = createElement('div', 'digital-fingerprint');
+        fingerprintBox.setAttribute('role', 'group');
+        const fingerprintLabel = createElement('span', 'digital-fingerprint-label', 'Codice digitale');
+        fingerprintLabel.setAttribute('aria-hidden', 'true');
+        const fingerprintValue = createElement('span', 'digital-fingerprint-value', fingerprint);
+        fingerprintValue.setAttribute('aria-label', `Codice digitale ${fingerprint.replace('-', ' ')}`);
+        fingerprintBox.appendChild(fingerprintLabel);
+        fingerprintBox.appendChild(fingerprintValue);
+        contentSection.appendChild(fingerprintBox);
       }
 
       const edTitle = createElement('h2', 'product-title', editionPayload.title);

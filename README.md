@@ -67,6 +67,7 @@ python3 -m abbo_nfc_studio.cli create-edition \
   --quantity 200 \
   --date 2026-09-01 \
   --image /percorso/al/tuo/poster_2026.png \
+  --alt-text "Poster ufficiale del Festival ABBIAMO 2026" \
   --base-url https://abboaps.org \
   --chip NTAG215
 ```
@@ -75,7 +76,7 @@ python3 -m abbo_nfc_studio.cli create-edition \
 **Risultato automatico:**
 1. Conversione dell'immagine in **WebP** con calcolo dell'hash SHA-256.
 2. Generazione dei **200 token firmati** (da 1 a 200) e salvataggio nel database locale.
-3. Generazione della tabella **`items_export.csv`** con i 200 URL da scrivere negli NFC.
+3. Generazione del Programming Pack privato con CSV, HTML offline, istruzioni e URL da scrivere negli NFC.
 4. Richiesta di conferma per aggiornare i file pubblici in `site/public/` (rispondi `s` per confermare).
 
 ---
@@ -98,7 +99,7 @@ git push origin main
 
 ### PASSO 4 — Scrittura dei Tag NFC sui Poster Fisici
 Utilizza l'app **NFC Tools** su smartphone (o un lettore NFC):
-1. Apri il file CSV generato (`~/.local/share/ABBO NFC Studio/exports/FESTIVAL-ABBO-1-POSTER/items_export.csv`).
+1. Apri `NFC_PROGRAMMING.html` nel Programming Pack privato creato in `~/.local/share/ABBO NFC Studio/exports/<edition_id>/programming-pack/`.
 2. Per ciascun poster (es. *Esemplare 1 di 200*):
    - Copia l'URL corrispondente dal CSV.
    - Apri **NFC Tools** ➔ **Scrivi** ➔ **Aggiungi un campo** ➔ **URL / URI** ➔ Scrivi sul tag NFC del Poster 1.

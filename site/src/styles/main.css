@@ -141,6 +141,40 @@ body {
   color: var(--muted);
 }
 
+.digital-fingerprint {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--brand-secondary);
+  background: var(--background);
+}
+
+.digital-fingerprint-label {
+  color: var(--muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.digital-fingerprint-value {
+  color: var(--brand-primary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+@keyframes fingerprintReveal {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.digital-fingerprint {
+  animation: fingerprintReveal 220ms ease-out both;
+}
+
 .meta-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -273,7 +307,8 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .spinner {
+  .spinner,
+  .digital-fingerprint {
     animation: none;
   }
 }

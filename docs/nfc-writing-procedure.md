@@ -24,6 +24,7 @@
    > Poster Festival Abbiamo 1 — TEST  
    > **Esemplare N di 3**
 5. Confronta il numero dell'esemplare mostrato con quello fisicamente presente sul prodotto.
+6. Confronta anche il **Codice digitale** `XXXX-XXXX` mostrato dal verifier con quello nel Programming Pack. È un identificativo pubblico per il controllo umano, non una prova autonoma di autenticità.
 
 ### FASE 3 — Blocco Sola Lettura (Irreversibile)
 > [!CAUTION]

@@ -417,7 +417,7 @@ export function Tessera() {
 
           {/* PayPal (Logo Ufficiale) */}
           <a
-            href="https://www.paypal.com/donate/?hosted_button_id=ABBOAPS"
+            href={organization.paypalUrl}
             target="_blank"
             rel="noopener noreferrer"
             title={t.donate}
@@ -684,7 +684,7 @@ export function Tessera() {
                 </a>
 
                 <a
-                  href="https://www.paypal.com/donate/?hosted_button_id=ABBOAPS"
+                  href={organization.paypalUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 clay-btn py-3.5 px-4 text-center font-extrabold uppercase tracking-wider text-xs flex items-center justify-center gap-2 hover:scale-105"

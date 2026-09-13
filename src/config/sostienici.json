@@ -34,7 +34,6 @@
     "method_title": "Come vuoi donare?",
     "method_description": "Scegli il metodo che preferisci.",
     "bank_description": "Puoi effettuare una donazione singola tramite bonifico.",
-    "paypal_label": "Prossimamente",
-    "paypal_notice": "PayPal non è ancora disponibile. Per ora puoi donare tramite bonifico."
+    "paypal_label": "Dona ora"
   }
 }
