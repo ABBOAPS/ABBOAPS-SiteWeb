@@ -30,6 +30,18 @@ function toLimitedState(error: unknown): LimitedVerificationState {
   return "invalid";
 }
 
+function logVerificationError(error: unknown): void {
+  if (!import.meta.env.DEV) return;
+  if (error instanceof Error) {
+    console.error("[ABBO Limited] verification failed", {
+      name: error.name,
+      message: error.message,
+    });
+    return;
+  }
+  console.error("[ABBO Limited] verification failed", { name: typeof error });
+}
+
 export function LimitedVerification({ token }: { token?: string }) {
   const [state, setState] = useState<LimitedVerificationState>(token ? "loading" : "missing");
   const [item, setItem] = useState<{ title: string; editionCode: string; serial: number; total: number; imageSrc?: string; imageAlt?: string }>();
@@ -85,6 +97,7 @@ export function LimitedVerification({ token }: { token?: string }) {
         setState("verified");
       } catch (error: unknown) {
         tokenInMemory.current = undefined;
+        logVerificationError(error);
         if (!disposed) setState(toLimitedState(error));
       }
     };
