@@ -54,13 +54,31 @@ jobs:
           npm run test
           VITE_BASE_URL=./ npm run build
 
-      - name: Integrate NFC Verifiers into dist/nfc/ and dist/tessera/
+      - name: Integrate NFC Verifiers and Public NFC Data
         run: |
           mkdir -p dist/nfc dist/tessera
-          cp -r site/dist/index.html dist/nfc/index.html
+
+          # Verifier application
+          cp site/dist/index.html dist/nfc/index.html
           cp -r site/dist/assets dist/nfc/ 2>/dev/null || true
+
+          # Public NFC cryptographic data.
+          # The verifier requests these from absolute /data/... URLs.
+          if [ -d "site/dist/data" ]; then
+            mkdir -p dist/data
+            cp -r site/dist/data/. dist/data/
+          fi
+
+          # Public Limited Edition artwork.
+          # Edition manifests reference /assets/products/... as an absolute path.
+          if [ -d "site/dist/assets/products" ]; then
+            mkdir -p dist/assets/products
+            cp -r site/dist/assets/products/. dist/assets/products/
+          fi
+
+          # Membership-card verifier
           if [ -d "site/dist/tessera" ]; then
-            cp -r site/dist/tessera/* dist/tessera/
+            cp -r site/dist/tessera/. dist/tessera/
             cp -r site/dist/assets dist/tessera/ 2>/dev/null || true
           fi
 
