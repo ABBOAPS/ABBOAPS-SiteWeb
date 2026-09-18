@@ -220,9 +220,9 @@
     "semantic_hash": "294703561f2bfee329fe764cf168f568"
   },
   "src/App.tsx": {
-    "mtime": 1789721248.3008077,
-    "ast_hash": "e336455749b3d1709b2f2cc931097f22",
-    "semantic_hash": "e336455749b3d1709b2f2cc931097f22"
+    "mtime": 1789647604.4100873,
+    "ast_hash": "e6fcef87850ec37f888c82c00547983d",
+    "semantic_hash": "e6fcef87850ec37f888c82c00547983d"
   },
   "src/api/patreon.ts": {
     "mtime": 1785528366.2544034,
@@ -425,9 +425,9 @@
     "semantic_hash": "c0783b635b5d33206ccc3a340273f548"
   },
   "src/main.tsx": {
-    "mtime": 1789721248.4318051,
-    "ast_hash": "992600819c879624524ce88a809cc816",
-    "semantic_hash": "992600819c879624524ce88a809cc816"
+    "mtime": 1789647604.569084,
+    "ast_hash": "b9e4c405c16f071a1bfd982130ece2ae",
+    "semantic_hash": "b9e4c405c16f071a1bfd982130ece2ae"
   },
   "src/pages/AiTransparency.tsx": {
     "mtime": 1785752063.889269,
@@ -708,15 +708,5 @@
     "mtime": 1789677304.238202,
     "ast_hash": "a09679832b1170a9ae122ee1ee68a091",
     "semantic_hash": "a09679832b1170a9ae122ee1ee68a091"
-  },
-  ".hallmark/log.json": {
-    "mtime": 1789721285.9000533,
-    "ast_hash": "967ff1ee182940b1a81550abe35e5bba",
-    "semantic_hash": "967ff1ee182940b1a81550abe35e5bba"
-  },
-  "src/pages/Projects.tsx": {
-    "mtime": 1789721285.717057,
-    "ast_hash": "2e11ab1eb9d7b58e2d1ff60defefbb1d",
-    "semantic_hash": "2e11ab1eb9d7b58e2d1ff60defefbb1d"
   }
 }

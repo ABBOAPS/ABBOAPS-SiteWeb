@@ -28,6 +28,7 @@ const LimitedVerification = lazy(() => import("./pages/LimitedVerification").the
 const LimitedVerificationRoute = lazy(() => import("./pages/LimitedVerification").then(({ LimitedVerificationRoute }) => ({ default: LimitedVerificationRoute })));
 const LimitedDemo = lazy(() => import("./pages/LimitedDemo").then(({ LimitedDemo }) => ({ default: LimitedDemo })));
 const Abbiamo = lazy(() => import("./pages/Abbiamo").then(({ Abbiamo }) => ({ default: Abbiamo })));
+const Projects = lazy(() => import("./pages/Projects").then(({ Projects }) => ({ default: Projects })));
 const ConsapevolezzaDocenti = lazy(() => import("./pages/landing/ConsapevolezzaDocenti"));
 const ConsapevolezzaIstituti = lazy(() => import("./pages/landing/ConsapevolezzaIstituti"));
 const ConsapevolezzaRagazzi = lazy(() => import("./pages/landing/ConsapevolezzaRagazzi"));
@@ -48,6 +49,7 @@ export default function App() {
 
   const isTesseraPage = location.pathname.startsWith("/tessera");
   const isLimitedVerificationPage = location.pathname === "/limited" || location.pathname.startsWith("/limited/");
+  const isHubPage = location.pathname === "/link";
 
   return (
     <div 
@@ -55,7 +57,7 @@ export default function App() {
       style={{ backgroundColor: siteConfig.theme.background.base, backgroundImage: siteConfig.theme.background.gradient, color: siteConfig.theme.text.primary }}
     >
       {/* Primary Top Navigation */}
-      {!isTesseraPage && !isLimitedVerificationPage && <Topbar />}
+      {!isTesseraPage && !isLimitedVerificationPage && !isHubPage && <Topbar />}
 
       <main className="flex-1 relative z-10">
         <Suspense fallback={<div className="app-loading" role="status">Caricamento pagina…</div>}>
@@ -84,6 +86,7 @@ export default function App() {
           <Route path="/limited/demo" element={<LimitedDemo />} />
           <Route path="/limited/:token" element={<LimitedVerificationRoute />} />
           <Route path="/abbiamo" element={<Abbiamo />} />
+          <Route path="/link" element={<Projects />} />
           <Route path="/docs/*" element={<Docs />} />
           
           {/* Landing Pages */}
@@ -102,7 +105,7 @@ export default function App() {
         </Suspense>
       </main>
 
-      {!isTesseraPage && !isLimitedVerificationPage && <Footer />}
+      {!isTesseraPage && !isLimitedVerificationPage && !isHubPage && <Footer />}
     </div>
   );
 }

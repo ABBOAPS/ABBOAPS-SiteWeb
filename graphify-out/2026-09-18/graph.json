@@ -308,7 +308,7 @@
       "_origin": "ast",
       "community": 28,
       "norm_label": "edition-payload.schema.json",
-      "community_name": "edition-payload.schema.json",
+      "community_name": "required",
       "id": "schemas_edition_payload_schema"
     },
     {
@@ -319,7 +319,7 @@
       "_origin": "ast",
       "community": 28,
       "norm_label": "$schema",
-      "community_name": "edition-payload.schema.json",
+      "community_name": "required",
       "id": "schemas_edition_payload_schema_schema"
     },
     {
@@ -330,7 +330,7 @@
       "_origin": "ast",
       "community": 28,
       "norm_label": "$id",
-      "community_name": "edition-payload.schema.json",
+      "community_name": "required",
       "id": "schemas_edition_payload_schema_id"
     },
     {
@@ -341,7 +341,7 @@
       "_origin": "ast",
       "community": 28,
       "norm_label": "title",
-      "community_name": "edition-payload.schema.json",
+      "community_name": "required",
       "id": "schemas_edition_payload_schema_title"
     },
     {
@@ -352,7 +352,7 @@
       "_origin": "ast",
       "community": 28,
       "norm_label": "type",
-      "community_name": "edition-payload.schema.json",
+      "community_name": "required",
       "id": "schemas_edition_payload_schema_type"
     },
     {
@@ -363,7 +363,7 @@
       "_origin": "ast",
       "community": 28,
       "norm_label": "additionalproperties",
-      "community_name": "edition-payload.schema.json",
+      "community_name": "required",
       "id": "schemas_edition_payload_schema_additionalproperties"
     },
     {
@@ -990,7 +990,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "path",
-      "community_name": "image",
+      "community_name": "path",
       "id": "ref_path"
     },
     {
@@ -1023,7 +1023,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "properties",
-      "community_name": "image",
+      "community_name": "properties",
       "id": "schemas_edition_payload_schema_image_properties"
     },
     {
@@ -1034,7 +1034,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "path",
-      "community_name": "image",
+      "community_name": "properties",
       "id": "schemas_edition_payload_schema_properties_path"
     },
     {
@@ -1045,7 +1045,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "type",
-      "community_name": "image",
+      "community_name": "properties",
       "id": "schemas_edition_payload_schema_path_type"
     },
     {
@@ -1056,7 +1056,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "pattern",
-      "community_name": "image",
+      "community_name": "properties",
       "id": "schemas_edition_payload_schema_path_pattern"
     },
     {
@@ -1067,7 +1067,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "maxlength",
-      "community_name": "image",
+      "community_name": "properties",
       "id": "schemas_edition_payload_schema_path_maxlength"
     },
     {
@@ -1078,7 +1078,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "sha256",
-      "community_name": "image",
+      "community_name": "properties",
       "id": "schemas_edition_payload_schema_properties_sha256"
     },
     {
@@ -1089,7 +1089,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "type",
-      "community_name": "image",
+      "community_name": "properties",
       "id": "schemas_edition_payload_schema_sha256_type"
     },
     {
@@ -1100,7 +1100,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "pattern",
-      "community_name": "image",
+      "community_name": "properties",
       "id": "schemas_edition_payload_schema_sha256_pattern"
     },
     {
@@ -1111,7 +1111,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "alt",
-      "community_name": "image",
+      "community_name": "properties",
       "id": "schemas_edition_payload_schema_properties_alt"
     },
     {
@@ -1122,7 +1122,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "type",
-      "community_name": "image",
+      "community_name": "properties",
       "id": "schemas_edition_payload_schema_alt_type"
     },
     {
@@ -1133,7 +1133,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "minlength",
-      "community_name": "image",
+      "community_name": "properties",
       "id": "schemas_edition_payload_schema_alt_minlength"
     },
     {
@@ -1144,7 +1144,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "maxlength",
-      "community_name": "image",
+      "community_name": "properties",
       "id": "schemas_edition_payload_schema_alt_maxlength"
     },
     {
@@ -1540,7 +1540,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "properties",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "schemas_keyring_schema_key_properties"
     },
     {
@@ -1551,7 +1551,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "kid",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "schemas_keyring_schema_properties_kid"
     },
     {
@@ -1562,7 +1562,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "type",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "schemas_keyring_schema_kid_type"
     },
     {
@@ -1573,7 +1573,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "pattern",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "schemas_keyring_schema_kid_pattern"
     },
     {
@@ -1584,7 +1584,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "maxlength",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "schemas_keyring_schema_kid_maxlength"
     },
     {
@@ -1595,7 +1595,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "alg",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "schemas_keyring_schema_properties_alg"
     },
     {
@@ -1606,7 +1606,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "const",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "schemas_keyring_schema_alg_const"
     },
     {
@@ -1617,7 +1617,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "status",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "schemas_keyring_schema_properties_status"
     },
     {
@@ -1628,7 +1628,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "enum",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "schemas_keyring_schema_status_enum"
     },
     {
@@ -1639,7 +1639,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "active",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "ref_active"
     },
     {
@@ -1650,7 +1650,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "retired",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "ref_retired"
     },
     {
@@ -1661,7 +1661,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "compromised",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "ref_compromised"
     },
     {
@@ -1672,7 +1672,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "createdat",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "schemas_keyring_schema_properties_createdat"
     },
     {
@@ -1683,7 +1683,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "type",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "schemas_keyring_schema_createdat_type"
     },
     {
@@ -1694,7 +1694,7 @@
       "_origin": "ast",
       "community": 2,
       "norm_label": "format",
-      "community_name": "keyring.schema.json",
+      "community_name": "properties",
       "id": "schemas_keyring_schema_createdat_format"
     },
     {
@@ -2695,7 +2695,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "required",
-      "community_name": "site-config.schema.json",
+      "community_name": "required",
       "id": "schemas_site_config_schema_required"
     },
     {
@@ -2706,7 +2706,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "schemaversion",
-      "community_name": "site-config.schema.json",
+      "community_name": "required",
       "id": "schemas_site_config_schema_json_ref_schemaversion"
     },
     {
@@ -2717,7 +2717,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "organization",
-      "community_name": "site-config.schema.json",
+      "community_name": "required",
       "id": "ref_organization"
     },
     {
@@ -2728,7 +2728,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "verification",
-      "community_name": "site-config.schema.json",
+      "community_name": "required",
       "id": "ref_verification"
     },
     {
@@ -2739,7 +2739,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "ui",
-      "community_name": "site-config.schema.json",
+      "community_name": "required",
       "id": "ref_ui"
     },
     {
@@ -2860,7 +2860,7 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "properties",
-      "community_name": "organization",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_organization_properties"
     },
     {
@@ -2871,7 +2871,7 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "name",
-      "community_name": "organization",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_properties_name"
     },
     {
@@ -2882,7 +2882,7 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "const",
-      "community_name": "organization",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_name_const"
     },
     {
@@ -2893,7 +2893,7 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "logo",
-      "community_name": "organization",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_properties_logo"
     },
     {
@@ -2904,7 +2904,7 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "type",
-      "community_name": "organization",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_logo_type"
     },
     {
@@ -2915,7 +2915,7 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "minlength",
-      "community_name": "organization",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_logo_minlength"
     },
     {
@@ -2926,7 +2926,7 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "maxlength",
-      "community_name": "organization",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_logo_maxlength"
     },
     {
@@ -2937,7 +2937,7 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "website",
-      "community_name": "organization",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_properties_website"
     },
     {
@@ -2948,7 +2948,7 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "type",
-      "community_name": "organization",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_website_type"
     },
     {
@@ -2959,7 +2959,7 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "format",
-      "community_name": "organization",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_website_format"
     },
     {
@@ -2970,7 +2970,7 @@
       "_origin": "ast",
       "community": 21,
       "norm_label": "maxlength",
-      "community_name": "organization",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_website_maxlength"
     },
     {
@@ -3410,7 +3410,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "ui",
-      "community_name": "site-config.schema.json",
+      "community_name": "ui",
       "id": "schemas_site_config_schema_properties_ui"
     },
     {
@@ -3421,7 +3421,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "type",
-      "community_name": "site-config.schema.json",
+      "community_name": "ui",
       "id": "schemas_site_config_schema_ui_type"
     },
     {
@@ -3432,7 +3432,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "additionalproperties",
-      "community_name": "site-config.schema.json",
+      "community_name": "ui",
       "id": "schemas_site_config_schema_ui_additionalproperties"
     },
     {
@@ -3443,7 +3443,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "required",
-      "community_name": "site-config.schema.json",
+      "community_name": "ui",
       "id": "schemas_site_config_schema_ui_required"
     },
     {
@@ -3454,7 +3454,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "locale",
-      "community_name": "site-config.schema.json",
+      "community_name": "ui",
       "id": "ref_locale"
     },
     {
@@ -3465,7 +3465,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "verifiedlabel",
-      "community_name": "site-config.schema.json",
+      "community_name": "ui",
       "id": "ref_verifiedlabel"
     },
     {
@@ -3476,7 +3476,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "showphysicalserialreminder",
-      "community_name": "site-config.schema.json",
+      "community_name": "ui",
       "id": "ref_showphysicalserialreminder"
     },
     {
@@ -3487,7 +3487,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "officialsitelabel",
-      "community_name": "site-config.schema.json",
+      "community_name": "ui",
       "id": "ref_officialsitelabel"
     },
     {
@@ -3498,7 +3498,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "properties",
-      "community_name": "site-config.schema.json",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_ui_properties"
     },
     {
@@ -3509,7 +3509,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "locale",
-      "community_name": "site-config.schema.json",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_properties_locale"
     },
     {
@@ -3520,7 +3520,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "type",
-      "community_name": "site-config.schema.json",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_locale_type"
     },
     {
@@ -3531,7 +3531,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "pattern",
-      "community_name": "site-config.schema.json",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_locale_pattern"
     },
     {
@@ -3542,7 +3542,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "verifiedlabel",
-      "community_name": "site-config.schema.json",
+      "community_name": "verifiedLabel",
       "id": "schemas_site_config_schema_properties_verifiedlabel"
     },
     {
@@ -3553,7 +3553,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "type",
-      "community_name": "site-config.schema.json",
+      "community_name": "verifiedLabel",
       "id": "schemas_site_config_schema_verifiedlabel_type"
     },
     {
@@ -3564,7 +3564,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "minlength",
-      "community_name": "site-config.schema.json",
+      "community_name": "verifiedLabel",
       "id": "schemas_site_config_schema_verifiedlabel_minlength"
     },
     {
@@ -3575,7 +3575,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "maxlength",
-      "community_name": "site-config.schema.json",
+      "community_name": "verifiedLabel",
       "id": "schemas_site_config_schema_verifiedlabel_maxlength"
     },
     {
@@ -3586,7 +3586,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "showphysicalserialreminder",
-      "community_name": "site-config.schema.json",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_properties_showphysicalserialreminder"
     },
     {
@@ -3597,7 +3597,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "type",
-      "community_name": "site-config.schema.json",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_showphysicalserialreminder_type"
     },
     {
@@ -3608,7 +3608,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "officialsitelabel",
-      "community_name": "site-config.schema.json",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_properties_officialsitelabel"
     },
     {
@@ -3619,7 +3619,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "type",
-      "community_name": "site-config.schema.json",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_officialsitelabel_type"
     },
     {
@@ -3630,7 +3630,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "minlength",
-      "community_name": "site-config.schema.json",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_officialsitelabel_minlength"
     },
     {
@@ -3641,7 +3641,7 @@
       "_origin": "ast",
       "community": 11,
       "norm_label": "maxlength",
-      "community_name": "site-config.schema.json",
+      "community_name": "properties",
       "id": "schemas_site_config_schema_officialsitelabel_maxlength"
     },
     {
@@ -5318,7 +5318,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "site/vite.config.ts",
-      "community_name": "image",
+      "community_name": "path",
       "id": "site_vite_config"
     },
     {
@@ -8244,7 +8244,7 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "pressmentions.tsx",
-      "community_name": "Tessera.tsx",
+      "community_name": "FestivalAbbiamoContent.tsx",
       "id": "src_components_pressmentions"
     },
     {
@@ -8255,7 +8255,7 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "pressmentionsvariant",
-      "community_name": "Tessera.tsx",
+      "community_name": "FestivalAbbiamoContent.tsx",
       "id": "src_components_pressmentions_pressmentionsvariant"
     },
     {
@@ -8266,7 +8266,7 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "publicasset()",
-      "community_name": "Tessera.tsx",
+      "community_name": "FestivalAbbiamoContent.tsx",
       "id": "src_components_pressmentions_publicasset"
     },
     {
@@ -8277,7 +8277,7 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "pressmentions()",
-      "community_name": "Tessera.tsx",
+      "community_name": "FestivalAbbiamoContent.tsx",
       "id": "src_components_pressmentions_pressmentions"
     },
     {
@@ -8508,7 +8508,7 @@
       "_origin": "ast",
       "community": 5,
       "norm_label": "limitedlinks.tsx",
-      "community_name": "LimitedVerificationExperience.tsx",
+      "community_name": "Tessera.tsx",
       "id": "src_components_limited_limitedlinks"
     },
     {
@@ -8530,7 +8530,7 @@
       "_origin": "ast",
       "community": 5,
       "norm_label": "limitedsupport()",
-      "community_name": "LimitedVerificationExperience.tsx",
+      "community_name": "Tessera.tsx",
       "id": "src_components_limited_limitedlinks_limitedsupport"
     },
     {
@@ -8915,7 +8915,7 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "pressmentions.ts",
-      "community_name": "Tessera.tsx",
+      "community_name": "FestivalAbbiamoContent.tsx",
       "id": "src_data_pressmentions"
     },
     {
@@ -8926,7 +8926,7 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "pressmention",
-      "community_name": "Tessera.tsx",
+      "community_name": "FestivalAbbiamoContent.tsx",
       "id": "src_data_pressmentions_pressmention"
     },
     {
@@ -8937,7 +8937,7 @@
       "_origin": "ast",
       "community": 4,
       "norm_label": "pressmentions",
-      "community_name": "Tessera.tsx",
+      "community_name": "FestivalAbbiamoContent.tsx",
       "id": "src_data_pressmentions_pressmentions"
     },
     {
@@ -9399,7 +9399,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "vite.config.ts",
-      "community_name": "image",
+      "community_name": "path",
       "id": "vite_config"
     },
     {
@@ -9410,7 +9410,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "configureserver()",
-      "community_name": "image",
+      "community_name": "path",
       "id": "vite_config_configureserver"
     },
     {
@@ -9421,7 +9421,7 @@
       "_origin": "ast",
       "community": 16,
       "norm_label": "manualchunks()",
-      "community_name": "image",
+      "community_name": "path",
       "id": "vite_config_manualchunks"
     },
     {
@@ -9485,10 +9485,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "app.tsx",
       "id": "src_app",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "app.tsx"
     },
     {
       "label": "Home",
@@ -9496,10 +9495,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L7",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "home",
       "id": "src_app_home",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "home"
     },
     {
       "label": "ChiSiamo",
@@ -9507,10 +9505,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "chisiamo",
       "id": "src_app_chisiamo",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "chisiamo"
     },
     {
       "label": "Team",
@@ -9518,10 +9515,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "team",
       "id": "src_app_team",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "team"
     },
     {
       "label": "Sostienici",
@@ -9529,10 +9525,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "sostienici",
       "id": "src_app_sostienici",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "sostienici"
     },
     {
       "label": "Contatti",
@@ -9540,10 +9535,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "contatti",
       "id": "src_app_contatti",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "contatti"
     },
     {
       "label": "Documenti",
@@ -9551,10 +9545,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L12",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "documenti",
       "id": "src_app_documenti",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "documenti"
     },
     {
       "label": "DocumentViewer",
@@ -9562,10 +9555,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L13",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "documentviewer",
       "id": "src_app_documentviewer",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "documentviewer"
     },
     {
       "label": "BalanceViewer",
@@ -9573,10 +9565,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "balanceviewer",
       "id": "src_app_balanceviewer",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "balanceviewer"
     },
     {
       "label": "Notizie",
@@ -9584,10 +9575,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "notizie",
       "id": "src_app_notizie",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "notizie"
     },
     {
       "label": "NewsDetail",
@@ -9595,10 +9585,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "newsdetail",
       "id": "src_app_newsdetail",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "newsdetail"
     },
     {
       "label": "NotFound",
@@ -9606,10 +9595,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "notfound",
       "id": "src_app_notfound",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "notfound"
     },
     {
       "label": "PrivacyPolicy",
@@ -9617,10 +9605,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "privacypolicy",
       "id": "src_app_privacypolicy",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "privacypolicy"
     },
     {
       "label": "Ambassador",
@@ -9628,10 +9615,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "ambassador",
       "id": "src_app_ambassador",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "ambassador"
     },
     {
       "label": "Tessera",
@@ -9639,10 +9625,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "tessera",
       "id": "src_app_tessera",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "tessera"
     },
     {
       "label": "TesseraCondizioni",
@@ -9650,10 +9635,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "tesseracondizioni",
       "id": "src_app_tesseracondizioni",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "tesseracondizioni"
     },
     {
       "label": "TesseraPrivacy",
@@ -9661,10 +9645,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "tesseraprivacy",
       "id": "src_app_tesseraprivacy",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "tesseraprivacy"
     },
     {
       "label": "TesseraPartner",
@@ -9672,10 +9655,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L23",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "tesserapartner",
       "id": "src_app_tesserapartner",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "tesserapartner"
     },
     {
       "label": "TermsAndConditions",
@@ -9683,10 +9665,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "termsandconditions",
       "id": "src_app_termsandconditions",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "termsandconditions"
     },
     {
       "label": "CookiePolicy",
@@ -9694,10 +9675,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "cookiepolicy",
       "id": "src_app_cookiepolicy",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "cookiepolicy"
     },
     {
       "label": "AiTransparency",
@@ -9705,10 +9685,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "aitransparency",
       "id": "src_app_aitransparency",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "aitransparency"
     },
     {
       "label": "LimitedVerification",
@@ -9716,10 +9695,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L27",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "limitedverification",
       "id": "src_app_limitedverification",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "limitedverification"
     },
     {
       "label": "LimitedVerificationRoute",
@@ -9727,10 +9705,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L28",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "limitedverificationroute",
       "id": "src_app_limitedverificationroute",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "limitedverificationroute"
     },
     {
       "label": "LimitedDemo",
@@ -9738,10 +9715,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L29",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "limiteddemo",
       "id": "src_app_limiteddemo",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "limiteddemo"
     },
     {
       "label": "Abbiamo",
@@ -9749,10 +9725,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "abbiamo",
       "id": "src_app_abbiamo",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "abbiamo"
     },
     {
       "label": "AbboHub",
@@ -9760,10 +9735,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L31",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "abbohub",
       "id": "src_app_abbohub",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "abbohub"
     },
     {
       "label": "Projects",
@@ -9771,10 +9745,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "projects",
       "id": "src_app_projects",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "projects"
     },
     {
       "label": "ConsapevolezzaDocenti",
@@ -9782,10 +9755,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L33",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "consapevolezzadocenti",
       "id": "src_app_consapevolezzadocenti",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "consapevolezzadocenti"
     },
     {
       "label": "ConsapevolezzaIstituti",
@@ -9793,10 +9765,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L34",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "consapevolezzaistituti",
       "id": "src_app_consapevolezzaistituti",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "consapevolezzaistituti"
     },
     {
       "label": "ConsapevolezzaRagazzi",
@@ -9804,10 +9775,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L35",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "consapevolezzaragazzi",
       "id": "src_app_consapevolezzaragazzi",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "consapevolezzaragazzi"
     },
     {
       "label": "LegoDocenti",
@@ -9815,10 +9785,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L36",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "legodocenti",
       "id": "src_app_legodocenti",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "legodocenti"
     },
     {
       "label": "LegoIstituti",
@@ -9826,10 +9795,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L37",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "legoistituti",
       "id": "src_app_legoistituti",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "legoistituti"
     },
     {
       "label": "LegoRagazzi",
@@ -9837,10 +9805,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L38",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "legoragazzi",
       "id": "src_app_legoragazzi",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "legoragazzi"
     },
     {
       "label": "MinecraftDocenti",
@@ -9848,10 +9815,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L39",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "minecraftdocenti",
       "id": "src_app_minecraftdocenti",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "minecraftdocenti"
     },
     {
       "label": "MinecraftIstituti",
@@ -9859,10 +9825,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L40",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "minecraftistituti",
       "id": "src_app_minecraftistituti",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "minecraftistituti"
     },
     {
       "label": "MinecraftRagazzi",
@@ -9870,10 +9835,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L41",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "minecraftragazzi",
       "id": "src_app_minecraftragazzi",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "minecraftragazzi"
     },
     {
       "label": "Docs",
@@ -9881,10 +9845,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L42",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "docs",
       "id": "src_app_docs",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "docs"
     },
     {
       "label": "App()",
@@ -9892,10 +9855,9 @@
       "source_file": "src/App.tsx",
       "source_location": "L44",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "app()",
       "id": "src_app_app",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "app()"
     },
     {
       "label": "main.tsx",
@@ -9903,10 +9865,9 @@
       "source_file": "src/main.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 7,
-      "norm_label": "main.tsx",
       "id": "src_main",
-      "community_name": "App.tsx"
+      "community": 7,
+      "norm_label": "main.tsx"
     },
     {
       "label": "Projects.tsx",
@@ -9914,10 +9875,9 @@
       "source_file": "src/pages/Projects.tsx",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 27,
-      "norm_label": "projects.tsx",
       "id": "src_pages_projects",
-      "community_name": "Projects.tsx"
+      "community": 27,
+      "norm_label": "projects.tsx"
     },
     {
       "label": "ProjectFilter",
@@ -9925,10 +9885,9 @@
       "source_file": "src/pages/Projects.tsx",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 27,
-      "norm_label": "projectfilter",
       "id": "src_pages_projects_projectfilter",
-      "community_name": "Projects.tsx"
+      "community": 27,
+      "norm_label": "projectfilter"
     },
     {
       "label": "ProjectMeta",
@@ -9936,10 +9895,9 @@
       "source_file": "src/pages/Projects.tsx",
       "source_location": "L11",
       "_origin": "ast",
-      "community": 27,
-      "norm_label": "projectmeta",
       "id": "src_pages_projects_projectmeta",
-      "community_name": "Projects.tsx"
+      "community": 27,
+      "norm_label": "projectmeta"
     },
     {
       "label": "filters",
@@ -9947,10 +9905,9 @@
       "source_file": "src/pages/Projects.tsx",
       "source_location": "L18",
       "_origin": "ast",
-      "community": 27,
-      "norm_label": "filters",
       "id": "src_pages_projects_filters",
-      "community_name": "Projects.tsx"
+      "community": 27,
+      "norm_label": "filters"
     },
     {
       "label": "values",
@@ -9958,10 +9915,9 @@
       "source_file": "src/pages/Projects.tsx",
       "source_location": "L24",
       "_origin": "ast",
-      "community": 27,
-      "norm_label": "values",
       "id": "src_pages_projects_values",
-      "community_name": "Projects.tsx"
+      "community": 27,
+      "norm_label": "values"
     },
     {
       "label": "projects",
@@ -9969,10 +9925,9 @@
       "source_file": "src/pages/Projects.tsx",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 27,
-      "norm_label": "projects",
       "id": "src_pages_projects_projects",
-      "community_name": "Projects.tsx"
+      "community": 27,
+      "norm_label": "projects"
     },
     {
       "label": "ProjectLink()",
@@ -9980,10 +9935,9 @@
       "source_file": "src/pages/Projects.tsx",
       "source_location": "L32",
       "_origin": "ast",
-      "community": 27,
-      "norm_label": "projectlink()",
       "id": "src_pages_projects_projectlink",
-      "community_name": "Projects.tsx"
+      "community": 27,
+      "norm_label": "projectlink()"
     },
     {
       "label": "ProjectCard()",
@@ -9991,10 +9945,9 @@
       "source_file": "src/pages/Projects.tsx",
       "source_location": "L40",
       "_origin": "ast",
-      "community": 27,
-      "norm_label": "projectcard()",
       "id": "src_pages_projects_projectcard",
-      "community_name": "Projects.tsx"
+      "community": 27,
+      "norm_label": "projectcard()"
     }
   ],
   "links": [
@@ -22736,9 +22689,9 @@
       "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_abbiamo"
+      "target": "src_app_abbiamo",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22747,9 +22700,9 @@
       "source_location": "L31",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_abbohub"
+      "target": "src_app_abbohub",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22758,9 +22711,9 @@
       "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_aitransparency"
+      "target": "src_app_aitransparency",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22769,9 +22722,9 @@
       "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_ambassador"
+      "target": "src_app_ambassador",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22780,9 +22733,9 @@
       "source_location": "L44",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_app"
+      "target": "src_app_app",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22791,9 +22744,9 @@
       "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_balanceviewer"
+      "target": "src_app_balanceviewer",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22802,9 +22755,9 @@
       "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_chisiamo"
+      "target": "src_app_chisiamo",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22813,9 +22766,9 @@
       "source_location": "L33",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_consapevolezzadocenti"
+      "target": "src_app_consapevolezzadocenti",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22824,9 +22777,9 @@
       "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_consapevolezzaistituti"
+      "target": "src_app_consapevolezzaistituti",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22835,9 +22788,9 @@
       "source_location": "L35",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_consapevolezzaragazzi"
+      "target": "src_app_consapevolezzaragazzi",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22846,9 +22799,9 @@
       "source_location": "L11",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_contatti"
+      "target": "src_app_contatti",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22857,9 +22810,9 @@
       "source_location": "L25",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_cookiepolicy"
+      "target": "src_app_cookiepolicy",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22868,9 +22821,9 @@
       "source_location": "L42",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_docs"
+      "target": "src_app_docs",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22879,9 +22832,9 @@
       "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_documenti"
+      "target": "src_app_documenti",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22890,9 +22843,9 @@
       "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_documentviewer"
+      "target": "src_app_documentviewer",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22901,9 +22854,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_home"
+      "target": "src_app_home",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22912,9 +22865,9 @@
       "source_location": "L36",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_legodocenti"
+      "target": "src_app_legodocenti",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22923,9 +22876,9 @@
       "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_legoistituti"
+      "target": "src_app_legoistituti",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22934,9 +22887,9 @@
       "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_legoragazzi"
+      "target": "src_app_legoragazzi",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22945,9 +22898,9 @@
       "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_limiteddemo"
+      "target": "src_app_limiteddemo",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22956,9 +22909,9 @@
       "source_location": "L27",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_limitedverification"
+      "target": "src_app_limitedverification",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22967,9 +22920,9 @@
       "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_limitedverificationroute"
+      "target": "src_app_limitedverificationroute",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22978,9 +22931,9 @@
       "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_minecraftdocenti"
+      "target": "src_app_minecraftdocenti",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -22989,9 +22942,9 @@
       "source_location": "L40",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_minecraftistituti"
+      "target": "src_app_minecraftistituti",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23000,9 +22953,9 @@
       "source_location": "L41",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_minecraftragazzi"
+      "target": "src_app_minecraftragazzi",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23011,9 +22964,9 @@
       "source_location": "L16",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_newsdetail"
+      "target": "src_app_newsdetail",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23022,9 +22975,9 @@
       "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_notfound"
+      "target": "src_app_notfound",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23033,9 +22986,9 @@
       "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_notizie"
+      "target": "src_app_notizie",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23044,9 +22997,9 @@
       "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_privacypolicy"
+      "target": "src_app_privacypolicy",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23055,9 +23008,9 @@
       "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_projects"
+      "target": "src_app_projects",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23066,9 +23019,9 @@
       "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_sostienici"
+      "target": "src_app_sostienici",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23077,9 +23030,9 @@
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_team"
+      "target": "src_app_team",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23088,9 +23041,9 @@
       "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_termsandconditions"
+      "target": "src_app_termsandconditions",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23099,9 +23052,9 @@
       "source_location": "L20",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_tessera"
+      "target": "src_app_tessera",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23110,9 +23063,9 @@
       "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_tesseracondizioni"
+      "target": "src_app_tesseracondizioni",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23121,9 +23074,9 @@
       "source_location": "L23",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_tesserapartner"
+      "target": "src_app_tesserapartner",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23132,9 +23085,9 @@
       "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_tesseraprivacy"
+      "target": "src_app_tesseraprivacy",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -23144,9 +23097,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_main",
-      "target": "src_app"
+      "target": "src_app",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports",
@@ -23156,9 +23109,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_main",
-      "target": "src_app_app"
+      "target": "src_app_app",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23167,9 +23120,9 @@
       "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_pages_projects",
-      "target": "src_pages_projects_filters"
+      "target": "src_pages_projects_filters",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23178,9 +23131,9 @@
       "source_location": "L40",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_pages_projects",
-      "target": "src_pages_projects_projectcard"
+      "target": "src_pages_projects_projectcard",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23189,9 +23142,9 @@
       "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_pages_projects",
-      "target": "src_pages_projects_projectfilter"
+      "target": "src_pages_projects_projectfilter",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23200,9 +23153,9 @@
       "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_pages_projects",
-      "target": "src_pages_projects_projectlink"
+      "target": "src_pages_projects_projectlink",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23211,9 +23164,9 @@
       "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_pages_projects",
-      "target": "src_pages_projects_projectmeta"
+      "target": "src_pages_projects_projectmeta",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23222,9 +23175,9 @@
       "source_location": "L71",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_pages_projects",
-      "target": "src_pages_projects_projects"
+      "target": "src_pages_projects_projects",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -23233,9 +23186,9 @@
       "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "src_pages_projects",
-      "target": "src_pages_projects_values"
+      "target": "src_pages_projects_values",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": [],

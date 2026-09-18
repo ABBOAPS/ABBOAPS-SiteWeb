@@ -7,7 +7,7 @@ import "./index.css";
 import "./styles/press-mentions.css";
 
 const isDirectCrawlableEntry =
-  !window.location.hash && (/^\/abbiamo\/?$/.test(window.location.pathname) || /^\/news\/[^/]+\/?$/.test(window.location.pathname));
+  !window.location.hash && (/^\/(?:abbiamo|link)\/?$/.test(window.location.pathname) || /^\/news\/[^/]+\/?$/.test(window.location.pathname));
 const Router = isDirectCrawlableEntry ? BrowserRouter : HashRouter;
 
 createRoot(document.getElementById("root")!).render(
