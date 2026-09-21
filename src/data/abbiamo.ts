@@ -174,7 +174,6 @@ export const abbiamoData = {
     { name: "ABC Sport", logoSrc: abcSportLogo, logoWidth: 240, logoHeight: 193 },
     { name: "Digital Heroes", category: "progetto ABBO APS", logoSrc: publicAsset("logo_dh_viola.svg"), logoWidth: 480, logoHeight: 322 },
     { name: "OltreGioco APS", logoSrc: participantLogos.oltreGioco, logoWidth: 100, logoHeight: 100 },
-    { name: "SE@SONROSE ODV", logoSrc: abbiamoAsset("participants/Sesonrose.png"), logoWidth: 832, logoHeight: 832 },
     { name: "Medici Senza Frontiere", logoSrc: participantLogos.mediciSenzaFrontiere, logoWidth: 100, logoHeight: 85 },
     { name: "RiCircolo", logoSrc: participantLogos.riCircolo, logoWidth: 899, logoHeight: 899 },
     { name: "Antes", logoSrc: participantLogos.antes, logoWidth: 447, logoHeight: 447 },
