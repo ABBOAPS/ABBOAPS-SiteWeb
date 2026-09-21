@@ -134,6 +134,13 @@
   to { transform: translate3d(calc(-50% - var(--festival-marquee-gap) / 2), 0, 0); }
 }
 
+.festival-participant-stats { padding-block: clamp(1.25rem, 2.5vw, 2rem) clamp(3rem, 5vw, 4.75rem); background: var(--festival-cream); }
+.festival-participant-stats-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; max-width: 52rem; }
+.festival-participant-stat { display: flex; align-items: baseline; gap: .7rem; min-width: 0; color: var(--festival-red); }
+.festival-participant-stat + .festival-participant-stat { padding-left: clamp(1rem, 3vw, 3rem); border-left: 1px solid var(--festival-rule); }
+.festival-participant-stat strong { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 780; letter-spacing: -.07em; line-height: .9; }
+.festival-participant-stat > span { color: var(--festival-muted); font-size: clamp(.82rem, 1.1vw, 1rem); font-weight: 760; letter-spacing: .06em; line-height: 1.15; text-transform: uppercase; }
+
 .festival-section { padding-block: var(--festival-space-section); }
 .festival-shape-red { fill: var(--festival-red); }
 .festival-shape-coral { fill: var(--festival-coral); }
@@ -171,6 +178,16 @@
 .festival-timeline h3 { margin: 1.1rem 0 .6rem; color: var(--festival-cream); font-size: clamp(1.2rem, 1.6vw, 1.55rem); font-weight: 760; letter-spacing: -.035em; line-height: 1.12; }
 .festival-timeline p { color: color-mix(in oklch, var(--festival-cream) 76%, transparent); font-size: 1rem; line-height: 1.6; }
 .festival-timeline small { display: block; margin-top: .75rem; color: var(--festival-coral); font-size: .95rem; font-weight: 720; line-height: 1.45; }
+.festival-interviews { margin-top: clamp(4.5rem, 8vw, 7rem); padding-top: clamp(2rem, 4vw, 3.5rem); border-top: 1px solid color-mix(in oklch, var(--festival-cream) 25%, transparent); }
+.festival-interviews-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 1.5rem; }
+.festival-interviews-heading h3 { margin: 0; color: var(--festival-cream); font-size: clamp(2rem, 3.5vw, 3.5rem); font-weight: 760; letter-spacing: -.06em; line-height: 1; }
+.festival-interviews-heading > span { color: var(--festival-coral); font-size: .9rem; font-weight: 760; letter-spacing: .08em; text-transform: uppercase; }
+.festival-interview-list { margin: 2rem 0 0; padding: 0; border-top: 1px solid color-mix(in oklch, var(--festival-cream) 25%, transparent); list-style: none; }
+.festival-interview-list li { display: grid; grid-template-columns: minmax(8rem, 1.1fr) minmax(0, 4fr); gap: 1.5rem; align-items: baseline; padding: 1rem 0; border-bottom: 1px solid color-mix(in oklch, var(--festival-cream) 18%, transparent); opacity: 0; transform: translateY(1rem); transition: opacity 500ms var(--festival-ease-out), transform 500ms var(--festival-ease-out); transition-delay: calc(var(--interview-index) * 45ms); }
+.festival-interviews.is-visible .festival-interview-list li { opacity: 1; transform: translateY(0); }
+.festival-interview-list time { color: var(--festival-coral); font-size: clamp(1rem, 1.35vw, 1.2rem); font-variant-numeric: tabular-nums; font-weight: 760; letter-spacing: -.025em; }
+.festival-interview-guest { color: var(--festival-cream); font-size: clamp(1.05rem, 1.55vw, 1.35rem); font-weight: 680; line-height: 1.25; }
+.festival-interview-guest--open { color: color-mix(in oklch, var(--festival-cream) 60%, transparent); font-weight: 560; }
 
 .festival-location-grid { align-items: stretch; }
 .festival-location-stage { position: relative; grid-column: 1 / span 7; display: flex; flex-direction: column; align-items: flex-start; justify-content: end; padding: clamp(2rem, 4vw, 3.75rem); background: var(--festival-red); color: var(--festival-cream); }
@@ -272,6 +289,11 @@
   .festival-timeline-dot { position: absolute; top: .25rem; left: -2.05rem; width: 1.25rem; height: 1.25rem; }
   .festival-timeline h3 { margin-top: .8rem; }
   .festival-timeline time { font-size: 1.55rem; }
+  .festival-interviews { margin-top: 4rem; }
+  .festival-interviews-heading { align-items: flex-start; flex-direction: column; gap: .75rem; }
+  .festival-interview-list { margin-top: 1.5rem; }
+  .festival-interview-list li { grid-template-columns: 1fr; gap: .3rem; padding-block: 1rem; }
+  .festival-interview-list time { font-size: .95rem; }
   .festival-location-stage { min-height: 0; padding: 2rem; }
   .festival-location-icon { position: static; width: 5.5rem; align-self: flex-end; margin-bottom: 1.25rem; }
   .festival-location h2 { max-width: 14ch; margin-bottom: 2rem; }
@@ -306,5 +328,12 @@
   .festival-marquee-track { width: 100%; animation: none; }
   .festival-marquee-group[aria-hidden="true"] { display: none; }
   .festival-marquee-group { width: 100%; flex-wrap: wrap; justify-content: center; row-gap: 1.25rem; }
+  .festival-interview-list li { opacity: 1; transform: none; transition: none; }
+  .festival-participant-stats { padding-block: 1.25rem 3.25rem; }
+  .festival-participant-stats-grid { gap: .75rem; }
+  .festival-participant-stat { display: grid; gap: .35rem; }
+  .festival-participant-stat + .festival-participant-stat { padding-left: 1rem; }
+  .festival-participant-stat strong { font-size: clamp(2.35rem, 12vw, 3.5rem); }
+  .festival-participant-stat > span { font-size: .72rem; }
   .festival-button, .festival-faq-list summary svg { transition: none; }
 }

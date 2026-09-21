@@ -6,6 +6,11 @@ export interface AbbiamoScheduleItem {
   note?: string;
 }
 
+export interface AbbiamoInterviewItem {
+  time: string;
+  guest: string;
+}
+
 export interface AbbiamoParticipant {
   name: string;
   category?: "progetto ABBO APS";
@@ -57,6 +62,8 @@ const participantLogos = {
   oltreGioco: abbiamoAsset("participants/loghi associazioni_OLTREGIOCO.svg"),
   mediciSenzaFrontiere: abbiamoAsset("participants/loghi associazioni_MEDICI SENZA FRONTIERE.svg"),
   riCircolo: abbiamoAsset("participants/ricircolo.png"),
+  antes: abbiamoAsset("participants/logo-antes.png"),
+  proLocoMezzago: abbiamoAsset("participants/logo-proloco-mezzago.png"),
 } as const;
 
 export const abbiamoData = {
@@ -141,6 +148,19 @@ export const abbiamoData = {
       description: "Riservato alle associazioni e agli organizzatori.",
     },
   ] satisfies AbbiamoScheduleItem[],
+  interviews: [
+    { time: "14:30–14:45", guest: "Fiume di Vita ETS" },
+    { time: "14:45–15:00", guest: "Andrea Rusconi – Un Amico al Telefono" },
+    { time: "15:00–15:15", guest: "Ospite" },
+    { time: "15:15–15:40", guest: "K12 – APS" },
+    { time: "15:40–15:55", guest: "Ospite" },
+    { time: "15:55–16:10", guest: "VIMELUG" },
+    { time: "16:10–16:25", guest: "SIMBIO ETS" },
+    { time: "16:25–16:40", guest: "Medici Senza Frontiere" },
+    { time: "16:40–16:55", guest: "Ospite" },
+    { time: "16:55–17:25", guest: "Alessio / ABBO APS" },
+    { time: "17:25–17:30", guest: "Chiusura" },
+  ] satisfies AbbiamoInterviewItem[],
   participants: [
     { name: "Fiume di Vita ETS", logoSrc: participantLogos.fiumeDiVita, logoWidth: 100, logoHeight: 100 },
     { name: "Tech-APP", logoSrc: participantLogos.techApp, logoWidth: 100, logoHeight: 100 },
@@ -157,6 +177,8 @@ export const abbiamoData = {
     { name: "SE@SONROSE ODV", logoSrc: abbiamoAsset("participants/Sesonrose.png"), logoWidth: 832, logoHeight: 832 },
     { name: "Medici Senza Frontiere", logoSrc: participantLogos.mediciSenzaFrontiere, logoWidth: 100, logoHeight: 85 },
     { name: "RiCircolo", logoSrc: participantLogos.riCircolo, logoWidth: 899, logoHeight: 899 },
+    { name: "Antes", logoSrc: participantLogos.antes, logoWidth: 447, logoHeight: 447 },
+    { name: "Pro Loco Mezzago", logoSrc: participantLogos.proLocoMezzago, logoWidth: 500, logoHeight: 500 },
   ] satisfies AbbiamoParticipant[],
   faqs: [
     {

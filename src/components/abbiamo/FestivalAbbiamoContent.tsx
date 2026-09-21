@@ -128,6 +128,106 @@ function ParticipantMarquee() {
   );
 }
 
+function CountUpNumber({ value }: { value: number }) {
+  const [displayValue, setDisplayValue] = useState(0);
+  const numberRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const element = numberRef.current;
+    if (!element) return undefined;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
+      setDisplayValue(value);
+      return undefined;
+    }
+
+    let frame = 0;
+    let started = false;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting || started) return;
+      started = true;
+      const startTime = performance.now();
+      const animate = (now: number) => {
+        const progress = Math.min((now - startTime) / 900, 1);
+        setDisplayValue(Math.round(value * (1 - (1 - progress) ** 3)));
+        if (progress < 1) frame = requestAnimationFrame(animate);
+      };
+      frame = requestAnimationFrame(animate);
+      observer.disconnect();
+    }, { threshold: 0.35 });
+
+    observer.observe(element);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [value]);
+
+  return <span ref={numberRef} aria-live="polite">{displayValue}</span>;
+}
+
+function ParticipantStats() {
+  const associationCount = abbiamoData.participants.filter(
+    (participant) => participant.logoSrc && participant.name !== "Digital Heroes",
+  ).length;
+  const volunteerCount = abbiamoData.participants.reduce(
+    (total, participant) => total + (participant.name === "ABBO APS" ? 7 : participant.name === "ABC Sport" ? 8 : 3),
+    0,
+  );
+
+  return (
+    <section className="festival-participant-stats" aria-label="Numeri del Festival ABBIAMO">
+      <div className="festival-shell festival-participant-stats-grid">
+        <div className="festival-participant-stat">
+          <strong><CountUpNumber value={associationCount} /></strong>
+          <span>associazioni</span>
+        </div>
+        <div className="festival-participant-stat">
+          <strong><CountUpNumber value={volunteerCount} /></strong>
+          <span>volontari coinvolti</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FestivalInterviews() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || !("IntersectionObserver" in window)) {
+      setIsVisible(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      setIsVisible(true);
+      observer.disconnect();
+    }, { threshold: 0.15 });
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section ref={sectionRef} className={`festival-interviews${isVisible ? " is-visible" : ""}`} aria-labelledby="abbiamo-interviews-title">
+      <header className="festival-interviews-heading">
+        <h3 id="abbiamo-interviews-title">Interviste</h3>
+        <span>14:30 — 17:30</span>
+      </header>
+      <ol className="festival-interview-list">
+        {abbiamoData.interviews.map((item, index) => (
+          <li key={`${item.time}-${item.guest}`} style={{ "--interview-index": index } as CSSProperties}>
+            <time>{item.time}</time>
+            <span className={item.guest === "Ospite" ? "festival-interview-guest festival-interview-guest--open" : "festival-interview-guest"}>{item.guest}</span>
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+}
+
 function InformationIcon({ kind }: { kind: string }) {
   if (kind === "ticket") return <Ticket aria-hidden="true" />;
   if (kind === "users") return <Users aria-hidden="true" />;
@@ -226,6 +326,7 @@ export function FestivalAbbiamoContent() {
       </section>
 
       <ParticipantMarquee />
+      <ParticipantStats />
 
       <main>
         <section className="festival-section festival-manifesto" aria-labelledby="abbiamo-intro-title">
@@ -257,6 +358,7 @@ export function FestivalAbbiamoContent() {
                 </li>
               ))}
             </ol>
+            <FestivalInterviews />
           </div>
         </section>
 
