@@ -56,12 +56,6 @@ export function Topbar() {
 
   return (
     <>
-      {!isLandingPage && (
-        <div className="fixed top-0 left-0 right-0 z-[200] bg-[#e65100] text-[#fffcf5] text-center py-1.5 md:py-2 text-[10px] md:text-xs font-bold uppercase tracking-widest shadow-md flex justify-center items-center">
-          Il sito web è ancora in costruzione, seguiranno aggiornamenti.
-        </div>
-      )}
-
       {/* Background Dimming Overlay when docMenu is open */}
       <AnimatePresence>
         {docMenuOpen && !mobileMenuOpen && (
@@ -110,7 +104,7 @@ export function Topbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.1 }}
-        className={`fixed ${isLandingPage ? "top-0 md:top-4" : "top-8"} left-0 right-0 z-[100] px-6 py-6 md:px-10 md:py-10 flex justify-between items-center pointer-events-none`}
+        className={`fixed ${isLandingPage ? "top-0 md:top-4" : "top-0"} left-0 right-0 z-[100] px-6 py-6 md:px-10 md:py-10 flex justify-between items-center pointer-events-none`}
       >
         {/* Left Hand Side: Logo Chip */}
         <div className="flex-1 flex justify-start pointer-events-auto">

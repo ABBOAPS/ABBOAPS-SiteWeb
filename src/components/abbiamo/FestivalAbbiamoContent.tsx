@@ -214,13 +214,16 @@ function FestivalInterviews() {
     <section ref={sectionRef} className={`festival-interviews${isVisible ? " is-visible" : ""}`} aria-labelledby="abbiamo-interviews-title">
       <header className="festival-interviews-heading">
         <h3 id="abbiamo-interviews-title">Interviste</h3>
-        <span>14:30 — 17:30</span>
+        <span>14:45 — 17:30</span>
       </header>
       <ol className="festival-interview-list">
         {abbiamoData.interviews.map((item, index) => (
-          <li key={`${item.time}-${item.guest}`} style={{ "--interview-index": index } as CSSProperties}>
+          <li className={item.guest === "Pausa" ? "festival-interview-item--break" : ""} key={`${item.time}-${item.guest}`} style={{ "--interview-index": index } as CSSProperties}>
             <time>{item.time}</time>
-            <span className={item.guest === "Ospite" ? "festival-interview-guest festival-interview-guest--open" : "festival-interview-guest"}>{item.guest}</span>
+            <div className="festival-interview-copy">
+              <span className={item.guest === "Ospite" ? "festival-interview-guest festival-interview-guest--open" : "festival-interview-guest"}>{item.guest}</span>
+              <span className="festival-interview-topic">{item.topic}</span>
+            </div>
           </li>
         ))}
       </ol>

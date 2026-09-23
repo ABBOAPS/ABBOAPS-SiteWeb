@@ -186,8 +186,12 @@
 .festival-interview-list li { display: grid; grid-template-columns: minmax(8rem, 1.1fr) minmax(0, 4fr); gap: 1.5rem; align-items: baseline; padding: 1rem 0; border-bottom: 1px solid color-mix(in oklch, var(--festival-cream) 18%, transparent); opacity: 0; transform: translateY(1rem); transition: opacity 500ms var(--festival-ease-out), transform 500ms var(--festival-ease-out); transition-delay: calc(var(--interview-index) * 45ms); }
 .festival-interviews.is-visible .festival-interview-list li { opacity: 1; transform: translateY(0); }
 .festival-interview-list time { color: var(--festival-coral); font-size: clamp(1rem, 1.35vw, 1.2rem); font-variant-numeric: tabular-nums; font-weight: 760; letter-spacing: -.025em; }
+.festival-interview-copy { display: grid; gap: .35rem; min-width: 0; }
 .festival-interview-guest { color: var(--festival-cream); font-size: clamp(1.05rem, 1.55vw, 1.35rem); font-weight: 680; line-height: 1.25; }
 .festival-interview-guest--open { color: color-mix(in oklch, var(--festival-cream) 60%, transparent); font-weight: 560; }
+.festival-interview-topic { color: color-mix(in oklch, var(--festival-cream) 68%, transparent); font-size: clamp(.9rem, 1.15vw, 1rem); line-height: 1.4; }
+.festival-interview-item--break .festival-interview-guest { color: var(--festival-coral); font-weight: 780; }
+.festival-interview-item--break .festival-interview-topic { color: color-mix(in oklch, var(--festival-cream) 46%, transparent); }
 
 .festival-location-grid { align-items: stretch; }
 .festival-location-stage { position: relative; grid-column: 1 / span 7; display: flex; flex-direction: column; align-items: flex-start; justify-content: end; padding: clamp(2rem, 4vw, 3.75rem); background: var(--festival-red); color: var(--festival-cream); }

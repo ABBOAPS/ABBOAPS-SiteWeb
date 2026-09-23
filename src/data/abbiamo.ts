@@ -9,6 +9,7 @@ export interface AbbiamoScheduleItem {
 export interface AbbiamoInterviewItem {
   time: string;
   guest: string;
+  topic: string;
 }
 
 export interface AbbiamoParticipant {
@@ -53,7 +54,6 @@ export function partnerAsset(filename: string): string {
 const abcSportLogo = partnerAsset("logo-abc-sport.webp");
 
 const participantLogos = {
-  fiumeDiVita: abbiamoAsset("participants/loghi associazioni_FIUME DI VITA.svg"),
   techApp: abbiamoAsset("participants/loghi associazioni_TECH-APP.svg"),
   vimelug: abbiamoAsset("participants/loghi associazioni_VIMELUG.svg"),
   unAmicoAlTelefono: abbiamoAsset("participants/loghi associazioni_UN AMICO AL TELEFONO.svg"),
@@ -139,30 +139,28 @@ export const abbiamoData = {
     {
       time: "18:00–19:00",
       dateTime: "2026-10-04T18:00:00+02:00",
-      title: "Spettacoli e chiusura",
-      description: "Esibizione di danza, ringraziamenti e momento finale di chiusura.",
+      title: "Conclusione e spettacolo",
+      description: "Spettacolo finale, ringraziamenti e conclusione del Festival ABBIAMO.",
     },
     {
-      time: "A seguire",
+      time: "19:00",
       title: "Aperitivo di Rete",
-      description: "Riservato alle associazioni e agli organizzatori.",
+      description: "Riservato alle associazioni, ai volontari e agli ospiti.",
     },
   ] satisfies AbbiamoScheduleItem[],
   interviews: [
-    { time: "14:30–14:45", guest: "Fiume di Vita ETS" },
-    { time: "14:45–15:00", guest: "Andrea Rusconi – Un Amico al Telefono" },
-    { time: "15:00–15:15", guest: "Ospite" },
-    { time: "15:15–15:40", guest: "K12 – APS" },
-    { time: "15:40–15:55", guest: "Ospite" },
-    { time: "15:55–16:10", guest: "VIMELUG" },
-    { time: "16:10–16:25", guest: "SIMBIO ETS" },
-    { time: "16:25–16:40", guest: "Medici Senza Frontiere" },
-    { time: "16:40–16:55", guest: "Ospite" },
-    { time: "16:55–17:25", guest: "Alessio / ABBO APS" },
-    { time: "17:25–17:30", guest: "Chiusura" },
+    { time: "14:45–15:00", guest: "RiCircolo APS", topic: "Tema in definizione" },
+    { time: "15:00–15:15", guest: "Prof. Improta", topic: "Dispersione scolastica, motivazione e rapporto con la scuola e il futuro" },
+    { time: "15:15–15:40", guest: "K12 APS", topic: "Uso consapevole delle nuove tecnologie nelle famiglie" },
+    { time: "15:40–15:55", guest: "Pausa", topic: "—" },
+    { time: "15:55–16:10", guest: "VIMELUG", topic: "Linux e open source" },
+    { time: "16:10–16:25", guest: "SIMBIO ETS", topic: "Proteggere il Monte San Primo e gli ecosistemi montani" },
+    { time: "16:25–16:40", guest: "Medici Senza Frontiere", topic: "Testimonianza dal mondo umanitario" },
+    { time: "16:40–16:55", guest: "Un amico al telefono", topic: "L’importanza dell’ascolto e i servizi dell’associazione" },
+    { time: "16:55–17:25", guest: "Alessio Bellan – ABBO APS", topic: "Festival ABBIAMO e IA nel mondo delle associazioni" },
+    { time: "17:25–17:30", guest: "Chiusura", topic: "Ringraziamenti" },
   ] satisfies AbbiamoInterviewItem[],
   participants: [
-    { name: "Fiume di Vita ETS", logoSrc: participantLogos.fiumeDiVita, logoWidth: 100, logoHeight: 100 },
     { name: "Tech-APP", logoSrc: participantLogos.techApp, logoWidth: 100, logoHeight: 100 },
     { name: "VIMELUG", logoSrc: participantLogos.vimelug, logoWidth: 75, logoHeight: 100 },
     { name: "Verderio Oggi", logoSrc: null },
