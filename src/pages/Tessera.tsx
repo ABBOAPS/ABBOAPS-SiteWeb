@@ -1,18 +1,17 @@
 import { useEffect, useState, useRef } from "react";
 import { SEO } from "../components/SEO";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { 
-  Check, X, AlertTriangle, WifiOff, Globe, Mail, Heart,
-  Copy, Sparkles, Handshake
+  Check, X, AlertTriangle, WifiOff, Copy, ArrowUpRight
 } from "lucide-react";
 
-import sostieniciConfig from "../config/sostienici.json";
-import homeConfig from "../config/home.json";
 import tesseraConfig from "../config/tessera.json";
-import { dataNews, Articolo } from "../data/newsData";
+import { dataNews } from "../data/newsData";
 import { TesseraLegalDisclaimer } from "../components/TesseraLegalDisclaimer";
 import { SocialLinks } from "../components/SocialLinks";
 import { organization } from "../config/organization";
+import projectData from "../config/projects.json";
+import type { Project } from "../types";
 
 export type MembershipResultState =
   | 'active'
@@ -79,9 +78,6 @@ export function Tessera() {
   const [animateIn, setAnimateIn] = useState(false);
 
   // Modali
-  const [crowdfundingModalOpen, setCrowdfundingModalOpen] = useState(false);
-  const [newsModalOpen, setNewsModalOpen] = useState(false);
-  const [partnerModalOpen, setPartnerModalOpen] = useState(false);
 
   // Copy CF feedback
   const [copiedCF, setCopiedCF] = useState(false);
@@ -312,10 +308,10 @@ export function Tessera() {
     update();
   };
 
-  const activeCrowdfunding = sostieniciConfig.active_projects[0];
-  const latestArticle: Articolo = dataNews[0];
-  const partnersList = homeConfig.partners || [];
-
+  const latestArticle = [...dataNews].sort(
+    (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime(),
+  )[0];
+  const currentProjects = (projectData as Project[]).filter((project) => project.id !== "hero-air");
   const cardSerialCode = apiData?.card?.code || apiData?.card?.displayCode;
 
   return (
@@ -412,225 +408,126 @@ export function Tessera() {
         </motion.div>
 
 
-        {/* 2. RIGA ICONE SOCIAL E SITO WEB (Appare dopo che la card si è incastonata) */}
-        <motion.div 
+        {/* Hub aggiornato: un accesso chiaro ai contenuti attuali di ABBO */}
+        <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={animateIn ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6, delay: 1.3 }}
-          className="w-full flex flex-wrap items-center justify-center gap-3 sm:gap-4 my-1"
+          transition={{ duration: 0.6, delay: 0.7 }}
+          className="w-full flex flex-col gap-5"
+          aria-label="Contenuti ABBO APS"
         >
-          <SocialLinks variant="tessera" />
-
-          {/* Sito Web */}
-          <a
-            href="https://www.abboaps.org"
-            target="_blank"
-            rel="noopener noreferrer"
-            title={t.website}
-            className="tessera-action-tile tessera-action-tile--website"
-          >
-            <Globe className="w-5 h-5 stroke-[2.5]" />
-          </a>
-
-          {/* PayPal (Logo Ufficiale) */}
-          <a
-            href={organization.paypalUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            title={t.donate}
-            className="tessera-action-tile tessera-action-tile--paypal"
-          >
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="w-5 h-5">
-              <path d="M7.07593 21.3368H2.47036C2.11586 21.3368 1.8385 21.0366 1.88414 20.6865L4.94507 0.90098C4.99613 0.589886 5.25052 0.351562 5.56942 0.351562H13.6111C18.2173 0.351562 20.9859 2.47953 20.1666 7.29415C19.6481 10.331 17.5492 12.6661 14.5772 13.5505C13.4704 13.8797 12.2614 14.0322 10.6575 14.0322H9.0275C8.68128 14.0322 8.3887 14.2858 8.33496 14.629L7.07593 21.3368Z" fill="#FFFFFF"/>
-            </svg>
-          </a>
-        </motion.div>
-
-
-        {/* 3. GRIGLIA ANCHE DA MOBILE (Appare dopo la riga dei social) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={animateIn ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.7, delay: 1.4 }}
-          className="grid grid-cols-2 gap-3 sm:gap-5 w-full items-stretch mt-3 select-none"
-        >
-          {/* BOX 1: CROWDFUNDING */}
-          <div 
-            onClick={() => setCrowdfundingModalOpen(true)}
-            className="clay-card p-0 overflow-hidden relative group cursor-pointer min-h-[250px] sm:min-h-[290px] flex flex-col justify-end rounded-3xl border-2 sm:border-4 border-white/70 shadow-2xl transition-all duration-500 hover:scale-[1.02] bg-[#1a0a05] select-none"
-          >
-            <img 
-              src={activeCrowdfunding?.image || "/media/spazio-ragazzi.jpg"} 
-              alt={activeCrowdfunding?.title} 
-              className="pointer-events-none select-none absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-75" 
-            />
-            
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1a0a05] via-[#1a0a05]/80 to-transparent/30 pointer-events-none"></div>
-
-            <div className="relative z-10 p-3.5 sm:p-5 flex flex-col justify-end gap-2 text-white h-full">
-              <span className="inline-flex items-center text-[9px] sm:text-xs font-black uppercase tracking-wider bg-[#e65100] text-white px-2.5 py-1 rounded-full self-start shadow-md border border-white/20 z-20">
-                {t.crowdfundingTitle}
+          <div className="flex flex-col gap-3 px-1">
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#4a1c0d]/55">
+                Resta in contatto
               </span>
-
-              <h3 className="text-xs sm:text-base font-extrabold leading-snug text-white drop-shadow-md line-clamp-2 my-0.5">
-                {activeCrowdfunding?.title}
-              </h3>
-
-              {/* Progress Bar */}
-              <div className="w-full mt-1">
-                <div className="flex justify-between items-center text-[9px] sm:text-xs font-mono font-bold mb-1 text-white/90">
-                  <span>€{activeCrowdfunding?.current_amount || 0}</span>
-                  <span className="opacity-80">€{activeCrowdfunding?.goal_amount || 2000}</span>
-                </div>
-                <div className="w-full h-1.5 sm:h-2 bg-white/25 rounded-full overflow-hidden backdrop-blur-sm">
-                  <div 
-                    className="h-full bg-gradient-to-r from-[#e65100] to-[#ffb300] rounded-full"
-                    style={{ width: `${Math.min(((activeCrowdfunding?.current_amount || 0) / (activeCrowdfunding?.goal_amount || 2000)) * 100, 100)}%` }}
-                  ></div>
-                </div>
-              </div>
+              <SocialLinks variant="tessera" />
             </div>
-          </div>
-
-
-          {/* BOX 2: ULTIMA NOTIZIA DAL BLOG */}
-          <div 
-            onClick={() => setNewsModalOpen(true)}
-            className="clay-card p-0 overflow-hidden relative group cursor-pointer min-h-[250px] sm:min-h-[290px] flex flex-col justify-end rounded-3xl border-2 sm:border-4 border-white/70 shadow-2xl transition-all duration-500 hover:scale-[1.02] bg-[#1a0a05] select-none"
-          >
-            <img 
-              src={latestArticle?.immagine || "https://images.unsplash.com/photo-1542435503-956c469947f6?auto=format&fit=crop&q=80"} 
-              alt={latestArticle?.titolo} 
-              className="pointer-events-none select-none absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-75" 
-            />
-            
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1a0a05] via-[#1a0a05]/80 to-transparent/30 pointer-events-none"></div>
-
-            <div className="relative z-10 p-3.5 sm:p-5 flex flex-col justify-end gap-2 text-white h-full">
-              <span className="inline-flex items-center text-[9px] sm:text-xs font-black uppercase tracking-wider bg-[#4a1c0d] text-white px-2.5 py-1 rounded-full self-start shadow-md border border-white/20 z-20">
-                {t.latestNewsTitle}
-              </span>
-
-              <h3 className="text-xs sm:text-base font-extrabold leading-snug text-white drop-shadow-md line-clamp-2 my-0.5">
-                {latestArticle?.titolo}
-              </h3>
-
-              <span className="text-[9px] sm:text-xs font-mono font-bold text-white/75 mt-0.5">
-                {latestArticle?.data}
-              </span>
-            </div>
-          </div>
-        </motion.div>
-
-
-        {/* 4. SEZIONE PROGETTI (Appare in sequenza) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={animateIn ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.7, delay: 1.5 }}
-          className="w-full flex flex-col items-center text-center gap-5 mt-10"
-        >
-          <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#4a1c0d] flex items-center gap-2 justify-center">
-            <Sparkles className="w-5 h-5 text-[#e65100]" />
-            <span>{t.projectsTitle}</span>
-          </h2>
-
-          <div className="w-full flex items-center justify-center gap-8 sm:gap-12 flex-wrap py-3">
-            {/* Digital Heroes Logo */}
             <a
-              href="https://digital-heroes.me"
+              href="https://www.abboaps.org"
               target="_blank"
               rel="noopener noreferrer"
-              title="Digital Heroes"
-              className="hover:scale-110 transition-transform duration-300 flex items-center justify-center p-2"
+              className="flex min-h-12 items-center justify-between rounded-2xl border border-[#4a1c0d]/10 bg-[#fffcf5]/75 px-4 text-sm font-extrabold text-[#4a1c0d] shadow-sm transition hover:-translate-y-0.5 hover:border-[#e65100]/35 hover:text-[#e65100] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e65100]"
             >
-              <img 
-                src="/logo_dh_viola.svg" 
-                alt="Digital Heroes" 
-                className="h-28 sm:h-36 w-auto object-contain drop-shadow-xl" 
-              />
+              <span>Scopri ABBO</span>
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
-
-            {/* Coming Soon Logo / Badge */}
-            <div 
-              title="Coming Soon"
-              className="hover:scale-110 transition-transform duration-300 flex items-center justify-center px-6 py-3 rounded-2xl bg-[#4a1c0d]/5 border-2 border-[#4a1c0d]/15 text-[#4a1c0d]/70 font-mono font-black text-base sm:text-xl tracking-wider uppercase shadow-sm"
-            >
-              ✨ Coming Soon
-            </div>
           </div>
-        </motion.div>
 
-
-        {/* 5. SEZIONE PARTNER (Appare in sequenza) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={animateIn ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.7, delay: 1.6 }}
-          className="w-full flex flex-col items-center text-center gap-5 mt-8"
-        >
-          <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-[#4a1c0d] flex items-center gap-2 justify-center">
-            <Handshake className="w-5 h-5 text-[#e65100]" />
-            <span>{t.partnersTitle}</span>
-          </h2>
-
-          <div className="w-full flex items-center justify-center gap-8 sm:gap-12 flex-wrap py-3">
-            {partnersList.map((partner: any, idx: number) => (
-              <div 
-                key={idx}
-                className="flex items-center justify-center p-2 hover:scale-110 transition-transform"
-              >
-                <img 
-                  src={partner.logo} 
-                  alt="Partner Logo" 
-                  className="h-16 sm:h-24 w-auto object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all drop-shadow-md" 
-                />
+          {latestArticle && (
+            <article className="overflow-hidden rounded-[2rem] border border-white/80 bg-[#fffcf5] shadow-xl">
+              <img
+                src={latestArticle.immagine}
+                alt=""
+                className="h-40 w-full object-cover sm:h-52"
+              />
+              <div className="flex flex-col gap-3 p-5 sm:p-6">
+                <span className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#e65100]">
+                  Ultime notizie · {latestArticle.data}
+                </span>
+                <h2 className="text-xl font-extrabold leading-tight text-[#4a1c0d] sm:text-2xl">
+                  {latestArticle.titolo}
+                </h2>
+                <p className="text-sm leading-relaxed text-[#4a1c0d]/70">
+                  {latestArticle.descrizione || latestArticle.estratto}
+                </p>
+                <a
+                  href={/^https?:/.test(latestArticle.id) ? latestArticle.id : "/news/" + latestArticle.id}
+                  className="inline-flex min-h-11 items-center justify-between border-t border-[#4a1c0d]/10 pt-3 text-sm font-extrabold text-[#e65100] transition hover:text-[#4a1c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e65100]"
+                >
+                  <span>Leggi l’articolo</span>
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </a>
               </div>
-            ))}
+            </article>
+          )}
 
+          <section className="flex flex-col gap-3" aria-labelledby="tessera-projects-title">
+            <div className="flex items-end justify-between gap-3 px-1">
+              <h2 id="tessera-projects-title" className="text-xl font-extrabold tracking-tight text-[#4a1c0d]">
+                Progetti attivi
+              </h2>
+              <span className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#4a1c0d]/45">
+                ABBO APS
+              </span>
+            </div>
+            <div className="grid gap-3">
+              {currentProjects.map((project) => (
+                <a
+                  key={project.id}
+                  href={project.url || "/progetti"}
+                  target={project.url?.startsWith("http") ? "_blank" : undefined}
+                  rel={project.url?.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="group flex min-h-24 items-center gap-4 overflow-hidden rounded-[1.5rem] border border-white/80 bg-[#fffcf5] p-3 shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e65100]"
+                >
+                  <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[#4a1c0d]/[0.06] p-2">
+                    {project.icon ? (
+                      <img src={project.icon} alt="" className="max-h-full max-w-full object-contain transition-transform group-hover:scale-105" />
+                    ) : (
+                      <span className="text-center text-xs font-extrabold text-[#4a1c0d]">{project.title}</span>
+                    )}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-extrabold text-[#4a1c0d]">{project.title}</h3>
+                    <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-[#4a1c0d]/65">{project.description}</p>
+                  </div>
+                  <ArrowUpRight className="h-4 w-4 shrink-0 text-[#e65100] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </section>
+        </motion.section>
+
+        {/* 5X1000: una sola azione, senza modali o card duplicate */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={animateIn ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.9 }}
+          className="w-full rounded-[2rem] border border-white/80 bg-[#fffcf5] p-5 text-center shadow-lg sm:p-7"
+          aria-labelledby="tessera-five-title"
+        >
+          <h2 id="tessera-five-title" className="text-xl font-extrabold text-[#4a1c0d] sm:text-2xl">
+            5×1000 ad ABBO APS
+          </h2>
+          <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-[#4a1c0d]/70">
+            Un gesto a costo zero per sostenere i laboratori e le attività dell’associazione.
+          </p>
+          <div className="mt-5 flex flex-col items-center gap-3 rounded-2xl bg-[#4a1c0d]/[0.045] p-4">
+            <span className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-[#8a3a19]">
+              Codice fiscale
+            </span>
+            <span className="font-mono text-xl font-black tracking-wider text-[#e65100] sm:text-2xl">
+              {organization.taxCode}
+            </span>
             <button
-              onClick={() => setPartnerModalOpen(true)}
-              className="text-sm sm:text-base font-black uppercase tracking-wider text-[#e65100] hover:text-[#ff8f00] underline decoration-[#e65100]/40 hover:decoration-[#e65100] transition-colors py-2 px-4"
+              onClick={handleCopyCF}
+              className="min-h-11 rounded-full bg-[#e65100] px-5 py-2.5 text-xs font-extrabold uppercase tracking-widest text-white transition hover:bg-[#c74600] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e65100]"
             >
-              + {t.becomePartner}
+              {copiedCF ? "Copiato" : "Copia codice fiscale"}
             </button>
           </div>
-        </motion.div>
+        </motion.section>
 
-
-        {/* 6. SEZIONE 5X1000 (Appare in sequenza) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={animateIn ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.7, delay: 1.7 }}
-          className="w-full mt-6"
-        >
-          <div className="clay-card w-full p-6 sm:p-10 flex flex-col items-center text-center justify-center relative overflow-hidden bg-[#fffcf5] border-2 border-white/80 shadow-xl">
-            <h3 className="text-xl sm:text-3xl font-extrabold text-[#4a1c0d] mb-3 text-center">
-              {t.fivePerMilleTitle}
-            </h3>
-
-            <p className="text-xs sm:text-sm text-[#4a1c0d]/75 font-medium max-w-md mb-6 leading-relaxed text-center">
-              {t.fivePerMilleDesc}
-            </p>
-
-            <div className="w-full max-w-sm clay-input p-6 flex flex-col items-center justify-center text-center gap-3 mx-auto select-none">
-              <span className="text-[10px] sm:text-xs font-extrabold text-[#8a3a19] uppercase tracking-wider text-center">
-                {t.fiscalCodeLabel}
-              </span>
-              <span className="font-mono text-2xl sm:text-3xl font-black text-[#e65100] tracking-wider text-center">
-                {organization.taxCode}
-              </span>
-              <button
-                onClick={handleCopyCF}
-                className="clay-btn px-6 py-2.5 font-extrabold uppercase tracking-widest text-xs flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-transform mt-1"
-              >
-                <Copy className="w-4 h-4" />
-                {copiedCF ? t.copied : t.copyCode}
-              </button>
-            </div>
-          </div>
-        </motion.div>
         {/* 7. INFORMAZIONI TECNICHE SUBORDINATE (In fondo, stile sobrio e tecnico) */}
         {(apiData?.card?.issuedYear || apiData?.card?.issueYear) && (
           <div className="w-full text-center mt-4">
@@ -645,168 +542,6 @@ export function Tessera() {
 
       </div>
 
-
-      {/* MODALE CROWDFUNDING */}
-      <AnimatePresence>
-        {crowdfundingModalOpen && (
-          <div 
-            className="fixed inset-0 z-[300] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
-            onClick={() => setCrowdfundingModalOpen(false)}
-          >
-            <motion.div 
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              onClick={(e) => e.stopPropagation()}
-              className="clay-panel max-w-lg w-full p-6 sm:p-8 bg-[#fffcf5] border-2 border-white rounded-[2.5rem] shadow-2xl flex flex-col gap-6 relative"
-            >
-              <button 
-                onClick={() => setCrowdfundingModalOpen(false)}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-[#4a1c0d]/10 flex items-center justify-center text-[#4a1c0d] hover:bg-[#e65100] hover:text-white transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <h3 className="text-2xl font-extrabold text-[#4a1c0d]">
-                {activeCrowdfunding?.title}
-              </h3>
-
-              <p className="text-sm text-[#4a1c0d]/80 leading-relaxed font-medium">
-                {activeCrowdfunding?.description}
-              </p>
-
-              <div className="p-4 rounded-2xl bg-[#e65100]/5 border border-[#e65100]/15 flex flex-col gap-2">
-                <div className="flex justify-between items-center text-sm font-bold">
-                  <span>{t.raised}: <strong className="text-[#e65100]">€{activeCrowdfunding?.current_amount || 0}</strong></span>
-                  <span>{t.goal}: <strong>€{activeCrowdfunding?.goal_amount || 2000}</strong></span>
-                </div>
-                <div className="w-full h-3 bg-[#e65100]/10 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-[#e65100] to-[#ffb300]"
-                    style={{ width: `${Math.min(((activeCrowdfunding?.current_amount || 0) / (activeCrowdfunding?.goal_amount || 2000)) * 100, 100)}%` }}
-                  ></div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3 mt-2">
-                <a
-                  href="https://www.satispay.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 clay-btn py-3.5 px-4 text-center font-extrabold uppercase tracking-wider text-xs flex items-center justify-center gap-2 hover:scale-105"
-                  style={{ background: '#e52c2c' }}
-                >
-                  <Heart className="w-4 h-4" />
-                  {t.donateSatispay}
-                </a>
-
-                <a
-                  href={organization.paypalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 clay-btn py-3.5 px-4 text-center font-extrabold uppercase tracking-wider text-xs flex items-center justify-center gap-2 hover:scale-105"
-                  style={{ background: '#0070ba' }}
-                >
-                  <Heart className="w-4 h-4" />
-                  {t.donatePaypal}
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
-
-      {/* MODALE BLOG NEWS READER */}
-      <AnimatePresence>
-        {newsModalOpen && (
-          <div 
-            className="fixed inset-0 z-[300] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto"
-            onClick={() => setNewsModalOpen(false)}
-          >
-            <motion.div 
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              onClick={(e) => e.stopPropagation()}
-              className="clay-panel max-w-xl w-full p-6 sm:p-8 bg-[#fffcf5] border-2 border-white rounded-[2.5rem] shadow-2xl flex flex-col gap-5 relative my-8"
-            >
-              <button 
-                onClick={() => setNewsModalOpen(false)}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-[#4a1c0d]/10 flex items-center justify-center text-[#4a1c0d] hover:bg-[#e65100] hover:text-white transition-colors z-10"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="w-full h-56 rounded-2xl overflow-hidden relative mt-2">
-                <img src={latestArticle?.immagine} alt={latestArticle?.titolo} className="w-full h-full object-cover" />
-              </div>
-
-              <span className="text-xs font-mono font-bold text-[#8a3a19]">{latestArticle?.data}</span>
-
-              <h3 className="text-2xl font-extrabold text-[#4a1c0d] leading-tight">
-                {latestArticle?.titolo}
-              </h3>
-
-              <div className="text-sm text-[#4a1c0d]/85 font-medium leading-relaxed max-h-60 overflow-y-auto pr-2 space-y-3">
-                <p>{latestArticle?.estratto}</p>
-                <p>{latestArticle?.contenuto}</p>
-              </div>
-
-              <button 
-                onClick={() => setNewsModalOpen(false)}
-                className="clay-btn py-3 font-bold uppercase tracking-widest text-xs w-full mt-2"
-              >
-                {t.close}
-              </button>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
-
-      {/* MODALE BECOME A PARTNER CONTACT */}
-      <AnimatePresence>
-        {partnerModalOpen && (
-          <div 
-            className="fixed inset-0 z-[300] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
-            onClick={() => setPartnerModalOpen(false)}
-          >
-            <motion.div 
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              onClick={(e) => e.stopPropagation()}
-              className="clay-panel max-w-md w-full p-6 sm:p-8 bg-[#fffcf5] border-2 border-white rounded-[2.5rem] shadow-2xl flex flex-col gap-5 text-center relative"
-            >
-              <button 
-                onClick={() => setPartnerModalOpen(false)}
-                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-[#4a1c0d]/10 flex items-center justify-center text-[#4a1c0d] hover:bg-[#e65100] hover:text-white transition-colors"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <Handshake className="w-12 h-12 text-[#e65100] mx-auto mt-2" />
-
-              <h3 className="text-2xl font-extrabold text-[#4a1c0d]">
-                {t.becomePartner}
-              </h3>
-
-              <p className="text-sm text-[#4a1c0d]/80 font-medium leading-relaxed">
-                {t.becomePartnerDesc}
-              </p>
-
-              <a
-                href="mailto:info@abboaps.org"
-                className="clay-btn py-3.5 px-6 font-extrabold uppercase tracking-wider text-xs flex items-center justify-center gap-2 mt-2"
-              >
-                <Mail className="w-4 h-4" />
-                {t.contactUs}
-              </a>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       <canvas
         ref={canvasRef}
