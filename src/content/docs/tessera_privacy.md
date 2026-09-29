@@ -66,7 +66,7 @@ Il conferimento dei dati per l’adesione ad ABBO APS è disciplinato dallo Stat
 
 La procedura di verifica si svolge secondo i seguenti passaggi trasparenti:
 
-1. Lo smartphone legge dal tag NFC l’URL contenente un token casuale (es. `...#/tessera#card=TOKEN`);
+1. Lo smartphone legge dal tag NFC l’URL contenente un token casuale (es. `...#/tessera/TOKEN`);
 2. La pagina web interroga via HTTP POST sicuro (HTTPS) l’API del gestionale trasmettendo il token;
 3. L’API convalida crittograficamente il token ed interroga il database;
 4. Se la card è valida, l’API restituisce alla pagina unicamente il nome, cognome, stato quota, codice card ed anno;

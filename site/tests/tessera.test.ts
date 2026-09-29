@@ -13,6 +13,13 @@ describe('Tessera Token Parser', () => {
     expect(result.token).toBe('QJ8pL8pc4n2xM4m3-6LQv-wkL6MVzW2X7U35O7utnN4');
   });
 
+  it('dovrebbe estrarre il token dalla route canonica delle card', () => {
+    const result = readAndRemoveCardToken('#/tessera/QJ8pL8pc4n2xM4m3-6LQv-wkL6MVzW2X7U35O7utnN4');
+
+    expect(result.error).toBeNull();
+    expect(result.token).toBe('QJ8pL8pc4n2xM4m3-6LQv-wkL6MVzW2X7U35O7utnN4');
+  });
+
   it('dovrebbe segnalare TOKEN_MISSING se il frammento è vuoto', () => {
     expect(readAndRemoveCardToken('').error).toBe('TOKEN_MISSING');
     expect(readAndRemoveCardToken('#').error).toBe('TOKEN_MISSING');

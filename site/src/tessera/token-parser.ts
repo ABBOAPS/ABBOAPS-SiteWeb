@@ -9,7 +9,7 @@ export interface TokenExtractionResult {
 }
 
 /**
- * Legge il token dal frammento URL (`#card=<TOKEN>`), invalida/rimuove immediatamente l'hash dall'URL
+ * Legge il token dalla route canonica (`#/tessera/<TOKEN>`) o dall'alias legacy (`#card=<TOKEN>`), invalida/rimuove immediatamente l'hash dall'URL
  * con replaceState, e ne verifica la forma sintattica opaca.
  */
 export function readAndRemoveCardToken(rawHash?: string): TokenExtractionResult {
@@ -36,21 +36,29 @@ export function readAndRemoveCardToken(rawHash?: string): TokenExtractionResult 
     return { token: null, error: 'TOKEN_MISSING' };
   }
 
-  // Cerca il prefisso #card= o card=
+  // La route canonica usa #/tessera/<TOKEN>; mantieni #card= per i link già distribuiti.
   const cleanHash = hash.startsWith('#') ? hash.slice(1) : hash;
-  const match = cleanHash.match(/(?:^|&)card=([^&]+)/);
+  const pathToken = cleanHash.match(/^\/tessera\/([^/?#]+)/)?.[1];
+  const queryString = cleanHash.includes('?') ? cleanHash.slice(cleanHash.indexOf('?') + 1) : cleanHash;
+  const queryToken = new URLSearchParams(queryString).get('card');
+  const rawToken = pathToken || queryToken;
 
-  if (!match || !match[1]) {
+  if (!rawToken) {
     return { token: null, error: 'TOKEN_MALFORMED' };
   }
 
-  const rawToken = match[1].trim();
-
-  if (!isValidTokenShape(rawToken)) {
+  let decodedToken: string;
+  try {
+    decodedToken = decodeURIComponent(rawToken).trim();
+  } catch {
     return { token: null, error: 'TOKEN_MALFORMED' };
   }
 
-  return { token: rawToken, error: null };
+  if (!isValidTokenShape(decodedToken)) {
+    return { token: null, error: 'TOKEN_MALFORMED' };
+  }
+
+  return { token: decodedToken, error: null };
 }
 
 /**

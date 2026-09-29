@@ -51,6 +51,28 @@ export interface MembershipData {
   membership?: MembershipValidity;
 }
 
+function readCardTokenFromLocation(): string | null {
+  const hash = window.location.hash;
+  const pathToken = /^#\/tessera\/([^/?#]+)/.exec(hash)?.[1];
+  const hashQuery = hash.includes('?') ? hash.slice(hash.indexOf('?') + 1) : '';
+  const queryToken = new URLSearchParams(hashQuery).get('card')
+    ?? new URLSearchParams(window.location.search).get('card');
+  const rawToken = pathToken ?? queryToken;
+  if (!rawToken) return null;
+  try {
+    return decodeURIComponent(rawToken).trim();
+  } catch {
+    return null;
+  }
+}
+
+function removeCardTokenFromLocation(): void {
+  const currentSearch = new URLSearchParams(window.location.search);
+  currentSearch.delete('card');
+  const search = currentSearch.toString();
+  window.history.replaceState(null, '', window.location.pathname + (search ? '?' + search : ''));
+}
+
 export function Tessera() {
   const [state, setState] = useState<MembershipResultState>('LOADING');
   const [apiData, setApiData] = useState<MembershipData | null>(null);
@@ -89,10 +111,9 @@ export function Tessera() {
 
   // Token Parsing & Fetch API
   useEffect(() => {
-    const href = window.location.href;
-    const match = href.match(/card=([^&]+)/);
+    const rawToken = readCardTokenFromLocation();
 
-    if (!match || !match[1]) {
+    if (!rawToken) {
       if (!apiData) {
         setApiData({
           result: 'active',
@@ -105,13 +126,9 @@ export function Tessera() {
       return;
     }
 
-    const rawToken = match[1].trim();
-
-    // Rimuovi parametro dall'URL dopo l'estrazione
+    // Rimuovi subito il token dalla barra degli indirizzi, prima della verifica remota.
     try {
-      const cleanHash = window.location.hash.replace(/#card=[^&]+/, '').replace(/&?card=[^&]+/, '');
-      const cleanUrl = window.location.pathname + window.location.search + (cleanHash ? cleanHash : '');
-      window.history.replaceState(null, '', cleanUrl);
+      removeCardTokenFromLocation();
     } catch {
       // Ignore
     }

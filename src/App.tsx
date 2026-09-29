@@ -79,6 +79,7 @@ export default function App() {
           <Route path="/trasparenza-ia" element={<AiTransparency />} />
           <Route path="/ambassador" element={<Ambassador />} />
           <Route path="/tessera" element={<Tessera />} />
+          <Route path="/tessera/:token" element={<Tessera />} />
           <Route path="/tessera/condizioni" element={<TesseraCondizioni />} />
           <Route path="/tessera/privacy" element={<TesseraPrivacy />} />
           <Route path="/tessera/partner" element={<TesseraPartner />} />
