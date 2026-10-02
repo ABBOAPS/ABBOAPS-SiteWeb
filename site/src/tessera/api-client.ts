@@ -42,7 +42,7 @@ export interface VerifyOptions {
   fetchFn?: typeof fetch;
 }
 
-const DEFAULT_API_BASE = 'https://api.abboaps.org';
+const DEFAULT_API_BASE = 'https://app.abboaps.org';
 const DEFAULT_TIMEOUT_MS = 5000;
 
 /**
@@ -71,6 +71,7 @@ export async function verifyMembershipToken(
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'x-abbo-api-version': 'v1',
       },
       body: JSON.stringify({ token }),
       signal: controller.signal,

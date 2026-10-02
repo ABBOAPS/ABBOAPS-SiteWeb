@@ -137,7 +137,7 @@ export function Tessera() {
     const memoryToken = rawToken;
     setState('LOADING');
 
-    const apiBase = (import.meta.env.VITE_MEMBERSHIP_API_BASE_URL || 'https://api.abboaps.org').replace(/\/+$/, '');
+    const apiBase = (import.meta.env.VITE_MEMBERSHIP_API_BASE_URL || 'https://app.abboaps.org').replace(/\/+$/, '');
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 5000);
 
@@ -146,6 +146,7 @@ export function Tessera() {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
+        'x-abbo-api-version': 'v1',
       },
       body: JSON.stringify({ token: memoryToken }),
       signal: controller.signal,

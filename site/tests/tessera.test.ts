@@ -109,6 +109,24 @@ describe('API Client e Validatore Risposte API', () => {
     expect(validateApiResponse('non json').result).toBe('unavailable');
   });
 
+  it('usa il gateway ABBO APP come endpoint predefinito', async () => {
+    const mockFetch = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ result: 'not_valid' }),
+    });
+
+    await verifyMembershipToken('test_token_1234567890', { fetchFn: mockFetch as any });
+
+    expect(mockFetch).toHaveBeenCalledWith(
+      'https://app.abboaps.org/api/v1/membership-cards/verify',
+      expect.objectContaining({
+        method: 'POST',
+        cache: 'no-store',
+        headers: expect.objectContaining({ 'x-abbo-api-version': 'v1' }),
+      }),
+    );
+  });
+
   it('dovrebbe gestire la chiamata fetch con successo', async () => {
     const mockFetch = vi.fn().mockResolvedValue({
       ok: true,
