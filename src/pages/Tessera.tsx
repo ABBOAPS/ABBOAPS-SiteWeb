@@ -72,6 +72,55 @@ function removeCardTokenFromLocation(): void {
   window.history.replaceState(null, '', window.location.pathname + (search ? '?' + search : ''));
 }
 
+function normalizeVerificationResponse(data: unknown): MembershipData {
+  if (!data || typeof data !== 'object') return { result: 'unavailable' };
+
+  const payload = data as {
+    valid?: unknown;
+    card?: {
+      publicCode?: unknown;
+      issueYear?: unknown;
+      status?: unknown;
+      memberName?: unknown;
+    } | null;
+    result?: unknown;
+  };
+
+  if (payload.valid === false) return { result: 'not_valid' };
+
+  if (payload.valid === true && payload.card && typeof payload.card.memberName === 'string') {
+    const memberName = payload.card.memberName.trim();
+    const code = typeof payload.card.publicCode === 'string'
+      ? payload.card.publicCode.trim()
+      : undefined;
+    const issueYear = typeof payload.card.issueYear === 'number'
+      ? payload.card.issueYear
+      : undefined;
+
+    if (!memberName) return { result: 'unavailable' };
+
+    return {
+      result: 'active',
+      member: { displayName: memberName },
+      card: {
+        code,
+        displayCode: code,
+        issuedYear: issueYear,
+        issueYear,
+        status: typeof payload.card.status === 'string' ? payload.card.status : undefined,
+      },
+      membership: { status: 'active' },
+    };
+  }
+
+  const result = payload.result;
+  if (result === 'active' || result === 'membership_inactive' || result === 'suspended' || result === 'not_valid' || result === 'unavailable') {
+    return { result };
+  }
+
+  return { result: 'unavailable' };
+}
+
 export function Tessera() {
   const [state, setState] = useState<MembershipResultState>('LOADING');
   const [apiData, setApiData] = useState<MembershipData | null>(null);
@@ -110,15 +159,8 @@ export function Tessera() {
     const rawToken = readCardTokenFromLocation();
 
     if (!rawToken) {
-      if (!apiData) {
-        setApiData({
-          result: 'active',
-          member: { displayName: 'Mario Rossi', memberNumber: 42, gender: 'M' },
-          card: { code: 'ABBO-2026-0042', displayCode: 'ABBO-2026-0042', issuedYear: 2026 },
-          membership: { status: 'active', validUntil: '2029-12-31' }
-        });
-        setState('active');
-      }
+      setApiData(null);
+      setState('TOKEN_MISSING');
       return;
     }
 
@@ -156,90 +198,19 @@ export function Tessera() {
       .then((res) => {
         clearTimeout(timeoutId);
         if (!res.ok) {
-          if (res.status === 400 || res.status === 404) {
-            if (memoryToken && (memoryToken.startsWith('QJ8pL') || memoryToken.includes('demo') || memoryToken.includes('test'))) {
-              return {
-                result: 'active',
-                member: { displayName: 'Mario Rossi', memberNumber: 42, gender: 'M' },
-                card: { status: 'active', code: 'ABBO-2026-0042', issuedYear: 2026 },
-                membership: { status: 'active', validUntil: '2029-12-31' }
-              };
-            }
-            return { result: 'not_valid' };
-          }
+          if (res.status === 400 || res.status === 404) return { valid: false };
           return { result: 'unavailable' };
         }
         return res.json();
       })
       .then((data: any) => {
-        const validStates = ['active', 'membership_inactive', 'suspended', 'not_valid', 'unavailable'];
-        if (!data || !validStates.includes(data.result)) {
-          setState('unavailable');
-          return;
-        }
-
-        const cleanData: MembershipData = { result: data.result };
-        if (data.result === 'active' && data.member?.displayName) {
-          cleanData.member = { 
-            displayName: String(data.member.displayName).trim(),
-            memberNumber: typeof data.member.memberNumber === 'number' ? data.member.memberNumber : undefined,
-            gender: data.member.gender
-          };
-        }
-
-        if (data.result === 'active' || data.result === 'membership_inactive') {
-          if (data.card && typeof data.card === 'object') {
-            const rawCode = data.card.code || data.card.displayCode;
-            const issuedYear = data.card.issuedYear ?? data.card.issueYear;
-            const code = rawCode 
-              ? String(rawCode).trim() 
-              : (issuedYear && data.member?.memberNumber ? `ABBO-${issuedYear}-${String(data.member.memberNumber).padStart(4, '0')}` : undefined);
-            
-            cleanData.card = { 
-              code: code,
-              displayCode: code,
-              issuedYear: typeof issuedYear === 'number' ? issuedYear : undefined
-            };
-          } else {
-            cleanData.card = null;
-          }
-
-          if (data.membership && typeof data.membership === 'object') {
-            cleanData.membership = { 
-              status: data.membership.status,
-              validUntil: data.membership.validUntil ? String(data.membership.validUntil).trim() : undefined 
-            };
-          }
-        }
-
-        setApiData(cleanData);
-        setState(data.result);
+        const cleanData = normalizeVerificationResponse(data);
+        setApiData(cleanData.result === 'active' || cleanData.result === 'membership_inactive' ? cleanData : null);
+        setState(cleanData.result);
       })
       .catch(() => {
         clearTimeout(timeoutId);
-        // Fallback per test locali
-        if (memoryToken) {
-          if (memoryToken.includes('inactive')) {
-            setApiData({
-              result: 'membership_inactive',
-              card: { code: 'ABBO-2026-0042', displayCode: 'ABBO-2026-0042', issuedYear: 2026 }
-            });
-            setState('membership_inactive');
-            return;
-          }
-          if (memoryToken.includes('invalid')) {
-            setState('not_valid');
-            return;
-          }
-          setApiData({
-            result: 'active',
-            member: { displayName: 'Mario Rossi', memberNumber: 42, gender: 'M' },
-            card: { code: 'ABBO-2026-0042', displayCode: 'ABBO-2026-0042', issuedYear: 2026 },
-            membership: { status: 'active', validUntil: '2029-12-31' }
-          });
-          setState('active');
-          return;
-        }
+        setApiData(null);
         setState('unavailable');
       });
   }, []);
@@ -351,10 +322,10 @@ export function Tessera() {
             {/* Nome e Cognome AL CENTRO + Spunta Verificata Proporzionata */}
             <div className="flex items-center justify-center w-full">
               <h1 className="text-2xl sm:text-4xl font-extrabold text-[#4a1c0d] tracking-tight text-center inline-flex items-center gap-2.5">
-                <span>{apiData?.member?.displayName || "Mario Rossi"}</span>
+                <span>{apiData?.member?.displayName || (state === 'LOADING' ? 'Verifica in corso…' : state === 'not_valid' ? 'Tessera non valida' : 'Verifica tessera')}</span>
 
                 {/* Spunta di verifica verde per tessera ATTIVA */}
-                {(state === 'active' || state === 'LOADING') && (
+                {state === 'active' && (
                   <span 
                     className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-emerald-500 text-white inline-flex items-center justify-center shadow-md shadow-emerald-500/30 shrink-0"
                     title={t.statusActive}
@@ -399,10 +370,10 @@ export function Tessera() {
           </div>
 
           {/* Parte Bassa Card: Codice Card ABBO-ANNO-NUMERO ben visibile ma elegante */}
-          {(cardSerialCode || state === 'LOADING') && (
+          {cardSerialCode && (
             <div className="flex items-center justify-center w-full pt-3 mt-1 border-t border-[#4a1c0d]/10 relative z-10 text-center">
               <span className="text-xs sm:text-sm font-mono font-semibold text-[#4a1c0d]/55 tracking-widest text-center select-all drop-shadow-sm">
-                {cardSerialCode || "ABBO-2026-0042"}
+                {cardSerialCode}
               </span>
             </div>
           )}

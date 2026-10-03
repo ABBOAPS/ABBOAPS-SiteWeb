@@ -109,6 +109,31 @@ export function validateApiResponse(data: any): TesseraApiResponse {
     return { result: 'unavailable' };
   }
 
+  if (data.valid === false) {
+    return { result: 'not_valid' };
+  }
+
+  if (data.valid === true && data.card && typeof data.card === 'object' && typeof data.card.memberName === 'string') {
+    const displayName = data.card.memberName.trim();
+    if (!displayName) return { result: 'unavailable' };
+
+    const code = typeof data.card.publicCode === 'string' ? data.card.publicCode.trim() : undefined;
+    const issuedYear = typeof data.card.issueYear === 'number' ? data.card.issueYear : undefined;
+
+    return {
+      result: 'active',
+      member: { displayName },
+      card: {
+        code,
+        displayCode: code,
+        issuedYear,
+        issueYear: issuedYear,
+        status: typeof data.card.status === 'string' ? data.card.status : undefined,
+      },
+      membership: { status: 'active' },
+    };
+  }
+
   const validResults: MembershipResultState[] = [
     'active',
     'membership_inactive',

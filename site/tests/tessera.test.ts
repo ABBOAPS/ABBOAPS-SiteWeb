@@ -70,6 +70,27 @@ describe('API Client e Validatore Risposte API', () => {
     expect(validated.membership?.validUntil).toBe('2029-12-31');
   });
 
+  it('dovrebbe validare il contratto pubblico corrente { valid, card }', () => {
+    const validated = validateApiResponse({
+      valid: true,
+      card: {
+        publicCode: 'public-card-code-for-tests-only',
+        issueYear: 2026,
+        status: 'active',
+        memberName: 'Test Member',
+      },
+    });
+
+    expect(validated.result).toBe('active');
+    expect(validated.member?.displayName).toBe('Test Member');
+    expect(validated.card?.code).toBe('public-card-code-for-tests-only');
+    expect(validated.card?.issuedYear).toBe(2026);
+  });
+
+  it('dovrebbe trattare valid false come tessera non valida', () => {
+    expect(validateApiResponse({ valid: false, reason: 'card_not_valid' }).result).toBe('not_valid');
+  });
+
   it('dovrebbe gestire un socio senza card dove card è null o assente', () => {
     const rawData = {
       result: 'active',
