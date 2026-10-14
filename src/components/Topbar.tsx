@@ -44,7 +44,7 @@ export function Topbar() {
 
   const isLandingPage = location.pathname.startsWith("/landing");
 
-  const showLogo = false;
+  const showLogo = true;
 
   const handleLogoClick = () => {
     if (location.pathname === "/") {
@@ -116,13 +116,13 @@ export function Topbar() {
                 {isLandingPage ? (
                   <a href="https://digital-heroes.me" className="flex">
                     <div className="clay-nav h-12 px-5 flex items-center justify-center hover:opacity-80 transition-opacity">
-                      <img src={(siteConfig as any).logo_horizontal || "https://img.icons8.com/ios-filled/50/e65100/home.png"} alt="Abbo Logo" width="100" height="20" className="h-5 w-auto object-contain drop-shadow-[0_1.5px_3px_rgba(74,28,13,0.15)]" />
+                      <img src={(siteConfig as any).logo_horizontal || "https://img.icons8.com/ios-filled/50/e65100/home.png"} alt="ABBO APS" width="128" height="28" className="h-7 w-32 object-cover drop-shadow-[0_1.5px_3px_rgba(74,28,13,0.15)]" />
                     </div>
                   </a>
                 ) : (
                   <Link to="/" onClick={handleLogoClick} className="flex">
                     <div className="clay-nav h-12 px-5 flex items-center justify-center hover:opacity-80 transition-opacity">
-                      <img src={(siteConfig as any).logo_horizontal || "https://img.icons8.com/ios-filled/50/e65100/home.png"} alt="Abbo Logo" width="100" height="20" className="h-5 w-auto object-contain drop-shadow-[0_1.5px_3px_rgba(74,28,13,0.15)]" />
+                      <img src={(siteConfig as any).logo_horizontal || "https://img.icons8.com/ios-filled/50/e65100/home.png"} alt="ABBO APS" width="128" height="28" className="h-7 w-32 object-cover drop-shadow-[0_1.5px_3px_rgba(74,28,13,0.15)]" />
                     </div>
                   </Link>
                 )}
