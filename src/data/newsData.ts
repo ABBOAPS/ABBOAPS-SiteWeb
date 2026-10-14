@@ -18,13 +18,13 @@ const newsFiles = import.meta.glob("../content/news/*.md", {
 export const dataNews: Articolo[] = Object.entries(newsFiles).map(([path, content]) => {
   const filename = path.split('/').pop()?.replace('.md', '') || '';
   
-  const frontmatterRegex = /---\n([\s\S]*?)\n---/;
+  const frontmatterRegex = /---\r?\n([\s\S]*?)\r?\n---/;
   const match = content.match(frontmatterRegex);
   const metadata: Record<string, string> = {};
   let markdownContent = content;
   
   if (match) {
-    match[1].split('\n').forEach(line => {
+    match[1].split(/\r?\n/).forEach(line => {
       const [key, ...values] = line.split(':');
       if (key && values.length > 0) metadata[key.trim()] = values.join(':').trim();
     });

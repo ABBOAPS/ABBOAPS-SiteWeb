@@ -30,7 +30,7 @@ export function Footer() {
           {/* Column 1: Brand */}
           <div className="md:col-span-4 flex flex-col gap-3">
             <div className="flex items-center">
-              {logoHorizontal && <img src={logoHorizontal} alt="ABBO APS" width="160" height="40" className="h-9 w-auto object-contain grayscale opacity-85" />}
+              {logoHorizontal && <img src={logoHorizontal} alt="ABBO APS" width="160" height="40" className="h-9 w-36 object-cover grayscale opacity-85" />}
             </div>
             
             <dl className="grid text-xs font-mono text-[#4a1c0d]/80">

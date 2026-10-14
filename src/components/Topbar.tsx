@@ -44,9 +44,7 @@ export function Topbar() {
 
   const isLandingPage = location.pathname.startsWith("/landing");
 
-  const showLogo =
-    location.pathname !== "/" ||
-    (activeProjectId && activeProjectId !== "hero-air");
+  const showLogo = false;
 
   const handleLogoClick = () => {
     if (location.pathname === "/") {
@@ -104,12 +102,12 @@ export function Topbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.1 }}
-        className={`fixed ${isLandingPage ? "top-0 md:top-4" : "top-0"} left-0 right-0 z-[100] px-6 py-6 md:px-10 md:py-10 flex justify-between items-center pointer-events-none`}
+        className={`fixed ${isLandingPage ? "top-0 md:top-4" : "top-0"} left-0 right-0 z-[100] px-4 py-4 md:px-6 md:py-6 flex justify-between items-center pointer-events-none`}
       >
         {/* Left Hand Side: Logo Chip */}
         <div className="flex-1 flex justify-start pointer-events-auto">
           <AnimatePresence>
-            {(showLogo || mobileMenuOpen) && (
+            {showLogo && (
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}

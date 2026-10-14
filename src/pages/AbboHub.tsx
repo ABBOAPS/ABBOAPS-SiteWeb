@@ -67,7 +67,7 @@ export function AbboHub() {
       <section className="hub-support hub-section" id="sostieni" aria-labelledby="hub-support-title"><div className="hub-section-head"><span>SOSTEGNO</span><h2 id="hub-support-title">Sostieni ABBO.</h2></div><div className="hub-support-content"><div><strong className="hub-five-label">5×1000</strong><p>Il tuo gesto concreto.</p><CopyValue label="Codice fiscale ABBO APS" value={organization.taxCode} /></div><div className="hub-support-utilities"><a href={organization.paypalUrl} target="_blank" rel="noopener noreferrer">Dona con PayPal <ArrowUpRight size={18} /></a><CopyValue label="IBAN per donazione" value={organization.iban} /></div></div></section>
     </main>
     <div className="hub-partner-note">{partner ? <><span>FACCIAMO COSE ANCHE CON</span><img src={partner.logo} alt="Partner ABBO APS" loading="lazy" /></> : null}</div>
-    <footer className="hub-footer"><img src={siteConfig.logo_horizontal} alt="ABBO APS" width="150" height="42" /><span>© 2026 ABBO APS</span><a href="/">Vai al sito ABBO <ArrowUpRight size={16} /></a></footer>
+    <footer className="hub-footer"><img className="hub-footer-logo" src={siteConfig.logo_horizontal} alt="ABBO APS" width="150" height="42" /><span>© 2026 ABBO APS</span><a href="/">Vai al sito ABBO <ArrowUpRight size={16} /></a></footer>
   </div>;
 }
 
