@@ -43,8 +43,41 @@ export function Topbar() {
   }, [location.pathname]);
 
   const isLandingPage = location.pathname.startsWith("/landing");
+  const isHomePage = location.pathname === "/";
+  const [homeArrivalPassed, setHomeArrivalPassed] = useState(() => !isHomePage);
 
-  const showLogo = true;
+  useEffect(() => {
+    if (!isHomePage) {
+      setHomeArrivalPassed(true);
+      return;
+    }
+
+    setHomeArrivalPassed(false);
+
+    const updateLogoVisibility = () => {
+      const hero = document.querySelector<HTMLElement>(".home-hero");
+      if (!hero) {
+        setHomeArrivalPassed(false);
+        return;
+      }
+
+      setHomeArrivalPassed(window.scrollY >= hero.offsetHeight - 8);
+    };
+
+    const frame = window.requestAnimationFrame(updateLogoVisibility);
+    const timer = window.setTimeout(updateLogoVisibility, 0);
+    window.addEventListener("scroll", updateLogoVisibility, { passive: true });
+    window.addEventListener("resize", updateLogoVisibility);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+      window.removeEventListener("scroll", updateLogoVisibility);
+      window.removeEventListener("resize", updateLogoVisibility);
+    };
+  }, [isHomePage]);
+
+  const showLogo = !isHomePage || homeArrivalPassed;
 
   const handleLogoClick = () => {
     if (location.pathname === "/") {
