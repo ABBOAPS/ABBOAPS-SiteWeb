@@ -637,7 +637,6 @@ body {
 .home-project-card__image img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 450ms ease; }
 .home-project-card:hover .home-project-card__image img { transform: scale(1.04); }
 .home-project-card__body { display: flex; min-height: 20rem; flex-direction: column; align-items: flex-start; padding: 1.5rem; }
-.home-project-card__topline { width: 100%; margin-bottom: 1.25rem; color: var(--home-accent); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
 .home-project-card__logo { width: auto; max-width: 12rem; height: 3.25rem; margin-bottom: 1.25rem; object-fit: contain; object-position: left center; }
 .home-project-card__body h3 { margin: 0; font-size: clamp(2rem, 4vw, 3.3rem); line-height: 0.95; letter-spacing: -0.065em; }
 .home-project-card__body p { max-width: 28rem; margin: 0.85rem 0 auto; color: var(--home-muted); line-height: 1.5; }
@@ -745,5 +744,32 @@ body {
 
   .home-hero h1 {
     font-size: clamp(2.2rem, 10vw, 4.2rem);
+  }
+}
+
+/* Give wide screens a wider, still readable frame instead of leaving the content stranded. */
+.home-shell {
+  width: min(calc(100% - clamp(2rem, 6vw, 8rem)), 1600px);
+}
+
+@media (min-width: 1600px) {
+  .home-project-grid,
+  .home-news-grid {
+    gap: 2rem;
+  }
+
+  .home-project-card__body {
+    min-height: 21rem;
+    padding: 2rem;
+  }
+
+  .home-news-list {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-shell {
+    width: min(calc(100% - 2rem), 1440px);
   }
 }

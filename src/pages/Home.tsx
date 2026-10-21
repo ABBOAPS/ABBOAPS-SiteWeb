@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowDownRight, ArrowUpRight, CalendarDays, HeartHandshake, MapPin } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, HeartHandshake } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import homeConfig from "../config/home.json";
@@ -67,10 +67,6 @@ function ProjectCard({ project }: { project: Project }) {
           />
         </div>
         <div className="home-project-card__body">
-          <div className="home-project-card__topline">
-            <span>{isFestival ? "Territorio" : "Educazione"}</span>
-            <ArrowUpRight size={20} aria-hidden="true" />
-          </div>
           {project.icon && <img src={asset(project.icon)} alt="" width="400" height="260" className="home-project-card__logo" loading="lazy" />}
           <h3>{project.title}</h3>
           <p>{copy}</p>
@@ -185,27 +181,6 @@ export function Home() {
             <div className="home-project-grid">
               {actualProjects.map((project) => <ProjectCard key={project.id} project={project} />)}
             </div>
-          </div>
-        </section>
-
-        <section className="home-section home-section--feature" aria-labelledby="now-title">
-          <div className="home-shell">
-            <div className="home-section-heading">
-              <div>
-                <h2 id="now-title" className="home-title home-title--small">Festival ABBIAMO</h2>
-                <p className="home-section-lede">Una giornata per incontrare chi fa vivere il territorio.</p>
-              </div>
-              <span className="home-heading-note">4 ottobre 2026</span>
-            </div>
-            <article className="home-feature">
-              <div className="home-feature__media"><img src={asset("/media/banner_abbiamo_26.jpg")} alt="Festival ABBIAMO, fiera delle associazioni del territorio" width="960" height="503" loading="lazy" decoding="async" /></div>
-              <div className="home-feature__body">
-                <div className="home-feature__meta"><span><CalendarDays size={17} aria-hidden="true" /> 4 ottobre 2026</span><span><MapPin size={17} aria-hidden="true" /> Verderio (LC)</span></div>
-                <h3>Una fiera da vivere</h3>
-                <p>Associazioni, volontari e cittadini nello stesso posto, con attività, talk e storie da incontrare.</p>
-                <Link to="/abbiamo/" className="home-button home-button--dark">Scopri il Festival <ArrowUpRight size={18} aria-hidden="true" /></Link>
-              </div>
-            </article>
           </div>
         </section>
 
