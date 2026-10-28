@@ -191,7 +191,7 @@ body {
 
 .tessera-verification-card {
   isolation: isolate;
-  background: #fff !important;
+  background: transparent !important;
 }
 
 /* Digital Heroes Utilities */
@@ -771,5 +771,81 @@ body {
 @media (max-width: 767px) {
   .home-shell {
     width: min(calc(100% - 2rem), 1440px);
+  }
+}
+
+/* Tessera landing: verification first, editorial content below. */
+.tessera-page {
+  isolation: isolate;
+  overflow: clip;
+  background: #fff0e0;
+}
+
+.tessera-page__backdrop {
+  position: absolute;
+  z-index: 0;
+  inset: 0 0 auto;
+  height: min(100svh, 58rem);
+  overflow: hidden;
+  background: #1a0a05;
+}
+
+.tessera-page__slides,
+.tessera-page__slide,
+.tessera-page__wash {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.tessera-page__slide {
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transform: scale(1.035);
+  transition: opacity 900ms ease, transform 8s ease;
+}
+
+.tessera-page__slide--active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.tessera-page__wash {
+  background: linear-gradient(
+    180deg,
+    rgba(26, 10, 5, .18) 0%,
+    rgba(26, 10, 5, .28) 36%,
+    rgba(255, 240, 224, .78) 78%,
+    #fff0e0 100%
+  );
+}
+
+.tessera-page__content {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 767px) {
+  .tessera-page__backdrop {
+    height: min(100svh, 48rem);
+  }
+
+  .tessera-page__wash {
+    background: linear-gradient(
+      180deg,
+      rgba(26, 10, 5, .2) 0%,
+      rgba(26, 10, 5, .32) 40%,
+      rgba(255, 240, 224, .86) 78%,
+      #fff0e0 100%
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tessera-page__slide {
+    transform: none;
+    transition: none;
   }
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { SEO } from "../components/SEO";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { 
   Check, X, AlertTriangle, WifiOff, Copy, ArrowUpRight
 } from "lucide-react";
@@ -12,6 +12,51 @@ import { SocialLinks } from "../components/SocialLinks";
 import { organization } from "../config/organization";
 import projectData from "../config/projects.json";
 import type { Project } from "../types";
+import { pressMentions } from "../data/pressMentions";
+
+const tesseraCarouselModules = import.meta.glob(
+  "../assets/home-carousel/*.{jpg,jpeg,png,webp,avif}",
+  { eager: true, query: "?url", import: "default" },
+) as Record<string, string>;
+
+const tesseraCarouselImages = Object.entries(tesseraCarouselModules)
+  .sort(([first], [second]) => first.localeCompare(second))
+  .map(([, src]) => src);
+
+function TesseraBackdrop() {
+  const reduceMotion = useReducedMotion();
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    if (reduceMotion || tesseraCarouselImages.length < 2) return undefined;
+
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % tesseraCarouselImages.length);
+    }, 7000);
+
+    return () => window.clearInterval(timer);
+  }, [reduceMotion]);
+
+  return (
+    <div className="tessera-page__backdrop" aria-hidden="true">
+      <div className="tessera-page__slides">
+        {tesseraCarouselImages.map((src, index) => (
+          <img
+            key={src}
+            src={src}
+            alt=""
+            className={index === activeIndex ? "tessera-page__slide tessera-page__slide--active" : "tessera-page__slide"}
+            width="2000"
+            height="1333"
+            loading={index === 0 ? "eager" : "lazy"}
+            decoding="async"
+          />
+        ))}
+      </div>
+      <div className="tessera-page__wash" />
+    </div>
+  );
+}
 
 export type MembershipResultState =
   | 'active'
@@ -284,44 +329,45 @@ export function Tessera() {
     (a, b) => new Date(b.data).getTime() - new Date(a.data).getTime(),
   )[0];
   const currentProjects = (projectData as Project[]).filter((project) => project.id !== "hero-air");
+  const baseUrl = import.meta.env.BASE_URL;
   const cardSerialCode = apiData?.card?.code || apiData?.card?.displayCode;
 
   return (
-    <div className="relative z-20 w-full min-h-screen pt-[calc(3.5rem+env(safe-area-inset-top,0px))] sm:pt-20 px-3 sm:px-6 flex flex-col items-center pb-24 text-[#4a1c0d]">
+    <div className="tessera-page relative z-20 w-full min-h-screen pt-[calc(3.5rem+env(safe-area-inset-top,0px))] sm:pt-20 px-3 sm:px-6 flex flex-col items-center pb-24 text-[#4a1c0d]">
+      <TesseraBackdrop />
       <SEO
         title={isEn ? "Membership Card Verification | ABBO APS" : "Verifica Tessera Associativa | ABBO APS"}
         description={isEn ? "Official ABBO APS membership card verification page." : "Servizio ufficiale di verifica dello stato della tessera associativa ABBO APS."}
         url="/tessera"
       />
 
-      <div className="w-full max-w-lg flex flex-col items-center gap-5">
+      <div className="tessera-page__content w-full max-w-5xl flex flex-col items-center gap-5">
 
         {/* 1. Card principale della tessera */}
         <motion.div
           initial={{ y: -140, opacity: 0 }}
           animate={animateIn ? { y: 0, opacity: 1 } : { y: -140, opacity: 0 }}
           transition={{ type: "spring", stiffness: 220, damping: 22, duration: 0.8 }}
-          className="tessera-verification-card w-full clay-card p-8 sm:p-10 rounded-[2.5rem] bg-[#fffcf5] border-2 border-white/80 shadow-2xl relative overflow-hidden flex flex-col items-center text-center justify-center gap-4 min-h-[260px] sm:min-h-[290px] my-2"
+          className="tessera-verification-card w-full max-w-2xl p-8 sm:p-12 relative overflow-hidden flex flex-col items-center text-center justify-center gap-5 min-h-[62svh] sm:min-h-[560px] my-2 text-white"
         >
-          {/* Pattern raster pubblico; il mockup sorgente resta escluso dal repository */}
-          <img
-            src={`${import.meta.env.BASE_URL}CardSoci_Mockup_F_AB_pattern.png`}
-            alt=""
-            aria-hidden="true"
-            className="tessera-pattern absolute inset-0 z-0 h-full w-full pointer-events-none select-none"
-          />
-
           {/* Centro Card: Scritta Socio/Socia/Member AL CENTRO + Nome e Cognome AL CENTRO con SPUNTA VERIFICATA */}
           <div className="flex flex-col items-center text-center w-full relative z-10">
-            
+            <img
+              src={import.meta.env.BASE_URL + "logo_abbo_bianco.svg"}
+              alt="ABBO APS"
+              width="150"
+              height="50"
+              className="mb-5 h-auto w-32 object-contain sm:w-44 drop-shadow-[0_5px_18px_rgba(26,10,5,.3)]"
+            />
+
             {/* Scritta Socio / Socia / Member */}
-            <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-[#e65100] mb-1">
+            <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-white/80 mb-1">
               {t.socio(apiData?.member?.gender)}
             </span>
 
             {/* Nome e Cognome AL CENTRO + Spunta Verificata Proporzionata */}
             <div className="flex items-center justify-center w-full">
-              <h1 className="text-2xl sm:text-4xl font-extrabold text-[#4a1c0d] tracking-tight text-center inline-flex items-center gap-2.5">
+              <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight text-center inline-flex items-center gap-2.5 drop-shadow-[0_4px_12px_rgba(26,10,5,.35)]">
                 <span>{apiData?.member?.displayName || (state === 'LOADING' ? 'Verifica in corso…' : state === 'not_valid' ? 'Tessera non valida' : 'Verifica tessera')}</span>
 
                 {/* Spunta di verifica verde per tessera ATTIVA */}
@@ -371,8 +417,8 @@ export function Tessera() {
 
           {/* Parte Bassa Card: Codice Card ABBO-ANNO-NUMERO ben visibile ma elegante */}
           {cardSerialCode && (
-            <div className="flex items-center justify-center w-full pt-3 mt-1 border-t border-[#4a1c0d]/10 relative z-10 text-center">
-              <span className="text-xs sm:text-sm font-mono font-semibold text-[#4a1c0d]/55 tracking-widest text-center select-all drop-shadow-sm">
+            <div className="flex items-center justify-center w-full pt-4 mt-2 border-t border-white/30 relative z-10 text-center">
+              <span className="text-xs sm:text-sm font-mono font-semibold text-white/80 tracking-widest text-center select-all drop-shadow-sm">
                 {cardSerialCode}
               </span>
             </div>
@@ -395,15 +441,28 @@ export function Tessera() {
               </span>
               <SocialLinks variant="tessera" />
             </div>
-            <a
-              href="https://www.abboaps.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex min-h-12 items-center justify-between rounded-2xl border border-[#4a1c0d]/10 bg-[#fffcf5]/75 px-4 text-sm font-extrabold text-[#4a1c0d] shadow-sm transition hover:-translate-y-0.5 hover:border-[#e65100]/35 hover:text-[#e65100] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e65100]"
-            >
-              <span>Scopri ABBO</span>
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </a>
+            <nav className="grid grid-cols-3 gap-2" aria-label="Link utili ABBO APS">
+              <a
+                href="https://www.abboaps.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-11 items-center justify-center rounded-xl border border-[#4a1c0d]/10 bg-[#fffcf5]/75 px-2 text-xs font-extrabold text-[#4a1c0d] shadow-sm transition hover:-translate-y-0.5 hover:border-[#e65100]/35 hover:text-[#e65100] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e65100]"
+              >
+                Sito
+              </a>
+              <a
+                href={baseUrl + "notizie"}
+                className="flex min-h-11 items-center justify-center rounded-xl border border-[#4a1c0d]/10 bg-[#fffcf5]/75 px-2 text-xs font-extrabold text-[#4a1c0d] shadow-sm transition hover:-translate-y-0.5 hover:border-[#e65100]/35 hover:text-[#e65100] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e65100]"
+              >
+                Notizie
+              </a>
+              <a
+                href={baseUrl + "contatti"}
+                className="flex min-h-11 items-center justify-center rounded-xl border border-[#4a1c0d]/10 bg-[#fffcf5]/75 px-2 text-xs font-extrabold text-[#4a1c0d] shadow-sm transition hover:-translate-y-0.5 hover:border-[#e65100]/35 hover:text-[#e65100] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e65100]"
+              >
+                Contatti
+              </a>
+            </nav>
           </div>
 
           {latestArticle && (
@@ -424,7 +483,7 @@ export function Tessera() {
                   {latestArticle.descrizione || latestArticle.estratto}
                 </p>
                 <a
-                  href={/^https?:/.test(latestArticle.id) ? latestArticle.id : "/news/" + latestArticle.id}
+                  href={/^https?:/.test(latestArticle.id) ? latestArticle.id : baseUrl + "news/" + latestArticle.id}
                   className="inline-flex min-h-11 items-center justify-between border-t border-[#4a1c0d]/10 pt-3 text-sm font-extrabold text-[#e65100] transition hover:text-[#4a1c0d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e65100]"
                 >
                   <span>Leggi l’articolo</span>
@@ -443,14 +502,14 @@ export function Tessera() {
                 ABBO APS
               </span>
             </div>
-            <div className="grid gap-3">
+            <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {currentProjects.map((project) => (
                 <a
                   key={project.id}
-                  href={project.url || "/progetti"}
+                  href={project.url?.startsWith("/") ? baseUrl + project.url.slice(1) : project.url || baseUrl + "progetti"}
                   target={project.url?.startsWith("http") ? "_blank" : undefined}
                   rel={project.url?.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="group flex min-h-24 items-center gap-4 overflow-hidden rounded-[1.5rem] border border-white/80 bg-[#fffcf5] p-3 shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e65100]"
+                  className="group flex min-h-24 min-w-[88%] snap-start items-center gap-4 overflow-hidden rounded-[1.5rem] sm:min-w-[48%] border border-white/80 bg-[#fffcf5] p-3 shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e65100]"
                 >
                   <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-[#4a1c0d]/[0.06] p-2">
                     {project.icon ? (
@@ -468,6 +527,48 @@ export function Tessera() {
               ))}
             </div>
           </section>
+        </motion.section>
+
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={animateIn ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.85 }}
+          className="w-full flex flex-col gap-3"
+          aria-labelledby="tessera-press-title"
+        >
+          <div className="flex items-end justify-between gap-3 px-1">
+            <h2 id="tessera-press-title" className="text-xl font-extrabold tracking-tight text-[#4a1c0d]">
+              Parlano di noi
+            </h2>
+            <span className="text-[10px] font-extrabold uppercase tracking-[0.14em] text-[#4a1c0d]/45">
+              Rassegna
+            </span>
+          </div>
+          <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {pressMentions.map((mention) => (
+              <a
+                key={mention.url}
+                href={mention.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex min-h-28 min-w-[76%] snap-start flex-col justify-between rounded-[1.5rem] border border-white/80 bg-[#fffcf5] p-4 shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e65100] sm:min-w-[48%]"
+              >
+                <img
+                  src={baseUrl + mention.publicationLogo.replace(/^\/+/, "")}
+                  alt={mention.publication}
+                  width="180"
+                  height="64"
+                  className="h-10 w-auto max-w-[75%] object-contain object-left"
+                />
+                <span className="mt-3 line-clamp-2 text-sm font-extrabold leading-tight text-[#4a1c0d]">
+                  {mention.title}
+                </span>
+                <span className="mt-2 text-xs font-extrabold text-[#e65100]">
+                  Leggi l’articolo ↗
+                </span>
+              </a>
+            ))}
+          </div>
         </motion.section>
 
         {/* 5X1000: una sola azione, senza modali o card duplicate */}
@@ -497,6 +598,22 @@ export function Tessera() {
             >
               {copiedCF ? "Copiato" : "Copia codice fiscale"}
             </button>
+          </div>
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            <a
+              href={organization.paypalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex min-h-11 items-center justify-center rounded-xl bg-[#e65100] px-3 text-xs font-extrabold text-white transition hover:bg-[#c74600] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e65100]"
+            >
+              Dona con PayPal
+            </a>
+            <a
+              href={baseUrl + "sostienici"}
+              className="flex min-h-11 items-center justify-center rounded-xl border border-[#e65100]/25 px-3 text-xs font-extrabold text-[#e65100] transition hover:bg-[#e65100]/[0.06] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#e65100]"
+            >
+              Altri modi
+            </a>
           </div>
         </motion.section>
 
