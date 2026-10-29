@@ -822,6 +822,19 @@ body {
   );
 }
 
+.tessera-social-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: .5rem;
+}
+
+.tessera-social-row .social-links__link {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+}
+
 .tessera-page__content {
   position: relative;
   z-index: 1;

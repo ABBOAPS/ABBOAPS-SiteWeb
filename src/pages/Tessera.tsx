@@ -435,12 +435,10 @@ export function Tessera() {
           aria-label="Contenuti ABBO APS"
         >
           <div className="flex flex-col gap-3 px-1">
-            <div className="flex items-center justify-between gap-3">
-              <span className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#4a1c0d]/55">
-                Resta in contatto
-              </span>
-              <SocialLinks variant="tessera" />
-            </div>
+            <span className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#4a1c0d]/55">
+              Resta in contatto
+            </span>
+            <SocialLinks variant="tessera" className="tessera-social-row" />
             <nav className="grid grid-cols-3 gap-2" aria-label="Link utili ABBO APS">
               <a
                 href="https://www.abboaps.org"
