@@ -822,6 +822,22 @@ body {
   );
 }
 
+.tessera-press-logo {
+  display: block;
+  width: min(100%, 14rem);
+  height: 4.5rem;
+  object-position: center;
+}
+
+.tessera-press-logo--square {
+  object-fit: cover;
+}
+
+.tessera-press-logo--wide {
+  object-fit: contain;
+  object-position: left center;
+}
+
 .tessera-social-row {
   width: 100%;
   display: grid;

@@ -31,6 +31,7 @@ export function PressMentions({ variant }: { variant: PressMentionsVariant }) {
                   height="530"
                   loading="lazy"
                   decoding="async"
+                  className={mention.publication === "MerateOnline" ? "press-mention__logo press-mention__logo--square" : "press-mention__logo press-mention__logo--wide"}
                 />
               </div>
               <time dateTime={mention.dateTime}>{mention.date}</time>

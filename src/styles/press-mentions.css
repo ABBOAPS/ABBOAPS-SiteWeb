@@ -86,7 +86,7 @@
 
 .press-mention__publication {
   display: flex;
-  min-height: 2.75rem;
+  min-height: 5rem;
   align-items: center;
   grid-column: 1;
   grid-row: 1;
@@ -96,10 +96,17 @@
 
 .press-mention__publication img {
   display: block;
-  width: min(100%, 9rem);
-  height: 2.75rem;
-  object-fit: contain;
+  width: min(100%, 13rem);
+  height: 5rem;
   object-position: center;
+}
+
+.press-mention__logo--square {
+  object-fit: cover;
+}
+
+.press-mention__logo--wide {
+  object-fit: contain;
 }
 
 .press-mention time {
@@ -167,12 +174,12 @@
 
   .press-mention__publication {
     width: 100%;
-    min-height: 2rem;
+    min-height: 4.5rem;
   }
 
   .press-mention__publication img {
-    width: 8.5rem;
-    height: 2.25rem;
+    width: min(100%, 12rem);
+    height: 4.5rem;
   }
 
   .press-mention time {

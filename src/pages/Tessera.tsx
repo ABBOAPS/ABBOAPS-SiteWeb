@@ -556,7 +556,7 @@ export function Tessera() {
                   alt={mention.publication}
                   width="180"
                   height="64"
-                  className="h-10 w-auto max-w-[75%] object-contain object-left"
+                  className={mention.publication === "MerateOnline" ? "tessera-press-logo tessera-press-logo--square" : "tessera-press-logo tessera-press-logo--wide"}
                 />
                 <span className="mt-3 line-clamp-2 text-sm font-extrabold leading-tight text-[#4a1c0d]">
                   {mention.title}
