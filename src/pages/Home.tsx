@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowDownRight, ArrowUpRight, HeartHandshake } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import homeConfig from "../config/home.json";
 import projectData from "../config/projects.json";
@@ -47,14 +47,14 @@ function ProjectLink({ project, children }: { project: Project; children: React.
   return <Link to={project.url || "/link"} className="home-project-card__link">{children}</Link>;
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   const isFestival = project.id === "abbiamo";
-  const copy = isFestival
+  const copy = project.description || (isFestival
     ? "Una fiera delle associazioni per incontrarsi, fare rete e partecipare."
-    : "Laboratori per imparare tecnologia, robotica e cittadinanza digitale.";
+    : "Un progetto ABBO per imparare, incontrarsi e fare cose insieme.");
 
   return (
-    <article className="home-project-card">
+    <article className={`home-project-card ${index === 0 ? "home-project-card--featured" : "home-project-card--compact"}`}>
       <ProjectLink project={project}>
         <div className="home-project-card__image">
           <img
@@ -69,12 +69,51 @@ function ProjectCard({ project }: { project: Project }) {
         <div className="home-project-card__body">
           {project.icon && <img src={asset(project.icon)} alt="" width="400" height="260" className="home-project-card__logo" loading="lazy" />}
           <h3>{project.title}</h3>
+          <span className="home-project-card__meta">{project.category} <span aria-hidden="true">·</span> {project.status}</span>
           <p>{copy}</p>
           <span className="home-text-link">{project.cta || "Scopri il progetto"} <ArrowUpRight size={17} aria-hidden="true" /></span>
         </div>
       </ProjectLink>
     </article>
   );
+}
+
+function ProjectCarousel({ projects }: { projects: Project[] }) {
+  const reduceMotion = useReducedMotion();
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (reduceMotion || projects.length < 2) return undefined;
+    const carousel = carouselRef.current;
+    if (!carousel) return undefined;
+
+    let paused = false;
+    const pause = () => { paused = true; };
+    const resume = () => { paused = false; };
+    carousel.addEventListener("mouseenter", pause);
+    carousel.addEventListener("mouseleave", resume);
+    carousel.addEventListener("focusin", pause);
+    carousel.addEventListener("focusout", resume);
+
+    const timer = window.setInterval(() => {
+      if (paused) return;
+      const firstCard = carousel.querySelector<HTMLElement>(".home-project-card");
+      if (!firstCard) return;
+      const step = firstCard.offsetWidth + 24;
+      const atEnd = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - step;
+      carousel.scrollTo({ left: atEnd ? 0 : carousel.scrollLeft + step, behavior: "smooth" });
+    }, 5000);
+
+    return () => {
+      window.clearInterval(timer);
+      carousel.removeEventListener("mouseenter", pause);
+      carousel.removeEventListener("mouseleave", resume);
+      carousel.removeEventListener("focusin", pause);
+      carousel.removeEventListener("focusout", resume);
+    };
+  }, [projects.length, reduceMotion]);
+
+  return <div ref={carouselRef} className="home-project-grid" aria-label="Carosello dei progetti ABBO">{projects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</div>;
 }
 
 function NewsCard({ article, featured = false }: { article: Articolo; featured?: boolean }) {
@@ -127,6 +166,7 @@ function HeroCarousel() {
 export function Home() {
   const jsonLd = generateNgoSchema();
   const actualProjects = (projectData as Project[]).filter((project) => project.id !== "hero-air");
+  const homeProjects = actualProjects.slice(0, 4);
   const recentNews = [...dataNews]
     .sort((a, b) => new Date(b.data).getTime() - new Date(a.data).getTime())
     .slice(0, 3);
@@ -178,9 +218,7 @@ export function Home() {
               </div>
               <Link to="/link" className="home-text-link">Vedi tutti <ArrowUpRight size={17} aria-hidden="true" /></Link>
             </div>
-            <div className="home-project-grid">
-              {actualProjects.map((project) => <ProjectCard key={project.id} project={project} />)}
-            </div>
+            <ProjectCarousel projects={homeProjects} />
           </div>
         </section>
 

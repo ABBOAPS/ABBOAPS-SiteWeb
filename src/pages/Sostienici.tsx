@@ -1,6 +1,6 @@
 import sostieniciConfig from "../config/sostienici.json";
-import { ArrowLeft, ChevronRight, ChevronLeft, CreditCard, HandHeart, Landmark } from "lucide-react";
-import { useState, useRef } from "react";
+import { ArrowLeft, ChevronRight, CreditCard, HandHeart, Landmark } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { SEO } from "../components/SEO";
 import { generateDonateActionSchema } from "../utils/seo-microdata";
@@ -9,9 +9,22 @@ import { CopyableValue } from "../components/CopyableValue";
 
 type DonationStep = "intro" | "methods" | "bank";
 
-function DonationCard() {
+function publicAsset(path: string): string {
+  const base = import.meta.env.BASE_URL ?? "/";
+  return `${base}${path.replace(/^\.?\//, "")}`;
+}
+
+function formatEuro(amount: number): string {
+  return new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(amount);
+}
+
+function DonationCard({ openMethods }: { openMethods: boolean }) {
   const [step, setStep] = useState<DonationStep>("intro");
   const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (openMethods) setStep("methods");
+  }, [openMethods]);
 
   const transition = reduceMotion ? { duration: 0 } : { duration: 0.24, ease: "easeOut" as const };
   const enter = reduceMotion ? {} : { opacity: 0, y: 12 };
@@ -140,8 +153,9 @@ function DonationCard() {
 
 export function Sostienici() {
   const schema = generateDonateActionSchema();
-  const [currentProjectIdx, setCurrentProjectIdx] = useState(0);
+  const reduceMotion = useReducedMotion();
   const donationRef = useRef<HTMLDivElement>(null);
+  const [donationMethodsOpen, setDonationMethodsOpen] = useState(() => window.location.hash === "#support-options");
   
   const [copied, setCopied] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -215,22 +229,10 @@ export function Sostienici() {
     update();
   };
 
-  const nextProject = () => {
-    setCurrentProjectIdx((prev) => (prev + 1) % sostieniciConfig.active_projects.length);
-  };
-
-  const prevProject = () => {
-    setCurrentProjectIdx((prev) => (prev - 1 + sostieniciConfig.active_projects.length) % sostieniciConfig.active_projects.length);
-  };
-
   const scrollToDonation = () => {
+    setDonationMethodsOpen(true);
     donationRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  const project = sostieniciConfig.active_projects[currentProjectIdx];
-  const isFuture = currentProjectIdx > 0;
-  // Make progress 0 for future or calculate
-  const progress = isFuture ? 0 : Math.min((project.current_amount / project.goal_amount) * 100, 100);
 
   return (
     <div className="relative z-20 w-full min-h-screen pt-40 px-6 md:px-24 flex flex-col pb-48 text-[#4a1c0d]">
@@ -252,88 +254,45 @@ export function Sostienici() {
           </h2>
         </div>
 
-        {/* I Nostri Progetti Attivi Slider */}
-        <div className="mb-40">
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tighter text-[#4a1c0d]">
-              I Nostri Progetti
+        {/* Obiettivi concreti */}
+        <section className="mb-40" aria-labelledby="fundraising-projects-title">
+          <div className="mb-12 max-w-3xl">
+            <h2 id="fundraising-projects-title" className="text-4xl font-extrabold tracking-tighter text-[#4a1c0d] md:text-5xl">
+              Dai forma a un progetto.
             </h2>
-            <div className="flex items-center gap-4">
-              <button onClick={prevProject} className="p-3 clay-nav text-[#e65100] transition-all hover:bg-white/50 hover:scale-110 active:scale-95">
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button onClick={nextProject} className="p-3 clay-nav text-[#e65100] transition-all hover:bg-white/50 hover:scale-110 active:scale-95">
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
           </div>
 
-          <div className="relative clay-card overflow-hidden grid">
-            {sostieniciConfig.active_projects.map((proj, idx) => {
-              const isActive = idx === currentProjectIdx;
-              const isFutureItem = idx > 0;
-              const opacityClass = isActive ? (isFutureItem ? 'opacity-80 z-10' : 'opacity-100 z-10') : 'opacity-0 z-0 pointer-events-none';
-              const currentProgress = isFutureItem ? 0 : Math.min((proj.current_amount / proj.goal_amount) * 100, 100);
-
-              return (
-                <div
-                  key={proj.id}
-                  className={`col-start-1 row-start-1 flex flex-col lg:flex-row min-h-[500px] transition-opacity duration-500 ease-in-out ${opacityClass}`}
-                >
-                  {/* Image side */}
-                  <div className="w-full lg:w-1/2 relative min-h-[250px] lg:min-h-full">
-                    <img src={proj.image} alt={proj.title} className={`absolute inset-0 w-full h-full object-cover ${isFutureItem ? 'grayscale' : ''}`} />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent lg:bg-gradient-to-t"></div>
-                    {isFutureItem && (
-                      <div className="absolute top-8 left-8 clay-card-dark text-white px-6 py-2 font-bold uppercase tracking-widest text-sm shadow-xl">
-                        Prossimamente
-                      </div>
-                    )}
-                  </div>
-                  
-                  {/* Content side */}
-                  <div className="w-full lg:w-1/2 p-10 md:p-16 flex flex-col justify-center">
-                    <h3 className="text-4xl md:text-5xl font-extrabold text-[#4a1c0d] mb-6 leading-tight">{proj.title}</h3>
-                    <p className="text-[#4a1c0d]/70 text-lg leading-relaxed font-medium mb-12 flex-1">
-                      {proj.description}
-                    </p>
-                    
-                    {/* Progress Bar Container */}
-                    <div className="w-full mb-10">
-                      <div className="flex justify-between items-end mb-4">
-                        <div className="flex flex-col">
-                          <span className="text-[#8a3a19] text-sm font-bold uppercase tracking-widest mb-1">
-                            Raccolti
-                          </span>
-                          <span className="text-4xl font-mono font-extrabold text-[#e65100]">
-                            €{proj.current_amount}
-                          </span>
-                        </div>
-                        <div className="flex flex-col items-end">
-                          <span className="text-[#4a1c0d]/50 text-xs font-bold uppercase tracking-widest mb-1">Obiettivo</span>
-                          <span className="text-xl font-mono font-bold text-[#4a1c0d]/70">€{proj.goal_amount}</span>
-                        </div>
-                      </div>
-                      <div className="w-full h-5 bg-[#e65100]/10 rounded-full overflow-hidden shadow-inner">
-                        <div 
-                          className="h-full bg-gradient-to-r from-[#e65100] to-[#ffb300] rounded-full transition-all duration-1000 ease-out" 
-                          style={{ width: isActive ? `${currentProgress}%` : '0%' }}
-                        ></div>
-                      </div>
-                    </div>
-
-                    <button 
-                      onClick={scrollToDonation}
-                      className={`clay-btn px-8 py-5 font-bold uppercase tracking-widest transition-all w-full md:w-auto self-start hover:scale-105`}
-                    >
-                      Sostienici Ora
-                    </button>
-                 </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {sostieniciConfig.active_projects.map((proj) => (
+              <motion.article
+                key={proj.id}
+                whileHover={reduceMotion ? undefined : { y: -6 }}
+                transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                className="group flex min-w-0 flex-col overflow-hidden rounded-[1.8rem] border border-white/90 bg-[#fffaf0]/80 shadow-[0_14px_32px_rgba(74,28,13,.09)]"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-[#4a1c0d]/10">
+                  <img src={publicAsset(proj.image)} alt={proj.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.035]" loading="lazy" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#4a1c0d]/45 via-transparent to-transparent" aria-hidden="true" />
                 </div>
-              );
-            })}
+                <div className="flex flex-1 flex-col p-6 sm:p-7">
+                  <h3 className="text-2xl font-extrabold leading-[1.05] tracking-tight text-[#4a1c0d]">{proj.title}</h3>
+                  <p className="mt-4 flex-1 text-base font-medium leading-relaxed text-[#4a1c0d]/70">{proj.description}</p>
+                  <div className="mt-7 border-t border-[#4a1c0d]/10 pt-5">
+                    <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#8a3a19]/75">Obiettivo indicativo</p>
+                    <p className="mt-1 text-3xl font-extrabold tracking-tight text-[#e65100]">{formatEuro(proj.goal_amount)}</p>
+                    <button
+                      type="button"
+                      onClick={scrollToDonation}
+                      className="clay-btn mt-5 min-h-12 w-full px-5 py-3 text-sm font-extrabold uppercase tracking-[0.12em] transition-transform hover:scale-[1.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e65100]"
+                    >
+                      Sostieni questo progetto
+                    </button>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
           </div>
-        </div>
+        </section>
 
 
 
@@ -343,7 +302,7 @@ export function Sostienici() {
             Sostienici
           </h2>
         </div>
-        <DonationCard />
+        <DonationCard openMethods={donationMethodsOpen} />
 
         {/* Sezione 5 per Mille */}
         <div className="w-full flex flex-col items-center pt-8 pb-16 max-w-5xl mx-auto relative z-20">

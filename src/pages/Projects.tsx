@@ -20,6 +20,12 @@ const socialLinks = [
 
 const projects = (projectData as Project[]).filter((project) => project.id !== "hero-air" && project.url);
 
+function publicAsset(path: string): string {
+  if (/^(https?:)?\/\//.test(path)) return path;
+  const base = import.meta.env.BASE_URL ?? "/";
+  return `${base}${path.replace(/^\/+/, "")}`;
+}
+
 function ProjectLink({ project, children, className, ariaLabel }: { project: Project; children: ReactNode; className?: string; ariaLabel?: string }) {
   const props = { "aria-label": ariaLabel, className: className ?? "projects-card-link" };
   if (project.url?.startsWith("/")) return <Link {...props} to={project.url}>{children}</Link>;
@@ -29,14 +35,19 @@ function ProjectLink({ project, children, className, ariaLabel }: { project: Pro
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const reduceMotion = useReducedMotion();
   return (
-    <motion.article className={`projects-card projects-card--${project.id}`} initial={reduceMotion ? false : { opacity: 0, y: 18 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: index * 0.06 }}>
+    <motion.article className={`projects-card projects-card--${project.id} ${index === 0 ? "projects-card--lead" : "projects-card--compact"}`} initial={reduceMotion ? false : { opacity: 0, y: 18 }} whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: index * 0.06 }}>
       <ProjectLink project={project} className="projects-card-visual" ariaLabel={`Apri ${project.title}`}>
-        <img src={project.bg_src} alt="" loading={index === 0 ? "eager" : "lazy"} />
-        {project.icon && <img className="projects-card-mark" src={project.icon} alt="" loading="lazy" />}
+        <img src={publicAsset(project.bg_src)} alt="" loading={index === 0 ? "eager" : "lazy"} />
+        {project.icon && <img className="projects-card-mark" src={publicAsset(project.icon)} alt="" loading="lazy" />}
       </ProjectLink>
       <div className="projects-card-copy">
-        <h2>{project.title}</h2>
-        <ProjectLink project={project}>Apri <ArrowUpRight aria-hidden="true" size={18} strokeWidth={2.2} /></ProjectLink>
+        <div className="projects-card-heading">
+            <h2>{project.title}</h2>
+            <p className="projects-card-meta">{project.category} <span aria-hidden="true">·</span> {project.status}</p>
+        </div>
+        {project.description && <p className="projects-card-description">{project.description}</p>}
+        {project.facts && index < 2 && <ul className="projects-card-facts">{project.facts.map((fact) => <li key={fact}>{fact}</li>)}</ul>}
+        <ProjectLink project={project}>{project.cta} <ArrowUpRight aria-hidden="true" size={18} strokeWidth={2.2} /></ProjectLink>
       </div>
     </motion.article>
   );
@@ -52,7 +63,10 @@ export function Projects() {
         <motion.a className="projects-logo" href="#projects-title" initial={reduceMotion ? false : { opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}>
           <img src={siteConfig.logo_horizontal} alt="ABBO APS" width="220" height="62" />
         </motion.a>
-        <h1 id="projects-title" className="sr-only">ABBO APS</h1>
+        <header className="projects-intro">
+          <h1 id="projects-title">I progetti ABBO</h1>
+          <p>Dal digitale agli spazi fisici, creiamo occasioni per imparare, incontrarsi e coltivare nuove passioni.</p>
+        </header>
         <nav className="projects-socials" aria-label="Social ABBO APS">
           {socialLinks.map(({ label, href, icon: Icon }) => (
             <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={`ABBO APS su ${label}`}>
@@ -68,6 +82,16 @@ export function Projects() {
 
         <section className="projects-grid" aria-label="Progetti ABBO">
           {projects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}
+        </section>
+
+        <section className="projects-territory" aria-labelledby="projects-territory-title">
+          <div>
+            <h2 id="projects-territory-title">Con il territorio.</h2>
+          </div>
+          <div className="projects-territory-copy">
+            <p>Partecipiamo al Tavolo delle Politiche Giovanili del Meratese e stiamo definendo nuove possibilità formative con il Comune di Milano e WeMi.</p>
+            <p className="projects-note">Il dialogo è già iniziato; le attività milanesi sono ancora in fase di definizione.</p>
+          </div>
         </section>
 
         <section className="projects-support" aria-label="Sostieni ABBO APS">

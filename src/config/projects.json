@@ -1,15 +1,5 @@
 [
   {
-    "id": "hero-air",
-    "title": "ABBO APS",
-    "is_video": false,
-    "bg_src": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
-    "thumbnail": "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=200&auto=format&fit=crop",
-    "cta": "Scorri verso il basso",
-    "icon": "https://img.icons8.com/ios-filled/50/ffffff/home.png",
-    "description": "L'associazione ABBO APS."
-  },
-  {
     "id": "digital-heroes",
     "title": "Digital Heroes",
     "is_video": false,
@@ -18,7 +8,36 @@
     "cta": "Scopri di più",
     "url": "https://digital-heroes.me",
     "icon": "/logo_dh_viola.svg",
-    "description": "Digital Heroes è un progetto di formazione digitale attivo a Verderio che si occupa di guidare i ragazzi dai 9 ai 14 anni e le realtà locali verso un uso sicuro, creativo e consapevole della tecnologia. Attraverso laboratori interattivi e percorsi pratici, l'iniziativa sviluppa le competenze informatiche fondamentali per il futuro, insegnando a sfruttare le opportunità della rete e a contrastarne i rischi. Questo percorso nasce con l'obiettivo di trasformare il tempo speso online in un'effettiva opportunità di crescita e di inclusione, costruendo così una comunità tecnologica responsabile, aperta al dialogo e pronta ad affrontare l'innovazione del mondo del lavoro."
+    "description": "Laboratori dove ragazze e ragazzi imparano attraverso gioco, sperimentazione e tecnologia: programmazione, Minecraft, intelligenza artificiale e sviluppo web.",
+    "category": "Educazione e tecnologia",
+    "status": "Attivo",
+    "facts": ["Circa 30 ragazzi", "100 ore di formazione", "5 € l'ora per i soci"]
+  },
+  {
+    "id": "abbo-community",
+    "title": "ABBO Community",
+    "is_video": false,
+    "bg_src": "/media/home/action-crowd.webp",
+    "thumbnail": "/media/home/action-crowd.webp",
+    "cta": "Entra nel Discord",
+    "url": "https://discord.gg/HDuD3tCvus",
+    "icon": "/logo_abbo_bianco.svg",
+    "description": "Una community online dedicata a gaming, tecnologia e cultura digitale. Il server Discord è in costruzione: stiamo preparando eventi, automazioni e iniziative per stare insieme anche online.",
+    "category": "Community e gaming",
+    "status": "In sviluppo"
+  },
+  {
+    "id": "giochi-da-tavolo",
+    "title": "Giochi da Tavolo",
+    "is_video": false,
+    "bg_src": "/media/spazio-ragazzi.jpg",
+    "thumbnail": "/media/spazio-ragazzi.jpg",
+    "cta": "Partecipa",
+    "url": "/contatti",
+    "description": "Ogni sabato sera creiamo uno spazio per incontrarsi, giocare e conoscere nuovi amici, tra giochi da tavolo e giochi di ruolo.",
+    "category": "Aggregazione e socialità",
+    "status": "Attivo",
+    "facts": ["Ogni sabato sera", "Circa 10 partecipanti", "Nobi Nobi e Here to Slay"]
   },
   {
     "id": "abbiamo",
@@ -30,6 +49,59 @@
     "url": "/abbiamo/",
     "icon": "/abbiamo/logo-primary.svg",
     "description": "La prima fiera delle associazioni: incontro, attività e rete nel territorio.",
-    "is_black_and_white": false
+    "is_black_and_white": false,
+    "category": "Eventi e territorio",
+    "status": "Prima edizione realizzata",
+    "facts": ["4 ottobre 2026", "Verderio", "12 associazioni · 14 stand"]
+  },
+  {
+    "id": "microduck-italia",
+    "title": "Microduck ITALIA",
+    "is_video": false,
+    "bg_src": "/media/home/action-talk.webp",
+    "thumbnail": "/media/home/action-talk.webp",
+    "cta": "Scopri Microduck",
+    "url": "https://microduckitalia.it/",
+    "icon": "/projects/microduck-italia-logo.svg",
+    "description": "Divulgazione di robotica e intelligenza artificiale attraverso Microduck, un piccolo robot programmabile da portare nei laboratori e negli eventi.",
+    "category": "Robotica e innovazione",
+    "status": "In sviluppo"
+  },
+  {
+    "id": "abbo-app",
+    "title": "ABBO APP",
+    "is_video": false,
+    "bg_src": "/media/home/action-talk.webp",
+    "thumbnail": "/media/home/action-talk.webp",
+    "cta": "Scopri la tessera",
+    "url": "/tessera",
+    "icon": "/logo_abbo_nero.svg",
+    "description": "Il gestionale associativo sviluppato internamente per semplificare soci, tessere digitali, verifica QR e lavoro organizzativo. È già usato internamente, ma resta in fase di test.",
+    "category": "Innovazione associativa",
+    "status": "In test"
+  },
+  {
+    "id": "spazio-giovani",
+    "title": "Spazio Giovani",
+    "is_video": false,
+    "bg_src": "/media/spazio-ragazzi.jpg",
+    "thumbnail": "/media/spazio-ragazzi.jpg",
+    "cta": "Parliamone",
+    "url": "/contatti",
+    "description": "Un luogo da vivere durante tutto l'anno per studiare, incontrarsi, giocare e partecipare ad attività culturali e formative. Lo stiamo progettando insieme al territorio.",
+    "category": "Spazi e aggregazione",
+    "status": "In progettazione"
+  },
+  {
+    "id": "scrittura-creativa",
+    "title": "Scrittura Creativa",
+    "is_video": false,
+    "bg_src": "/media/banner1post.webp",
+    "thumbnail": "/media/banner1post.webp",
+    "cta": "Contribuisci",
+    "url": "/contatti",
+    "description": "Laboratori per scrivere racconti, storie e personaggi, con l'idea di collegare la creatività ai giochi di ruolo e a una pubblicazione collettiva.",
+    "category": "Cultura e creatività",
+    "status": "In progettazione"
   }
 ]

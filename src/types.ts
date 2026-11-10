@@ -9,6 +9,9 @@ export interface Project {
   description?: string;
   url?: string;
   is_black_and_white?: boolean;
+  category?: string;
+  status?: string;
+  facts?: string[];
 }
 
 export interface ChiSiamoData {

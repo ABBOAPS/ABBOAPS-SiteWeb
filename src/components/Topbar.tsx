@@ -1,8 +1,10 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useMemo, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ChevronRight, Menu, X } from "lucide-react";
+import { ChevronRight, Hammer, Menu, X } from "lucide-react";
 import siteConfig from "../config/site_config.json";
+import projectData from "../config/projects.json";
+import type { Project } from "../types";
 import { SocialLinks } from "./SocialLinks";
 
 const csvFiles = import.meta.glob("../content/csv/*.csv", {
@@ -11,11 +13,29 @@ const csvFiles = import.meta.glob("../content/csv/*.csv", {
   import: "default",
 }) as Record<string, string>;
 
+const projects = (projectData as Project[]).filter((project) => project.id !== "hero-air" && project.url);
+
+function isUnderConstruction(project: Project): boolean {
+  return project.url?.startsWith("/") === true && project.id !== "abbiamo";
+}
+
+function ProjectMenuItem({ project, onSelect }: { project: Project; onSelect?: () => void }) {
+  const underConstruction = isUnderConstruction(project);
+  const content = <><span className="flex min-w-0 flex-col"><strong className="truncate">{project.title}</strong><small>{underConstruction ? "Pagina in costruzione" : project.category}</small></span>{underConstruction && <Hammer aria-hidden="true" className="h-4 w-4 shrink-0" />}</>;
+
+  if (project.url?.startsWith("http")) {
+    return <a href={project.url} target="_blank" rel="noopener noreferrer" onClick={onSelect} className="project-menu__item" title={underConstruction ? "Pagina ancora in costruzione" : `Apri ${project.title}`}>{content}</a>;
+  }
+
+  return <Link to={project.url || "/link"} onClick={onSelect} className="project-menu__item" title={underConstruction ? "Pagina ancora in costruzione" : `Apri ${project.title}`}>{content}</Link>;
+}
+
 export function Topbar() {
   const location = useLocation();
   const [docMenuOpen, setDocMenuOpen] = useState(false);
   const [bilancioSubMenuOpen, setBilancioSubMenuOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [projectsMenuOpen, setProjectsMenuOpen] = useState(false);
   const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
 
   // Extract years dynamically from CSV files
@@ -119,6 +139,14 @@ export function Topbar() {
               <Link to="/notizie" className="hover:text-[#e65100] transition-colors">
                 {(siteConfig.navigation as any).news || "News"}
               </Link>
+              <div className="w-full max-w-sm">
+                <button type="button" onClick={() => setProjectsMenuOpen((open) => !open)} className="project-brand-trigger project-brand-trigger--mobile" aria-expanded={projectsMenuOpen}>
+                  {showLogo ? <img src={(siteConfig as any).logo} alt="Apri i progetti ABBO" /> : <span>PROGETTI</span>}
+                </button>
+                <AnimatePresence initial={false}>
+                  {projectsMenuOpen && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="mt-4 overflow-hidden border-y border-[#4a1c0d]/10 py-2">{projects.map((project) => <ProjectMenuItem key={project.id} project={project} onSelect={() => setMobileMenuOpen(false)} />)}</motion.div>}
+                </AnimatePresence>
+              </div>
               <Link to="/sostienici" className="hover:text-[#e65100] transition-colors">
                 {siteConfig.navigation.sostienici}
               </Link>
@@ -200,6 +228,15 @@ export function Topbar() {
               >
                 {(siteConfig.navigation as any).news || "News"}
               </Link>
+
+              <div className="project-brand-menu" onMouseEnter={() => setProjectsMenuOpen(true)} onMouseLeave={() => setProjectsMenuOpen(false)}>
+                <button type="button" onClick={() => setProjectsMenuOpen((open) => !open)} aria-expanded={projectsMenuOpen} className={`project-brand-trigger ${projectsMenuOpen ? "project-brand-trigger--open" : ""}`}>
+                  {showLogo ? <img src={(siteConfig as any).logo} alt="Apri i progetti ABBO" /> : <span>PROGETTI</span>}
+                </button>
+                <AnimatePresence>
+                  {projectsMenuOpen && <motion.div initial={{ opacity: 0, y: -8, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -8, scale: 0.98 }} transition={{ duration: 0.18 }} className="project-menu absolute left-1/2 top-14 z-[120] -translate-x-1/2">{projects.map((project) => <ProjectMenuItem key={project.id} project={project} onSelect={() => setProjectsMenuOpen(false)} />)}</motion.div>}
+                </AnimatePresence>
+              </div>
 
               <Link
                 to="/sostienici"

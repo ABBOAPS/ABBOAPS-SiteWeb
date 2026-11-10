@@ -51,10 +51,14 @@ export default function App() {
   const isLimitedVerificationPage = location.pathname === "/limited" || location.pathname.startsWith("/limited/");
   const isHubPage = location.pathname === "/link";
 
+  const appStyle = isHubPage
+    ? { backgroundColor: "#fff8ee", color: siteConfig.theme.text.primary }
+    : { backgroundColor: siteConfig.theme.background.base, backgroundImage: siteConfig.theme.background.gradient, color: siteConfig.theme.text.primary };
+
   return (
     <div 
       className="relative min-h-screen w-full flex flex-col overflow-x-hidden selection:bg-[#e65100] selection:text-white"
-      style={{ backgroundColor: siteConfig.theme.background.base, backgroundImage: siteConfig.theme.background.gradient, color: siteConfig.theme.text.primary }}
+      style={appStyle}
     >
       {/* Primary Top Navigation */}
       {!isTesseraPage && !isLimitedVerificationPage && !isHubPage && <Topbar />}
