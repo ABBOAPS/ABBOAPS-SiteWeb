@@ -141,7 +141,7 @@ export function Topbar() {
               </Link>
               <div className="w-full max-w-sm">
                 <button type="button" onClick={() => setProjectsMenuOpen((open) => !open)} className="project-brand-trigger project-brand-trigger--mobile" aria-expanded={projectsMenuOpen}>
-                  {showLogo ? <img src={(siteConfig as any).logo} alt="Apri i progetti ABBO" /> : <span>PROGETTI</span>}
+                  <span>PROGETTI</span>
                 </button>
                 <AnimatePresence initial={false}>
                   {projectsMenuOpen && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="mt-4 overflow-hidden border-y border-[#4a1c0d]/10 py-2">{projects.map((project) => <ProjectMenuItem key={project.id} project={project} onSelect={() => setMobileMenuOpen(false)} />)}</motion.div>}

@@ -27,19 +27,6 @@
     "status": "In sviluppo"
   },
   {
-    "id": "giochi-da-tavolo",
-    "title": "Giochi da Tavolo",
-    "is_video": false,
-    "bg_src": "/media/spazio-ragazzi.jpg",
-    "thumbnail": "/media/spazio-ragazzi.jpg",
-    "cta": "Partecipa",
-    "url": "/contatti",
-    "description": "Ogni sabato sera creiamo uno spazio per incontrarsi, giocare e conoscere nuovi amici, tra giochi da tavolo e giochi di ruolo.",
-    "category": "Aggregazione e socialità",
-    "status": "Attivo",
-    "facts": ["Ogni sabato sera", "Circa 10 partecipanti", "Nobi Nobi e Here to Slay"]
-  },
-  {
     "id": "abbiamo",
     "title": "Festival ABBIAMO",
     "is_video": false,

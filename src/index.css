@@ -970,3 +970,84 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .home-project-grid { scroll-behavior: auto; }
 }
+
+/* Project rail: each card carries the same palette as its full project page. */
+.home-project-card,
+.home-project-card--featured,
+.home-project-card--compact {
+  --project-paper: #fffdf8;
+  --project-ink: #32170f;
+  --project-accent: #e65100;
+  --project-media: #e7d7c4;
+  border: 0;
+  background: var(--project-paper);
+  color: var(--project-ink);
+  box-shadow: none;
+  transition: transform 220ms ease, background-color 220ms ease;
+}
+
+.home-project-card--digital-heroes {
+  --project-paper: #f0e7f7;
+  --project-ink: #32134d;
+  --project-accent: #7b43a2;
+  --project-media: #542d72;
+}
+
+.home-project-card--abbo-community {
+  --project-paper: #201522;
+  --project-ink: #fffaf0;
+  --project-accent: #d08af5;
+  --project-media: #201522;
+}
+
+.home-project-card--abbiamo {
+  --project-paper: #fff0e2;
+  --project-ink: #651d18;
+  --project-accent: #b52228;
+  --project-media: #e63033;
+}
+
+.home-project-card--microduck-italia {
+  --project-paper: #f1f4f1;
+  --project-ink: #211727;
+  --project-accent: #3e0260;
+  --project-media: #f1f4f1;
+}
+
+.home-project-card:hover {
+  transform: translateY(-4px);
+  background: var(--project-paper);
+  box-shadow: none;
+}
+
+.home-project-card__image {
+  background: var(--project-media);
+}
+
+.home-project-card__body {
+  background: var(--project-paper);
+}
+
+.home-project-card__body h3 {
+  color: var(--project-ink);
+}
+
+.home-project-card__meta {
+  color: var(--project-accent);
+}
+
+.home-project-card__body p {
+  color: color-mix(in srgb, var(--project-ink) 72%, transparent);
+}
+
+.home-project-card .home-text-link {
+  color: var(--project-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-project-card,
+  .home-project-card:hover {
+    transform: none;
+    transition: none;
+  }
+}

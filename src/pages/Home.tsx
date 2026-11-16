@@ -54,7 +54,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
     : "Un progetto ABBO per imparare, incontrarsi e fare cose insieme.");
 
   return (
-    <article className={`home-project-card ${index === 0 ? "home-project-card--featured" : "home-project-card--compact"}`}>
+    <article className={`home-project-card home-project-card--${project.id} ${index === 0 ? "home-project-card--featured" : "home-project-card--compact"}`}>
       <ProjectLink project={project}>
         <div className="home-project-card__image">
           <img
@@ -99,7 +99,8 @@ function ProjectCarousel({ projects }: { projects: Project[] }) {
       if (paused) return;
       const firstCard = carousel.querySelector<HTMLElement>(".home-project-card");
       if (!firstCard) return;
-      const step = firstCard.offsetWidth + 24;
+      const gap = Number.parseFloat(window.getComputedStyle(carousel).columnGap) || 16;
+      const step = firstCard.offsetWidth + gap;
       const atEnd = carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - step;
       carousel.scrollTo({ left: atEnd ? 0 : carousel.scrollLeft + step, behavior: "smooth" });
     }, 5000);
@@ -113,7 +114,7 @@ function ProjectCarousel({ projects }: { projects: Project[] }) {
     };
   }, [projects.length, reduceMotion]);
 
-  return <div ref={carouselRef} className="home-project-grid" aria-label="Carosello dei progetti ABBO">{projects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</div>;
+  return <div ref={carouselRef} className="home-project-grid" role="region" aria-roledescription="carosello" aria-label="Progetti ABBO">{projects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}</div>;
 }
 
 function NewsCard({ article, featured = false }: { article: Articolo; featured?: boolean }) {

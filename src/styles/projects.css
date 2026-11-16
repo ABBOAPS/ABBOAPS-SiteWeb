@@ -34,7 +34,6 @@
 .projects-card--abbo-community { --card-paper:#201522; --card-ink:#fffaf0; --card-accent:#d08af5; }
 .projects-card--abbo-community .projects-card-visual { background:#201522; }
 .projects-card--abbo-community .projects-card-mark { max-height:4rem; }
-.projects-card--giochi-da-tavolo { --card-paper:#e9eff5; --card-ink:#14263b; --card-accent:#2e668f; }
 .projects-card--abbiamo { --card-paper:#fff0e2; --card-ink:#651d18; --card-accent:#b52228; }
 .projects-card--abbiamo .projects-card-visual { background:#e63033; }
 .projects-card--abbiamo .projects-card-mark { max-height:6.5rem; filter:brightness(0) invert(1); }
