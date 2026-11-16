@@ -136,9 +136,6 @@ export function Topbar() {
               <Link to="/team" className="hover:text-[#e65100] transition-colors">
                 {(siteConfig.navigation as any).team || "Team"}
               </Link>
-              <Link to="/notizie" className="hover:text-[#e65100] transition-colors">
-                {(siteConfig.navigation as any).news || "News"}
-              </Link>
               <div className="w-full max-w-sm">
                 <button type="button" onClick={() => setProjectsMenuOpen((open) => !open)} className="project-brand-trigger project-brand-trigger--mobile" aria-expanded={projectsMenuOpen}>
                   <span>PROGETTI</span>
@@ -222,13 +219,6 @@ export function Topbar() {
                   {(siteConfig.navigation as any).team || "Team"}
                 </Link>
               )}
-
-              <Link
-                to="/notizie"
-                className={`hover:text-[#e65100] transition-colors flex items-center h-12 ${location.pathname === "/notizie" || location.pathname.startsWith("/news/") ? "text-[#e65100]" : ""}`}
-              >
-                {(siteConfig.navigation as any).news || "News"}
-              </Link>
 
               <div className="project-brand-menu" onMouseEnter={() => setProjectsMenuOpen(true)} onMouseLeave={() => setProjectsMenuOpen(false)}>
                 <button type="button" onClick={() => setProjectsMenuOpen((open) => !open)} aria-expanded={projectsMenuOpen} className={`project-brand-trigger ${projectsMenuOpen ? "project-brand-trigger--open" : ""}`}>
