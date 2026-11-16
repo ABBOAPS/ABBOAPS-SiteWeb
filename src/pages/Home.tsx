@@ -202,7 +202,16 @@ export function Home() {
               </h1>
               <p className="home-hero__microcopy">Progetti, Persone, Giovani e Territorio.</p>
               <div className="home-actions">
-                <a href="#progetti" className="home-button home-button--light">Scopri i progetti <ArrowDownRight size={18} aria-hidden="true" /></a>
+                <a
+                  href="#progetti"
+                  className="home-button home-button--light"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    document.getElementById("progetti")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
+                >
+                  Scopri i progetti <ArrowDownRight size={18} aria-hidden="true" />
+                </a>
                 <Link to="/contatti" className="home-button home-button--outline">Partecipa <ArrowUpRight size={18} aria-hidden="true" /></Link>
               </div>
             </div>
