@@ -1008,10 +1008,10 @@ body {
 }
 
 .home-project-card--microduck-italia {
-  --project-paper: #f1f4f1;
-  --project-ink: #211727;
+  --project-paper: #f5f7f4;
+  --project-ink: #1b131f;
   --project-accent: #3e0260;
-  --project-media: #f1f4f1;
+  --project-media: #f0ebee;
 }
 
 .home-project-card:hover {
@@ -1042,6 +1042,18 @@ body {
 
 .home-project-card .home-text-link {
   color: var(--project-accent);
+}
+
+.home-project-card--microduck-italia .home-project-card__meta {
+  color: #008d45;
+}
+
+.home-project-card--microduck-italia .home-text-link {
+  color: #d01d2a;
+}
+
+.home-project-card--microduck-italia .home-project-card__body {
+  border-top: 0.35rem solid #d01d2a;
 }
 
 @media (prefers-reduced-motion: reduce) {
