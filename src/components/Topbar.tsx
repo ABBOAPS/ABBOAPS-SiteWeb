@@ -220,7 +220,7 @@ export function Topbar() {
                 </Link>
               )}
 
-              <div className="project-brand-menu" onMouseEnter={() => !showLogo && setProjectsMenuOpen(true)} onMouseLeave={() => setProjectsMenuOpen(false)}>
+              <div className="project-brand-menu" onMouseEnter={() => setProjectsMenuOpen(true)} onMouseLeave={() => setProjectsMenuOpen(false)}>
                 <AnimatePresence mode="wait" initial={false}>
                   {showLogo ? (
                     <Link key="home-logo" to="/" onClick={handleLogoClick} className="project-brand-trigger" aria-label="Vai alla home ABBO">
