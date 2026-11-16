@@ -994,10 +994,10 @@ body {
 }
 
 .home-project-card--abbo-community {
-  --project-paper: #201522;
+  --project-paper: #4a1c0d;
   --project-ink: #fffaf0;
-  --project-accent: #d08af5;
-  --project-media: #201522;
+  --project-accent: #ffc169;
+  --project-media: #e65100;
 }
 
 .home-project-card--abbiamo {

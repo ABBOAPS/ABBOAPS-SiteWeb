@@ -31,8 +31,8 @@
 .projects-card--digital-heroes { --card-paper:#f0e7f7; --card-ink:#32134d; --card-accent:#7b43a2; }
 .projects-card--digital-heroes .projects-card-visual { background:var(--projects-purple); }
 .projects-card--digital-heroes .projects-card-mark { max-height:7rem; filter:brightness(0) invert(1); }
-.projects-card--abbo-community { --card-paper:#201522; --card-ink:#fffaf0; --card-accent:#d08af5; }
-.projects-card--abbo-community .projects-card-visual { background:#201522; }
+.projects-card--abbo-community { --card-paper:#4a1c0d; --card-ink:#fffaf0; --card-accent:#ffc169; }
+.projects-card--abbo-community .projects-card-visual { background:#e65100; }
 .projects-card--abbo-community .projects-card-mark { max-height:4rem; }
 .projects-card--abbiamo { --card-paper:#fff0e2; --card-ink:#651d18; --card-accent:#b52228; }
 .projects-card--abbiamo .projects-card-visual { background:#e63033; }
