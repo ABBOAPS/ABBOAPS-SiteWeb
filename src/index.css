@@ -664,7 +664,7 @@ body {
 .project-brand-menu { position: relative; display: flex; align-items: center; height: 3rem; }
 .project-brand-trigger { display: inline-flex; align-items: center; justify-content: center; min-width: 5rem; height: 3rem; padding: 0 0.8rem; border: 0; border-radius: 0.9rem; background: transparent; color: var(--home-ink); cursor: pointer; font: inherit; font-size: 0.72rem; font-weight: 850; letter-spacing: 0.14em; text-transform: uppercase; transition: background 180ms ease, color 180ms ease, transform 180ms ease; }
 .project-brand-trigger:hover, .project-brand-trigger--open { background: rgba(255, 253, 248, 0.8); color: var(--home-accent); }
-.project-brand-trigger img { display: block; width: 2.5rem; height: 2.5rem; object-fit: contain; transition: transform 220ms ease; }
+.project-brand-trigger img { display: block; width: 6rem; height: 2.25rem; object-fit: contain; transition: transform 220ms ease; }
 .project-brand-trigger:hover img, .project-brand-trigger--open img { transform: translateY(1px) scale(1.06); }
 .project-brand-trigger--mobile { margin: 0 auto; }
 .project-brand-trigger--mobile img { width: 3.2rem; height: 3.2rem; }

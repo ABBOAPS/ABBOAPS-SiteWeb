@@ -166,7 +166,7 @@ export function Topbar() {
         className={`fixed ${isLandingPage ? "top-0 md:top-4" : "top-0"} left-0 right-0 z-[100] px-4 py-4 md:px-6 md:py-6 flex justify-between items-center pointer-events-none`}
       >
         {/* Left Hand Side: Logo Chip */}
-        <div className="flex-1 flex justify-start pointer-events-auto">
+        <div className="flex md:hidden flex-1 justify-start pointer-events-auto">
           <AnimatePresence>
             {showLogo && (
               <motion.div
@@ -231,7 +231,7 @@ export function Topbar() {
 
               <div className="project-brand-menu" onMouseEnter={() => setProjectsMenuOpen(true)} onMouseLeave={() => setProjectsMenuOpen(false)}>
                 <button type="button" onClick={() => setProjectsMenuOpen((open) => !open)} aria-expanded={projectsMenuOpen} className={`project-brand-trigger ${projectsMenuOpen ? "project-brand-trigger--open" : ""}`}>
-                  {showLogo ? <img src={(siteConfig as any).logo} alt="Apri i progetti ABBO" /> : <span>PROGETTI</span>}
+                  {showLogo ? <img src={(siteConfig as any).logo_horizontal} alt="Apri i progetti ABBO" /> : <span>PROGETTI</span>}
                 </button>
                 <AnimatePresence>
                   {projectsMenuOpen && <motion.div initial={{ opacity: 0, y: -8, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -8, scale: 0.98 }} transition={{ duration: 0.18 }} className="project-menu absolute left-1/2 top-14 z-[120] -translate-x-1/2">{projects.map((project) => <ProjectMenuItem key={project.id} project={project} onSelect={() => setProjectsMenuOpen(false)} />)}</motion.div>}
