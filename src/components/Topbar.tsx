@@ -101,7 +101,7 @@ export function Topbar() {
 
   const handleLogoClick = () => {
     if (location.pathname === "/") {
-      window.dispatchEvent(new CustomEvent("go-home"));
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -220,34 +220,36 @@ export function Topbar() {
                 </Link>
               )}
 
-              <div className="project-brand-menu" onMouseEnter={() => setProjectsMenuOpen(true)} onMouseLeave={() => setProjectsMenuOpen(false)}>
-                <button type="button" onClick={() => setProjectsMenuOpen((open) => !open)} aria-expanded={projectsMenuOpen} className={`project-brand-trigger ${projectsMenuOpen ? "project-brand-trigger--open" : ""}`}>
-                  <AnimatePresence mode="wait" initial={false}>
-                    {showLogo ? (
+              <div className="project-brand-menu" onMouseEnter={() => !showLogo && setProjectsMenuOpen(true)} onMouseLeave={() => setProjectsMenuOpen(false)}>
+                <AnimatePresence mode="wait" initial={false}>
+                  {showLogo ? (
+                    <Link key="home-logo" to="/" onClick={handleLogoClick} className="project-brand-trigger" aria-label="Vai alla home ABBO">
                       <motion.img
-                        key="nav-logo"
                         src={(siteConfig as any).logo_horizontal}
-                        alt="Apri i progetti ABBO"
+                        alt="ABBO APS"
                         initial={{ opacity: 0, y: 3 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -3 }}
                         transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
                       />
-                    ) : (
-                      <motion.span
-                        key="projects-label"
-                        initial={{ opacity: 0, y: 3 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -3 }}
-                        transition={{ duration: 0.18, ease: "easeOut" }}
-                      >
-                        PROGETTI
-                      </motion.span>
-                    )}
-                  </AnimatePresence>
-                </button>
-                <AnimatePresence>
-                  {projectsMenuOpen && <motion.div initial={{ opacity: 0, y: -8, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -8, scale: 0.98 }} transition={{ duration: 0.18 }} className="project-menu absolute left-1/2 top-14 z-[120] -translate-x-1/2">{projects.map((project) => <ProjectMenuItem key={project.id} project={project} onSelect={() => setProjectsMenuOpen(false)} />)}</motion.div>}
+                    </Link>
+                  ) : (
+                    <div key="projects-menu">
+                      <button type="button" onClick={() => setProjectsMenuOpen((open) => !open)} aria-expanded={projectsMenuOpen} className={`project-brand-trigger ${projectsMenuOpen ? "project-brand-trigger--open" : ""}`}>
+                        <motion.span
+                          initial={{ opacity: 0, y: 3 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -3 }}
+                          transition={{ duration: 0.18, ease: "easeOut" }}
+                        >
+                          PROGETTI
+                        </motion.span>
+                      </button>
+                      <AnimatePresence>
+                        {projectsMenuOpen && <motion.div initial={{ opacity: 0, y: -8, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -8, scale: 0.98 }} transition={{ duration: 0.18 }} className="project-menu absolute left-1/2 top-14 z-[120] -translate-x-1/2">{projects.map((project) => <ProjectMenuItem key={project.id} project={project} onSelect={() => setProjectsMenuOpen(false)} />)}</motion.div>}
+                      </AnimatePresence>
+                    </div>
+                  )}
                 </AnimatePresence>
               </div>
 
