@@ -127,16 +127,16 @@ export function Topbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 z-[90] bg-[#fffcf5] pt-32 px-6 flex flex-col items-center pointer-events-auto pb-6 overflow-y-auto md:hidden"
+            className="mobile-menu fixed inset-0 z-[90] bg-[#fffcf5] px-6 flex flex-col items-center pointer-events-auto pb-6 overflow-y-auto md:hidden"
           >
-            <nav className="flex flex-col items-center space-y-8 text-xl uppercase tracking-widest font-extrabold text-[#4a1c0d]">
-              <Link to="/chi-siamo" className="hover:text-[#e65100] transition-colors">
+            <nav className="mobile-menu__nav flex flex-col items-stretch w-full max-w-sm text-xl uppercase font-extrabold text-[#4a1c0d]">
+              <Link to="/chi-siamo" className="mobile-menu__link hover:text-[#e65100] transition-colors">
                 {siteConfig.navigation.chi_siamo}
               </Link>
-              <Link to="/team" className="hover:text-[#e65100] transition-colors">
+              <Link to="/team" className="mobile-menu__link hover:text-[#e65100] transition-colors">
                 {(siteConfig.navigation as any).team || "Team"}
               </Link>
-              <div className="w-full max-w-sm">
+              <div className="mobile-menu__projects">
                 <button type="button" onClick={() => setProjectsMenuOpen((open) => !open)} className="project-brand-trigger project-brand-trigger--mobile" aria-expanded={projectsMenuOpen}>
                   <span>PROGETTI</span>
                 </button>
@@ -144,10 +144,10 @@ export function Topbar() {
                   {projectsMenuOpen && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="mt-4 overflow-hidden border-y border-[#4a1c0d]/10 py-2">{projects.map((project) => <ProjectMenuItem key={project.id} project={project} onSelect={() => setMobileMenuOpen(false)} />)}</motion.div>}
                 </AnimatePresence>
               </div>
-              <Link to="/sostienici" className="hover:text-[#e65100] transition-colors">
+              <Link to="/sostienici" className="mobile-menu__link hover:text-[#e65100] transition-colors">
                 {siteConfig.navigation.sostienici}
               </Link>
-              <Link to="/contatti" className="hover:text-[#e65100] transition-colors">
+              <Link to="/contatti" className="mobile-menu__link hover:text-[#e65100] transition-colors">
                 {siteConfig.navigation.contatti}
               </Link>
             </nav>
