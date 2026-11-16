@@ -166,10 +166,11 @@ export function Topbar() {
         className={`fixed ${isLandingPage ? "top-0 md:top-4" : "top-0"} left-0 right-0 z-[100] px-4 py-4 md:px-6 md:py-6 flex justify-between items-center pointer-events-none`}
       >
         {/* Left Hand Side: Logo Chip */}
-        <div className="flex md:hidden flex-1 justify-start pointer-events-auto">
+        <div className="flex flex-1 justify-start pointer-events-auto">
           <AnimatePresence>
             {showLogo && (
               <motion.div
+                className="md:hidden"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
@@ -193,7 +194,7 @@ export function Topbar() {
         </div>
 
         {/* Center: Main Bar (Desktop) */}
-        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 pointer-events-auto">
+        <div className="hidden md:flex flex-1 justify-center pointer-events-auto">
           <div className="clay-nav h-12 px-8 flex items-center justify-center">
             <nav className="flex items-center space-x-6 md:space-x-8 text-[11px] md:text-xs uppercase tracking-widest font-bold text-[#4a1c0d]/60">
               {isLandingPage ? (
@@ -237,18 +238,18 @@ export function Topbar() {
                         key="nav-logo"
                         src={(siteConfig as any).logo_horizontal}
                         alt="Apri i progetti ABBO"
-                        initial={{ opacity: 0, y: 8, scale: 0.82, rotate: -4 }}
-                        animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
-                        exit={{ opacity: 0, y: -8, scale: 0.82, rotate: 4 }}
-                        transition={{ type: "spring", stiffness: 360, damping: 24, mass: 0.7 }}
+                        initial={{ opacity: 0, y: 3 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -3 }}
+                        transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
                       />
                     ) : (
                       <motion.span
                         key="projects-label"
-                        initial={{ opacity: 0, y: 8 }}
+                        initial={{ opacity: 0, y: 3 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -8 }}
-                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        exit={{ opacity: 0, y: -3 }}
+                        transition={{ duration: 0.18, ease: "easeOut" }}
                       >
                         PROGETTI
                       </motion.span>
